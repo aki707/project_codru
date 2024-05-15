@@ -12,51 +12,45 @@ router.use(cookieParser());
 const Student = require("../models/studentSchema");
 
 router.post("/register", async (req, res) => {
-    const {
-        username, name, email,password, phone, dob,cpassword
+  const { username, name, email, password, phone, dob, cpassword } = req.body;
 
-    } = req.body;
-  
-    if (
-      !name ||
-      !email ||
-      !password ||
-      !cpassword ||
-      !phone ||
-      !username ||
-      !dob
+  if (
+    !name ||
+    !email ||
+    !password ||
+    !cpassword ||
+    !phone ||
+    !username ||
+    !dob
+  ) {
+    return res.status(422).json({ error: "Empty field(s)." });
+  }
 
-    ) {
-      return res.status(422).json({ error: "Empty field(s)." });
+  try {
+    const emailExist = await Student.findOne({ email: email });
+
+    if (emailExist) {
+      return res.status(422).json({ error: "User already exists." });
+    } else if (password != cpassword) {
+      return res.status(422).json({ error: "Passwords didn't match." });
+    } else {
+      const student = new Student({});
+      await student.save();
+      res.status(201).json({ message: "Registration successful" });
     }
-  
-    try {
-      const emailExist = await Student.findOne({ email: email });
+  } catch (err) {
+    console.log(err);
+  }
+});
 
-      if (emailExist) {
-        return res.status(422).json({ error: "User already exists." });
-      } else if (password != cpassword) {
-        return res.status(422).json({ error: "Passwords didn't match." });
-      } else {
-        const student = new Student({
-          
-        });
-        await student.save();
-        res.status(201).json({ message: "Registration successful" });
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  });
-
-  router.post("/signin",async (req,res)=>{
-    try {
-        const { username, password } = req.body;
+router.post("/signin", async (req, res) => {
+  try {
+    const { username, password } = req.body;
     if (!username || !password) {
       return res.status(400).json({ error: "Empty field(s)" });
     }
 
-    const studentLogin = await Student.findOne({ username:username });
+    const studentLogin = await Student.findOne({ username: username });
 
     if (studentLogin) {
       const isMatched = await bcrypt.compare(password, studentLogin.password);
@@ -79,7 +73,6 @@ router.post("/register", async (req, res) => {
   } catch (err) {
     console.log(err);
   }
+});
 
-  })
-
-  module.exports =router;
+module.exports = router;
