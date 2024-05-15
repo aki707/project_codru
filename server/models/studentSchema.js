@@ -2,6 +2,11 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
 const studentSchema = new mongoose.Schema({
+     photo:{
+      type: String,
+      default:"",
+
+     },
       name: {
         type: String,
         default: "",
@@ -50,7 +55,7 @@ const studentSchema = new mongoose.Schema({
         type: String,
         default: "",
       },
-      chosensubject: {
+      chosensubs: {
         type: String,
         default: "",
       },
@@ -61,6 +66,18 @@ const studentSchema = new mongoose.Schema({
       schoolorcollege: {
         type: String,
         default: "",
+      },
+      fatherOcc: {
+        type: String,
+        default: "",
+      },
+      motherOcc: {
+        type: String,
+        default: "",
+      },
+      courses:{
+        type:String,
+        default:""
       }
 })
 
