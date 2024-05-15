@@ -14,7 +14,7 @@ const path = require("path");
 dotenv.config({ path: "./config.env" });
 require("./db/conn.js");
 
-const Student = require("./models/studentSchema.js");
+//const Student = require("./models/studentSchema.js");
 
 app.use(require("./router/studentauth.js"));
 
