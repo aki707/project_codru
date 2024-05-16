@@ -1,9 +1,16 @@
+import { NavLink } from "react-router-dom";
 import Navbar from "./Navbar";
+import Start from "./Start";
+
+
 
 function Home() {
   return (
     <div>
-      <Navbar />
+      <Navbar/>
+      <hr />
+      <Start/>
+      
     </div>
   );
 }
