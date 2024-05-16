@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
-import "./Navbar.css";
+import "../styles/Navbar.css";
+import c2 from "../assets/c2.svg";
 
 const style = {
   textDecoration: "none",
@@ -12,10 +13,9 @@ function Navbar() {
       <div className="navlogo">
         <img
           //   src="https://cdn.pixabay.com/photo/2023/04/05/16/08/hedgehog-fly-7901862_640.jpg"
-          src="images/codrulogo.png"
+          src={c2}
           alt=""
         />
-        <h2>Codru Education</h2>
       </div>
       <div className="navbuttons">
         <div className="btn">

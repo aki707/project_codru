@@ -6,6 +6,7 @@
   color-scheme: light dark;
   color: black;
   background-color: white;
+  justify-content: "center";
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
