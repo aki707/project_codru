@@ -1,4 +1,3 @@
-
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
 
@@ -8,6 +7,5 @@ function App() {
       <Route path="/" Component={Home} />
     </Routes>
   );
-
 }
 export default App;

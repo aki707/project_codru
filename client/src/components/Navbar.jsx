@@ -1,7 +1,12 @@
 import { NavLink } from "react-router-dom";
+<<<<<<< HEAD
 import "./Navbar.css";
 import c3 from "../assets/c3.png"
 
+=======
+import "../styles/Navbar.css";
+import c3 from "../assets/c3.png";
+>>>>>>> ac67c9797615939615adb7b767e9b9cea181d38d
 
 const style = {
   textDecoration: "none",
@@ -17,7 +22,10 @@ function Navbar() {
           src={c3}
           alt=""
         />
+<<<<<<< HEAD
         {/* <h2>Codru Education</h2> */}
+=======
+>>>>>>> ac67c9797615939615adb7b767e9b9cea181d38d
       </div>
       <div className="navbuttons">
         <div className="btn">
