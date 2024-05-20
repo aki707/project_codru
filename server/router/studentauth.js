@@ -75,13 +75,13 @@ router.post("/signin", async (req, res) => {
 
     if (studentLogin) {
       const isMatched = await bcrypt.compare(password, studentLogin.password);
-      const token = await studentLogin.generateAuthToken();
-      console.log(token);
+      // const token = await studentLogin.generateAuthToken();
+      // console.log(token);
 
-      res.cookie("jwtoken", token, {
-        expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-        httpOnly: true,
-      });
+      // res.cookie("jwtoken", token, {
+      //   expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+      //   httpOnly: true,
+      // });
 
       if (!isMatched) {
         res.status(400).json({ error: "Wrong Credentials" });
