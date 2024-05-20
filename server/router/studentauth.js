@@ -12,7 +12,28 @@ router.use(cookieParser());
 const Student = require("../models/studentSchema");
 
 router.post("/register", async (req, res) => {
-  const { username, name, email, password, phone, dob, cpassword } = req.body;
+  const { 
+    photo, 
+    name, 
+    username,  
+    email, 
+    password, 
+    cpassword, 
+    dob, 
+    gender, 
+    fatherName, 
+    motherName, 
+    address, 
+    phone, 
+    altphone, 
+    chosensubs, 
+    classorsem, 
+    schoolorcollege, 
+    fatherOcc, 
+    motherOcc, 
+    courses, 
+    declaration 
+  } = req.body;
 
   if (
     !name ||
@@ -34,7 +55,7 @@ router.post("/register", async (req, res) => {
     } else if (password != cpassword) {
       return res.status(422).json({ error: "Passwords didn't match." });
     } else {
-      const student = new Student({});
+      const student = new Student({photo,name,username,email,password,cpassword,dob,gender,fatherName,motherName,address,phone,altphone,chosensubs,classorsem,schoolorcollege,fatherOcc,motherOcc,courses,declaration});
       await student.save();
       res.status(201).json({ message: "Registration successful" });
     }
