@@ -15,12 +15,12 @@
 }
 
 .navlogo > img {
-<<<<<<< HEAD:client/src/components/Navbar.css
+
   width: 300px;
   margin-top: 7px;
-=======
+
   width: 18vw;
->>>>>>> ac67c9797615939615adb7b767e9b9cea181d38d:client/src/styles/Navbar.css
+
 }
 
 .navbuttons {
