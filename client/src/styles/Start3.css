@@ -1,0 +1,47 @@
+/* src/StudyExplore.css */
+.study-explore {
+  text-align: center;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+.heading {
+  font-family: "Segoe Print", "Arimo Italic", "Arimo", sans-serif;
+  font-size: 24px;
+  margin-bottom: 40px;
+}
+
+.subjects {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.subject {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+  padding: 20px;
+  width: 80%;
+  max-width: 500px;
+}
+
+.subject-image {
+  width: 100%;
+  border-radius: 8px 8px 0 0;
+}
+
+.subject-title {
+  font-family: "Arial Rounded MT Bold", "Arimo Bold", Arial, sans-serif;
+  font-size: 20px;
+  margin: 20px 0 10px;
+}
+
+.subject-description {
+  font-family: "Bierstadt", "Arimo", "Inter", system-ui, Avenir, Helvetica,
+    Arial, sans-serif;
+  font-size: 16px;
+  color: #333;
+  line-height: 1.5;
+}

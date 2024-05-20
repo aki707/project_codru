@@ -1,17 +1,18 @@
-import { NavLink } from "react-router-dom";
 import Navbar from "./Navbar";
-import Start from "./Start";
-
-
+import Start1 from "./Start1";
+import Start2 from "./Start2";
+import Start3 from "./Start3";
 
 function Home() {
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       <hr />
-      <Start/>
-      
-      
+      <Start1 />
+      <hr />
+      <Start2 />
+      <hr />
+      <Start3 />
     </div>
   );
 }

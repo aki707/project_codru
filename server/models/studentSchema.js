@@ -72,12 +72,16 @@ const studentSchema = new mongoose.Schema({
         default: "",
       },
       motherOcc: {
-        type: String,
+        type: String, 
         default: "",
       },
       courses:{
         type:String,
         default:""
+      },
+      declaration:{
+        type: Boolean,
+        default:false
       }
 })
 
