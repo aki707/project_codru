@@ -1,6 +1,12 @@
 import { NavLink } from "react-router-dom";
+
+// import "./Navbar.css";
+// import c3 from "../assets/c3.png"
+
+
 import "../styles/Navbar.css";
 import c3 from "../assets/c3.png";
+
 
 const style = {
   textDecoration: "none",
@@ -16,6 +22,7 @@ function Navbar() {
           src={c3}
           alt=""
         />
+
       </div>
       <div className="navbuttons">
         <div className="btn">
@@ -38,10 +45,17 @@ function Navbar() {
             <NavLink to="/schedule" style={style}>
               Schedule
             </NavLink>
+        
+            
           </button>
         </div>
         <div className="Regbtn">
-          <button>Register Now</button>
+          <button>
+            <a href="./components/login.jsx">register</a>
+           {/* <NavLink to="/login" style={style}>
+           register </NavLink> */}
+          </button> 
+          
         </div>
       </div>
     </div>
