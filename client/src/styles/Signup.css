@@ -145,6 +145,11 @@ input:-webkit-autofill:active {
   margin: 0 10px;
 
 }
+.icon-new{
+  width: 30px;
+  height: 30px;
+
+}
 
 
 .icon {
