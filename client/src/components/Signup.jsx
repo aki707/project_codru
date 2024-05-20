@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from "react-router-dom";
 import "../styles/Signup.css";
 import s from "../assets/6430773-transformed.webp";
 import { Email, Lock, Phone, Person } from '@mui/icons-material';
@@ -201,7 +202,8 @@ function Signup() {
         </div>
         <Button variant="contained" color="primary" className='signupnormal' onClick={PostData}>Sign up</Button>
         <div>
-          <p>Already have an account? <a href="#">Sign in</a></p>
+          <p>Already have an account? <NavLink to="/signin">
+           Signin </NavLink></p>
         </div>
         <div className="divider">
           <span className="line"></span>
@@ -218,7 +220,7 @@ function Signup() {
           </div>
           <span className="separator">|</span>
           <div className="icon-wrapper" onClick={() => console.log('Continue with Microsoft')}>
-            <img src={MicrosoftIcon} alt="Microsoft" className="icon" />
+            <img src={MicrosoftIcon} alt="Microsoft" className="icon-new" />
           </div>
         </div>
       </div>

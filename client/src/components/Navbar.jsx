@@ -51,9 +51,9 @@ function Navbar() {
         </div>
         <div className="Regbtn">
           <button>
-            <a href="./components/login.jsx">register</a>
-           {/* <NavLink to="/login" style={style}>
-           register </NavLink> */}
+          
+           <NavLink to="/signup" style={style}>
+           Register </NavLink>
           </button> 
           
         </div>
