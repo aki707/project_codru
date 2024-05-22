@@ -86,10 +86,10 @@ router.post("/signin", async (req, res) => {
       const token = await user.generateAuthToken();
       console.log(token);
 
-      res.cookie("jwtoken", token, {
-        expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-        httpOnly: true,
-      });
+      // res.cookie("jwtoken", token, {
+      //   expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+      //   httpOnly: true,
+      // });
 
       if (!isMatched) {
         res.status(400).json({ error: "Wrong Credentials" });
