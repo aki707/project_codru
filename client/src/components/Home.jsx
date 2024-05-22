@@ -14,7 +14,6 @@ function Home() {
       <Start2 />
       <hr />
       <Start3 />
-      
     </div>
   );
 }
