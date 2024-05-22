@@ -1,6 +1,5 @@
 const bcrypt = require("bcrypt");
 const express = require("express");
-const path = require("path");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const router = express.Router();
@@ -9,7 +8,9 @@ router.use(express.json());
 router.use(bodyParser.json());
 router.use(express.urlencoded({ extended: true }));
 router.use(cookieParser());
+const User = require("../models/userSchema");
 const Student = require("../models/studentSchema");
+const Teacher = require("../models/teacherSchema");
 
 router.post("/register", async (req, res) => {
   const { 
@@ -20,19 +21,10 @@ router.post("/register", async (req, res) => {
     password, 
     cpassword, 
     dob, 
-    gender, 
-    fatherName, 
-    motherName, 
-    address, 
     phone, 
-    altphone, 
-    chosensubs, 
-    classorsem, 
-    schoolorcollege, 
-    fatherOcc, 
-    motherOcc, 
-    courses, 
-    declaration 
+    declaration,
+    role,
+    ...rest
   } = req.body;
 
   if (
@@ -42,25 +34,35 @@ router.post("/register", async (req, res) => {
     !cpassword ||
     !phone ||
     !username ||
-    !dob
+    !dob ||
+    !role
   ) {
     return res.status(422).json({ error: "Empty field(s)." });
   }
 
   try {
-    const emailExist = await Student.findOne({ email: email });
+    const emailExist = await User.findOne({ email: email });
 
     if (emailExist) {
       return res.status(422).json({ error: "User already exists." });
-    } else if (password != cpassword) {
+    } else if (password !== cpassword) {
       return res.status(422).json({ error: "Passwords didn't match." });
     } else {
-      const student = new Student({photo,name,username,email,password,cpassword,dob,gender,fatherName,motherName,address,phone,altphone,chosensubs,classorsem,schoolorcollege,fatherOcc,motherOcc,courses,declaration});
-      await student.save();
+      let user;
+      if (role === 'Student') {
+        user = new Student({ photo, name, username, email, password, cpassword, dob, phone, declaration, ...rest });
+      } else if (role === 'Teacher') {
+        user = new Teacher({ photo, name, username, email, password, cpassword, dob, phone, declaration, ...rest });
+      } else {
+        return res.status(422).json({ error: "Invalid role." });
+      }
+
+      await user.save();
       res.status(201).json({ message: "Registration successful" });
     }
   } catch (err) {
     console.log(err);
+    res.status(500).json({ error: "Server error" });
   }
 });
 
@@ -71,11 +73,17 @@ router.post("/signin", async (req, res) => {
       return res.status(400).json({ error: "Empty field(s)" });
     }
 
-    const studentLogin = await Student.findOne({ username: username });
+    let user = await Student.findOne({ username: username });
+    let role = "student";
 
-    if (studentLogin) {
-      const isMatched = await bcrypt.compare(password, studentLogin.password);
-      const token = await studentLogin.generateAuthToken();
+    if (!user) {
+      user = await Teacher.findOne({ username: username });
+      role = "teacher";
+    }
+
+    if (user) {
+      const isMatched = await bcrypt.compare(password, user.password);
+      const token = await user.generateAuthToken();
       console.log(token);
 
       res.cookie("jwtoken", token, {
@@ -86,14 +94,24 @@ router.post("/signin", async (req, res) => {
       if (!isMatched) {
         res.status(400).json({ error: "Wrong Credentials" });
       } else {
-        res.json({ message: "You are in", studentLogin });
+        res.json({ message: "You are in", role, user });
       }
     } else {
       res.status(400).json({ error: "Wrong Credentials" });
     }
   } catch (err) {
     console.log(err);
+    res.status(500).json({ error: "Server error" });
   }
 });
+
+
+router.post("/course-register",async (req,res)=>{
+  try {
+    
+  } catch (error) {
+    
+  }
+})
 
 module.exports = router;
