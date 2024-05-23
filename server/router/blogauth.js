@@ -9,7 +9,7 @@ router.post("/blogs", authenticate, async (req, res) => {
     const newBlog = new Blog({
       title,
       content,
-      username: req.hashedUsername, // Use the hashed username
+      username:username
     });
     await newBlog.save();
     res.status(201).json({ message: "Success", newBlog });
