@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import { NavLink } from "react-router-dom";
 import "../styles/Signup.css";
 import s from "../assets/6430773-transformed.webp";
 import { Email, Lock, Phone, Person } from '@mui/icons-material';
-import { TextField, Checkbox, Button, InputAdornment,InputLabel, FormHelperText } from '@mui/material';
+import { TextField, Checkbox, Button, InputAdornment } from '@mui/material';
 import BadgeIcon from '@mui/icons-material/Badge';
 import GoogleIcon from '../assets/google.svg';
 import FacebookIcon from '../assets/facebook-color.svg';
@@ -16,9 +17,10 @@ function Signup() {
     cpassword: "",
     phone: "",
     username: "",
-    dob: ""
+    dob: "",
+    declaration: false
   });
-  const[click,handleClick]=useState(false)
+  const [click, handleClick] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,7 +30,40 @@ function Signup() {
     }));
   };
 
-  
+  const handleCheckboxChange = (e) => {
+    setValue((prevValue) => ({
+      ...prevValue,
+      declaration: e.target.checked
+    }));
+  };
+
+  const PostData = async (e) => {
+    e.preventDefault();
+    const { name, email, phone, password, cpassword, username, dob, declaration } = value;
+
+    const res = await fetch("/api/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        email,
+        phone,
+        password,
+        cpassword,
+        username,
+        dob,
+        declaration
+      }),
+    });
+
+    if (res.ok) {
+      // Handle successful response
+      console.log("User registered successfully");
+    } else {
+      // Handle error response
+      console.error("Failed to register user");
+    }
+  };
 
   return (
     <div className="signupdiv">
@@ -144,7 +179,6 @@ function Signup() {
             }}
           />
         </div>
-        
         <div>
           <TextField
             fullWidth
@@ -155,41 +189,43 @@ function Signup() {
             value={value.dob}
             onChange={handleChange}
             onFocus={() => handleClick(true)}
-            onBlur={()=>handleClick(false)}
-
+            onBlur={() => handleClick(false)}
           />
         </div>
         <div className="terms">
-          <Checkbox name="terms" />
+          <Checkbox
+            name="declaration"
+            checked={value.declaration}
+            onChange={handleCheckboxChange}
+          />
           <p>I've read and agree with Terms of Service and our Privacy Policy.</p>
+        </div>
+        <Button variant="contained" color="primary" className='signupnormal' onClick={PostData}>Sign up</Button>
+        <div>
+          <p>Already have an account? <NavLink to="/signin">
+           Signin </NavLink></p>
+        </div>
+        <div className="divider">
+          <span className="line"></span>
+          <span className="or">Or, continue with</span>
+          <span className="line"></span>
+        </div>
+        <div className="external-signup">
+          <div className="icon-wrapper" onClick={() => console.log('Continue with Google')}>
+            <img src={GoogleIcon} alt="Google" className="icon" />
           </div>
-          <Button variant="contained" color="primary" className='signupnormal'>Sign up</Button>
-          <div>
-  <p>Already have an account? <a href="#">Sign in</a></p>
-</div>
-
-<div className="divider">
-  <span className="line"></span>
-  <span className="or">Or, continue with</span>
-  <span className="line"></span>
-</div>
-
-<div className="external-signup">
-  <div className="icon-wrapper" onClick={() => console.log('Continue with Google')}>
-    <img src={GoogleIcon} alt="Google" className="icon" />
-  </div>
-  <span className="separator">|</span>
-  <div className="icon-wrapper" onClick={() => console.log('Continue with Facebook')}>
-    <img src={FacebookIcon} alt="Facebook" className="icon" />
-  </div>
-  <span className="separator">|</span>
-  <div className="icon-wrapper" onClick={() => console.log('Continue with Microsoft')}>
-    <img src={MicrosoftIcon} alt="Microsoft" className="icon" />
-  </div>
-</div>
-</div>
-</div>
-);
+          <span className="separator">|</span>
+          <div className="icon-wrapper" onClick={() => console.log('Continue with Facebook')}>
+            <img src={FacebookIcon} alt="Facebook" className="icon" />
+          </div>
+          <span className="separator">|</span>
+          <div className="icon-wrapper" onClick={() => console.log('Continue with Microsoft')}>
+            <img src={MicrosoftIcon} alt="Microsoft" className="icon-new" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default Signup;

@@ -4,8 +4,8 @@ import { NavLink } from "react-router-dom";
 // import c3 from "../assets/c3.png"
 
 
-import "../styles/Navbar.css";
 import c3 from "../assets/c3.png";
+import "../styles/Navbar.css";
 
 
 const style = {
@@ -37,12 +37,12 @@ function Navbar() {
             </NavLink>
           </button>
           <button>
-            <NavLink to="/contact-us" style={style}>
+            <NavLink to="/Contact" style={style}>
               Contact Us
             </NavLink>
           </button>
           <button>
-            <NavLink to="/schedule" style={style}>
+            <NavLink to="/popup" style={style}>
               Schedule
             </NavLink>
         
@@ -51,9 +51,9 @@ function Navbar() {
         </div>
         <div className="Regbtn">
           <button>
-            <a href="./components/login.jsx">register</a>
-           {/* <NavLink to="/login" style={style}>
-           register </NavLink> */}
+          
+           <NavLink to="/signup" style={style}>
+           Register </NavLink>
           </button> 
           
         </div>
