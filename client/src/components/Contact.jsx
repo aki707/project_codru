@@ -6,7 +6,7 @@ const Contact = () => {
       <nav>
           <div className="Navbarmaindiv">
               <div className="navlogo">
-              <img src="/image/c3.png" alt=""></img>
+              <img src="/image/codru.png" alt=""></img>
               </div>
           <div className="navbuttons">
             <div className="btn">
@@ -74,8 +74,6 @@ const Contact = () => {
                   <button type="submit">Send Message</button>
               </div>
          {/* <input type="submit" onclick="alert('meaage has been sent'" value="submit"></input> */}
-          
-  
           </form>
           </div>
         </div>
