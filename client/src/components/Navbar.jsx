@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 // import c3 from "../assets/c3.png"
 
 
-import c4 from "../assets/c4.png";
+import c3 from "../assets/c3.png";
 import "../styles/Navbar.css";
 
 
@@ -19,7 +19,7 @@ function Navbar() {
       <div className="navlogo">
         <img
           //   src="https://cdn.pixabay.com/photo/2023/04/05/16/08/hedgehog-fly-7901862_640.jpg"
-          src={c4}
+          src={c3}
           alt=""
         />
 
