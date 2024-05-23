@@ -7,7 +7,6 @@ input:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s;
 } 
 
-<<<<<<< HEAD
 .signindiv{
   width: 100vw;
   height: 100vh;
@@ -18,8 +17,6 @@ input:-webkit-autofill:active {
   
 }
 
-=======
->>>>>>> 044bc67b66d142b65ac4d610d61660993adfb390
 .signindiv1 {
   width: 70vw;
   height: 70vh;
@@ -89,7 +86,7 @@ input:-webkit-autofill:active {
 }
 
 
-.divider {
+.divider1 {
   display: flex;
   flex-direction: column; 
   justify-content: space-evenly;
