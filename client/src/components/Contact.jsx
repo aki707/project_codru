@@ -46,27 +46,27 @@ const Contact = () => {
         <div className="form-container">
           <form action="submit.php" method="POST">
           <div className="form-group">
-                  <label for="Name">
+                  <label htmlFor="Name">
                   <input placeholder="Name" type="text" id="Name" name="name" required></input>
                   </label>
           </div>
           <div className="form-group">
-                  <label for="City">
+                  <label htmlFor="City">
                   <input placeholder="City" type="text" id="City" name="City" required></input>
                   </label>
           </div>
           <div className="form-group">
-                  <label for="phn">
+                  <label htmlFor="phn">
                   <input placeholder="Phone Number" type="tel" id="phn" name="phn" required></input>
                   </label>
           </div>
           <div className="form-group">
-                  <label for="Email">
+                  <label htmlFor="Email">
                   <input placeholder="Email" type="text" id="Email" name="Email" required></input>
                   </label>
           </div>
           <div className="form-group">
-                  <label for="message">
+                  <label htmlFor="message">
                   <textarea placeholder="Message Query" type="message" id="meaaage" name="message" required></textarea>
                   </label>
           </div>
@@ -74,6 +74,8 @@ const Contact = () => {
                   <button type="submit">Send Message</button>
               </div>
          {/* <input type="submit" onclick="alert('meaage has been sent'" value="submit"></input> */}
+          
+  
           </form>
           </div>
         </div>
