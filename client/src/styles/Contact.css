@@ -94,7 +94,11 @@
     }
   }
   
+<<<<<<< HEAD
   .line{
+=======
+  .line1{
+>>>>>>> 64f3b9baeb2635ad57405732339988bd79efb6fb
     border-top:1px solid;
     width:auto;
     margin-top: 2px;
@@ -182,7 +186,13 @@
     border-radius: 4px;
     cursor: pointer;
   }
+<<<<<<< HEAD
  
+=======
+  /* .form-group button:hover {
+    background-color: #0056b3;
+  } */
+>>>>>>> 64f3b9baeb2635ad57405732339988bd79efb6fb
   .social-icons {
     display: flex;
     justify-content: center;
@@ -197,6 +207,7 @@
   .social-icons img:hover {
     transform: scale(1.1);
   }
+<<<<<<< HEAD
   h2 {
     width: 28%; 
     text-align: center; 
@@ -210,4 +221,19 @@
   }
   
   
+=======
+  .text h2 {
+    width: 28%; 
+    text-align: center; 
+    border-bottom: 3px solid #000; 
+    line-height: 0.6em;
+    position: absolute;
+    right:80px;
+    /* margin: 10px 0 20px;  */
+  } 
+  .text h2 span { 
+     background:#efe1e1; 
+     padding:0 10px; 
+  }
+>>>>>>> 64f3b9baeb2635ad57405732339988bd79efb6fb
   

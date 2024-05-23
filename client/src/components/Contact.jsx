@@ -6,7 +6,11 @@ const Contact = () => {
       <nav>
           <div className="Navbarmaindiv">
               <div className="navlogo">
+<<<<<<< HEAD
               <img src="/image/c3.png" alt=""></img>
+=======
+              <img src="/image/codru.png" alt=""></img>
+>>>>>>> 64f3b9baeb2635ad57405732339988bd79efb6fb
               </div>
           <div className="navbuttons">
             <div className="btn">
@@ -30,7 +34,11 @@ const Contact = () => {
             </div>
           </div>
          </div>
+<<<<<<< HEAD
             <div className='line'>
+=======
+            <div className='line1'>
+>>>>>>> 64f3b9baeb2635ad57405732339988bd79efb6fb
             </div>  
       </nav>
       <div className='page'>
@@ -40,7 +48,11 @@ const Contact = () => {
         <img src="/image/contact.png" alt=""></img>
         </div>
         <div className='text'>
+<<<<<<< HEAD
         <h2 className='get'><span>Get in Touch</span></h2>
+=======
+        <h2><span>Get in Touch</span></h2>
+>>>>>>> 64f3b9baeb2635ad57405732339988bd79efb6fb
         </div>
         <div className='form'>
         <div className="form-container">
@@ -74,8 +86,11 @@ const Contact = () => {
                   <button type="submit">Send Message</button>
               </div>
          {/* <input type="submit" onclick="alert('meaage has been sent'" value="submit"></input> */}
+<<<<<<< HEAD
           
   
+=======
+>>>>>>> 64f3b9baeb2635ad57405732339988bd79efb6fb
           </form>
           </div>
         </div>

@@ -3,14 +3,24 @@ import "../styles/Signin.css";
 import { NavLink } from "react-router-dom";
 import signin from '../assets/signin.png';
 import c3 from '../assets/c3.png';
+<<<<<<< HEAD
 
 import { Lock, Person } from '@mui/icons-material';
 import { TextField, Button, InputAdornment } from '@mui/material';
+=======
+import s from "../assets/6430773-transformed.webp";
+import { Lock, Person } from '@mui/icons-material';
+import { TextField, Button, InputAdornment, Divider } from '@mui/material';
+>>>>>>> 64f3b9baeb2635ad57405732339988bd79efb6fb
 import BadgeIcon from '@mui/icons-material/Badge';
 import GoogleIcon from '../assets/google.svg';
 import FacebookIcon from '../assets/facebook-color.svg';
 import MicrosoftIcon from '../assets/microsoft.svg';
+<<<<<<< HEAD
 
+=======
+import signinimage from '../assets/signinimage.mp4'
+>>>>>>> 64f3b9baeb2635ad57405732339988bd79efb6fb
 
 function Signin() {
   const [value, setValue] = useState({
@@ -68,7 +78,11 @@ function Signin() {
         </div>
 
         <div className="signindiv2">
+<<<<<<< HEAD
           <h2 className='signin'>Sign In</h2>
+=======
+          <h2>Sign In</h2>
+>>>>>>> 64f3b9baeb2635ad57405732339988bd79efb6fb
 
           <div className="username-input">
             <TextField
@@ -81,8 +95,12 @@ function Signin() {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
+<<<<<<< HEAD
                 
                     <BadgeIcon/>
+=======
+                    <Person />
+>>>>>>> 64f3b9baeb2635ad57405732339988bd79efb6fb
                   </InputAdornment>
                 ),
               }}
@@ -101,8 +119,12 @@ function Signin() {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
+<<<<<<< HEAD
                 
                     <BadgeIcon/>
+=======
+                    <Lock />
+>>>>>>> 64f3b9baeb2635ad57405732339988bd79efb6fb
                   </InputAdornment>
                 ),
               }}
