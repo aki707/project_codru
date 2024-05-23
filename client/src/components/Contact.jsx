@@ -6,7 +6,7 @@ const Contact = () => {
       <nav>
           <div className="Navbarmaindiv">
               <div className="navlogo">
-              <img src="/image/codru.png" alt=""></img>
+              <img src="/image/codro.png" alt=""></img>
               </div>
           <div className="navbuttons">
             <div className="btn">
@@ -17,7 +17,7 @@ const Contact = () => {
                   <a href="/">course</a>
                 </button>
                 <button>
-                  <a href="/">contact us</a>
+                  <a href="Contact">contact us</a>
                 </button>
                 <button>
                   <a href="/">schedule</a>
@@ -25,12 +25,12 @@ const Contact = () => {
             </div>
             <div className="Regbtn">
                 <button>
-                  <a href="/">Register now</a>
+                  <a href="signup">Register now</a>
                 </button>
             </div>
           </div>
          </div>
-            <div className='line1'>
+            <div className='line'>
             </div>  
       </nav>
       <div className='page'>
@@ -39,34 +39,34 @@ const Contact = () => {
         <div className='pic'>
         <img src="/image/contact.png" alt=""></img>
         </div>
-        <div className='text'>
-        <h2><span>Get in Touch</span></h2>
+        <div className='quote'>
+           <h2><span>Get in touch</span></h2>
         </div>
         <div className='form'>
         <div className="form-container">
           <form action="submit.php" method="POST">
           <div className="form-group">
-                  <label for="Name">
+                  <label htmlFor="Name">
                   <input placeholder="Name" type="text" id="Name" name="name" required></input>
                   </label>
           </div>
           <div className="form-group">
-                  <label for="City">
+                  <label htmlFor="City">
                   <input placeholder="City" type="text" id="City" name="City" required></input>
                   </label>
           </div>
           <div className="form-group">
-                  <label for="phn">
+                  <label htmlFor="phn">
                   <input placeholder="Phone Number" type="tel" id="phn" name="phn" required></input>
                   </label>
           </div>
           <div className="form-group">
-                  <label for="Email">
+                  <label htmlFor="Email">
                   <input placeholder="Email" type="text" id="Email" name="Email" required></input>
                   </label>
           </div>
           <div className="form-group">
-                  <label for="message">
+                  <label htmlFor="message">
                   <textarea placeholder="Message Query" type="message" id="meaaage" name="message" required></textarea>
                   </label>
           </div>
@@ -74,6 +74,8 @@ const Contact = () => {
                   <button type="submit">Send Message</button>
               </div>
          {/* <input type="submit" onclick="alert('meaage has been sent'" value="submit"></input> */}
+          
+  
           </form>
           </div>
         </div>

@@ -16,7 +16,6 @@ input:-webkit-autofill:active {
   
   
 }
-
 .signindiv1 {
   width: 70vw;
   height: 70vh;
@@ -31,6 +30,14 @@ input:-webkit-autofill:active {
   
 }
 
+.img1 {
+  width: 10%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 .image {
   width: 100%; 
@@ -42,17 +49,13 @@ input:-webkit-autofill:active {
   width: 40%;
   margin-top: 5%;
   margin-right: 14%;
-
+  
   
 }
-.img .logo2 img{
-  position: absolute;
-  left:400px;
-  top:150px;
-  width:400px;
- 
+.img1 {
+  width: 80%;
+  margin-right: 100%;
 }
-
 
 
 .signindiv2 {
@@ -86,14 +89,6 @@ input:-webkit-autofill:active {
 }
 
 
-.divider1 {
-  display: flex;
-  flex-direction: column; 
-  justify-content: space-evenly;
-
-  font-family: inter;
-  font-size: 17px;
- }
 
 .external {
   display: flex;

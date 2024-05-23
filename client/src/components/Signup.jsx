@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { NavLink } from "react-router-dom";
 import "../styles/Signup.css";
 import s from "../assets/6430773-transformed.webp";
@@ -198,12 +198,12 @@ function Signup() {
             checked={value.declaration}
             onChange={handleCheckboxChange}
           />
-          <p>I've read and agree with Terms of Service and our Privacy Policy.</p>
+          <p> I've read and agree with Terms of Service and our Privacy Policy.</p>
         </div>
         <Button variant="contained" color="primary" className='signupnormal' onClick={PostData}>Sign up</Button>
         <div>
-          <p>Already have an account? <NavLink to="/signin">
-           Signin </NavLink></p>
+          <p>Already have an account? 
+          <NavLink to="/signin"> Signin </NavLink></p>
         </div>
         <div className="divider">
           <span className="line"></span>

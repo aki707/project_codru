@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import "../styles/Signin.css";
 import { NavLink } from "react-router-dom";
 import signin from '../assets/signin.png';
 import c3 from '../assets/c3.png';
-import s from "../assets/6430773-transformed.webp";
+
 import { Lock, Person } from '@mui/icons-material';
-import { TextField, Button, InputAdornment, Divider } from '@mui/material';
-import BadgeIcon from '@mui/icons-material/Badge';
+import { TextField, Button, InputAdornment } from '@mui/material';
 import GoogleIcon from '../assets/google.svg';
 import FacebookIcon from '../assets/facebook-color.svg';
 import MicrosoftIcon from '../assets/microsoft.svg';
-import signinimage from '../assets/signinimage.mp4'
+
 
 function Signin() {
   const [value, setValue] = useState({
@@ -68,7 +67,7 @@ function Signin() {
         </div>
 
         <div className="signindiv2">
-          <h2>Sign In</h2>
+          <h2 className='signin'>Sign In</h2>
 
           <div className="username-input">
             <TextField
@@ -82,6 +81,7 @@ function Signin() {
                 startAdornment: (
                   <InputAdornment position="start">
                     <Person />
+                
                   </InputAdornment>
                 ),
               }}
@@ -101,6 +101,7 @@ function Signin() {
                 startAdornment: (
                   <InputAdornment position="start">
                     <Lock />
+                
                   </InputAdornment>
                 ),
               }}
