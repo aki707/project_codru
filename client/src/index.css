@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-*{overflow: hidden;
- margin: 0;
- padding: 0;
-=======
-<<<<<<< HEAD
-*{overflow: hidden;
- margin: 0;
- padding: 0;
-}
-=======
 :root {
   /* --default-font: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif; */
   --heading-font: "Arial Rounded MT Bold", "Arimo Bold";
@@ -27,7 +16,4 @@
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
->>>>>>> d0ab3e7fcd87b290bcc1539ac2636de9ee1a8c9d
-}
->>>>>>> 64f3b9baeb2635ad57405732339988bd79efb6fb
+  -moz-osx-font-smoothing: grayscale;}
