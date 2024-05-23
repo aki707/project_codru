@@ -1,9 +1,6 @@
 import { NavLink } from "react-router-dom";
-
 // import "./Navbar.css";
-// import c3 from "../assets/c3.png"
-
-
+// import c3 from "../assets/c3.png
 import c3 from "../assets/c3.png";
 import "../styles/Navbar.css";
 
