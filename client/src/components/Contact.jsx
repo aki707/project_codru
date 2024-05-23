@@ -6,7 +6,7 @@ const Contact = () => {
       <nav>
           <div className="Navbarmaindiv">
               <div className="navlogo">
-              <img src="/image/codru.png" alt=""></img>
+              <img src="/image/codro.png" alt=""></img>
               </div>
           <div className="navbuttons">
             <div className="btn">
@@ -17,7 +17,7 @@ const Contact = () => {
                   <a href="/">course</a>
                 </button>
                 <button>
-                  <a href="/">contact us</a>
+                  <a href="Contact">contact us</a>
                 </button>
                 <button>
                   <a href="/">schedule</a>
@@ -25,7 +25,7 @@ const Contact = () => {
             </div>
             <div className="Regbtn">
                 <button>
-                  <a href="/">Register now</a>
+                  <a href="signup">Register now</a>
                 </button>
             </div>
           </div>
@@ -39,8 +39,8 @@ const Contact = () => {
         <div className='pic'>
         <img src="/image/contact.png" alt=""></img>
         </div>
-        <div className='text'>
-        <h2><span>Get in Touch</span></h2>
+        <div className='quote'>
+           <h2><span>Get in touch</span></h2>
         </div>
         <div className='form'>
         <div className="form-container">
