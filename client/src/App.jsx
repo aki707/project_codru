@@ -12,7 +12,7 @@ function App() {
       <Route path="/signup" Component={Signup}/>
       <Route path="/signin" Component={Signin}/>
       <Route path="/popup" Component={Popup}/>
-      <Route path="/Contact" Component={Contact}/>
+      <Route path="/contact" Component={Contact}/>
       
     </Routes>
   );
