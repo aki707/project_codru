@@ -39,7 +39,7 @@ function Navbar() {
             </NavLink>
           </button>
           <button>
-            <NavLink to="/schedule" style={style}>
+            <NavLink to="/popup" style={style}>
               Schedule
             </NavLink>
         
