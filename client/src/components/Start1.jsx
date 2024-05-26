@@ -26,7 +26,10 @@ function Start1() {
             alt="Study"
             className="corner-image bottom-right"
           />
+          <p>
           Learn Think Study and Grow with Us
+          </p>
+          
         </div>
       </div>
       <div className="Start1div2">

@@ -15,7 +15,12 @@
 }
 
 .navlogo > img {
+
+  width: 300px;
+  margin-top: 7px;
+
   width: 18vw;
+
 }
 
 .navbuttons {

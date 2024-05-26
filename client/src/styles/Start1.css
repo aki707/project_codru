@@ -29,6 +29,10 @@
   position: relative;
 }
 
+.square-container>p{
+  width:75%
+}
+
 .corner-image {
   width: 8vw;
   height: 7vw;
