@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import '../styles/Contact.css';
+import { useState } from "react";
+import "../styles/Contact.css";
 
 const Contact = () => {
   const [value, setValue] = useState({
@@ -7,14 +7,14 @@ const Contact = () => {
     email: "",
     phone: "",
     city: "",
-    message: ""
+    message: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValue((prevValue) => ({
       ...prevValue,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -30,7 +30,7 @@ const Contact = () => {
         email,
         phone,
         city,
-        message
+        message,
       }),
     });
 
@@ -72,18 +72,21 @@ const Contact = () => {
             </div>
           </div>
         </div>
-        <div className='line'>
-        </div>
+        <div className="line"></div>
       </nav>
-      <div className='page'>
-        <h1>Contact &nbsp;<span>us</span></h1>
-        <div className='pic'>
+      <div className="page">
+        <h1>
+          Contact &nbsp;<span>us</span>
+        </h1>
+        <div className="pic">
           <img src="/image/contact.png" alt=""></img>
         </div>
-        <div className='quote'>
-          <h2><span>Get in touch</span></h2>
+        <div className="quote">
+          <h2>
+            <span>Get in touch</span>
+          </h2>
         </div>
-        <div className='form'>
+        <div className="form">
           <div className="form-container">
             <form onSubmit={PostData}>
               <div className="form-group">
@@ -159,6 +162,6 @@ const Contact = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Contact;
