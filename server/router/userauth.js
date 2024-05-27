@@ -50,15 +50,20 @@ router.post("/register", async (req, res) => {
     } else {
       let user;
       if (role === 'Student') {
-        user = new Student({ photo, name, username, email, password, cpassword, dob, phone, declaration, ...rest });
+        user = new Student({ photo, name, username, email, password, dob, phone, declaration, ...rest });
       } else if (role === 'Teacher') {
-        user = new Teacher({ photo, name, username, email, password, cpassword, dob, phone, declaration, ...rest });
+        user = new Teacher({ photo, name, username, email, password, dob, phone, declaration, ...rest });
       } else {
         return res.status(422).json({ error: "Invalid role." });
       }
 
       await user.save();
-      res.status(201).json({ message: "Registration successful" });
+      const token = jwt.sign(
+        { _id: user._id, username: user.username, role:user.role },
+        process.env.TOKEN_SECRET,
+        { expiresIn: '7d' }
+      );
+      res.status(201).json({ message: "Registration successful",token });
     }
   } catch (err) {
     console.log(err);
@@ -74,28 +79,28 @@ router.post("/signin", async (req, res) => {
     }
 
     let user = await Student.findOne({ username: username });
-    let role = "student";
+    let role = "Student";
 
     if (!user) {
       user = await Teacher.findOne({ username: username });
-      role = "teacher";
+      role = "Teacher";
     }
 
     if (user) {
       const isMatched = await bcrypt.compare(password, user.password);
-      const token = await user.generateAuthToken();
-      console.log(token);
-
-      // res.cookie("jwtoken", token, {
-      //   expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-      //   httpOnly: true,
-      // });
 
       if (!isMatched) {
-        res.status(400).json({ error: "Wrong Credentials" });
-      } else {
-        res.json({ message: "You are in", role, user });
+        return res.status(400).json({ error: "Wrong Credentials" });
       }
+
+      const token = jwt.sign(
+        { _id: user._id, user: user.username, role: user.role },
+        process.env.TOKEN_SECRET,
+        { expiresIn: '7d' }
+      );
+
+      res.json({ message: "You are in", role, username: user.username, token });
+      console.log(token);
     } else {
       res.status(400).json({ error: "Wrong Credentials" });
     }
