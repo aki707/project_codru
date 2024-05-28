@@ -146,9 +146,7 @@
   border-radius: 4px;
   cursor: pointer;
 }
-/* .form-group button:hover {
-  background-color: #0056b3;
-} */
+
 .social-icons {
   display: flex;
   justify-content: center;
@@ -163,34 +161,4 @@
 .social-icons img:hover {
   transform: scale(1.1);
 }
-/* h2 {
-  width: 28%; 
-  text-align: center; 
-  border-bottom: 3px solid #000; 
-  line-height: 0.6em;
-  position: absolute;
-  right:80px;
-  /* margin: 10px 0 20px;  */
 
-/* h2 span { 
-   background:#efe1e1; 
-   padding:0 10px; 
-} */ */
-
-/* .quote h2{
-  color: #D61e3f;
-  position:relative;
-  left:280px;
-  font-size: 50px;
-  font-family: 'Segoe UI', Tahoma;
-  font-style: italic;
-} */
-/* .quote h2 span{
-  width: 28%; 
-  text-align: center; 
-  border-bottom: 3px solid #000; 
-  line-height: 0.6em;
-  position: absolute;
-  right:80px;
-  
-} */
