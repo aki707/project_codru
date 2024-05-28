@@ -1,111 +1,50 @@
-.navlogo {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin-left: 2vw;
-  width: 2vw;
-}
-
-.Navbarmaindiv {
-  /* border: 2px solid blue; */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 15vh;
-}
-.navlogo > img {
-
-  width: 300px;
-  margin-top: 7px;
-
-  width: 18vw;
-
-}
-.navbuttons {
-  display: flex;
-  width: 50vw;
-  justify-content: space-between;
-  /* border: 2px solid green; */
-  margin-right: 3vw;
-  align-items: center;
-}
-.btn {
+.cont_all{
   /* border: 2px solid black; */
-  width: 70%;
-  display: flex;
-  justify-content: space-between;
-}
-.btn > button {
-  width: 20%;
-  /* margin-right: 50px; */
-  background: transparent;
-  color: black;
-  padding: 0.5vw;
-  border-top-left-radius: 1vw;
-  border-top-right-radius: 1vw;
-  border-bottom-left-radius: 1vw;
-  border-bottom-right-radius: 1vw;
-  border: 2px solid black;
-}
-.btn a{
-  color:#000;
-  text-decoration: none;
-}
+  /* background-color: #4e1a28; */
+  width:1100px;
+  height:300px;
+  margin-top: 20px;
+  margin-left: 80px;
 
-.btn > button:hover {
-  border: 2px solid red;
 }
+.cont_all h2{
+  font-size: 40px;
+  color:#4e1a28;
+  font-style: italic;
 
-.Regbtn {
-  /* border: 2px solid blue; */
-  width: 40%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+}
+.cont_all_detail_office{
+  /* border:2px solid black; */
+  height:200px;
+  margin-top: 20px;
+}
+.cont_all_detail_office h3{
+  color:#4e1a28;
+  font-size:25px;
  
 }
+.cont_all_detail_office h4{
+  color:black;
+  margin-left: 30px;
 
-.Regbtn > button {
-  /* border: 2px solid green; */
-  width: 70%;
-  padding: 2vh;
-  font-size: large;
-  background: transparent;
-  color: black;
-  border-color: red;
-  border-radius: 2vw;
-  cursor: pointer;
-  animation: borderColorChange 2s infinite alternate; /* Add animation */
 }
-.Regbtn a{
-  color:#000;
-  text-decoration: none;
+.cont_all_detail_office h5{
+  position: absolute;
+  font-size: 22px;
+  top:63%;
+  font-style: bold;
 }
-
-/* Define the keyframes for the border color animation */
-@keyframes borderColorChange {
-  0% {
-    border-color: #fd5b2e;
-  }
-  50% {
-    border-color: blue;
-  }
-  100% {
-    border-color: green;
-  }
-}
-
-.line{
-  border-top:1px solid;
-  width:auto;
-  margin-top: 2px;
+.cont_all_detail_office p{
+  color:#4e1a28;
+  list-style-type:square;
+  margin-left: 30px;
 }
 .page {
   border: 2px solid #efe1e1;
   width:auto;
-  height:502px;
+  height:485px;
   background-color: #efe1e1;
-  
 }
 /* .page2{
   border: 2px solid rgb(236, 209, 200);
@@ -128,22 +67,51 @@
 }
 .page h1 span{
   color: #D61e3f;
-} 
+}
+
+.quote h2{
+  margin-left:480px;
+  margin-top: 80px;
+  color:#4e1a28;
+  font-style: italic;
+  font-size: 30px;
+  
+}
+.quote h2::before,
+.quote h2::after {
+  content: '';
+  position: absolute;
+  top: 78%;
+  height: 1px; /* Line thickness */
+  background-color: black; /* Line color */
+}
+
+
+.quote h2::before {
+    left: 60px;
+    width:38%;
+  }
+  
+ .quote h2::after {
+    right: 80px;
+    width:35%;
+  }
 
 .pic img{
- width:400px;
- margin-top:30px;
- margin-left:140px;
+ width:550px;
+ position: absolute;
+ top:500px;
+ left:80px;
 }
  .form{
   border-radius: 7px;
-  box-shadow: 0px 0px 10px 1px #071b33;
+  box-shadow: 0px 0px 10px 1px #4e1a28;
   /* border: 2px solid rgb(130, 127, 127); */
   width:500px;
   height:320px;
   position: absolute;
-  top:200px;
-  left:600px;
+  top:560px;
+  left:670px;
 }
 .form-container {
   max-width: 500px;
@@ -153,6 +121,7 @@
 }
 .form-group {
   margin-bottom: 5px;
+
 }
 .form-group label {
   display: block;
@@ -160,7 +129,7 @@
 }
 .form-group input, .form-group textarea {
   width: 95%;
-  padding: 9px;
+  padding: 10px;
   border: 1px solid #ccc;
   border-radius: 2px;
 }
@@ -170,7 +139,7 @@
 }
 .form-group button {
   padding: 10px 15px;
-  background-color: crimson;
+  background-color:#4e1a28;
   color: white;
   border: none;
   border-radius: 4px;
@@ -193,14 +162,28 @@
 .social-icons img:hover {
   transform: scale(1.1);
 }
-.quote h2{
+/* h2 {
+  width: 28%; 
+  text-align: center; 
+  border-bottom: 3px solid #000; 
+  line-height: 0.6em;
+  position: absolute;
+  right:80px;
+  /* margin: 10px 0 20px;  */
+
+/* h2 span { 
+   background:#efe1e1; 
+   padding:0 10px; 
+} */ */
+
+/* .quote h2{
   color: #D61e3f;
   position:relative;
   left:280px;
-  font-size: 30px;
+  font-size: 50px;
   font-family: 'Segoe UI', Tahoma;
   font-style: italic;
-}
+} */
 /* .quote h2 span{
   width: 28%; 
   text-align: center; 
@@ -210,9 +193,3 @@
   right:80px;
   
 } */
-
-
-
-
-
-

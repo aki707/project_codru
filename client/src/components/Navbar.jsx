@@ -26,7 +26,7 @@ function Navbar() {
       <div className="navbuttons">
         <div className="btn">
           <button>
-            <NavLink to="/login" style={style}>
+            <NavLink to="/About" style={style}>
               About Us
             </NavLink>
           </button>

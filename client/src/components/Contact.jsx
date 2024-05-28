@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import Alert from '@mui/material/Alert';
+import { useState } from 'react';
 import '../styles/Contact.css';
 
 const Contact = () => {
@@ -9,6 +10,8 @@ const Contact = () => {
     city: "",
     message: ""
   });
+
+  const [alert, setAlert] = useState({ show: false, severity: '', message: '' });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -35,53 +38,37 @@ const Contact = () => {
     });
 
     if (res.ok) {
-      // Handle successful response
-      console.log("Message sent successfully");
+      setAlert({ show: true, severity: 'success', message: 'Message sent successfully!' });
+      setValue({ name: "", email: "", phone: "", city: "", message: "" });
     } else {
-      // Handle error response
-      console.error("Failed to send message");
+      setAlert({ show: true, severity: 'error', message: 'Failed to send message' });
     }
   };
 
   return (
-    <div>
-      <nav>
-        <div className="Navbarmaindiv">
-          <div className="navlogo">
-            <img src="/image/codro.png" alt=""></img>
-          </div>
-          <div className="navbuttons">
-            <div className="btn">
-              <button>
-                <a href="/">About us</a>
-              </button>
-              <button>
-                <a href="/">course</a>
-              </button>
-              <button>
-                <a href="Contact">contact us</a>
-              </button>
-              <button>
-                <a href="/">schedule</a>
-              </button>
-            </div>
-            <div className="Regbtn">
-              <button>
-                <a href="signup">Register now</a>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className='line'>
-        </div>
-      </nav>
+    <div className='contact-us-page'>
+    
       <div className='page'>
         <h1>Contact &nbsp;<span>us</span></h1>
+        <div className='cont_all'>
+          <div className='cont_all_detail'>
+              <h2>How to reach us ?</h2>
+              <div className='cont_all_detail_office'>
+               <h3>Contact Details:-</h3>
+               <ul>
+                <li><h4>Please Call:-</h4><p>7300-199-100/8949-775-255</p></li>
+                <li><h4>Email:-</h4><p>codrueducation@gmail.com</p></li>
+                <li><h4>Office:-</h4><p>Shop No.: 1 & 2, First Floor,Near Ahinsha circle, R.K. Puram (Sector A), Kota (Raj.), 324005</p></li>
+                </ul>
+                <h5>Please reach on Mon-Sun in between (8AM - 8PM);</h5>
+              </div>
+             
+          </div>
         <div className='pic'>
           <img src="/image/contact.png" alt=""></img>
         </div>
         <div className='quote'>
-          <h2><span>Get in touch</span></h2>
+          <h2><span>Get in Touch</span></h2>
         </div>
         <div className='form'>
           <div className="form-container">
@@ -154,6 +141,12 @@ const Contact = () => {
                 <button type="submit">Send Message</button>
               </div>
             </form>
+            {alert.show && (
+              <Alert severity={alert.severity} onClose={() => setAlert({ ...alert, show: false })}>
+                {alert.message}
+              </Alert>
+            )}
+            </div>
           </div>
         </div>
       </div>
