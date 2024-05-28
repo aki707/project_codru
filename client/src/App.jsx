@@ -4,7 +4,6 @@ import Home from "./components/Home";
 import Signin from "./components/Signin";
 import Signup from "./components/Signup";
 import Popup from "./components/Popup";
-// import Login from "./components/Login";
 
 function App() {
   return (

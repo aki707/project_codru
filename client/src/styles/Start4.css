@@ -1,5 +1,5 @@
 .Start4 {
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
   height: 90vh;
   display: flex;
   flex-direction: column;
@@ -7,7 +7,7 @@
   align-items: center;
 }
 .Start4div1 {
-  border: 2px solid green;
+  /* border: 2px solid green; */
   /* height: 15%; */
   width: 90%;
   display: flex;
@@ -16,19 +16,22 @@
 }
 
 .Start4div2 {
-  border: 2px solid green;
+  /* border: 2px solid green; */
   min-height: 60%;
   display: flex;
   justify-content: center;
 }
 
 .Start4div2div1 {
-  border: 2px solid red;
+  /* border: 2px solid red; */
   width: 50%;
+  height: fit-content;
+  font-size: 1.5vw;
+  padding: 1.2vw;
 }
 
 .Start4div2div2 {
-  border: 2px solid red;
+  /* border: 2px solid red; */
   width: 40%;
   max-height: fit-content;
   display: flex;

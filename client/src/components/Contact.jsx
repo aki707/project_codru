@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../styles/Contact.css";
+import Navbar from "./Navbar";
 
 const Contact = () => {
   const [value, setValue] = useState({
@@ -44,36 +45,8 @@ const Contact = () => {
   };
 
   return (
-    <div>
-      <nav>
-        <div className="Navbarmaindiv">
-          <div className="navlogo">
-            <img src="/image/codro.png" alt=""></img>
-          </div>
-          <div className="navbuttons">
-            <div className="btn">
-              <button>
-                <a href="/">About us</a>
-              </button>
-              <button>
-                <a href="/">course</a>
-              </button>
-              <button>
-                <a href="Contact">contact us</a>
-              </button>
-              <button>
-                <a href="/">schedule</a>
-              </button>
-            </div>
-            <div className="Regbtn">
-              <button>
-                <a href="signup">Register now</a>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div className="line"></div>
-      </nav>
+    <div className="Contanctmaindiv">
+      <Navbar />
       <div className="page">
         <h1>
           Contact &nbsp;<span>us</span>
