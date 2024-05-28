@@ -8,7 +8,7 @@ const Contact = () => {
     email: "",
     phone: "",
     city: "",
-    message: ""
+    message: "",
   });
 
   const [alert, setAlert] = useState({ show: false, severity: '', message: '' });
@@ -17,7 +17,7 @@ const Contact = () => {
     const { name, value } = e.target;
     setValue((prevValue) => ({
       ...prevValue,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -33,7 +33,7 @@ const Contact = () => {
         email,
         phone,
         city,
-        message
+        message,
       }),
     });
 
@@ -70,7 +70,7 @@ const Contact = () => {
         <div className='quote'>
           <h2><span>Get in Touch</span></h2>
         </div>
-        <div className='form'>
+        <div className="form">
           <div className="form-container">
             <form onSubmit={PostData}>
               <div className="form-group">
@@ -152,6 +152,6 @@ const Contact = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Contact;

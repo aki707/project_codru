@@ -1,47 +1,59 @@
-/* src/StudyExplore.css */
-.study-explore {
-  text-align: center;
-  background-color: #f4f4f4;
-  padding: 20px;
-}
-
-.heading {
-  font-family: "Segoe Print", "Arimo Italic", "Arimo", sans-serif;
-  font-size: 24px;
-  margin-bottom: 40px;
-}
-
-.subjects {
+.Start3 {
+  /* border: 2px solid green; */
   display: flex;
   flex-direction: column;
+  width: 100%;
+  align-items: center;
+  margin: 6vh 0vh;
+}
+
+.Start3div1 {
+  /* border: 2px solid green; */
+  width: 85%;
+  min-height: 10vh;
+  display: flex;
+  align-items: center;
+  font-size: 3vw;
+  margin-bottom: 1vh;
+}
+.Start3div2 {
+  /* border: 2px solid green; */
+  width: 97%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.Start3div2div {
+  /* border: 2px solid green; */
+  min-height: 55vh;
+  display: flex;
+  justify-content: space-between;
+}
+.Start3div2div > div {
+  /* border: 2px solid red; */
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
-
-.subject {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 40px;
-  padding: 20px;
-  width: 80%;
-  max-width: 500px;
+.Start3div2div > div > img {
+  width: 75%;
+  border-radius: 1vw;
 }
 
-.subject-image {
-  width: 100%;
-  border-radius: 8px 8px 0 0;
+.Start3div2div > div > h2 {
+  /* border: 2px solid yellow; */
+  width: 75%;
+  text-align: left;
+  font-size: 3vw;
 }
 
-.subject-title {
-  font-family: "Arial Rounded MT Bold", "Arimo Bold", Arial, sans-serif;
-  font-size: 20px;
-  margin: 20px 0 10px;
-}
-
-.subject-description {
-  font-family: "Bierstadt", "Arimo", "Inter", system-ui, Avenir, Helvetica,
-    Arial, sans-serif;
-  font-size: 16px;
-  color: #333;
-  line-height: 1.5;
+.Start3div2div > div > p {
+  /* border: 2px solid yellow; */
+  width: 75%;
+  text-align: left;
+  font-size: 1.5vw;
+  margin-top: 0px;
 }

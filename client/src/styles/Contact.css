@@ -46,14 +46,8 @@
   height:485px;
   background-color: #efe1e1;
 }
-/* .page2{
-  border: 2px solid rgb(236, 209, 200);
-  width:50px;
-  height:200px;
-  background-color: rgb(245, 230, 225)); */
-/* } */
 
-.page h1{
+.page h1 {
   display: flex;
   text-align: center;
   justify-content: center;
@@ -103,12 +97,18 @@
  top:500px;
  left:80px;
 }
- .form{
+
+.pic img {
+  width: 400px;
+  margin-top: 30px;
+  margin-left: 140px;
+}
+.form {
   border-radius: 7px;
   box-shadow: 0px 0px 10px 1px #4e1a28;
   /* border: 2px solid rgb(130, 127, 127); */
-  width:500px;
-  height:320px;
+  width: 500px;
+  height: 320px;
   position: absolute;
   top:560px;
   left:670px;
@@ -127,7 +127,8 @@
   display: block;
   margin-bottom: 2px;
 }
-.form-group input, .form-group textarea {
+.form-group input,
+.form-group textarea {
   width: 95%;
   padding: 10px;
   border: 1px solid #ccc;
