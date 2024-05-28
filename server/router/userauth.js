@@ -15,6 +15,16 @@ const User = require("../models/userSchema");
 const Student = require("../models/studentSchema");
 const Teacher = require("../models/teacherSchema");
 
+const validateEmail = (email) => {
+  const re = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
+  return re.test(email);
+};
+
+const validatePassword = (password) => {
+  const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  return re.test(password);
+};
+
 router.post("/register", async (req, res) => {
   const {
     photo,
@@ -43,12 +53,23 @@ router.post("/register", async (req, res) => {
     return res.status(422).json({ error: "Empty field(s)." });
   }
 
+  if (!validateEmail(email)) {
+    return res.status(422).json({ error: "Invalid email format." });
+  }
+
+  if (!validatePassword(password)) {
+    return res.status(422).json({
+      error: "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character."
+    });
+  }
+
   try {
     const emailExist = await User.findOne({ email: email });
+    const usernameExist = await User.findOne({ username: username });
 
-    if (emailExist) {
+    if (emailExist || usernameExist) {
       return res.status(422).json({ error: "User already exists." });
-    } else if (password !== cpassword) {
+    } else if (password != cpassword) {
       return res.status(422).json({ error: "Passwords didn't match." });
     } else {
       let user;
@@ -133,6 +154,9 @@ router.post("/signin", async (req, res) => {
   }
 });
 
+module.exports = router;
+
+
 router.post("/course-register", async (req, res) => {
   try {
   } catch (error) {}
@@ -165,7 +189,7 @@ router.post("/change-password", async (req, res) => {
   }
 });
 
-router.post("/forgot-password", async (req, res) => {
+router.post("/reset-password", async (req, res) => {
   try {
     const { username } = req.body;
     if (!username) {
