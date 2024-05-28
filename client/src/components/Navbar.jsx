@@ -26,7 +26,7 @@ function Navbar() {
       </div>
       <div className={`navbuttons ${showLinks ? "show" : ""}`}>
         <div className="btn">
-          <NavLink to="/login" className="navlinks" onClick={toggleLinks}>
+          <NavLink to="/About" className="navlinks" onClick={toggleLinks}>
             About Us
           </NavLink>
           <NavLink to="/courses" className="navlinks" onClick={toggleLinks}>

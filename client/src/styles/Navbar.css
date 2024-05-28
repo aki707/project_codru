@@ -46,6 +46,8 @@
 }
 .navlinks {
   font-size: 1.2vw;
+  text-decoration: none;
+  color: black;
 }
 .navlinks.active {
   color: red;
@@ -70,7 +72,7 @@
   background: transparent;
   color: black;
   border-color: red;
-  border-radius: 2vw;
+  border-radius: 1vw;
   cursor: pointer;
   animation: borderColorChange 2s infinite alternate; /* Add animation */
 }
