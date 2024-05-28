@@ -3,6 +3,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const router = express.Router();
+const dotenv = require("dotenv");
+dotenv.config({ path: "./config.env" });
+const nodemailer = require("nodemailer");
 
 router.use(express.json());
 router.use(bodyParser.json());
@@ -13,15 +16,15 @@ const Student = require("../models/studentSchema");
 const Teacher = require("../models/teacherSchema");
 
 router.post("/register", async (req, res) => {
-  const { 
-    photo, 
-    name, 
-    username,  
-    email, 
-    password, 
-    cpassword, 
-    dob, 
-    phone, 
+  const {
+    photo,
+    name,
+    username,
+    email,
+    password,
+    cpassword,
+    dob,
+    phone,
     declaration,
     role,
     ...rest
@@ -49,21 +52,41 @@ router.post("/register", async (req, res) => {
       return res.status(422).json({ error: "Passwords didn't match." });
     } else {
       let user;
-      if (role === 'Student') {
-        user = new Student({ photo, name, username, email, password, dob, phone, declaration, ...rest });
-      } else if (role === 'Teacher') {
-        user = new Teacher({ photo, name, username, email, password, dob, phone, declaration, ...rest });
+      if (role === "Student") {
+        user = new Student({
+          photo,
+          name,
+          username,
+          email,
+          password,
+          dob,
+          phone,
+          declaration,
+          ...rest,
+        });
+      } else if (role === "Teacher") {
+        user = new Teacher({
+          photo,
+          name,
+          username,
+          email,
+          password,
+          dob,
+          phone,
+          declaration,
+          ...rest,
+        });
       } else {
         return res.status(422).json({ error: "Invalid role." });
       }
 
       await user.save();
       const token = jwt.sign(
-        { _id: user._id, username: user.username, role:user.role },
+        { _id: user._id, username: user.username, role: user.role },
         process.env.TOKEN_SECRET,
-        { expiresIn: '7d' }
+        { expiresIn: "7d" }
       );
-      res.status(201).json({ message: "Registration successful",token });
+      res.status(201).json({ message: "Registration successful", token });
     }
   } catch (err) {
     console.log(err);
@@ -96,7 +119,7 @@ router.post("/signin", async (req, res) => {
       const token = jwt.sign(
         { _id: user._id, user: user.username, role: user.role },
         process.env.TOKEN_SECRET,
-        { expiresIn: '7d' }
+        { expiresIn: "14d" }
       );
 
       res.json({ message: "You are in", role, username: user.username, token });
@@ -110,13 +133,157 @@ router.post("/signin", async (req, res) => {
   }
 });
 
-
-router.post("/course-register",async (req,res)=>{
+router.post("/course-register", async (req, res) => {
   try {
-    
+  } catch (error) {}
+});
+
+router.post("/change-password", async (req, res) => {
+  try {
+    const { username, currentPassword, newPassword } = req.body;
+
+    if (!username || !currentPassword || !newPassword) {
+      return res.status(400).json({ error: "Empty field(s)" });
+    }
+
+    let user = await User.findOne({ username: username });
+    if (!user) {
+      return res.status(400).json({ error: "User not found" });
+    }
+
+    const isMatched = await bcrypt.compare(currentPassword, user.password);
+    if (!isMatched) {
+      return res.status(400).json({ error: "Wrong current password" });
+    }
+
+    user.password = await bcrypt.hash(newPassword, 12);
+    await user.save();
+
+    res.status(200).json({ message: "Password changed successfully" });
   } catch (error) {
-    
+    res.status(500).json({ error: "Server error" });
   }
-})
+});
+
+router.post("/forgot-password", async (req, res) => {
+  try {
+    const { username } = req.body;
+    if (!username) {
+      return res.status(400).json({ error: "Empty field(s)" });
+    }
+
+    let user = await User.findOne({ username: username });
+
+    if (!user) {
+      return res.status(400).json({ error: "User not found" });
+    }
+
+    const token = jwt.sign({ userId: user._id }, process.env.TOKEN_SECRET, {
+      expiresIn: "1h",
+    });
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD,
+      },
+    });
+
+    const mailOptions = {
+      from: process.env.EMAIL,
+      to: user.email,
+      subject: "Password Reset",
+      text: `You requested for password reset. Please use the following link to reset your password: https://codru.school/reset-password/${token}`,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        return res.status(500).json({ error: "Failed to send email" });
+      }
+      res
+        .status(200)
+        .json({ message: "Password reset link sent to your email" });
+    });
+  } catch (error) {
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+router.post("/reset-password/:token", async (req, res) => {
+  try {
+    const { token } = req.params;
+    const { newPassword } = req.body;
+
+    if (!newPassword) {
+      return res.status(400).json({ error: "New password is required" });
+    }
+
+    const decoded = jwt.verify(token, process.env.TOKEN_SECRET);
+    const userId = decoded.userId;
+
+    let user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(400).json({ error: "User not found" });
+    }
+
+    user.password = await bcrypt.hash(newPassword, 12);
+    await user.save();
+
+    res.status(200).json({ message: "Password has been reset successfully" });
+  } catch (error) {
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+let otpCode;
+
+router.post("/generate-otp", (req, res) => {
+  const { email } = req.body;
+  otpCode = Math.floor(100000 + Math.random() * 900000).toString();
+  const mailOptions = {
+    from: process.env.EMAIL,
+    to: email,
+    subject: "Email Verification",
+    text: `Hi there! You have recently visited our website and entered your email. Your OTP code for email verification is ${otpCode}.`,
+  };
+
+  transporter.sendMail(mailOptions, (error, _info) => {
+    if (error) {
+      console.error("Error sending email:", error);
+      res.status(500).send({ message: "Failed to send OTP" });
+    } else {
+      console.log("OTP sent:", otpCode);
+      res.status(200).send({ message: "OTP sent successfully" });
+    }
+  });
+});
+
+router.post("/verify-email", async (req, res) => {
+  const { email, otp } = req.body;
+
+  const enteredOTP = parseInt(otp, 10);
+
+  try {
+    const user = await User.findOne({ email: email });
+
+    if (user) {
+      if (enteredOTP === parseInt(otpCode, 10)) {
+        console.log("Entered OTP:", otp);
+        console.log("Generated OTP:", otpCode);
+
+        res.status(200).send({ message: "Verification successful" });
+      } else {
+        res.status(401).send({ message: "Invalid OTP" });
+      }
+    } else {
+      return res.status(400).json({ error: "Wrong email" });
+    }
+  } catch (err) {
+    console.error("Error verifying", err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
 
 module.exports = router;
