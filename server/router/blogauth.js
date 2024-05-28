@@ -16,6 +16,7 @@ router.post("/blogs", authenticate, async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
+  
 });
 
 router.post("/blogs/:blogId/comments", authenticate, async (req, res) => {
