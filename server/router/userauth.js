@@ -21,7 +21,8 @@ const validateEmail = (email) => {
 };
 
 const validatePassword = (password) => {
-  const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.])[A-Za-z\d@$!%*?&]{8,}$/;
+  const re =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.])[A-Za-z\d@$!%*?&]{8,}$/;
   return re.test(password);
 };
 
@@ -59,7 +60,8 @@ router.post("/register", async (req, res) => {
 
   if (!validatePassword(password)) {
     return res.status(422).json({
-      error: "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character."
+      error:
+        "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
     });
   }
 
@@ -105,7 +107,7 @@ router.post("/register", async (req, res) => {
       const token = jwt.sign(
         { _id: user._id, username: user.username, role: user.role },
         process.env.TOKEN_SECRET,
-        { expiresIn: "7d" }
+        { expiresIn: "14d" }
       );
       res.status(201).json({ message: "Registration successful", token });
     }
@@ -155,7 +157,6 @@ router.post("/signin", async (req, res) => {
 });
 
 module.exports = router;
-
 
 router.post("/course-register", async (req, res) => {
   try {
