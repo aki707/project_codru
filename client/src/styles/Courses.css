@@ -1,0 +1,209 @@
+/* 
+  
+  .maindiv {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 80px;
+  }
+  
+  .maindiv img {
+    width: 20%;
+    height: 30%;
+    margin-top: 20px;
+  }
+  
+  @font-face {
+    font-family: 'MtBold';
+    src: url('assets/fonts/Arial Rounded Mt Bold.ttf') format('ttf'),
+        
+  }
+  
+  
+  .text1 {
+   font-size: 50px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 6%;
+   gap: 1%;
+   font-family: 'MtBold' sans-serif;
+   
+  }
+  
+  
+  .white-text {
+    color: black;
+  }
+  
+  .red-text {
+    color:  #D61e3f;
+    gap: 20px;
+  }
+  
+  .text {
+      color: black;
+  }
+  
+  .images {
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .text2 {
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 6%;
+    gap: 1%;
+    font-family: 'MtBold' sans-serif;
+    
+   }
+  
+  .white-text1 {
+    color: black;
+  }
+  
+  .red-text1 {
+    color: #D61e3f;
+    gap: 20px;
+  }
+  
+  .imagesCourses {
+   
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    gap: 50px; 
+  }
+  
+  .imagesCourses img {
+    width: 400px; 
+    height: 400px; 
+  }
+  
+  .zoomable {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .zoomable:hover {
+    transform: scale(1.3);
+  }
+   */
+
+   *{
+    margin:0%;
+    padding: 0%;
+  }
+  
+  .maindiv {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 80px;
+  }
+  
+  .maindiv img {
+    width: 20%;
+    height: 30%;
+    margin-top: 20px;
+  }
+  
+  @font-face {
+    font-family: 'MtBold';
+    src: url('assets/fonts/Arial Rounded Mt Bold.ttf') format('ttf'),
+        
+  }
+  
+  
+  .text1 {
+   font-size: 50px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 6%;
+   gap: 1%;
+   font-family: 'MtBold' sans-serif;
+   
+  }
+  
+  
+  .white-text {
+    color: black;
+  }
+  
+  .red-text {
+    color:  #D61e3f;
+    gap: 20px;
+  }
+  
+  .text {
+      color: black;
+  }
+  
+  .images {
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .text2 {
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 6%;
+    gap: 1%;
+    font-family: 'MtBold' sans-serif;
+    
+   }
+  
+  .white-text1 {
+    color: black;
+  }
+  
+  .red-text1 {
+    color: #D61e3f;
+    gap: 20px;
+  }
+  
+  .imagesCourses {
+   
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    gap: 50px; 
+  }
+  
+  .imagesCourses img {
+    width: 400px; 
+    height: 400px; 
+  }
+  
+  .zoomable {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .zoomable:hover {
+    transform: scale(1.3);
+  }
+  
+  
+  
+  
+  
+  
+   
+  
+  
+  
+  
+  
+  
+  
