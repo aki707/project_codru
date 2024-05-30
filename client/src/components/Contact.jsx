@@ -30,7 +30,7 @@ const Contact = () => {
             </div>
           </div>
          </div>
-            <div className='line'>
+            <div className='line1'>
             </div>  
       </nav>
       <div className='page'>

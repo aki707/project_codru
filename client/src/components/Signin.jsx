@@ -6,7 +6,6 @@ import c3 from '../assets/c3.png';
 
 import { Lock, Person } from '@mui/icons-material';
 import { TextField, Button, InputAdornment } from '@mui/material';
-import BadgeIcon from '@mui/icons-material/Badge';
 import GoogleIcon from '../assets/google.svg';
 import FacebookIcon from '../assets/facebook-color.svg';
 import MicrosoftIcon from '../assets/microsoft.svg';

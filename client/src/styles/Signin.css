@@ -69,11 +69,6 @@ input:-webkit-autofill:active {
   gap: 1rem;
 }
 
-.signin {
-  margin-top: -420px;
-  margin-right: 150px;
-}
-
 
 .button {
   display: flex;
