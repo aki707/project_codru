@@ -20,12 +20,11 @@
   /* border: 2px solid green; */
   font-size: 3.5vw;
   width: 100%;
-  line-height: 0px;
 }
 .Start2div1 > p {
   /* border: 2px solid green; */
   max-width: 100%;
-  line-height: 0px;
+
   text-align: center;
   margin-left: 40%;
   font-size: 1.5rem;
@@ -66,6 +65,5 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  line-height: 0px;
   text-align: center;
 }

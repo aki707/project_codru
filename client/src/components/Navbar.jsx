@@ -1,56 +1,48 @@
 import { NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons"; // Import faTimes for the cross button
+import { useState } from "react";
+
 import c3 from "../assets/c3.png";
 import "../styles/Navbar.css";
 
-
-const style = {
-  textDecoration: "none",
-  color: "black",
-  fontWeight: "bold",
-};
 function Navbar() {
+  const [showLinks, setShowLinks] = useState(false);
+
+  const toggleLinks = () => {
+    setShowLinks(!showLinks);
+  };
+
   return (
     <div className="Navbarmaindiv">
-      <div className="navlogo">
-        <img
-          //   src="https://cdn.pixabay.com/photo/2023/04/05/16/08/hedgehog-fly-7901862_640.jpg"
-          src={c3}
-          alt=""
-        />
-
+      <NavLink to="/" className="navlogo">
+        <img src={c3} alt="" />
+      </NavLink>
+      <div
+        className={showLinks ? "navoptions" : "barcross"}
+        onClick={toggleLinks}
+      >
+        <FontAwesomeIcon icon={showLinks ? faTimes : faBars} />
       </div>
-      <div className="navbuttons">
+      <div className={`navbuttons ${showLinks ? "show" : ""}`}>
         <div className="btn">
-          <button>
-            <NavLink to="/" style={style}>
-              About Us
-            </NavLink>
-          </button>
-          <button>
-            <NavLink to="/courses" style={style}>
-              Courses
-            </NavLink>
-          </button>
-          <button>
-            <NavLink to="/Contact" style={style}>
-              Contact Us
-            </NavLink>
-          </button>
-          <button>
-            <NavLink to="/popup" style={style}>
-              Schedule
-            </NavLink>
-        
-            
-          </button>
+          <NavLink to="/About" className="navlinks" onClick={toggleLinks}>
+            About Us
+          </NavLink>
+          <NavLink to="/courses" className="navlinks" onClick={toggleLinks}>
+            Courses
+          </NavLink>
+          <NavLink to="/Contact" className="navlinks" onClick={toggleLinks}>
+            Contact Us
+          </NavLink>
+          <NavLink to="/popup" className="navlinks" onClick={toggleLinks}>
+            Schedule
+          </NavLink>
         </div>
         <div className="Regbtn">
           <button>
-          
-           <NavLink to="/signup" style={style}>
-           Register </NavLink>
-          </button> 
-          
+            <NavLink to="/signup">Register </NavLink>
+          </button>
         </div>
       </div>
     </div>
