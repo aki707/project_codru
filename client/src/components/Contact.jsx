@@ -3,40 +3,6 @@ import { useState } from 'react';
 import '../styles/Contact.css';
 
 const Contact = () => {
-<<<<<<< HEAD
-    return (
-    <div>
-      <nav>
-          <div className="Navbarmaindiv">
-              <div className="navlogo">
-              <img src="/image/c3.png" alt=""></img>
-              </div>
-          <div className="navbuttons">
-            <div className="btn">
-                <button>
-                <a href="/">About us</a>
-                </button>
-                <button>
-                  <a href="/">course</a>
-                </button>
-                <button>
-                  <a href="/">contact us</a>
-                </button>
-                <button>
-                  <a href="/">schedule</a>
-                </button>
-            </div>
-            <div className="Regbtn">
-                <button>
-                  <a href="/">Register now</a>
-                </button>
-            </div>
-          </div>
-         </div>
-            <div className='line1'>
-            </div>  
-      </nav>
-=======
   const [value, setValue] = useState({
     name: "",
     email: "",
@@ -82,7 +48,6 @@ const Contact = () => {
   return (
     <div className='contact-us-page'>
     
->>>>>>> 2d99b8500f8180ac6773ea64d0ec786eeacd3365
       <div className='page'>
         <h1>Contact &nbsp;<span>us</span></h1>
         <div className='cont_all'>
