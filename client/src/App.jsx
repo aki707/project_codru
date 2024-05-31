@@ -24,6 +24,7 @@ function App() {
       <Route path='/courses' Component={Courses}/>
       <Route path='/extra' Component={Extra}/>
      <Route path='/class6' Component={Class6}/>
+    
     </Routes>
   );
 }
