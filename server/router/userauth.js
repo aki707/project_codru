@@ -156,8 +156,6 @@ router.post("/signin", async (req, res) => {
   }
 });
 
-module.exports = router;
-
 router.post("/course-register", async (req, res) => {
   try {
   } catch (error) {}
