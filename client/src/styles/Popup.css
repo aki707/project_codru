@@ -1,9 +1,9 @@
-/* *{
+*{
     margin:0%;
     padding: 0%;
   } */
 
-/* .box2 {
+ .box2 {
   border: 2px solid black;
   height: 600px;
   width: 1250px;
@@ -13,7 +13,7 @@
   margin-top: 53px;
   margin-left: 150px;
   border-radius: 25px;
-  background-image: url("src/assets/popupbg.png");
+  background-image: url("src/assets/background.jpg");
 }
 
 .box2 h2 {
@@ -105,4 +105,4 @@
   outline: none;
   background: none;
   font-size: 16px;
-} */
+}
