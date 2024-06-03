@@ -1,86 +1,89 @@
-.Start1 {
-  /* border: 2px solid green; */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 70vh;
-  margin-top: 15vh;
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f2f5;
 }
 
-.Start1div1 {
-  width: 50%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* border: 2px solid blue; */
-  margin-left: 3vw;
-}
-.square-container {
-  width: 40%;
-  height: 50%;
-  border: 2px solid black;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-size: 1.5rem;
+.landing-container {
   position: relative;
-}
-
-.square-container > p {
-  width: 75%;
-}
-
-.corner-image {
-  width: 8vw;
-  height: 7vw;
-  position: absolute;
-  border-radius: 1vw;
-  object-fit: cover;
-  border: 2px solid red;
-}
-
-.top-left {
-  top: -3vw;
-  left: -4vw;
-}
-
-.top-right {
-  top: -3vw;
-  right: -4vw;
-}
-
-.bottom-left {
-  bottom: -3vw;
-  left: -4vw;
-}
-
-.bottom-right {
-  bottom: -3vw;
-  right: -4vw;
-}
-.Start1div2 {
-  width: 45%;
-  height: 70%;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  /* border: 2px solid blue; */
+  height: 100vh;
+  background: url('../assets/BackgroundImage.png') no-repeat center center/cover;
 }
 
-.text-container {
+.text-content {
   text-align: left;
-  color: black;
+  padding: 20px;
+  margin-right: 50%;
+  animation: fadeInUp 2s forwards;
+  
 }
 
-.text-container > p {
-  /* border: 2px solid green; */
-  font-family: "Arial Rounded MT Bold", Arial, Helvetica, sans-serif;
+.text-content h1 {
+  font-size: 3em;
+  margin: 10px;
+  margin-left: 30%;
+  color: #333;
+  font-size: 40px;
+  animation: fadeInUp 2s forwards;
+}
 
-  font-size: 4rem;
-  font-style: oblique;
-  width: 60%;
+.text-content h2 {
+  font-size: 2.5em;
+  margin: 0;
+  color: #6f61ff;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 70px;
+  animation: fadeInUp 2s forwards;
+}
+
+.text-content h2 span:first-child {
+  color: #ff6f61;
+  animation: fadeInUp 2s forwards;
+}
+
+.text-content h2 span:last-child {
+  color: #ff6f61;
+  animation: fadeInUp 2s forwards;
+}
+
+
+.start-button {
+  margin-top: 20px;
+  margin-left: 20%;
+  padding: 15px 30px;
+  font-size: 1.2em;
+  color: #fff;
+  background-color: #ff6f61;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.start-button:hover {
+  background-color: #5946d2;
+}
+
+.thumbs-up-icon {
+  margin-left: 20px;
+  font-size: 2em;
+  color: #6f61ff;
+  opacity: 0;
+  animation: fadeInUp 3s forwards;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

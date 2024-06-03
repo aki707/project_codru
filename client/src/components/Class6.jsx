@@ -1,5 +1,6 @@
 import React from 'react';
 import "../styles/Class6.css";
+import { NavLink } from 'react-router-dom';
 
 const Class6 = () => {
   return (
@@ -56,7 +57,9 @@ const Class6 = () => {
               <td key={idx}>
                 <div className="fee-cell">
                   <span>{fee}</span>
+                  <NavLink to='/Buy'> 
                   <button className="buy-now-button">Buy Now</button>
+                    </NavLink>
                 </div>
               </td>
             ))}

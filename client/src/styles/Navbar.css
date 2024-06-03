@@ -7,10 +7,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 15vh;
+  height: 10vh;
   position: fixed;
   width: 100%;
-  background-color: #efe1e1;
+  background-color: transparent;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   z-index: 2;
 }
@@ -25,7 +25,6 @@
 
 .navlogo > img {
   margin-top: 7px;
-
   width: 18vw;
 }
 
@@ -33,13 +32,11 @@
   display: flex;
   width: 50vw;
   justify-content: space-between;
-  /* border: 2px solid green; */
   margin-right: 3vw;
   align-items: center;
 }
 
 .btn {
-  /* border: 2px solid black; */
   width: 70%;
   display: flex;
   justify-content: space-between;
@@ -58,10 +55,11 @@
 }
 .Regbtn {
   /* border: 2px solid blue; */
-  width: 40%;
+  width: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 
 .Regbtn > button {
