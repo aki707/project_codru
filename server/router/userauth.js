@@ -59,12 +59,12 @@ router.post("/register", async (req, res) => {
   //   return res.status(422).json({ error: "Invalid email format." });
   // }
 
-  if (!validatePassword(password)) {
-    return res.status(422).json({
-      error:
-        "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
-    });
-  }
+  // if (!validatePassword(password)) {
+  //   return res.status(422).json({
+  //     error:
+  //       "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
+  //   });
+  // }
 
   try {
     const emailExist = await User.findOne({ email: email });

@@ -13,6 +13,7 @@ import Popup from "./components/Popup";
 import Signin from "./components/Signin";
 import Signup from "./components/Signup";
 import Profile from "./components/Profile";
+// import Login from "./components/Login";
 
 function App() {
   return (
@@ -27,7 +28,6 @@ function App() {
       <Route path="/course-register" Component={Admission} />
       <Route path="/About" Component={About} />
       <Route path="/" Component={Profile} />
-      <Route path="/courses" Component={Courses} />
     </Routes>
   );
 }
