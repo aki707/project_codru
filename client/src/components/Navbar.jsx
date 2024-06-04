@@ -35,15 +35,13 @@ function Navbar() {
           <NavLink to="/Contact" className="navlinks" onClick={toggleLinks}>
             Contact Us
           </NavLink>
-          <NavLink to="/popup" className="navlinks" onClick={toggleLinks}>
+          <NavLink to="/profile" className="navlinks" onClick={toggleLinks}>
             Schedule
           </NavLink>
         </div>
-        <div className="Regbtn">
-          <button>
-            <NavLink to="/signup">Register </NavLink>
-          </button>
-        </div>
+        <NavLink className="signuplink" to="/signup">
+          <button>REGISTER </button>
+        </NavLink>
       </div>
     </div>
   );
