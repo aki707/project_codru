@@ -54,17 +54,6 @@
   color: blue;
   /* transform: scale(1.3); */
 }
-<<<<<<< HEAD
-
-.signuplink {
-  display: flex;
-  justify-content: center;
-  width: 20%;
-  border-radius: 5vh;
-  background-color: transparent;
-  padding: 0.5vh;
-  text-decoration: none;
-=======
 .Regbtn {
   /* border: 2px solid blue; */
   width: 30%;
@@ -72,7 +61,6 @@
   justify-content: center;
   align-items: center;
 
->>>>>>> d39f582d681eb883e9aa63b0c8b7ea230b7cdaa0
 }
 
 .signuplink > button {
@@ -159,7 +147,7 @@
     max-height: 50vh;
     padding-bottom: 1vh;
     background-color: #071b33;
-    transition: 5s cubic-bezier(.36,-0.01,0,.77);
+    transition: 5s cubic-bezier(0.36, -0.01, 0, 0.77);
   }
   .navbuttons.cross {
     color: white;
@@ -181,31 +169,32 @@
   }
 
   .signuplink {
-  display: flex;
-  justify-content: center;
-  width: 90%;
-  border-radius: 5vh;
-  background-color: transparent;
-  padding: 0.5vh;
-  text-decoration: none;
-}
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    border-radius: 5vh;
+    background-color: transparent;
+    padding: 0.5vh;
+    text-decoration: none;
+  }
 
-.signuplink > button {
-  cursor: pointer;
-  border: 2px solid #d61e3f;
-  color: #efe1e1;
-  font-size: 3.5vw;
-  width: 99%;
-  padding: 2vh;
-  background-color: #d61e3f;
-  border-radius: 5vh;
-  font-weight: BOLD;
-}
-.signuplink > button:hover {
-  background-color: #d61e3f;
-  border: 2pt solid #d61e3f;
-  /* background-color: yellow; */
-}
-.signuplink:hover {
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 10px;
+  .signuplink > button {
+    cursor: pointer;
+    border: 2px solid #d61e3f;
+    color: #efe1e1;
+    font-size: 3.5vw;
+    width: 99%;
+    padding: 2vh;
+    background-color: #d61e3f;
+    border-radius: 5vh;
+    font-weight: BOLD;
+  }
+  .signuplink > button:hover {
+    background-color: #d61e3f;
+    border: 2pt solid #d61e3f;
+    /* background-color: yellow; */
+  }
+  .signuplink:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 10px;
+  }
 }
