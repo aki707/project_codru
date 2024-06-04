@@ -58,7 +58,7 @@ const Contact = () => {
                <ul>
                 <li><h4>Please Call:-</h4><p>7300-199-100/8949-775-255</p></li>
                 <li><h4>Email:-</h4><p>codrueducation@gmail.com</p></li>
-                <li><h4>Office:-</h4><p>Shop No.: 1 & 2, First Floor,Near Ahinsha circle, R.K. Puram (Sector A), Kota (Raj.), 324005</p></li>
+                <li><h4>Office:-</h4><p>Shop No.: 1 & 2, First Floor,Near Ahimsa circle, R.K. Puram (Sector A), Kota (Raj.), 324005</p></li>
                 </ul>
                 <h5>Please reach on Mon-Sun in between (8AM - 8PM);</h5>
               </div>

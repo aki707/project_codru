@@ -1,4 +1,5 @@
 import{ useState } from 'react';
+import "../styles/Admission.css"
 
 
 const Admission = () => {
@@ -52,7 +53,7 @@ const Admission = () => {
   };
 
   return (
-    <div>
+    <div className='form-container'>
       <h1 align="center">Admission Form</h1>
       <form onSubmit={handleSubmit} autoComplete="on">
         <input type="hidden" name="_id" value={formData._id} />
@@ -86,7 +87,7 @@ const Admission = () => {
             <tr>
               <td></td>
               <td colSpan="3">
-                <input type="text" placeholder="Present Address" name="Address1" value={formData.Address1} onChange={handleChange} />
+                <input type="text" placeholder="Permanent Address" name="Address1" value={formData.Address1} onChange={handleChange} />
               </td>
             </tr>
             <tr>
