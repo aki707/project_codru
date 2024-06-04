@@ -5,13 +5,16 @@ import Contact from "./components/Contact";
 import Home from "./components/Home";
 import Popup from "./components/Popup";
 import Signin from "./components/Signin";
+import Forget_password from "./components/Forget_password";
 import Signup from "./components/Signup";
-// import Login from "./components/Login";
+import Change_password from "./components/change_password";
 
 function App() {
   return (
     <Routes>
       <Route path="/" Component={Home} />
+      <Route path="/forgot-password" Component={Forget_password} />
+      <Route path="/change-password" Component={Change_password}/>
       <Route path="/signup" Component={Signup} />
       <Route path="/signin" Component={Signin} />
       <Route path="/popup" Component={Popup} />
