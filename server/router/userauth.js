@@ -59,21 +59,12 @@ router.post("/register", async (req, res) => {
   //   return res.status(422).json({ error: "Invalid email format." });
   // }
 
-<<<<<<< HEAD
   // if (!validatePassword(password)) {
   //   return res.status(422).json({
   //     error:
   //       "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
   //   });
   // }
-=======
-  if (!validatePassword(password)) {
-    return res.status(422).json({
-      error:
-        "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
-    });
-  }
->>>>>>> d39f582d681eb883e9aa63b0c8b7ea230b7cdaa0
 
   try {
     const emailExist = await User.findOne({ email: email });
@@ -175,11 +166,6 @@ router.post("/signin", async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
-module.exports = router;
-
-=======
->>>>>>> d39f582d681eb883e9aa63b0c8b7ea230b7cdaa0
 router.post("/course-register", async (req, res) => {
   try {
   } catch (error) {}
