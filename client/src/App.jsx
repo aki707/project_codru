@@ -7,7 +7,7 @@ import Popup from "./components/Popup";
 import Signin from "./components/Signin";
 import Forget_password from "./components/Forget_password";
 import Signup from "./components/Signup";
-import Change_password from "./components/change_password";
+import Change_password from "./components/Change_password";
 import Courses from './components/Courses.jsx';
 import Class6 from './components/Class6.jsx';
 import Extra from './components/Extra.jsx';
