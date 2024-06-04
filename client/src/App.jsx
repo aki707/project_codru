@@ -19,7 +19,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" Component={Home} />
-      <Route path="/forgot-password" Component={Forget_password} />
+      <Route path="/forgot-password/:token" Component={Forget_password} />
       <Route path="/change-password" Component={Change_password}/>
       <Route path="/signup" Component={Signup} />
       <Route path="/signin" Component={Signin} />

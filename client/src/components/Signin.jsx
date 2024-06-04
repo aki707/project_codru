@@ -55,6 +55,36 @@ function Signin() {
     }
   };
 
+  const sendMail = async (e) => {
+    e.preventDefault();
+    const { username } = value;
+
+    if (!username) {
+      setAlertMessage("Please enter your username to reset the password");
+      setShowAlert(true);
+      return;
+    }
+
+    const res = await fetch("/api/reset-password", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username,
+      }),
+    });
+    const jsonresponse = await res.json();
+    console.log("hkjdhfjhdjf", jsonresponse.error);
+    if (res.ok) {
+      console.log("Sent successfully");
+      setAlertMessage("Password reset link sent to your email");
+      setShowAlert(true);
+    } else {
+      console.error("Failed to send mail");
+      setAlertMessage(jsonresponse.error || "Failed to send mail");
+      setShowAlert(true);
+    }
+  };
+
   const handleCloseAlert = () => {
     setShowAlert(false);
   };
@@ -125,7 +155,10 @@ function Signin() {
               Don't have an account? <NavLink to="/signup">Sign up</NavLink>
             </p>
             <p>
-              Forgotten Password <NavLink to="/Forgot">Forget Password</NavLink>
+              Forgotten Password?{" "}
+              <span className="forgot-password-link" onClick={sendMail}>
+                Forget Password
+              </span>
             </p>
           </div>
 
@@ -167,6 +200,6 @@ function Signin() {
       )}
     </div>
   );
-};
+}
 
 export default Signin;
