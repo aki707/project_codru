@@ -9,7 +9,7 @@ import Signup from "./components/Signup";
 import Courses from './components/Courses.jsx';
 import Class6 from './components/Class6.jsx';
 import Extra from './components/Extra.jsx';
-import Buy from './components/Buy.jsx';
+// import Buy from './components/Buy.jsx';
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
       <Route path='/courses' Component={Courses}/>
       <Route path='/extra' Component={Extra}/>
      <Route path='/class6' Component={Class6}/>
-     <Route path='/buy' Component={Buy}/>
+     {/* <Route path='/buy' Component={Buy}/> */}
     
     </Routes>
   );
