@@ -105,3 +105,9 @@
  .Ab_main3 h3::after {
     right: 0;
   }
+
+.Ab_con1 p,
+.Ab_con2 p,
+.Ab_main3 p {
+  text-align: justify; 
+}
