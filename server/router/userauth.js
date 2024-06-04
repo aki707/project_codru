@@ -6,6 +6,7 @@ const router = express.Router();
 const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
 const nodemailer = require("nodemailer");
+const jwt = require("jsonwebtoken");
 
 router.use(express.json());
 router.use(bodyParser.json());
@@ -40,7 +41,7 @@ router.post("/register", async (req, res) => {
     role,
     ...rest
   } = req.body;
-
+  console.log(role, "aa gya");
   if (
     !name ||
     !email ||
@@ -51,28 +52,37 @@ router.post("/register", async (req, res) => {
     !dob ||
     !role
   ) {
-    return res.status(422).json({ error: "Empty field(s)." });
+    return res.status(400).json({ error: "Empty field(s)." });
   }
 
-  if (!validateEmail(email)) {
-    return res.status(422).json({ error: "Invalid email format." });
-  }
+  // if (!validateEmail(email)) {
+  //   return res.status(422).json({ error: "Invalid email format." });
+  // }
 
+<<<<<<< HEAD
+  // if (!validatePassword(password)) {
+  //   return res.status(422).json({
+  //     error:
+  //       "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
+  //   });
+  // }
+=======
   if (!validatePassword(password)) {
     return res.status(422).json({
       error:
         "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
     });
   }
+>>>>>>> d39f582d681eb883e9aa63b0c8b7ea230b7cdaa0
 
   try {
     const emailExist = await User.findOne({ email: email });
     const usernameExist = await User.findOne({ username: username });
 
     if (emailExist || usernameExist) {
-      return res.status(422).json({ error: "User already exists." });
+      return res.status(401).json({ error: "User already exists." });
     } else if (password != cpassword) {
-      return res.status(422).json({ error: "Passwords didn't match." });
+      return res.status(402).json({ error: "Passwords didn't match." });
     } else {
       let user;
       if (role === "Student") {
@@ -100,7 +110,7 @@ router.post("/register", async (req, res) => {
           ...rest,
         });
       } else {
-        return res.status(422).json({ error: "Invalid role." });
+        return res.status(403).json({ error: "Invalid role." });
       }
 
       await user.save();
@@ -109,7 +119,9 @@ router.post("/register", async (req, res) => {
         process.env.TOKEN_SECRET,
         { expiresIn: "14d" }
       );
-      res.status(201).json({ message: "Registration successful", token });
+      res
+        .status(201)
+        .json({ message: "Registration successful", token: token });
     }
   } catch (err) {
     console.log(err);
@@ -145,7 +157,14 @@ router.post("/signin", async (req, res) => {
         { expiresIn: "14d" }
       );
 
-      res.json({ message: "You are in", role, username: user.username, token });
+      res.json({
+        message: "You are in",
+        role: role,
+        username: user.username,
+        token: token,
+        photo: user.photo,
+        name: user.name,
+      });
       console.log(token);
     } else {
       res.status(400).json({ error: "Wrong Credentials" });
@@ -156,6 +175,11 @@ router.post("/signin", async (req, res) => {
   }
 });
 
+<<<<<<< HEAD
+module.exports = router;
+
+=======
+>>>>>>> d39f582d681eb883e9aa63b0c8b7ea230b7cdaa0
 router.post("/course-register", async (req, res) => {
   try {
   } catch (error) {}

@@ -9,11 +9,12 @@ body {
 
 .landing-container {
   position: relative;
+  margin-top: 4.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: url('../assets/BackgroundImage.png') no-repeat center center/cover;
+  background: url('../assets/homeBack.png') no-repeat center center/cover;
 }
 
 .text-content {
@@ -87,3 +88,7 @@ body {
     transform: translateY(0);
   }
 }
+
+/* #efe1e1 */
+/* #071b33 */
+
