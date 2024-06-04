@@ -4,7 +4,9 @@
   flex-direction: column;
   width: 100%;
   align-items: center;
-  margin: 6vh 0vh;
+  margin: 0vh 0vh;
+  /* background: linear-gradient(to right,#f9d6de, #edddf9, #fae7d6, #dcf9f3, #f4e9ec); */
+  background-color:  #efe1e1;
 }
 
 .Start3div1 {
@@ -26,7 +28,7 @@
 
 .Start3div2div {
   /* border: 2px solid green; */
-  min-height: 55vh;
+  min-height: 80vh;
   display: flex;
   justify-content: space-between;
 }

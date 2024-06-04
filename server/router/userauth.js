@@ -227,7 +227,7 @@ router.post("/reset-password", async (req, res) => {
       from: process.env.EMAIL,
       to: user.email,
       subject: "Password Reset",
-      text: `You requested for password reset. Please use the following link to reset your password: https://codru.school/reset-password/${token}`,
+      text: `You requested for password reset. Please use the following link to reset your password: http://localhost:5173/reset-password/${token}`,
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
