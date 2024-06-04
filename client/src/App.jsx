@@ -5,7 +5,9 @@ import Contact from "./components/Contact";
 import Home from "./components/Home";
 import Popup from "./components/Popup";
 import Signin from "./components/Signin";
+import Forget_password from "./components/Forget_password";
 import Signup from "./components/Signup";
+import Change_password from "./components/change_password";
 import Courses from './components/Courses.jsx';
 import Class6 from './components/Class6.jsx';
 import Extra from './components/Extra.jsx';
@@ -15,6 +17,8 @@ function App() {
   return (
     <Routes>
       <Route path="/" Component={Home} />
+      <Route path="/forgot-password" Component={Forget_password} />
+      <Route path="/change-password" Component={Change_password}/>
       <Route path="/signup" Component={Signup} />
       <Route path="/signin" Component={Signin} />
       <Route path="/popup" Component={Popup} />
