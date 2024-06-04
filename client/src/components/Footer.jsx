@@ -21,7 +21,7 @@ function Footer() {
           </div>
           <div>
             <h2>Place</h2>
-            <p>Near Ahinsha Circle, Kota</p>
+            <p>Near Ahimsa Circle, Kota</p>
           </div>
         </div>
 
@@ -33,7 +33,7 @@ function Footer() {
         ></iframe>
       </div>
       <hr style={{ width: "90%" }} />
-      <div className="Footerdiv3">© {currentYear} Codru Education,</div>
+      <div className="Footerdiv3">© {currentYear} Codru Education</div>
     </div>
   );
 }

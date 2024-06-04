@@ -86,7 +86,7 @@ const Admission = () => {
             <tr>
               <td></td>
               <td colSpan="3">
-                <input type="text" placeholder="Present Address" name="Address1" value={formData.Address1} onChange={handleChange} />
+                <input type="text" placeholder="Permanent Address" name="Address1" value={formData.Address1} onChange={handleChange} />
               </td>
             </tr>
             <tr>

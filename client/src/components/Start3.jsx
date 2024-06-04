@@ -1,5 +1,9 @@
 import "../styles/Start3.css";
-import studyImage from "../assets/study.jpg";
+import science from "../assets/science.jpg";
+import technology from "../assets/technology.jpg";
+import math from "../assets/math.jpeg";
+import engineering from "../assets/engineering.jpg";
+
 
 function Start3() {
   return (
@@ -8,7 +12,7 @@ function Start3() {
       <div className="Start3div2">
         <div className="Start3div2div">
           <div>
-            <img src={studyImage} alt="" />
+            <img src={science} alt="" />
           </div>
           <div>
             <h2>Science</h2>
@@ -34,13 +38,13 @@ function Start3() {
             </p>
           </div>
           <div>
-            <img src={studyImage} alt="" />
+            <img src={math} alt="" />
           </div>
         </div>
 
         <div className="Start3div2div">
           <div>
-            <img src={studyImage} alt="" />
+            <img src={technology} alt="" />
           </div>
           <div>
             <h2>Technology</h2>
@@ -66,7 +70,7 @@ function Start3() {
             </p>
           </div>
           <div>
-            <img src={studyImage} alt="" />
+            <img src={engineering} alt="" />
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons"; // Import faTimes for the cross button
+import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons"; 
 import { useState } from "react";
 
 import c3 from "../assets/c3.png";
