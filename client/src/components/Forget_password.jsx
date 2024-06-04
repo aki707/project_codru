@@ -1,5 +1,24 @@
 import '../styles/Forget_password.css';
 
+const PostData = async (e) => {
+  e.preventDefault();
+  const { password,cpassword } = value;
+
+  const res = await fetch("/api/reset-password/:token", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      password,
+      cpassword
+    }),
+  });
+
+  if (res.ok) {
+    console.log("User registered successfully");
+  } else {
+    console.error("Failed to register user");
+  }
+};
 
 function Forget_password() {
     return (
