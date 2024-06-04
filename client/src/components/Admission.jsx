@@ -1,5 +1,5 @@
 import{ useState } from 'react';
-
+import Admission from "./styles/Admission.jsx";
 
 const Admission = () => {
   const [formData, setFormData] = useState({
@@ -52,7 +52,7 @@ const Admission = () => {
   };
 
   return (
-    <div>
+    <div className='form-container'>
       <h1 align="center">Admission Form</h1>
       <form onSubmit={handleSubmit} autoComplete="on">
         <input type="hidden" name="_id" value={formData._id} />
