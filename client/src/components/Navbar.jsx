@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons"; 
+import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 import c3 from "../assets/c3.png";
@@ -35,7 +35,7 @@ function Navbar() {
           <NavLink to="/Contact" className="navlinks" onClick={toggleLinks}>
             Contact Us
           </NavLink>
-          <NavLink to="/profile" className="navlinks" onClick={toggleLinks}>
+          <NavLink to="/User" className="navlinks" onClick={toggleLinks}>
             Schedule
           </NavLink>
         </div>
