@@ -171,10 +171,74 @@ router.post("/signin", async (req, res) => {
   }
 });
 
+router.post("/admission", async (req, res) => {
+  const {
+    username,
+    photo,
+    sign,
+    gender,
+    parentsign,
+    altphone,
+    chosensubs,
+    declaration,
+    classorsem,
+    schoolorcollege,
+    fatherOcc,
+    motherOcc,
+    fatherName,
+    motherName,
+    courses,
+  } = req.body;
 
-router.post("/course-register", async (req, res) => {
+  if (
+    !username ||
+    !photo ||
+    !sign ||
+    !parentsign ||
+    !chosensubs ||
+    !declaration ||
+    !classorsem ||
+    !schoolorcollege ||
+    !fatherOcc ||
+    !motherOcc ||
+    !fatherName ||
+    !motherName ||
+    !courses ||
+    !gender ||
+    !altphone
+  ) {
+    return res.status(400).json({ error: "Empty field(s)." });
+  }
+
   try {
-  } catch (error) {}
+    const existingUser = await Student.findOne({ username: username });
+
+    if (existingUser) {
+      existingUser.photo = photo;
+      existingUser.sign = sign;
+      existingUser.gender = gender;
+      existingUser.parentsign = parentsign;
+      existingUser.altphone = altphone;
+      existingUser.chosensubs = chosensubs;
+      existingUser.declaration = declaration;
+      existingUser.classorsem = classorsem;
+      existingUser.schoolorcollege = schoolorcollege;
+      existingUser.fatherOcc = fatherOcc;
+      existingUser.motherOcc = motherOcc;
+      existingUser.fatherName = fatherName;
+      existingUser.motherName = motherName;
+      existingUser.courses = courses;
+
+      await existingUser.save();
+
+      res.status(200).json({ message: "Admitted successfully" });
+    } else {
+      return res.status(404).json({ error: "User not found." });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "Server error" });
+  }
 });
 
 router.post("/change-password", async (req, res) => {
@@ -241,7 +305,9 @@ router.post("/reset-password", async (req, res) => {
         console.error("Failed to send email:", error);
         return res.status(500).json({ error: "Failed to send email" });
       }
-      res.status(200).json({ message: "Password reset link sent to your email" });
+      res
+        .status(200)
+        .json({ message: "Password reset link sent to your email" });
     });
   } catch (error) {
     console.error("Server error during password reset request:", error);
@@ -267,7 +333,7 @@ router.post("/reset-password/:token", async (req, res) => {
       return res.status(400).json({ error: "User not found" });
     }
 
-    user.password = newPassword
+    user.password = newPassword;
     await user.save();
 
     console.log("Password reset successful for user:", user.username);
@@ -278,7 +344,6 @@ router.post("/reset-password/:token", async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 });
-
 
 let otpCode;
 
