@@ -53,7 +53,7 @@ const Admission = () => {
   };
 
   return (
-    <div className='form-container'>
+    <div className='Admission-form-container'>
       <h1 className='form-heading' align="center">Admission Form</h1>
       <form onSubmit={handleSubmit} autoComplete="on">
         <input type="hidden" name="_id" value={formData._id} />
