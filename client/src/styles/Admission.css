@@ -1,12 +1,15 @@
 
 
 .form-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px; 
-    background-color: #fff; 
-    border-radius: 8px; 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  width: 80vw;
+    
+  margin-left: 10% ;
+  margin-right: 10% ;
+  padding: 20px; 
+  background-color: #fff; 
+  border-radius: 8px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  border: 5px solid rgb(162, 123, 123) ;
   }
   
   
@@ -85,4 +88,11 @@
     margin-bottom: 5px;
     color: #333;
     font-weight: bold;
+  }
+
+  .header {
+    background-color: #800000;
+    color: white;
+    text-align: center;
+    padding: 20px;
   }
