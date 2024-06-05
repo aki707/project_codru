@@ -58,7 +58,7 @@ const Class6 = () => {
                 <div className="fee-cell">
                   <span>{fee}</span>
                   <NavLink to='/Buy'> 
-                  <button className="buy-now-button">Buy Now</button>
+                  <button className="class6-buy-now-button">Buy Now</button>
                     </NavLink>
                 </div>
               </td>

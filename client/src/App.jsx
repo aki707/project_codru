@@ -12,6 +12,7 @@ import Home from "./components/Home";
 import Popup from "./components/Popup";
 import Signin from "./components/Signin";
 import Signup from "./components/Signup";
+import Custom from './components/Custom.jsx';
 import Profile from "./components/Profile";
 
 function App() {
@@ -26,11 +27,13 @@ function App() {
       <Route path="/courses" Component={Courses} />
       <Route path="/contact" Component={Contact} />
       <Route path="/course-register" Component={Admission} />
-      <Route path="/About" Component={About} />
-      <Route path="/" Component={Profile} />
-      <Route path="/extra" Component={Extra} />
-      <Route path="/class6" Component={Class6} />
-      <Route path="/buy" Component={Buy}/>
+      <Route path="/About" Component={About}/>
+      <Route path='/courses' Component={Courses}/>
+      <Route path='/extra' Component={Extra}/>
+     <Route path='/class6' Component={Class6}/>
+     <Route path='/custom' Component={Custom}/>
+     {/* <Route path='/buy' Component={Buy}/> */}
+    
     </Routes>
   );
 }

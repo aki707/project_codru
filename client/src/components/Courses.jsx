@@ -12,7 +12,7 @@ import { NavLink } from "react-router-dom";
 
 function Courses() {
   return (
-    <div className="maindiv">
+    <div className="courses-maindiv">
       <img src={c3} alt="" />
 
       <div className="text1">
@@ -43,7 +43,7 @@ function Courses() {
        <img src={extra} alt="" className="zoomable" />
        </NavLink>
           
-       <NavLink to="/Class11">
+       <NavLink to="/Custom">
        <img src={class11} alt="" className="zoomable" />
        </NavLink>
        

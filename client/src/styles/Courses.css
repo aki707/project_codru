@@ -6,14 +6,15 @@
     
   }
   
-  .maindiv {
+  .courses-maindiv {
     width: 100%;
     height: 100%;
-    margin-bottom: 80px;
+     margin-bottom: 100px; 
+    background-color: white;
     
   }
   
-  .maindiv img {
+  .courses-maindiv img {
     width: 20%;
     height: 30%;
     margin-top: 20px;

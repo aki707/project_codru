@@ -8,7 +8,10 @@ import engineering from "../assets/engineering.jpg";
 function Start3() {
   return (
     <div className="Start3">
+   
+      
       <div className="Start3div1">Explore The Way You Want To Study...</div>
+      
       <div className="Start3div2">
         <div className="Start3div2div">
           <div>
@@ -23,8 +26,11 @@ function Start3() {
               life at a cellular level, science empowers us to explore,
               question, and comprehend the world around us.
             </p>
+            
           </div>
         </div>
+        <div className="start3-hollow-circle"></div>
+        
 
         <div className="Start3div2div">
           <div>

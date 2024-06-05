@@ -1,7 +1,8 @@
 import { useState } from "react";
 import "../styles/Signin.css";
 import { NavLink } from "react-router-dom";
-import signin from "../assets/signin.png";
+// import signin from "../assets/signin.png";
+import signinAnimation from "../assets/signinAnimation.png";
 import c3 from "../assets/c3.png";
 import Muialert from "./Muialert";
 import { Lock, Person } from "@mui/icons-material";
@@ -11,8 +12,8 @@ import FacebookIcon from "../assets/facebook-color.svg";
 import MicrosoftIcon from "../assets/microsoft.svg";
 
 function Signin() {
-  const [showAlert, setShowAlert] = useState(false); // State to control alert visibility
-  const [alertMessage, setAlertMessage] = useState(""); // State to store alert message
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
   const [value, setValue] = useState({
     username: "",
@@ -42,15 +43,11 @@ function Signin() {
     const jsonresponse = await res.json();
     console.log("hkjdhfjhdjf", jsonresponse.error);
     if (res.ok) {
-      // Handle successful response
       console.log("Welcome!");
       console.log(res);
     } else {
-      // Handle error response
       console.error("Failed to Sign In");
-      // Set alert message based on error response
       setAlertMessage(jsonresponse.error || "Failed to Sign In");
-      // Display alert
       setShowAlert(true);
     }
   };
@@ -97,7 +94,7 @@ function Signin() {
             <img className="img1" src={c3} alt="SignIn" />
           </div>
 
-          <img className="image" src={signin} alt="SignIn" />
+          <img className="image" src={signinAnimation} alt="SignIn" />
         </div>
 
         <div className="signindiv2">

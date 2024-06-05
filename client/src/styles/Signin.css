@@ -13,6 +13,7 @@ input:-webkit-autofill:active {
   display: flex;
   justify-content: center;
   align-items: center;
+  background: black;
   
   
 }
@@ -20,13 +21,13 @@ input:-webkit-autofill:active {
   width: 70vw;
   height: 70vh;
    display: flex;
-   border-radius: 8%;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
-  background-color: #F8C2C2;
+  background-color: #efe1e1;
   padding: 2rem;
-  border: 30px solid #F6A7A7;
-  outline: 10px solid #F6A7A7;
+  border-radius: 1%;
+  /* border: 30px solid #F6A7A7;
+  outline: 10px solid #F6A7A7; */
   
 }
 
@@ -97,28 +98,17 @@ input:-webkit-autofill:active {
   
 }
 
-
-
-
-
-
 .forgot-password-link {
-  color: #007bff; /* Change this to your desired color */
+  color: #007bff; 
   cursor: pointer;
   text-decoration: underline;
   transition: color 0.3s ease;
 }
 
 .forgot-password-link:hover {
-  color: #0056b3; /* Change this to your desired hover color */
+  color: #0056b3; 
 }
 
 .forgot-password-link:active {
-  color: #003d7a; /* Change this to your desired active color */
+  color: #003d7a; 
 }
-
-
-
-
-
-
