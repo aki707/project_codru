@@ -5,11 +5,11 @@ const User = require("../models/userSchema");
 const teacherSchema = new mongoose.Schema({
   streamordepartment: {
     type: String,
-    required: true,
+    default: "",
   },
   courses: {
     type: [String],
-    required: true,
+    default: "",
   },
 });
 

@@ -31,3 +31,7 @@ body {
   margin: 0px;
   padding: 0px;
 }
+input {
+  background-color: white; /* Ensure the background of input elements is always white */
+  color: black; /* Optional: ensure text color in inputs is black */
+}

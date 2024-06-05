@@ -102,6 +102,20 @@ input:-webkit-autofill:active {
 
 
 
+.forgot-password-link {
+  color: #007bff; /* Change this to your desired color */
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.forgot-password-link:hover {
+  color: #0056b3; /* Change this to your desired hover color */
+}
+
+.forgot-password-link:active {
+  color: #003d7a; /* Change this to your desired active color */
+}
 
 
 

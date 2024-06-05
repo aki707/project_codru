@@ -1,13 +1,22 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "../styles/Signup.css";
 import s from "../assets/6430773-transformed.webp";
-import { Email, Lock, Phone, Person } from '@mui/icons-material';
-import { TextField, Checkbox, Button, InputAdornment } from '@mui/material';
-import BadgeIcon from '@mui/icons-material/Badge';
-import GoogleIcon from '../assets/google.svg';
-import FacebookIcon from '../assets/facebook-color.svg';
-import MicrosoftIcon from '../assets/microsoft.svg';
+import { Email, Lock, Phone, Person } from "@mui/icons-material";
+import {
+  TextField,
+  Radio,
+  RadioGroup,
+  Checkbox,
+  Button,
+  InputAdornment,
+  FormControl,
+  FormControlLabel,
+} from "@mui/material";
+import BadgeIcon from "@mui/icons-material/Badge";
+import GoogleIcon from "../assets/google.svg";
+import FacebookIcon from "../assets/facebook-color.svg";
+import MicrosoftIcon from "../assets/microsoft.svg";
 
 function Signup() {
   const [value, setValue] = useState({
@@ -18,28 +27,49 @@ function Signup() {
     phone: "",
     username: "",
     dob: "",
-    declaration: false
+    role: "Student",
+    declaration: false,
   });
+
   const [click, handleClick] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValue((prevValue) => ({
       ...prevValue,
-      [name]: value
+      [name]: value,
+    }));
+  };
+
+  const handleRoleChange = (e) => {
+    const { value } = e.target;
+    setValue((prevValue) => ({
+      ...prevValue,
+      role: value,
     }));
   };
 
   const handleCheckboxChange = (e) => {
+    const { name, checked } = e.target;
     setValue((prevValue) => ({
       ...prevValue,
-      declaration: e.target.checked
+      [name]: checked,
     }));
   };
 
   const PostData = async (e) => {
     e.preventDefault();
-    const { name, email, phone, password, cpassword, username, dob, declaration } = value;
+    const {
+      name,
+      email,
+      phone,
+      password,
+      cpassword,
+      username,
+      dob,
+      role,
+      declaration,
+    } = value;
 
     const res = await fetch("/api/register", {
       method: "POST",
@@ -52,7 +82,8 @@ function Signup() {
         cpassword,
         username,
         dob,
-        declaration
+        role,
+        declaration,
       }),
     });
 
@@ -72,6 +103,27 @@ function Signup() {
       </div>
       <div className="signupdiv2">
         <h2>Sign Up</h2>
+        <div className="terms">
+          <FormControl component="fieldset">
+            <RadioGroup
+              aria-label="role"
+              name="role"
+              value={value.role}
+              onChange={handleRoleChange}
+            >
+              <FormControlLabel
+                value="Student"
+                control={<Radio />}
+                label="Student"
+              />
+              <FormControlLabel
+                value="Teacher"
+                control={<Radio />}
+                label="Teacher"
+              />
+            </RadioGroup>
+          </FormControl>
+        </div>
         <div>
           <TextField
             className="text"
@@ -86,7 +138,7 @@ function Signup() {
                 <InputAdornment position="start">
                   <BadgeIcon />
                 </InputAdornment>
-              )
+              ),
             }}
           />
         </div>
@@ -103,7 +155,7 @@ function Signup() {
                 <InputAdornment position="start">
                   <Person />
                 </InputAdornment>
-              )
+              ),
             }}
           />
         </div>
@@ -121,7 +173,7 @@ function Signup() {
                 <InputAdornment position="start">
                   <Email />
                 </InputAdornment>
-              )
+              ),
             }}
           />
         </div>
@@ -139,7 +191,7 @@ function Signup() {
                 <InputAdornment position="start">
                   <Lock />
                 </InputAdornment>
-              )
+              ),
             }}
           />
         </div>
@@ -157,7 +209,7 @@ function Signup() {
                 <InputAdornment position="start">
                   <Lock />
                 </InputAdornment>
-              )
+              ),
             }}
           />
         </div>
@@ -175,7 +227,7 @@ function Signup() {
                 <InputAdornment position="start">
                   <Phone />
                 </InputAdornment>
-              )
+              ),
             }}
           />
         </div>
@@ -198,12 +250,24 @@ function Signup() {
             checked={value.declaration}
             onChange={handleCheckboxChange}
           />
-          <p> I've read and agree with Terms of Service and our Privacy Policy.</p>
+          <p>
+            {" "}
+            I've read and agree with Terms of Service and our Privacy Policy.
+          </p>
         </div>
-        <Button variant="contained" color="primary" className='signupnormal' onClick={PostData}>Sign up</Button>
+        <Button
+          variant="contained"
+          color="primary"
+          className="signupnormal"
+          onClick={PostData}
+        >
+          Sign up
+        </Button>
         <div>
-          <p>Already have an account? 
-          <NavLink to="/signin"> Signin </NavLink></p>
+          <p>
+            Already have an account?
+            <NavLink to="/signin"> Signin </NavLink>
+          </p>
         </div>
         <div className="divider">
           <span className="line"></span>
@@ -211,15 +275,24 @@ function Signup() {
           <span className="line"></span>
         </div>
         <div className="external-signup">
-          <div className="icon-wrapper" onClick={() => console.log('Continue with Google')}>
+          <div
+            className="icon-wrapper"
+            onClick={() => console.log("Continue with Google")}
+          >
             <img src={GoogleIcon} alt="Google" className="icon" />
           </div>
           <span className="separator">|</span>
-          <div className="icon-wrapper" onClick={() => console.log('Continue with Facebook')}>
+          <div
+            className="icon-wrapper"
+            onClick={() => console.log("Continue with Facebook")}
+          >
             <img src={FacebookIcon} alt="Facebook" className="icon" />
           </div>
           <span className="separator">|</span>
-          <div className="icon-wrapper" onClick={() => console.log('Continue with Microsoft')}>
+          <div
+            className="icon-wrapper"
+            onClick={() => console.log("Continue with Microsoft")}
+          >
             <img src={MicrosoftIcon} alt="Microsoft" className="icon-new" />
           </div>
         </div>

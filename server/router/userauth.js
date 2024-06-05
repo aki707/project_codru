@@ -6,6 +6,7 @@ const router = express.Router();
 const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
 const nodemailer = require("nodemailer");
+const jwt = require("jsonwebtoken");
 
 router.use(express.json());
 router.use(bodyParser.json());
@@ -40,7 +41,7 @@ router.post("/register", async (req, res) => {
     role,
     ...rest
   } = req.body;
-
+  console.log(role, "aa gya");
   if (
     !name ||
     !email ||
@@ -51,28 +52,28 @@ router.post("/register", async (req, res) => {
     !dob ||
     !role
   ) {
-    return res.status(422).json({ error: "Empty field(s)." });
+    return res.status(400).json({ error: "Empty field(s)." });
   }
 
-  if (!validateEmail(email)) {
-    return res.status(422).json({ error: "Invalid email format." });
-  }
+  // if (!validateEmail(email)) {
+  //   return res.status(422).json({ error: "Invalid email format." });
+  // }
 
-  if (!validatePassword(password)) {
-    return res.status(422).json({
-      error:
-        "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
-    });
-  }
+  // if (!validatePassword(password)) {
+  //   return res.status(422).json({
+  //     error:
+  //       "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
+  //   });
+  // }
 
   try {
     const emailExist = await User.findOne({ email: email });
     const usernameExist = await User.findOne({ username: username });
 
     if (emailExist || usernameExist) {
-      return res.status(422).json({ error: "User already exists." });
+      return res.status(401).json({ error: "User already exists." });
     } else if (password != cpassword) {
-      return res.status(422).json({ error: "Passwords didn't match." });
+      return res.status(402).json({ error: "Passwords didn't match." });
     } else {
       let user;
       if (role === "Student") {
@@ -100,7 +101,7 @@ router.post("/register", async (req, res) => {
           ...rest,
         });
       } else {
-        return res.status(422).json({ error: "Invalid role." });
+        return res.status(403).json({ error: "Invalid role." });
       }
 
       await user.save();
@@ -109,7 +110,9 @@ router.post("/register", async (req, res) => {
         process.env.TOKEN_SECRET,
         { expiresIn: "14d" }
       );
-      res.status(201).json({ message: "Registration successful", token });
+      res
+        .status(201)
+        .json({ message: "Registration successful", token: token });
     }
   } catch (err) {
     console.log(err);
@@ -124,16 +127,21 @@ router.post("/signin", async (req, res) => {
       return res.status(400).json({ error: "Empty field(s)" });
     }
 
+    console.log("Attempting to sign in user:", username);
+
     let user = await Student.findOne({ username: username });
     let role = "Student";
 
     if (!user) {
+      console.log("User not found in Students, searching in Teachers...");
       user = await Teacher.findOne({ username: username });
       role = "Teacher";
     }
 
     if (user) {
+      console.log("User found:", user.username, "Role:", role);
       const isMatched = await bcrypt.compare(password, user.password);
+      console.log("Password match result:", isMatched);
 
       if (!isMatched) {
         return res.status(400).json({ error: "Wrong Credentials" });
@@ -145,16 +153,24 @@ router.post("/signin", async (req, res) => {
         { expiresIn: "14d" }
       );
 
-      res.json({ message: "You are in", role, username: user.username, token });
-      console.log(token);
+      res.json({
+        message: "You are in",
+        role: role,
+        username: user.username,
+        token: token,
+        photo: user.photo,
+        name: user.name,
+      });
+      console.log("Token generated:", token);
     } else {
       res.status(400).json({ error: "Wrong Credentials" });
     }
   } catch (err) {
-    console.log(err);
+    console.error("Sign In Error:", err);
     res.status(500).json({ error: "Server error" });
   }
 });
+
 
 router.post("/course-register", async (req, res) => {
   try {
@@ -195,7 +211,7 @@ router.post("/reset-password", async (req, res) => {
       return res.status(400).json({ error: "Empty field(s)" });
     }
 
-    let user = await User.findOne({ username: username });
+    let user = await User.findOne({ username });
 
     if (!user) {
       return res.status(400).json({ error: "User not found" });
@@ -217,18 +233,18 @@ router.post("/reset-password", async (req, res) => {
       from: process.env.EMAIL,
       to: user.email,
       subject: "Password Reset",
-      text: `You requested for password reset. Please use the following link to reset your password: https://codru.school/reset-password/${token}`,
+      text: `You requested for password reset. Please use the following link to reset your password: http://localhost:5173/forgot-password/${token}`,
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
+        console.error("Failed to send email:", error);
         return res.status(500).json({ error: "Failed to send email" });
       }
-      res
-        .status(200)
-        .json({ message: "Password reset link sent to your email" });
+      res.status(200).json({ message: "Password reset link sent to your email" });
     });
   } catch (error) {
+    console.error("Server error during password reset request:", error);
     res.status(500).json({ error: "Server error" });
   }
 });
@@ -251,14 +267,18 @@ router.post("/reset-password/:token", async (req, res) => {
       return res.status(400).json({ error: "User not found" });
     }
 
-    user.password = await bcrypt.hash(newPassword, 12);
+    user.password = newPassword
     await user.save();
+
+    console.log("Password reset successful for user:", user.username);
 
     res.status(200).json({ message: "Password has been reset successfully" });
   } catch (error) {
+    console.error("Server error during password reset:", error);
     res.status(500).json({ error: "Server error" });
   }
 });
+
 
 let otpCode;
 

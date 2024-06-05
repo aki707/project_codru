@@ -1,17 +1,19 @@
-import  { useState } from 'react';
+import { useState } from "react";
 import "../styles/Signin.css";
 import { NavLink } from "react-router-dom";
-import signin from '../assets/signin.png';
-import c3 from '../assets/c3.png';
-
-import { Lock, Person } from '@mui/icons-material';
-import { TextField, Button, InputAdornment } from '@mui/material';
-import GoogleIcon from '../assets/google.svg';
-import FacebookIcon from '../assets/facebook-color.svg';
-import MicrosoftIcon from '../assets/microsoft.svg';
-
+import signin from "../assets/signin.png";
+import c3 from "../assets/c3.png";
+import Muialert from "./Muialert";
+import { Lock, Person } from "@mui/icons-material";
+import { TextField, Button, InputAdornment } from "@mui/material";
+import GoogleIcon from "../assets/google.svg";
+import FacebookIcon from "../assets/facebook-color.svg";
+import MicrosoftIcon from "../assets/microsoft.svg";
 
 function Signin() {
+  const [showAlert, setShowAlert] = useState(false); // State to control alert visibility
+  const [alertMessage, setAlertMessage] = useState(""); // State to store alert message
+
   const [value, setValue] = useState({
     username: "",
     password: "",
@@ -21,13 +23,13 @@ function Signin() {
     const { name, value } = e.target;
     setValue((prevValue) => ({
       ...prevValue,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const PostData = async (e) => {
     e.preventDefault();
-    const { username, password} = value;
+    const { username, password } = value;
 
     const res = await fetch("/api/signin", {
       method: "POST",
@@ -37,37 +39,69 @@ function Signin() {
         password,
       }),
     });
-
+    const jsonresponse = await res.json();
+    console.log("hkjdhfjhdjf", jsonresponse.error);
     if (res.ok) {
       // Handle successful response
       console.log("Welcome!");
+      console.log(res);
     } else {
       // Handle error response
       console.error("Failed to Sign In");
+      // Set alert message based on error response
+      setAlertMessage(jsonresponse.error || "Failed to Sign In");
+      // Display alert
+      setShowAlert(true);
     }
   };
 
+  const sendMail = async (e) => {
+    e.preventDefault();
+    const { username } = value;
+
+    if (!username) {
+      setAlertMessage("Please enter your username to reset the password");
+      setShowAlert(true);
+      return;
+    }
+
+    const res = await fetch("/api/reset-password", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username,
+      }),
+    });
+    const jsonresponse = await res.json();
+    console.log("hkjdhfjhdjf", jsonresponse.error);
+    if (res.ok) {
+      console.log("Sent successfully");
+      setAlertMessage("Password reset link sent to your email");
+      setShowAlert(true);
+    } else {
+      console.error("Failed to send mail");
+      setAlertMessage(jsonresponse.error || "Failed to send mail");
+      setShowAlert(true);
+    }
+  };
+
+  const handleCloseAlert = () => {
+    setShowAlert(false);
+  };
+
   return (
-
-    
     <div className="signindiv">
-      
-      
       <div className="signindiv1">
-      
-
-    
         <div className="img">
-          <div className='logo2'>
-          <img className="img1" src={c3} alt="SignIn" />
+          <div className="logo2">
+            <img className="img1" src={c3} alt="SignIn" />
           </div>
-   
-   
+
           <img className="image" src={signin} alt="SignIn" />
         </div>
 
         <div className="signindiv2">
-          <h2 className='signin'>Sign In</h2>
+          <h2 className="signin">Sign In</h2>
 
           <div className="username-input">
             <TextField
@@ -81,7 +115,6 @@ function Signin() {
                 startAdornment: (
                   <InputAdornment position="start">
                     <Person />
-                
                   </InputAdornment>
                 ),
               }}
@@ -101,7 +134,6 @@ function Signin() {
                 startAdornment: (
                   <InputAdornment position="start">
                     <Lock />
-                
                   </InputAdornment>
                 ),
               }}
@@ -109,7 +141,7 @@ function Signin() {
           </div>
 
           <Button
-           fullWidth 
+            fullWidth
             variant="contained"
             color="primary"
             className="signinnormal"
@@ -121,6 +153,12 @@ function Signin() {
           <div className="donothave">
             <p>
               Don't have an account? <NavLink to="/signup">Sign up</NavLink>
+            </p>
+            <p>
+              Forgotten Password?{" "}
+              <span className="forgot-password-link" onClick={sendMail}>
+                Forget Password
+              </span>
             </p>
           </div>
 
@@ -152,10 +190,16 @@ function Signin() {
           </div>
         </div>
       </div>
+
+      {showAlert && (
+        <Muialert
+          message={alertMessage}
+          severity="error"
+          onClose={handleCloseAlert}
+        />
+      )}
     </div>
   );
 }
 
 export default Signin;
-
-
