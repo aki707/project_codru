@@ -84,12 +84,7 @@ const Admission = () => {
                 <input type="text" placeholder="Present Address" name="Address" value={formData.Address} onChange={handleChange} required />
               </td>
             </tr>
-            <tr>
-              <td></td>
-              <td colSpan="3">
-                <input type="text" placeholder="Permanent Address" name="Address1" value={formData.Address1} onChange={handleChange} />
-              </td>
-            </tr>
+            
             <tr>
               <td><b>Email id:</b></td>
               <td colSpan="3">
