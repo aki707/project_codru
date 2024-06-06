@@ -53,7 +53,7 @@ function Signup() {
   const [click, handleClick] = useState(false);
   const [open, setOpen] = useState(false);
   const [timer, setTimer] = useState(null);
-  const [otpValue, setOtpValue] = useState("");
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
