@@ -109,7 +109,7 @@ function Signup() {
   };
 
   const handleOtpVerification = async (finalValue) => {
-    console.log(finalValue); // Log the received OTP value
+    console.log(finalValue);
 
     const res = await fetch("/api/verify-email", {
       method: "POST",
