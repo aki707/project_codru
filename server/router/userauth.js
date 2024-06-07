@@ -408,6 +408,7 @@ router.post("/profile-edit", async (req, res) => {
     await user.save();
 
     res.status(200).json({ message: "Profile updated successfully", user });
+    console.log(photo);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal server error" });

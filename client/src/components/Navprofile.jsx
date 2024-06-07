@@ -24,42 +24,58 @@ function Navprofile({ setShowprofile, showprofile }) {
       headers: { "Content-Type": "application/json" },
     });
 
-    const jsondata = res.json();
+    const jsondata = await res.json();
     if (res.ok) {
       localStorage.clear("Token");
       // Handle successful response
-      console.log(jsondata.message);
+      setAlertMessage(jsondata.message);
+      setShowAlert(true);
       navigate("/");
     } else {
       // Handle error response
-      console.error("Failed to logout user user");
+      console.error("Failed to logout user");
+      setAlertMessage(jsondata.error);
+      setShowAlert(true);
     }
   };
 
-  const handlephotoinput = async (e) => {
+  const handlephotoinput = (e) => {
     const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.onload = () => {
-      setEditphoto({ ...editphoto, Photo: reader.result });
-    };
-    reader.readAsDataURL(file);
 
-    const res = await fetch("/api/profile-edit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        photo: { Photo: reader.result }, // Pass the photo data correctly
-      }),
-    });
-
-    const jsondata = await res.json();
-    if (res.ok) {
-      setAlertMessage(jsondata.message || "Failed to update image");
+    if (!file.type.startsWith("image/")) {
+      setAlertMessage("Please upload a valid image file");
       setShowAlert(true);
-    } else {
-      setAlertMessage(jsondata.error || "Failed to find user");
-      setShowAlert(true);
+      return;
     }
+
+    const reader = new FileReader();
+
+    reader.onload = async () => {
+      const newPhoto = reader.result;
+      setEditphoto({ Photo: newPhoto });
+
+      const res = await fetch("/api/profile-edit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: localStorage.getItem("Username"),
+          photo: newPhoto, // Pass the new photo data correctly
+        }),
+      });
+
+      const jsondata = await res.json();
+      if (res.ok) {
+        localStorage.setItem("Photo", newPhoto); // Correctly set the new photo in localStorage
+        setAlertMessage(jsondata.message || "Image updated successfully");
+        setShowAlert(true);
+        window.location.reload();
+      } else {
+        setAlertMessage(jsondata.error || "Failed to update image");
+        setShowAlert(true);
+      }
+    };
+
+    reader.readAsDataURL(file);
   };
 
   const handlePenClick = () => {
