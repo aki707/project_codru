@@ -1,8 +1,8 @@
-
 import React from 'react';
-import "../styles/Extra.css";
+import "../styles/Custom.css";
+import { NavLink } from 'react-router-dom';
 
-const Extra = () => {
+const Custom = () => {
   return (
     <div className="course-table-container">
       <div className="header">
@@ -13,9 +13,13 @@ const Extra = () => {
         <thead>
           <tr>
             <th>Course Perks</th>
+            <th>1 Day</th>
+            <th>7 Days</th>
             <th>30 Days</th>
             <th>45 Days</th>
             <th>90 Days</th>
+            <th>180 Days</th>
+            <th>Yearly</th>
           </tr>
         </thead>
         <tbody>
@@ -30,23 +34,22 @@ const Extra = () => {
             "Access to Book Bank & Library",
             "Mentorship & Career Guidance",
             "Internship & Training (B.Tech Students)"
-    
-    ].map((perk, index) => (
-        <tr key={index}>
-          <td>{perk}</td>
-          {[ "30 Days", "45 Days", "90 Days"].map((duration, idx) => (
-            <td key={idx}>{index < 2 ||  (duration == "30 Days" && index < 5) ? "✔️" : "" || (duration == "45 Days" && index < 6) ? "✔️" : "" || (duration == "90 Days" && index < 7) ? "✔️" : "" || (duration == "30 Days" && index == 9) ? "✔️" : "" || (duration == "45 Days" && index == 9) ? "✔️" : "" || (duration == "90 Days" && index == 9) ? "✔️" : ""}</td>
-           
+          ].map((perk, index) => (
+            <tr key={index}>
+              <td>{perk}</td>
+              {["1 Day", "7 Days", "30 Days", "45 Days", "90 Days", "180 Days", "Yearly"].map((duration, idx) => (
+                <td key={idx}>{index < 2 || (duration === "1 Day" && index < 2) ? "✔️" : "" || (duration === "7 Days" && index < 3) ? "✔️" : "" || (duration === "30 Days" && index < 5) ? "✔️" : "" || (duration === "45 Days" && index < 6) ? "✔️" : "" || (duration === "90 Days" && index < 7) ? "✔️" : "" || (duration === "180 Days" && index < 8) ? "✔️" : "" || (duration === "Yearly" && index < 9) ? "✔️" : "" || (duration === "30 Days" && index === 9) ? "✔️" : "" || (duration === "45 Days" && index === 9) ? "✔️" : "" || (duration === "90 Days" && index === 9) ? "✔️" : ""}</td>
+              ))}
+            </tr>
           ))}
-        </tr>
-      ))}
           <tr>
             <td>Total Fee</td>
-            {["₹ 3,500.00", "₹ 5,000.00", "₹ 10,000.00"].map((fee, idx) => (
+            {["1 Day", "7 Days", "30 Days", "45 Days", "90 Days", "180 Days", "Yearly"].map((duration, idx) => (
               <td key={idx}>
                 <div className="fee-cell">
-                  <span>{fee}</span>
-                  <button className="extra-buy-now-button">Buy Now</button>
+                  <NavLink to='/Admission'>
+                    <button className="custom-buy-now-button">Customize Now</button>
+                  </NavLink>
                 </div>
               </td>
             ))}
@@ -73,4 +76,4 @@ const Extra = () => {
   );
 };
 
-export default Extra;
+export default Custom;

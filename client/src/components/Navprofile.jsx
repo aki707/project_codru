@@ -11,7 +11,7 @@ function Navprofile({ setShowprofile, showprofile }) {
   const navigate = useNavigate();
 
   const SignOut = async () => {
-    const res = await fetch("/api/register", {
+    const res = await fetch("/api/Sign", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
     });

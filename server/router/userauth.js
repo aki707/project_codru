@@ -27,6 +27,14 @@ const Teacher = require("../models/teacherSchema");
 //   return re.test(password);
 // };
 
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL,
+    pass: process.env.PASSWORD,
+  },
+});
+
 router.post("/register", async (req, res) => {
   const {
     photo,
@@ -127,16 +135,21 @@ router.post("/signin", async (req, res) => {
       return res.status(400).json({ error: "Empty field(s)" });
     }
 
+    console.log("Attempting to sign in user:", username);
+
     let user = await Student.findOne({ username: username });
     let role = "Student";
 
     if (!user) {
+      console.log("User not found in Students, searching in Teachers...");
       user = await Teacher.findOne({ username: username });
       role = "Teacher";
     }
 
     if (user) {
+      console.log("User found:", user.username, "Role:", role);
       const isMatched = await bcrypt.compare(password, user.password);
+      console.log("Password match result:", isMatched);
 
       if (!isMatched) {
         return res.status(400).json({ error: "Wrong Credentials" });
@@ -161,19 +174,84 @@ router.post("/signin", async (req, res) => {
         photo: user.photo,
         name: user.name,
       });
-      console.log(token);
+      console.log("Token generated:", token);
     } else {
       res.status(400).json({ error: "Wrong Credentials" });
+    }
+  } catch (err) {
+    console.error("Sign In Error:", err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+router.post("/admission", async (req, res) => {
+  const {
+    username,
+    photo,
+    sign,
+    gender,
+    parentsign,
+    altphone,
+    chosensubs,
+    declaration,
+    classorsem,
+    schoolorcollege,
+    fatherOcc,
+    motherOcc,
+    fatherName,
+    motherName,
+    courses,
+  } = req.body;
+
+  if (
+    !username ||
+    !photo ||
+    !sign ||
+    !parentsign ||
+    !chosensubs ||
+    !declaration ||
+    !classorsem ||
+    !schoolorcollege ||
+    !fatherOcc ||
+    !motherOcc ||
+    !fatherName ||
+    !motherName ||
+    !courses ||
+    !gender ||
+    !altphone
+  ) {
+    return res.status(400).json({ error: "Empty field(s)." });
+  }
+
+  try {
+    const existingUser = await Student.findOne({ username: username });
+
+    if (existingUser) {
+      existingUser.photo = photo;
+      existingUser.sign = sign;
+      existingUser.gender = gender;
+      existingUser.parentsign = parentsign;
+      existingUser.altphone = altphone;
+      existingUser.chosensubs = chosensubs;
+      existingUser.declaration = declaration;
+      existingUser.classorsem = classorsem;
+      existingUser.schoolorcollege = schoolorcollege;
+      existingUser.fatherOcc = fatherOcc;
+      existingUser.motherOcc = motherOcc;
+      existingUser.fatherName = fatherName;
+      existingUser.motherName = motherName;
+      existingUser.courses = courses;
+
+      await existingUser.save();
+
+      res.status(200).json({ message: "Admitted successfully" });
+    } else {
+      return res.status(404).json({ error: "User not found." });
     }
   } catch (err) {
     console.log(err);
     res.status(500).json({ error: "Server error" });
   }
-});
-
-router.post("/course-register", async (req, res) => {
-  try {
-  } catch (error) {}
 });
 
 router.post("/change-password", async (req, res) => {
@@ -210,7 +288,7 @@ router.post("/reset-password", async (req, res) => {
       return res.status(400).json({ error: "Empty field(s)" });
     }
 
-    let user = await User.findOne({ username: username });
+    let user = await User.findOne({ username });
 
     if (!user) {
       return res.status(400).json({ error: "User not found" });
@@ -220,23 +298,16 @@ router.post("/reset-password", async (req, res) => {
       expiresIn: "1h",
     });
 
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: process.env.EMAIL,
-        pass: process.env.PASSWORD,
-      },
-    });
-
     const mailOptions = {
       from: process.env.EMAIL,
       to: user.email,
       subject: "Password Reset",
-      text: `You requested for password reset. Please use the following link to reset your password: http://localhost:5173/reset-password/${token}`,
+      text: `You requested for password reset. Please use the following link to reset your password: http://localhost:5173/forgot-password/${token}`,
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
+        console.error("Failed to send email:", error);
         return res.status(500).json({ error: "Failed to send email" });
       }
       res
@@ -244,6 +315,7 @@ router.post("/reset-password", async (req, res) => {
         .json({ message: "Password reset link sent to your email" });
     });
   } catch (error) {
+    console.error("Server error during password reset request:", error);
     res.status(500).json({ error: "Server error" });
   }
 });
@@ -266,20 +338,26 @@ router.post("/reset-password/:token", async (req, res) => {
       return res.status(400).json({ error: "User not found" });
     }
 
-    user.password = await bcrypt.hash(newPassword, 12);
+    user.password = newPassword;
     await user.save();
+
+    console.log("Password reset successful for user:", user.username);
 
     res.status(200).json({ message: "Password has been reset successfully" });
   } catch (error) {
+    console.error("Server error during password reset:", error);
     res.status(500).json({ error: "Server error" });
   }
 });
 
 let otpCode;
+let otpTimestamp;
 
 router.post("/generate-otp", (req, res) => {
   const { email } = req.body;
-  otpCode = Math.floor(100000 + Math.random() * 900000).toString();
+  otpCode = Math.floor(1000 + Math.random() * 9000).toString();
+  otpTimestamp = Date.now();
+
   const mailOptions = {
     from: process.env.EMAIL,
     to: email,
@@ -299,24 +377,22 @@ router.post("/generate-otp", (req, res) => {
 });
 
 router.post("/verify-email", async (req, res) => {
-  const { email, otp } = req.body;
+  const { otp } = req.body;
+  const currentTime = Date.now();
+  const timeDifference = currentTime - otpTimestamp;
+  console.log(req.body);
+  console.log(otpCode);
 
   const enteredOTP = parseInt(otp, 10);
 
   try {
-    const user = await User.findOne({ email: email });
+    if (enteredOTP === parseInt(otpCode, 10) && timeDifference <= 60000) {
+      console.log("Entered OTP:", otp);
+      console.log("Generated OTP:", otpCode);
 
-    if (user) {
-      if (enteredOTP === parseInt(otpCode, 10)) {
-        console.log("Entered OTP:", otp);
-        console.log("Generated OTP:", otpCode);
-
-        res.status(200).send({ message: "Verification successful" });
-      } else {
-        res.status(401).send({ message: "Invalid OTP" });
-      }
+      res.status(200).send({ message: "Verification successful" });
     } else {
-      return res.status(400).json({ error: "Wrong email" });
+      res.status(401).send({ message: "Invalid OTP" });
     }
   } catch (err) {
     console.error("Error verifying", err);
@@ -324,21 +400,14 @@ router.post("/verify-email", async (req, res) => {
   }
 });
 
-router.post("/logout", async (req, res) => {
+router.post("/profile", async (req, res) => {
   try {
-    res.clearCookie("token", null, {
-      expiresIn: new Date(Date.now()),
-      httpOnly: true,
-    });
+  } catch (error) {}
+});
 
-    res.status(200).json({
-      success: true,
-      message: "successfully logout",
-    });
-    console.log("the token is deleted",req.cookies.token);
-  } catch (error) {
-    console.log("error");
-  }
+router.post("/update-details", async (req, res) => {
+  try {
+  } catch (error) {}
 });
 
 module.exports = router;

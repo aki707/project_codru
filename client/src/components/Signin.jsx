@@ -1,7 +1,8 @@
 import { useState } from "react";
 import "../styles/Signin.css";
 import { NavLink } from "react-router-dom";
-import signin from "../assets/signin.png";
+// import signin from "../assets/signin.png";
+import signinAnimation from "../assets/signinAnimation.png";
 import c3 from "../assets/c3.png";
 import Muialert from "./Muialert";
 import { Lock, Person } from "@mui/icons-material";
@@ -50,11 +51,38 @@ function Signin() {
       localStorage.setItem("Name", jsonresponse.name);
       navigate("/");
     } else {
-      // Handle error response
       console.error("Failed to Sign In");
-      // Set alert message based on error response
       setAlertMessage(jsonresponse.error || "Failed to Sign In");
-      // Display alert
+      setShowAlert(true);
+    }
+  };
+
+  const sendMail = async (e) => {
+    e.preventDefault();
+    const { username } = value;
+
+    if (!username) {
+      setAlertMessage("Please enter your username to reset the password");
+      setShowAlert(true);
+      return;
+    }
+
+    const res = await fetch("/api/reset-password", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username,
+      }),
+    });
+    const jsonresponse = await res.json();
+    console.log("hkjdhfjhdjf", jsonresponse.error);
+    if (res.ok) {
+      console.log("Sent successfully");
+      setAlertMessage("Password reset link sent to your email");
+      setShowAlert(true);
+    } else {
+      console.error("Failed to send mail");
+      setAlertMessage(jsonresponse.error || "Failed to send mail");
       setShowAlert(true);
     }
   };
@@ -71,7 +99,7 @@ function Signin() {
             <img className="img1" src={c3} alt="SignIn" />
           </div>
 
-          <img className="image" src={signin} alt="SignIn" />
+          <img className="image" src={signinAnimation} alt="SignIn" />
         </div>
 
         <div className="signindiv2">
@@ -129,7 +157,10 @@ function Signin() {
               Don't have an account? <NavLink to="/signup">Sign up</NavLink>
             </p>
             <p>
-              Forgotten Password <NavLink to="/Forgot">Forget Password</NavLink>
+              Forgotten Password?{" "}
+              <span className="forgot-password-link" onClick={sendMail}>
+                Forget Password
+              </span>
             </p>
           </div>
 
