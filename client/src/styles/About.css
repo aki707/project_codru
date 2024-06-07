@@ -1,107 +1,29 @@
-
-  .Ab_mini{
-    /* border:2px solid black; */
-    width:99.7%;
-    height:150px;
-    background-color:#4e1a28 ;
-  }
-  .page .Ab_mini span{
-    margin-top: 40px;
-
-  }
-  .Ab_main{
-    display: flex; /* Use flexbox */
-    justify-content: space-between; /* Space between the boxes */
-    padding: 50px;
-  }
-  .Ab_sec img{
-    border-radius:2000px;
-    margin-left: 20px;
-    height: 240px;
-    width:240px;
-    box-shadow:0px 0px 1px 1px;
-  }
-  .Ab_sec{
-    /* border:2px solid black; */
-    margin-left:30px;
-    height: 300px;
-  }
-  .Ab_con1{
-    /* border:2px solid black; */
-    position: absolute;
-    left:360px;
-    width:60%;
-    height: 300px;
-  }
-  .Ab_con1 h3{
-    font-style:Italic;
-  }
-  .Ab_con1 p{
-   font-size: Italic;
-  }
- 
-  .Ab_sec2 img{
-    width:250px;
-    height: 250px;
-    position: absolute;
-    right: 150px;
-    border-radius: 200px;
-    box-shadow:0px 0px 1px 1px;
-  }
-  .Ab_sec2{
-    display: flex; /* Use flexbox */
-    justify-content: space-between; 
-    /* border:2px solid black; */
-    height:300px;
-    width:92%;
-    margin-left: 50px;
-    margin-top: -20px;
-  }
-  .Ab_con2{
-    width:62%;
-    /* border: 2px solid black; */
-    margin-left: 60px;
- 
-  }
-  .Ab_con2 h3{
-    font-style: italic;
-    color: black;
-  }
-.Ab_con2 h2{
-    font-size: 40px;
-    color: black;
-}
-.Ab_main3{
-    /* border:2px solid black; */
-    height:300px;
-    width:80%;
-    margin-left: 110px;
-    margin-top:20px;
-}
-.Ab_main3 h3{
-    text-align: center;
-    font-size: 20px;
-    font-style: italic;
-    position: relative;
-    margin: 20px 0;
-
+.about {
+  border: 2px solid blue;
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.Ab_main3 h3::before,
-.Ab_main3 h3::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  width: 41%;
-  height: 1px; /* Line thickness */
-  background-color: black; /* Line color */
+.aboutdiv1 {
+  background-color: #4e1a28;
+  height: 17vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
-
-
-.Ab_main3 h3::before {
-    left: 0;
-  }
-  
- .Ab_main3 h3::after {
-    right: 0%;
-  }
+.aboutdiv1 > h1 {
+  color: red;
+  font-size: 3vw;
+}
+.aboutdiv2 {
+  display: flex;
+  width: 90%;
+  border: 2px solid green;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -13,6 +13,7 @@ import Popup from "./components/Popup";
 import Signin from "./components/Signin";
 import Signup from "./components/Signup";
 import Profile from "./components/Profile";
+import Navprofile from "./components/Navprofile.jsx";
 // import Login from "./components/Login";
 
 function App() {
@@ -27,7 +28,8 @@ function App() {
       <Route path="/contact" Component={Contact} />
       <Route path="/course-register" Component={Admission} />
       <Route path="/About" Component={About} />
-      <Route path="/" Component={Profile} />
+      <Route path="/profile" Component={Profile} />
+      <Route path="/navprofile" Component={Navprofile} />
     </Routes>
   );
 }

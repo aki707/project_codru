@@ -2,16 +2,24 @@ import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-
+import notifyicon from "../assets/notification.png";
 import c3 from "../assets/c3.png";
 import "../styles/Navbar.css";
+import Navprofile from "./Navprofile";
 
 function Navbar() {
   const [showLinks, setShowLinks] = useState(false);
+  const [showprofile, setShowprofile] = useState(false);
+
+  const Showprofile = () => {
+    setShowprofile(!showprofile);
+  };
 
   const toggleLinks = () => {
     setShowLinks(!showLinks);
   };
+
+  const isLoggedIn = !!localStorage.getItem("Token");
 
   return (
     <div className="Navbarmaindiv">
@@ -26,23 +34,50 @@ function Navbar() {
       </div>
       <div className={`navbuttons ${showLinks ? "show" : ""}`}>
         <div className="btn">
-          <NavLink to="/About" className="navlinks" onClick={toggleLinks}>
+          <NavLink to="/About" className="navlinks">
             About Us
           </NavLink>
-          <NavLink to="/courses" className="navlinks" onClick={toggleLinks}>
-            Courses
-          </NavLink>
-          <NavLink to="/Contact" className="navlinks" onClick={toggleLinks}>
+          {isLoggedIn ? (
+            <NavLink to="/my-courses" className="navlinks">
+              My Courses
+            </NavLink>
+          ) : (
+            <NavLink to="/courses" className="navlinks">
+              Courses
+            </NavLink>
+          )}
+          <NavLink to="/Contact" className="navlinks">
             Contact Us
           </NavLink>
-          <NavLink to="/User" className="navlinks" onClick={toggleLinks}>
+          <NavLink to="/profile" className="navlinks">
             Schedule
           </NavLink>
         </div>
-        <NavLink className="signuplink" to="/signup">
-          <button>REGISTER </button>
-        </NavLink>
+        {isLoggedIn ? (
+          <div className="Profileimgmaindiv">
+            <NavLink className="navnotification" to="/notify">
+              <img src={notifyicon} alt="" />
+            </NavLink>
+            <NavLink
+              className="navprofile"
+              onClick={() => {
+                Showprofile();
+              }}
+            >
+              <img src={localStorage.getItem("Photo")} alt="Profile" />
+            </NavLink>
+          </div>
+        ) : (
+          <NavLink className="signuplink" to="/signup">
+            <button>REGISTER</button>
+          </NavLink>
+        )}
       </div>
+      {showprofile ? (
+        <Navprofile setShowprofile={setShowprofile} showprofile={showprofile} />
+      ) : (
+        ""
+      )}
     </div>
   );
 }

@@ -12,8 +12,6 @@ function Home() {
       <hr />
       <Start1 />
       <hr />
-      {/* <Start2 /> */}
-      <hr />
       <Start3 />
       <hr />
       <Start4 />

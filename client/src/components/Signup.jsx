@@ -87,12 +87,15 @@ function Signup() {
       }),
     });
 
+    const jsondata = res.json();
     if (res.ok) {
       // Handle successful response
       console.log("User registered successfully");
+      console.log("this is json data", jsondata);
     } else {
       // Handle error response
       console.error("Failed to register user");
+      console.log("this is json data", jsondata);
     }
   };
 
