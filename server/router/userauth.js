@@ -16,11 +16,6 @@ const User = require("../models/userSchema");
 const Student = require("../models/studentSchema");
 const Teacher = require("../models/teacherSchema");
 
-// const validateEmail = (email) => {
-//   const re = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
-//   return re.test(email);
-// };
-
 // const validatePassword = (password) => {
 //   const re =
 //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -62,10 +57,6 @@ router.post("/register", async (req, res) => {
   ) {
     return res.status(400).json({ error: "Empty field(s)." });
   }
-
-  // if (!validateEmail(email)) {
-  //   return res.status(422).json({ error: "Invalid email format." });
-  // }
 
   // if (!validatePassword(password)) {
   //   return res.status(422).json({
@@ -400,9 +391,27 @@ router.post("/verify-email", async (req, res) => {
   }
 });
 
-router.post("/profile", async (req, res) => {
+router.post("/profile-edit", async (req, res) => {
   try {
-  } catch (error) {}
+    const { username, phone, altphone, address, photo } = req.body;
+
+    let user = await User.findOne({ username });
+    if (!user) {
+      return res.status(400).json({ error: "User not found" });
+    }
+
+    user.photo = photo || user.photo;
+    user.phone = phone || user.phone;
+    user.altphone = altphone || user.altphone;
+    user.address = address || user.address;
+
+    await user.save();
+
+    res.status(200).json({ message: "Profile updated successfully", user });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 
 router.post("/update-details", async (req, res) => {
