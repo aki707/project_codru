@@ -47,7 +47,7 @@ const Custom = () => {
             {["1 Day", "7 Days", "30 Days", "45 Days", "90 Days", "180 Days", "Yearly"].map((duration, idx) => (
               <td key={idx}>
                 <div className="fee-cell">
-                  <NavLink to='/Register'>
+                  <NavLink to='/Admission'>
                     <button className="custom-buy-now-button">Customize Now</button>
                   </NavLink>
                 </div>

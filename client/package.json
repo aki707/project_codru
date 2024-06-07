@@ -20,10 +20,14 @@
     "@mui/icons-material": "^5.15.18",
     "@mui/lab": "^5.0.0-alpha.170",
     "@mui/material": "^5.15.19",
+<<<<<<< HEAD
+=======
     "lodash": "^4.17.21",
     "mui-one-time-password-input": "^2.0.2",
+>>>>>>> 69bce3f0b495a5e927087f8d9a892923a36a309c
     "mui-otp-input": "^0.0.1-alpha1.1",
     "react": "^18.2.0",
+    "react-calendar": "^5.0.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.1"
   },
