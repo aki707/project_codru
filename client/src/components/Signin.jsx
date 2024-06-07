@@ -33,7 +33,7 @@ function Signin() {
   const PostData = async (e) => {
     e.preventDefault();
     const { username, password } = value;
-
+    console.log(value);
     const res = await fetch("/api/signin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
