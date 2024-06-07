@@ -13,8 +13,8 @@ const Class6 = () => {
         <thead>
           <tr>
             <th>Course Perks</th>
-            <th>1 Day</th>
-            <th>7 Days</th>
+            {/* <th>1 Day</th>
+            <th>7 Days</th> */}
             <th>30 Days</th>
             <th>45 Days</th>
             <th>90 Days</th>
@@ -37,8 +37,8 @@ const Class6 = () => {
           ].map((perk, index) => (
             <tr key={index}>
               <td>{perk}</td>
-              {["1 Day", "7 Days", "30 Days", "45 Days", "90 Days", "180 Days", "Yearly"].map((duration, idx) => (
-                <td key={idx}>{index < 2 || (duration == "1 Day" && index < 2) ? "✔️" : "" || (duration == "7 Days" && index < 3) ? "✔️" : "" || (duration == "30 Days" && index < 5) ? "✔️" : "" || (duration == "45 Days" && index < 6) ? "✔️" : "" || (duration == "90 Days" && index < 7) ? "✔️" : "" || (duration == "180 Days" && index < 8) ? "✔️" : "" || (duration == "Yearly" && index < 9) ? "✔️" : "" || (duration == "30 Days" && index == 9) ? "✔️" : "" || (duration == "45 Days" && index == 9) ? "✔️" : "" || (duration == "90 Days" && index == 9) ? "✔️" : ""}</td>
+              {["30 Days", "45 Days", "90 Days", "180 Days", "Yearly"].map((duration, idx) => (
+                <td key={idx}>{index < 2 || (duration == "30 Days" && index < 5) ? "✔️" : "" || (duration == "45 Days" && index < 6) ? "✔️" : "" || (duration == "90 Days" && index < 7) ? "✔️" : "" || (duration == "180 Days" && index < 8) ? "✔️" : "" || (duration == "Yearly" && index < 9) ? "✔️" : "" || (duration == "30 Days" && index == 9) ? "✔️" : "" || (duration == "45 Days" && index == 9) ? "✔️" : "" || (duration == "90 Days" && index == 9) ? "✔️" : ""}</td>
                
               ))}
             </tr>
@@ -46,8 +46,6 @@ const Class6 = () => {
           <tr>
             <td>Total Fee</td>
             {[
-              "₹ 300.00",
-              "₹ 1,000.00",
               "₹ 3,500.00",
               "₹ 5,000.00",
               "₹ 10,000.00",

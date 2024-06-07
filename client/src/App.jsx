@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import About from "./components/About";
 import Admission from "./components/Admission";
-// import Buy from './components/Buy.jsx';
+import Buy from './components/Buy.jsx';
 import Change_password from "./components/Change_password";
 import Class6 from './components/Class6.jsx';
 import Contact from "./components/Contact";
@@ -14,6 +14,7 @@ import Signin from "./components/Signin";
 import Signup from "./components/Signup";
 import Custom from './components/Custom.jsx';
 import Profile from "./components/Profile";
+import Dashboard from "./components/Dashboard";
 // import Login from "./components/Login";
 
 function App() {
@@ -32,7 +33,8 @@ function App() {
       <Route path='/extra' Component={Extra}/>
      <Route path='/class6' Component={Class6}/>
      <Route path='/custom' Component={Custom}/>
-     {/* <Route path='/buy' Component={Buy}/> */}
+     <Route path='/dashboard' Component={Dashboard}/>
+     <Route path='/buy' Component={Buy}/>
     
     </Routes>
   );

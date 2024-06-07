@@ -35,8 +35,8 @@ function Navbar() {
           <NavLink to="/Contact" className="navlinks" onClick={toggleLinks}>
             Contact Us
           </NavLink>
-          <NavLink to="/User" className="navlinks" onClick={toggleLinks}>
-            Schedule
+          <NavLink to="/Dashboard" className="navlinks" onClick={toggleLinks}>
+            Dashboard
           </NavLink>
         </div>
         <NavLink className="signuplink" to="/signup">
