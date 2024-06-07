@@ -10,10 +10,12 @@ import { TextField, Button, InputAdornment } from "@mui/material";
 import GoogleIcon from "../assets/google.svg";
 import FacebookIcon from "../assets/facebook-color.svg";
 import MicrosoftIcon from "../assets/microsoft.svg";
+import { useNavigate } from "react-router-dom";
 
 function Signin() {
-  const [showAlert, setShowAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState("");
+  const [showAlert, setShowAlert] = useState(false); // State to control alert visibility
+  const [alertMessage, setAlertMessage] = useState(""); // State to store alert message
+  const navigate = useNavigate();
 
   const [value, setValue] = useState({
     username: "",
@@ -41,10 +43,13 @@ function Signin() {
       }),
     });
     const jsonresponse = await res.json();
-    console.log("hkjdhfjhdjf", jsonresponse.error);
+    console.log("hkjdhfjhdjf", jsonresponse.token);
     if (res.ok) {
-      console.log("Welcome!");
-      console.log(res);
+      localStorage.setItem("Token", jsonresponse.token);
+      localStorage.setItem("Photo", jsonresponse.photo);
+      localStorage.setItem("Username", jsonresponse.username);
+      localStorage.setItem("Name", jsonresponse.name);
+      navigate("/");
     } else {
       console.error("Failed to Sign In");
       setAlertMessage(jsonresponse.error || "Failed to Sign In");

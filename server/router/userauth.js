@@ -16,16 +16,16 @@ const User = require("../models/userSchema");
 const Student = require("../models/studentSchema");
 const Teacher = require("../models/teacherSchema");
 
-const validateEmail = (email) => {
-  const re = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
-  return re.test(email);
-};
+// const validateEmail = (email) => {
+//   const re = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
+//   return re.test(email);
+// };
 
-const validatePassword = (password) => {
-  const re =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.])[A-Za-z\d@$!%*?&]{8,}$/;
-  return re.test(password);
-};
+// const validatePassword = (password) => {
+//   const re =
+//     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.])[A-Za-z\d@$!%*?&]{8,}$/;
+//   return re.test(password);
+// };
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -161,7 +161,12 @@ router.post("/signin", async (req, res) => {
         { expiresIn: "14d" }
       );
 
-      res.json({
+      const options = {
+        expiresIn: new Date(Date.now() + process.env.COOKIEEXPIRE),
+        httpOnly: true,
+      };
+
+      res.status(200).cookie("token", token, options).json({
         message: "You are in",
         role: role,
         username: user.username,
@@ -404,7 +409,5 @@ router.post("/update-details", async (req, res) => {
   try {
   } catch (error) {}
 });
-
-
 
 module.exports = router;

@@ -164,10 +164,13 @@ function Signup() {
       }),
     });
 
+    const jsondata = res.json();
     if (res.ok) {
       console.log("User registered successfully");
+      console.log("this is json data", jsondata);
     } else {
       console.error("Failed to register user");
+      console.log("this is json data", jsondata);
     }
   };
 
