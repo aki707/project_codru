@@ -14,8 +14,6 @@ import Signin from "./components/Signin";
 import Signup from "./components/Signup";
 import Custom from './components/Custom.jsx';
 import Profile from "./components/Profile";
-import Dashboard from "./components/Dashboard";
-// import Login from "./components/Login";
 
 function App() {
   return (
@@ -26,15 +24,16 @@ function App() {
       <Route path="/signup" Component={Signup} />
       <Route path="/signin" Component={Signin} />
       <Route path="/popup" Component={Popup} />
+      <Route path="/courses" Component={Courses} />
       <Route path="/contact" Component={Contact} />
       <Route path="/course-register" Component={Admission} />
       <Route path="/About" Component={About}/>
       <Route path='/courses' Component={Courses}/>
       <Route path='/extra' Component={Extra}/>
      <Route path='/class6' Component={Class6}/>
-     <Route path='/custom' Component={Custom}/>
-     <Route path='/dashboard' Component={Dashboard}/>
-     <Route path='/buy' Component={Buy}/>
+     <Route path='/admission' Component={Admission}/>
+
+     {/* <Route path='/buy' Component={Buy}/> */}
     
     </Routes>
   );

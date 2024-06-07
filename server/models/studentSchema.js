@@ -44,7 +44,7 @@ const studentSchema = new mongoose.Schema({
     default: '',
   },
   courses: {
-    type: String,
+    type: [String],
     default: '',
   },
 });

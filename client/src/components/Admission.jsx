@@ -53,7 +53,11 @@ const Admission = () => {
   };
 
   return (
-    <div className='form-container'>
+    <div className='Admission-form-container'>
+    <div className="header">
+        <h1>Codru Education</h1>
+        <h2>Learn, how to learn.</h2>
+      </div>
       <h1 className='form-heading' align="center">Admission Form</h1>
       <form onSubmit={handleSubmit} autoComplete="on">
         <input type="hidden" name="_id" value={formData._id} />
@@ -84,12 +88,7 @@ const Admission = () => {
                 <input type="text" placeholder="Present Address" name="Address" value={formData.Address} onChange={handleChange} required />
               </td>
             </tr>
-            <tr>
-              <td></td>
-              <td colSpan="3">
-                <input type="text" placeholder="Permanent Address" name="Address1" value={formData.Address1} onChange={handleChange} />
-              </td>
-            </tr>
+            
             <tr>
               <td><b>Email id:</b></td>
               <td colSpan="3">
