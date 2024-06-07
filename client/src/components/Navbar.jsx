@@ -68,12 +68,12 @@ function Navbar() {
             </NavLink>
           </div>
         ) : (
-          <NavLink className="signuplink" to="/signup">
-            <button>REGISTER</button>
+          <NavLink className="signuplink" to="/signin">
+            <button>Sign In</button>
           </NavLink>
         )}
       </div>
-      {showprofile ? (
+      {showprofile && localStorage.getItem("Token") ? (
         <Navprofile setShowprofile={setShowprofile} showprofile={showprofile} />
       ) : (
         ""

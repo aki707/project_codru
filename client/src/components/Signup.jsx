@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../styles/Signup.css";
 import s from "../assets/6430773-transformed.webp";
 import { Email, Lock, Phone, Person } from "@mui/icons-material";
@@ -50,10 +50,11 @@ function Signup() {
     isEmailVerified: false,
   });
 
+  const navigate = useNavigate();
+
   const [click, handleClick] = useState(false);
   const [open, setOpen] = useState(false);
   const [timer, setTimer] = useState(null);
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -168,6 +169,7 @@ function Signup() {
     if (res.ok) {
       console.log("User registered successfully");
       console.log("this is json data", jsondata);
+      navigate("/signin");
     } else {
       console.error("Failed to register user");
       console.log("this is json data", jsondata);

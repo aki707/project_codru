@@ -70,6 +70,7 @@ app.post("/signout", async (req, res) => {
   try {
     res.clearCookie("token");
     res.status(200).json({ message: "Signed out successfully" });
+    console.log("token deleted", req.cookies.token);
   } catch (error) {
     console.error("Signout Error:", error);
     res.status(500).json({ error: "Server error" });
