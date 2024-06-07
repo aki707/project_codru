@@ -415,9 +415,5 @@ router.post("/profile-edit", async (req, res) => {
   }
 });
 
-router.post("/update-details", async (req, res) => {
-  try {
-  } catch (error) {}
-});
 
 module.exports = router;

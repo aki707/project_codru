@@ -16,13 +16,10 @@ const authenticate = async (req, res, next) => {
       return res.status(401).json({ error: "Unauthorized: User not found" });
     }
 
-    const hashedUsername = await bcrypt.hash(user.username, 10);
-
     req.token = token;
     req.user = user;
     req.userId = user._id;
-    req.hashedUsername = hashedUsername; 
-    
+    req.username = user.username;
 
     next();
   } catch (err) {
