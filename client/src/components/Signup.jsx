@@ -54,7 +54,6 @@ function Signup() {
   const [open, setOpen] = useState(false);
   const [timer, setTimer] = useState(null);
 
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValue((prevValue) => ({

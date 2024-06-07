@@ -16,10 +16,6 @@ const User = require("../models/userSchema");
 const Student = require("../models/studentSchema");
 const Teacher = require("../models/teacherSchema");
 
-// const validateEmail = (email) => {
-//   const re = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
-//   return re.test(email);
-// };
 
 // const validatePassword = (password) => {
 //   const re =
@@ -62,10 +58,6 @@ router.post("/register", async (req, res) => {
   ) {
     return res.status(400).json({ error: "Empty field(s)." });
   }
-
-  // if (!validateEmail(email)) {
-  //   return res.status(422).json({ error: "Invalid email format." });
-  // }
 
   // if (!validatePassword(password)) {
   //   return res.status(422).json({
