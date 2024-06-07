@@ -351,7 +351,7 @@ let otpTimestamp;
 router.post("/generate-otp", (req, res) => {
   const { email } = req.body;
   otpCode = Math.floor(1000 + Math.random() * 9000).toString();
-  otpTimestamp = Date.now(); // Store the current timestamp
+  otpTimestamp = Date.now();
 
   const mailOptions = {
     from: process.env.EMAIL,
