@@ -405,9 +405,6 @@ router.post("/update-details", async (req, res) => {
   } catch (error) {}
 });
 
-router.post("/signout", async (req, res) => {
-  try {
-  } catch (error) {}
-});
+
 
 module.exports = router;
