@@ -11,7 +11,6 @@ function Home() {
     const fetchData = async () => {
       const token = localStorage.getItem("Token"); // Retrieve the token from localStorage
       console.log(token);
-
       if (token) {
         const res = await fetch("/api/profile", {
           method: "GET",

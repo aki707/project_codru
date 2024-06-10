@@ -147,7 +147,7 @@ router.post("/signin", async (req, res) => {
       }
 
       const token = jwt.sign(
-        { _id: user._id, user: user.username, role: user.role },
+        { _id: user._id, username: user.username, role: user.role },
         process.env.TOKEN_SECRET,
         { expiresIn: "14d" }
       );
@@ -419,12 +419,14 @@ router.post("/profile-edit", async (req, res) => {
 router.get("/profile", async (req, res) => {
   try {
     const authHeader = req.headers.authorization;
+
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
       console.log("Token not found");
       return res.status(401).json({ message: "Unauthorized access" });
     }
 
     const token = authHeader.split(" ")[1];
+    console.log(token);
 
     const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
     console.log(decodedToken);
