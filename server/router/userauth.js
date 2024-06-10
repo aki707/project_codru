@@ -418,10 +418,14 @@ router.post("/profile-edit", async (req, res) => {
 
 router.get("/profile", async (req, res) => {
   try {
-    const token = req.headers.authorization;
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      console.log("Token not found");
+      return res.status(401).json({ message: "Unauthorized access" });
+    }
 
-    const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
-    const username = decodedToken.username;
+    const token = authHeader.split(" ")[1];
+    const username = token.username;
 
     let user = await User.findOne({ username });
     if (!user) {
