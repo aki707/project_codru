@@ -3,10 +3,13 @@ const User = require("../models/userSchema");
 
 const authenticate = async (req, res, next) => {
   try {
-    const token = req.cookies.jwtoken;
-    if (!token) {
-      return res.status(401).json({ error: "Unauthorized: No token provided" });
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      console.log("Token not found");
+      return res.status(401).json({ message: "Unauthorized access" });
     }
+
+    const token = authHeader.split(" ")[1];
 
     const verified = jwt.verify(token, process.env.TOKEN_SECRET);
     const user = await User.findOne({ _id: verified._id });

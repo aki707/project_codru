@@ -1,6 +1,15 @@
+import { useEffect } from "react";
 import { Alert as MuiAlert } from "@mui/material";
 
-const Muialert = ({ message, severity, onClose }) => {
+const Muialert = ({ message, severity, onClose, autoHideDuration = 4000 }) => {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      onClose();
+    }, autoHideDuration);
+
+    return () => clearTimeout(timer); // Clear the timeout if the component is unmounted
+  }, [onClose, autoHideDuration]);
+
   return (
     <div
       style={{
@@ -10,8 +19,6 @@ const Muialert = ({ message, severity, onClose }) => {
         transform: "translateX(-50%)",
         zIndex: "9999",
         width: "25%",
-
-        // backgroundColor: "black",
       }}
     >
       <MuiAlert
