@@ -418,17 +418,21 @@ router.post("/profile-edit", async (req, res) => {
 
 router.get("/profile", async (req, res) => {
   try {
-    const {username} = req.body;
+    const token = req.headers.authorization;
+
+    const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
+    const username = decodedToken.username;
 
     let user = await User.findOne({ username });
     if (!user) {
       return res.status(400).json({ error: "User not found" });
     }
 
-    res
-      .status(200)
-      .json({ message: "Le profile", user: user });
+    res.status(200).json({ message: "Le profile", user: user });
   } catch (error) {
+    if (error.name === "JsonWebTokenError") {
+      return res.status(401).json({ error: "Invalid token" });
+    }
     res.status(500).json({ error: "Internal server error" });
   }
 });
