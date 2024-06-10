@@ -16,7 +16,7 @@ require("./db/conn.js");
 app.use(require("./router/userauth.js"));
 app.use(require("./router/blogauth.js"));
 
-app.use(require("./middleware/authenticate.js"))
+// app.use(require("./middleware/authenticate.js"))
 app.use(express.static(path.join(__dirname, "public")));
 
 const transporter = nodemailer.createTransport({
