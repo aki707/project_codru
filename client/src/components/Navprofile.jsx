@@ -13,9 +13,7 @@ function Navprofile({ setShowprofile, showprofile }) {
   const [showAlert, setShowAlert] = useState(false); // State to control alert visibility
   const [alertMessage, setAlertMessage] = useState(""); // State to store alert message
   const navigate = useNavigate();
-  const [editphoto, setEditphoto] = useState({
-    Photo: localStorage.getItem("Photo"),
-  });
+
   const fileInputRef = useRef(null); // Ref to the file input element
 
   const SignOut = async () => {
@@ -42,17 +40,10 @@ function Navprofile({ setShowprofile, showprofile }) {
   const handlephotoinput = (e) => {
     const file = e.target.files[0];
 
-    if (!file.type.startsWith("image/")) {
-      setAlertMessage("Please upload a valid image file");
-      setShowAlert(true);
-      return;
-    }
-
     const reader = new FileReader();
 
     reader.onload = async () => {
       const newPhoto = reader.result;
-      setEditphoto({ Photo: newPhoto });
 
       const res = await fetch("/api/profile-edit", {
         method: "POST",
@@ -65,7 +56,7 @@ function Navprofile({ setShowprofile, showprofile }) {
 
       const jsondata = await res.json();
       if (res.ok) {
-        localStorage.setItem("Photo", newPhoto); // Correctly set the new photo in localStorage
+        localStorage.setItem("Photo", jsondata.user.photo); // Correctly set the new photo in localStorage
         setAlertMessage(jsondata.message || "Image updated successfully");
         setShowAlert(true);
         window.location.reload();
@@ -99,7 +90,7 @@ function Navprofile({ setShowprofile, showprofile }) {
       </div>
       <div className="Navprofilemaindivdiv1">
         <div className="Navprofilemaindivdiv1div1">
-          <img src={editphoto.Photo} alt="" />
+          <img src={localStorage.getItem("Photo")} alt="" />
           <FontAwesomeIcon
             className="profileediticon"
             icon={faPen}

@@ -43,8 +43,10 @@ function Signin() {
       }),
     });
     const jsonresponse = await res.json();
-    console.log("hkjdhfjhdjf", jsonresponse.token);
     if (res.ok) {
+      setAlertMessage(jsonresponse.message);
+      setShowAlert(true);
+
       localStorage.setItem("Token", jsonresponse.token);
       localStorage.setItem("Photo", jsonresponse.photo);
       localStorage.setItem("Username", jsonresponse.username);
@@ -75,7 +77,6 @@ function Signin() {
       }),
     });
     const jsonresponse = await res.json();
-    console.log("hkjdhfjhdjf", jsonresponse.error);
     if (res.ok) {
       console.log("Sent successfully");
       setAlertMessage("Password reset link sent to your email");
@@ -102,7 +103,7 @@ function Signin() {
           <img className="image" src={signinAnimation} alt="SignIn" />
         </div>
 
-        <div className="signindiv2">
+        <form className="signindiv2" onSubmit={PostData}>
           <h2 className="signin">Sign In</h2>
 
           <div className="username-input">
@@ -141,7 +142,6 @@ function Signin() {
               }}
             />
           </div>
-
           <Button
             fullWidth
             variant="contained"
@@ -151,6 +151,7 @@ function Signin() {
           >
             Sign in
           </Button>
+          <input type="submit" style={{ display: "none" }} />
 
           <div className="donothave">
             <p>
@@ -190,7 +191,7 @@ function Signin() {
               <img src={MicrosoftIcon} alt="Microsoft" className="icon" />
             </div>
           </div>
-        </div>
+        </form>
       </div>
 
       {showAlert && (

@@ -158,7 +158,7 @@ router.post("/signin", async (req, res) => {
       };
 
       res.status(200).cookie("token", token, options).json({
-        message: "You are in",
+        error: "You are in",
         role: role,
         username: user.username,
         token: token,
@@ -407,13 +407,17 @@ router.post("/profile-edit", async (req, res) => {
 
     await user.save();
 
-    res.status(200).json({ message: "Profile updated successfully", user });
+    // const updatedimg = user.photo;
+
+    res.status(200).json({
+      message: "Profile updated successfully",
+      user: user,
+    });
     console.log(photo);
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     res.status(500).json({ error: "Internal server error" });
   }
 });
-
 
 module.exports = router;
