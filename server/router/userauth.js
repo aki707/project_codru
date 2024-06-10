@@ -407,15 +407,32 @@ router.post("/profile-edit", async (req, res) => {
 
     await user.save();
 
-    // const updatedimg = user.photo;
-
-    res.status(200).json({
-      message: "Profile updated successfully",
-      user: user,
-    });
-    console.log(photo);
+    res
+      .status(200)
+      .json({ message: "Profile updated successfully", user: user });
   } catch (error) {
     // console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.get("/profile", async (req, res) => {
+  try {
+    const token = req.headers.authorization;
+
+    const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
+    const username = decodedToken.username;
+
+    let user = await User.findOne({ username });
+    if (!user) {
+      return res.status(400).json({ error: "User not found" });
+    }
+
+    res.status(200).json({ message: "Le profile", user: user });
+  } catch (error) {
+    if (error.name === "JsonWebTokenError") {
+      return res.status(401).json({ error: "Invalid token" });
+    }
     res.status(500).json({ error: "Internal server error" });
   }
 });

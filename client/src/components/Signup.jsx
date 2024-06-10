@@ -412,7 +412,11 @@ function Signup() {
       </div>
       <Dialog
         open={open}
-        onClose={() => setOpen(false)}
+        onClose={(event, reason) => {
+          if (reason !== "backdropClick") {
+            setOpen(false);
+          }
+        }}
         BackdropProps={{
           style: {
             backgroundColor: "rgba(0, 0, 0, 0.7)",
