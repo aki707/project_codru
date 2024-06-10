@@ -425,7 +425,9 @@ router.get("/profile", async (req, res) => {
     }
 
     const token = authHeader.split(" ")[1];
-    const username = token.username;
+
+    const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
+    const username = decodedToken.username;
 
     let user = await User.findOne({ username });
     if (!user) {
