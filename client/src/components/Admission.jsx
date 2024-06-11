@@ -54,11 +54,11 @@ const Admission = () => {
 
   return (
     <div className='form-container'>
-      <h1 align="center">Admission Form</h1>
+      <h1 className='form-heading' align="center">Admission Form</h1>
       <form onSubmit={handleSubmit} autoComplete="on">
         <input type="hidden" name="_id" value={formData._id} />
 
-        <table align="center" cellPadding="20" cellMargin="20" cellSpacing="20">
+        <table className="form-table" align="center" cellPadding="20" cellMargin="20" cellSpacing="20">
           <tbody>
             <tr>
               <td><b>Name:</b></td>

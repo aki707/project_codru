@@ -1,4 +1,3 @@
-import Alert from '@mui/material/Alert';
 import { useState } from 'react';
 import '../styles/Contact.css';
 
@@ -48,32 +47,15 @@ const Contact = () => {
   return (
     <div className='contact-us-page'>
     
-      <div className='page'>
+      <div className='cont_page'>
         <h1>Contact &nbsp;<span>us</span></h1>
-        <div className='cont_all'>
-          <div className='cont_all_detail'>
-              <h2>How to reach us ?</h2>
-              <div className='cont_all_detail_office'>
-               <h3>Contact Details:-</h3>
-               <ul>
-                <li><h4>Please Call:-</h4><p>7300-199-100/8949-775-255</p></li>
-                <li><h4>Email:-</h4><p>codrueducation@gmail.com</p></li>
-                <li><h4>Office:-</h4><p>Shop No.: 1 & 2, First Floor,Near Ahimsa circle, R.K. Puram (Sector A), Kota (Raj.), 324005</p></li>
-                </ul>
-                <h5>Please reach on Mon-Sun in between (8AM - 8PM);</h5>
-              </div>
-             
-          </div>
-        <div className='pic'>
-          <img src="/image/contact.png" alt=""></img>
-        </div>
-        <div className='quote'>
-          <h2><span>Get in Touch</span></h2>
-        </div>
-        <div className="form">
-          <div className="form-container">
+          <div className='cont_main'>
+         <div className='cont_main_div1'>
+         <span>Send us a Message</span>
+         <div className="cont_form">
+          <div className="cont_form-container">
             <form onSubmit={PostData}>
-              <div className="form-group">
+              <div className="cont_form-group">
                 <label htmlFor="Name">
                   <input
                     placeholder="Name"
@@ -86,7 +68,7 @@ const Contact = () => {
                   />
                 </label>
               </div>
-              <div className="form-group">
+              <div className="cont_form-group">
                 <label htmlFor="City">
                   <input
                     placeholder="City"
@@ -99,9 +81,11 @@ const Contact = () => {
                   />
                 </label>
               </div>
-              <div className="form-group">
+              <div className="cont_form-group">
                 <label htmlFor="phn">
+                
                   <input
+                    class="fas fa-phone"
                     placeholder="Phone Number"
                     type="tel"
                     id="phn"
@@ -112,7 +96,7 @@ const Contact = () => {
                   />
                 </label>
               </div>
-              <div className="form-group">
+              <div className="cont_form-group">
                 <label htmlFor="Email">
                   <input
                     placeholder="Email"
@@ -125,7 +109,7 @@ const Contact = () => {
                   />
                 </label>
               </div>
-              <div className="form-group">
+              <div className="cont_form-group">
                 <label htmlFor="message">
                   <textarea
                     placeholder="Message Query"
@@ -137,7 +121,7 @@ const Contact = () => {
                   ></textarea>
                 </label>
               </div>
-              <div className="form-group">
+              <div className="cont_form-group">
                 <button type="submit">Send Message</button>
               </div>
             </form>
@@ -146,11 +130,37 @@ const Contact = () => {
                 {alert.message}
               </Alert>
             )}
+      
             </div>
+             </div>
+         
+         </div>
+         <div className='cont_main_div2'>
+           <div className='cont_all'>
+          <div className='cont_all_detail'>
+              <h2>How to reach us ?</h2>
+              <div className='cont_all_detail_office'>
+               <p>We are open for any suggestion or just to have a chat..</p>
+              
+
+
+
+                <ul>
+                <li> <h4>Please Call:-</h4><p><i class="fas fa-phone"></i>&nbsp; 7300-199-100/8949-775-255</p></li>
+                <li><h4>Email:-</h4><p><i class="fas fa-envelope"></i>&nbsp;&nbsp;codrueducation@gmail.com</p></li>
+                <li><h4>Office:-</h4><p><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;Shop No.: 1 & 2, First Floor,Near Ahimsa circle, R.K. Puram (Sector A), Kota (Raj.), 324005</p></li>
+                </ul>
+                <h5>Please reach on Mon-Sun in between (8AM - 8PM);</h5>
+              </div> 
+             
           </div>
+        
+           
         </div>
       </div>
-    </div>
+        </div>
+      </div>
+  </div>
   );
 };
 

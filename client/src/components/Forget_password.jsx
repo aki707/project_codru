@@ -31,12 +31,12 @@ function Forget_password() {
               <form className='fp_form'>
                 <div className='fp_form-group'>
                 <label className='fp_label' htmlFor='Password'>New Password</label>
-                <input type="password" id="password" name="pass" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required></input>
+                <input type="password" placeholder='New password' id="password" name="pass" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required></input>
                 </div>
     
                 <div className='fp_form-group'>
                 <label className='fp_label' htmlFor='Password'>Confirm New Password</label>
-                <input type="password" id="password" name="retype_pass" required></input>
+                <input type="password" placeholder='Confirm new password' id="password" name="retype_pass" required></input>
                 </div>
     
                 <div className="fp_buttonWrapper">

@@ -54,7 +54,6 @@ function Signin() {
       setShowAlert(true);
     }
   };
-
   const handleCloseAlert = () => {
     setShowAlert(false);
   };
@@ -119,7 +118,6 @@ function Signin() {
           >
             Sign in
           </Button>
-
           <div className="donothave">
             <p>
               Don't have an account? <NavLink to="/signup">Sign up</NavLink>
