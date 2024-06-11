@@ -13,7 +13,8 @@
   background-color: #efe1e1;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   z-index: 2;
-  margin-bottom: 15vh;
+  /* position: relative; */
+  /* margin-bottom: 15vh; */
 }
 
 .navlogo {
@@ -63,8 +64,34 @@
   background-color: transparent;
   padding: 0.5vh;
   text-decoration: none;
+  /* border: 2px solid blue; */
+}
+.Profileimgmaindiv {
+  display: flex;
+  justify-content: space-evenly;
+  width: 20%;
+  /* background-color: red; */
+  align-items: center;
+  height: 10vh;
+}
+.navnotification,
+.navprofile {
+  width: 30%;
+  align-self: 1/1;
+  position: relative;
 }
 
+.navnotification > img,
+.navprofile > img {
+  width: 80%;
+  border-radius: 50%;
+  border: 2px solid red;
+  aspect-ratio: 1/1;
+  object-fit: fill;
+}
+.navnotification > img {
+  width: 60%;
+}
 .signuplink > button {
   cursor: pointer;
   border: 2px solid #d61e3f;
@@ -75,6 +102,12 @@
   background-color: #d61e3f;
   border-radius: 5vh;
   font-weight: BOLD;
+}
+.signuplink > img {
+  width: 30%;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  border: 1px solid red;
 }
 .signuplink > button:hover {
   background-color: #d61e3f;

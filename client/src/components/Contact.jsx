@@ -1,6 +1,7 @@
-import Alert from '@mui/material/Alert';
-import { useState } from 'react';
-import '../styles/Contact.css';
+import Alert from "@mui/material/Alert";
+import { useState } from "react";
+import "../styles/Contact.css";
+import Navbar from "./Navbar";
 
 const Contact = () => {
   const [value, setValue] = useState({
@@ -11,7 +12,11 @@ const Contact = () => {
     message: "",
   });
 
-  const [alert, setAlert] = useState({ show: false, severity: '', message: '' });
+  const [alert, setAlert] = useState({
+    show: false,
+    severity: "",
+    message: "",
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,114 +43,143 @@ const Contact = () => {
     });
 
     if (res.ok) {
-      setAlert({ show: true, severity: 'success', message: 'Message sent successfully!' });
+      setAlert({
+        show: true,
+        severity: "success",
+        message: "Message sent successfully!",
+      });
       setValue({ name: "", email: "", phone: "", city: "", message: "" });
     } else {
-      setAlert({ show: true, severity: 'error', message: 'Failed to send message' });
+      setAlert({
+        show: true,
+        severity: "error",
+        message: "Failed to send message",
+      });
     }
   };
 
   return (
-    <div className='contact-us-page'>
-    
-      <div className='page'>
-        <h1>Contact &nbsp;<span>us</span></h1>
-        <div className='cont_all'>
-          <div className='cont_all_detail'>
+    <div>
+      <div className="Aboutpage">
+        <Navbar />
+        <div className="page">
+          <h1>
+            Contact &nbsp;<span>us</span>
+          </h1>
+
+          <div className="cont_all">
+            <div className="cont_all_detail">
               <h2>How to reach us ?</h2>
-              <div className='cont_all_detail_office'>
-               <h3>Contact Details:-</h3>
-               <ul>
-                <li><h4>Please Call:-</h4><p>7300-199-100/8949-775-255</p></li>
-                <li><h4>Email:-</h4><p>codrueducation@gmail.com</p></li>
-                <li><h4>Office:-</h4><p>Shop No.: 1 & 2, First Floor,Near Ahimsa circle, R.K. Puram (Sector A), Kota (Raj.), 324005</p></li>
+              <div className="cont_all_detail_office">
+                <h3>Contact Details:-</h3>
+                <ul>
+                  <li>
+                    <h4>Please Call:-</h4>
+                    <p>7300-199-100/8949-775-255</p>
+                  </li>
+                  <li>
+                    <h4>Email:-</h4>
+                    <p>codrueducation@gmail.com</p>
+                  </li>
+                  <li>
+                    <h4>Office:-</h4>
+                    <p>
+                      Shop No.: 1 & 2, First Floor,Near Ahimsa circle, R.K.
+                      Puram (Sector A), Kota (Raj.), 324005
+                    </p>
+                  </li>
                 </ul>
                 <h5>Please reach on Mon-Sun in between (8AM - 8PM);</h5>
               </div>
-             
-          </div>
-        <div className='pic'>
-          <img src="/image/contact.png" alt=""></img>
-        </div>
-        <div className='quote'>
-          <h2><span>Get in Touch</span></h2>
-        </div>
-        <div className="form">
-          <div className="form-container">
-            <form onSubmit={PostData}>
-              <div className="form-group">
-                <label htmlFor="Name">
-                  <input
-                    placeholder="Name"
-                    type="text"
-                    id="Name"
-                    name="name"
-                    value={value.name}
-                    onChange={handleChange}
-                    required
-                  />
-                </label>
+            </div>
+            <div className="pic">
+              <img src="/image/contact.png" alt=""></img>
+            </div>
+            <div className="quote">
+              <h2>
+                <span>Get in Touch</span>
+              </h2>
+            </div>
+            <div className="form">
+              <div className="form-container">
+                <form onSubmit={PostData}>
+                  <div className="form-group">
+                    <label htmlFor="Name">
+                      <input
+                        placeholder="Name"
+                        type="text"
+                        id="Name"
+                        name="name"
+                        value={value.name}
+                        onChange={handleChange}
+                        required
+                      />
+                    </label>
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="City">
+                      <input
+                        placeholder="City"
+                        type="text"
+                        id="City"
+                        name="city"
+                        value={value.city}
+                        onChange={handleChange}
+                        required
+                      />
+                    </label>
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="phn">
+                      <input
+                        placeholder="Phone Number"
+                        type="tel"
+                        id="phn"
+                        name="phone"
+                        value={value.phone}
+                        onChange={handleChange}
+                        required
+                      />
+                    </label>
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="Email">
+                      <input
+                        placeholder="Email"
+                        type="email"
+                        id="Email"
+                        name="email"
+                        value={value.email}
+                        onChange={handleChange}
+                        required
+                      />
+                    </label>
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="message">
+                      <textarea
+                        placeholder="Message Query"
+                        id="message"
+                        name="message"
+                        value={value.message}
+                        onChange={handleChange}
+                        required
+                      ></textarea>
+                    </label>
+                  </div>
+                  <div className="form-group">
+                    <button type="submit">Send Message</button>
+                  </div>
+                </form>
+                {alert.show && (
+                  <Alert
+                    severity={alert.severity}
+                    onClose={() => setAlert({ ...alert, show: false })}
+                  >
+                    {alert.message}
+                  </Alert>
+                )}
               </div>
-              <div className="form-group">
-                <label htmlFor="City">
-                  <input
-                    placeholder="City"
-                    type="text"
-                    id="City"
-                    name="city"
-                    value={value.city}
-                    onChange={handleChange}
-                    required
-                  />
-                </label>
-              </div>
-              <div className="form-group">
-                <label htmlFor="phn">
-                  <input
-                    placeholder="Phone Number"
-                    type="tel"
-                    id="phn"
-                    name="phone"
-                    value={value.phone}
-                    onChange={handleChange}
-                    required
-                  />
-                </label>
-              </div>
-              <div className="form-group">
-                <label htmlFor="Email">
-                  <input
-                    placeholder="Email"
-                    type="email"
-                    id="Email"
-                    name="email"
-                    value={value.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </label>
-              </div>
-              <div className="form-group">
-                <label htmlFor="message">
-                  <textarea
-                    placeholder="Message Query"
-                    id="message"
-                    name="message"
-                    value={value.message}
-                    onChange={handleChange}
-                    required
-                  ></textarea>
-                </label>
-              </div>
-              <div className="form-group">
-                <button type="submit">Send Message</button>
-              </div>
-            </form>
-            {alert.show && (
-              <Alert severity={alert.severity} onClose={() => setAlert({ ...alert, show: false })}>
-                {alert.message}
-              </Alert>
-            )}
             </div>
           </div>
         </div>

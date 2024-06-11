@@ -10,10 +10,12 @@ import { TextField, Button, InputAdornment } from "@mui/material";
 import GoogleIcon from "../assets/google.svg";
 import FacebookIcon from "../assets/facebook-color.svg";
 import MicrosoftIcon from "../assets/microsoft.svg";
+import { useNavigate } from "react-router-dom";
 
 function Signin() {
-  const [showAlert, setShowAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState("");
+  const [showAlert, setShowAlert] = useState(false); // State to control alert visibility
+  const [alertMessage, setAlertMessage] = useState(""); // State to store alert message
+  const navigate = useNavigate();
 
   const [value, setValue] = useState({
     username: "",
@@ -31,7 +33,7 @@ function Signin() {
   const PostData = async (e) => {
     e.preventDefault();
     const { username, password } = value;
-
+    console.log(value);
     const res = await fetch("/api/signin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -41,10 +43,15 @@ function Signin() {
       }),
     });
     const jsonresponse = await res.json();
-    console.log("hkjdhfjhdjf", jsonresponse.error);
     if (res.ok) {
-      console.log("Welcome!");
-      console.log(res);
+      setAlertMessage(jsonresponse.message);
+      setShowAlert(true);
+
+      localStorage.setItem("Token", jsonresponse.token);
+      localStorage.setItem("Photo", jsonresponse.photo);
+      localStorage.setItem("Username", jsonresponse.username);
+      localStorage.setItem("Name", jsonresponse.name);
+      navigate("/");
     } else {
       console.error("Failed to Sign In");
       setAlertMessage(jsonresponse.error || "Failed to Sign In");
@@ -70,7 +77,6 @@ function Signin() {
       }),
     });
     const jsonresponse = await res.json();
-    console.log("hkjdhfjhdjf", jsonresponse.error);
     if (res.ok) {
       console.log("Sent successfully");
       setAlertMessage("Password reset link sent to your email");
@@ -97,7 +103,7 @@ function Signin() {
           <img className="image" src={signinAnimation} alt="SignIn" />
         </div>
 
-        <div className="signindiv2">
+        <form className="signindiv2" onSubmit={PostData}>
           <h2 className="signin">Sign In</h2>
 
           <div className="username-input">
@@ -136,7 +142,6 @@ function Signin() {
               }}
             />
           </div>
-
           <Button
             fullWidth
             variant="contained"
@@ -146,6 +151,7 @@ function Signin() {
           >
             Sign in
           </Button>
+          <input type="submit" style={{ display: "none" }} />
 
           <div className="donothave">
             <p>
@@ -185,7 +191,7 @@ function Signin() {
               <img src={MicrosoftIcon} alt="Microsoft" className="icon" />
             </div>
           </div>
-        </div>
+        </form>
       </div>
 
       {showAlert && (

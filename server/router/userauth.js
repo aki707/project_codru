@@ -16,16 +16,11 @@ const User = require("../models/userSchema");
 const Student = require("../models/studentSchema");
 const Teacher = require("../models/teacherSchema");
 
-const validateEmail = (email) => {
-  const re = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/;
-  return re.test(email);
-};
-
-const validatePassword = (password) => {
-  const re =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.])[A-Za-z\d@$!%*?&]{8,}$/;
-  return re.test(password);
-};
+// const validatePassword = (password) => {
+//   const re =
+//     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.])[A-Za-z\d@$!%*?&]{8,}$/;
+//   return re.test(password);
+// };
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -62,10 +57,6 @@ router.post("/register", async (req, res) => {
   ) {
     return res.status(400).json({ error: "Empty field(s)." });
   }
-
-  // if (!validateEmail(email)) {
-  //   return res.status(422).json({ error: "Invalid email format." });
-  // }
 
   // if (!validatePassword(password)) {
   //   return res.status(422).json({
@@ -156,13 +147,18 @@ router.post("/signin", async (req, res) => {
       }
 
       const token = jwt.sign(
-        { _id: user._id, user: user.username, role: user.role },
+        { _id: user._id, username: user.username, role: user.role },
         process.env.TOKEN_SECRET,
         { expiresIn: "14d" }
       );
 
-      res.json({
-        message: "You are in",
+      const options = {
+        expiresIn: new Date(Date.now() + process.env.COOKIEEXPIRE),
+        httpOnly: true,
+      };
+
+      res.status(200).cookie("token", token, options).json({
+        error: "You are in",
         role: role,
         username: user.username,
         token: token,
@@ -351,7 +347,7 @@ let otpTimestamp;
 router.post("/generate-otp", (req, res) => {
   const { email } = req.body;
   otpCode = Math.floor(1000 + Math.random() * 9000).toString();
-  otpTimestamp = Date.now(); // Store the current timestamp
+  otpTimestamp = Date.now();
 
   const mailOptions = {
     from: process.env.EMAIL,
@@ -395,19 +391,60 @@ router.post("/verify-email", async (req, res) => {
   }
 });
 
-router.post("/profile", async (req, res) => {
+router.post("/profile-edit", async (req, res) => {
   try {
-  } catch (error) {}
+    const { username, phone, altphone, address, photo } = req.body;
+
+    let user = await User.findOne({ username });
+    if (!user) {
+      return res.status(400).json({ error: "User not found" });
+    }
+
+    user.photo = photo || user.photo;
+    user.phone = phone || user.phone;
+    user.altphone = altphone || user.altphone;
+    user.address = address || user.address;
+
+    await user.save();
+
+    res
+      .status(200)
+      .json({ message: "Profile updated successfully", user: user });
+  } catch (error) {
+    // console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 
-router.post("/update-details", async (req, res) => {
+router.get("/profile", async (req, res) => {
   try {
-  } catch (error) {}
-});
+    const authHeader = req.headers.authorization;
 
-router.post("/signout", async (req, res) => {
-  try {
-  } catch (error) {}
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      console.log("Token not found");
+      return res.status(401).json({ message: "Unauthorized access" });
+    }
+
+    const token = authHeader.split(" ")[1];
+    console.log(token);
+
+    const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
+    console.log(decodedToken);
+    const username = decodedToken.username;
+    console.log(username);
+
+    let user = await User.findOne({ username });
+    if (!user) {
+      return res.status(400).json({ error: "User not found" });
+    }
+
+    res.status(200).json({ message: "Le profile", user: user });
+  } catch (error) {
+    if (error.name === "JsonWebTokenError") {
+      return res.status(401).json({ error: "Invalid token" });
+    }
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 
 module.exports = router;

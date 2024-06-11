@@ -16,6 +16,7 @@ require("./db/conn.js");
 app.use(require("./router/userauth.js"));
 app.use(require("./router/blogauth.js"));
 
+// app.use(require("./middleware/authenticate.js"))
 app.use(express.static(path.join(__dirname, "public")));
 
 const transporter = nodemailer.createTransport({
@@ -44,7 +45,7 @@ app.post("/contactus", (req, res) => {
       City: ${city}
       Phone: ${phone}
       Message: ${message}
-    `
+    `,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
@@ -58,13 +59,23 @@ app.post("/contactus", (req, res) => {
   });
 });
 
-
 app.get("/", (req, res) => {
   res.send("Hello there!");
 });
 
 app.listen(port, () => {
   console.log(`Server is listening at ${port}`);
+});
+
+app.post("/signout", async (req, res) => {
+  try {
+    res.clearCookie("token");
+    res.status(200).json({ message: "Signed out successfully" });
+    console.log("token deleted", req.cookies.token);
+  } catch (error) {
+    console.error("Signout Error:", error);
+    res.status(500).json({ error: "Server error" });
+  }
 });
 
 // const s = require("crypto").randomBytes(64).toString("hex");
