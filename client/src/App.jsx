@@ -12,6 +12,7 @@ import Home from "./components/Home";
 import Popup from "./components/Popup";
 import Signin from "./components/Signin";
 import Signup from "./components/Signup";
+import Dashboard from "./components/Dashboard";
 import Custom from './components/Custom.jsx';
 import Profile from "./components/Profile";
 
@@ -32,6 +33,10 @@ function App() {
       <Route path='/extra' Component={Extra}/>
      <Route path='/class6' Component={Class6}/>
      <Route path='/admission' Component={Admission}/>
+     <Route path='/dashboard' Component={Dashboard}/>
+     <Route path='/custom' Component={Custom}/>
+
+
 
      {/* <Route path='/buy' Component={Buy}/> */}
     

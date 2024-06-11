@@ -89,5 +89,41 @@ body {
   }
 }
 
+@media (max-width: 768px) {
+  .landing-container {
+    margin-top: 2rem;
+    flex-direction: column;
+    background: none;
+    background-color: #efe1e1;
+  }
 
+  .text-content {
+    margin: 0;
+    text-align: center;
+    padding: 10px;
+    margin-right: 0;
+  }
+
+  .text-content h1 {
+    font-size: 2em;
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .text-content h2 {
+    font-size: 1.5em;
+  }
+
+  .start-button {
+    margin-top: 10px;
+    margin-left: 0;
+    padding: 10px 20px;
+    font-size: 1em;
+  }
+
+  .thumbs-up-icon {
+    font-size: 1.5em;
+    margin-left: 0;
+  }
+}
 

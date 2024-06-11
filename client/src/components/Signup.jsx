@@ -21,6 +21,7 @@ import FacebookIcon from "../assets/facebook-color.svg";
 import MicrosoftIcon from "../assets/microsoft.svg";
 import { MuiOtpInput } from "mui-one-time-password-input";
 
+
 function matchIsString(text) {
   return typeof text === "string";
 }

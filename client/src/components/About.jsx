@@ -2,6 +2,7 @@ import "../styles/About.css";
 const About = () => {
   return (
     <div className="page">
+         
       <div className="Ab_mini">
         <h1>
           <span>About Codru</span>
