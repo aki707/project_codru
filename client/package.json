@@ -20,18 +20,14 @@
     "@mui/icons-material": "^5.15.18",
     "@mui/lab": "^5.0.0-alpha.170",
     "@mui/material": "^5.15.19",
-<<<<<<< HEAD
-    "leader-line": "^1.0.7",
-    "lodash": "^4.17.21",
-    "mui-one-time-password-input": "^2.0.2",
-    "mui-otp-input": "^0.0.1-alpha1.1",
-=======
     "browser-image-compression": "^2.0.2",
+    "lottie-web": "^5.12.2",
     "mui-one-time-password-input": "^2.0.2",
->>>>>>> ca37581137aeaac7324822b824df55e5c0a64bc5
     "react": "^18.2.0",
     "react-calendar": "^5.0.0",
+    "react-confetti": "^6.1.0",
     "react-dom": "^18.2.0",
+    "react-lottie": "^1.2.4",
     "react-p5": "^1.4.1",
     "react-router-dom": "^6.23.1"
   },

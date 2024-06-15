@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import "../styles/Signup.css";
 import s from "../assets/6430773-transformed.webp";
 import { Email, Lock, Phone, Person } from "@mui/icons-material";
+import SignUpAnim from './SignUpAnim';
 import {
   TextField,
   Radio,
@@ -193,7 +194,7 @@ function Signup() {
   return (
     <div className="signupdiv">
       <div className="signupdiv1">
-        <img src={s} alt="Signup" />
+       <SignUpAnim />
       </div>
       <div className="signupdiv2">
         <h2>Sign Up</h2>
@@ -452,3 +453,5 @@ function Signup() {
 }
 
 export default Signup;
+
+

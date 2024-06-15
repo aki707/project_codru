@@ -12,14 +12,8 @@ import Home from "./components/Home";
 import Popup from "./components/Popup";
 import Signin from "./components/Signin";
 import Signup from "./components/Signup";
-<<<<<<< HEAD
-import Dashboard from "./components/Dashboard";
 import Custom from './components/Custom.jsx';
-import Profile from "./components/Profile";
-=======
-// import Custom from './components/Custom.jsx';
-// import Profile from "./components/Profile";
->>>>>>> ca37581137aeaac7324822b824df55e5c0a64bc5
+import Dashboard from "./components/Dashboard";
 
 function App() {
   return (
@@ -33,23 +27,13 @@ function App() {
       <Route path="/courses" Component={Courses} />
       <Route path="/contact" Component={Contact} />
       <Route path="/course-register" Component={Admission} />
-<<<<<<< HEAD
-      <Route path="/About" Component={About}/>
-      <Route path='/courses' Component={Courses}/>
-      <Route path='/extra' Component={Extra}/>
-     <Route path='/class6' Component={Class6}/>
-     <Route path='/admission' Component={Admission}/>
-     <Route path='/dashboard' Component={Dashboard}/>
-     <Route path='/custom' Component={Custom}/>
-
-
-=======
       <Route path="/About" Component={About} />
-      <Route path="/courses" Component={Courses} />
+      <Route path="/custom" Component={Custom} />
       <Route path="/extra" Component={Extra} />
       <Route path="/class6" Component={Class6} />
       <Route path="/admission" Component={Admission} />
->>>>>>> ca37581137aeaac7324822b824df55e5c0a64bc5
+      <Route path="/dashboard" Component={Dashboard} />
+
 
       {/* <Route path='/buy' Component={Buy}/> */}
     </Routes>
