@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "../styles/Signin.css";
 import { NavLink } from "react-router-dom";
-// import signin from "../assets/signin.png";
 import signinAnimation from "../assets/signinAnimation.png";
 import c3 from "../assets/c3.png";
 import Muialert from "./Muialert";
@@ -11,6 +10,10 @@ import GoogleIcon from "../assets/google.svg";
 import FacebookIcon from "../assets/facebook-color.svg";
 import MicrosoftIcon from "../assets/microsoft.svg";
 import { useNavigate } from "react-router-dom";
+import SignInAnim from './SignInAnim';
+
+
+
 
 function Signin() {
   const [showAlert, setShowAlert] = useState(false); // State to control alert visibility
@@ -96,11 +99,8 @@ function Signin() {
     <div className="signindiv">
       <div className="signindiv1">
         <div className="img">
-          <div className="logo2">
-            <img className="img1" src={c3} alt="SignIn" />
-          </div>
-
-          <img className="image" src={signinAnimation} alt="SignIn" />
+          
+          <SignInAnim />
         </div>
 
         <form className="signindiv2" onSubmit={PostData}>

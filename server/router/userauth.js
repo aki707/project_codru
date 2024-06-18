@@ -430,6 +430,7 @@ router.get("/profile", async (req, res) => {
     // console.log(token);
 
     const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
+    console.log(decodedToken);
     const username = decodedToken.username;
     // console.log(username);
 

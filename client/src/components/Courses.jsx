@@ -14,7 +14,9 @@ import { NavLink } from "react-router-dom";
 function Courses() {
   return (
     <div className="courses-maindiv">
+      <Navbar/>
       {/* <img src={c3} alt="" /> */}
+      <div className="mainCourses"></div>
 
       <div className="text1">
         <span className="white-text">What will you </span>
@@ -47,6 +49,14 @@ function Courses() {
           <img src={class11} alt="" className="zoomable" />
         </NavLink>
       </div>
+      <div className="animationCourses">
+       
+
+      <div className="div1"></div>
+      <div className="div2">Enjoy Learning Have Fun</div>
+      </div>
+
+     
     </div>
   );
 }

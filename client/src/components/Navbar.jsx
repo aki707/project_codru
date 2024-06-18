@@ -55,8 +55,8 @@ function Navbar() {
           <NavLink to="/Contact" className="navlinks">
             Contact Us
           </NavLink>
-          <NavLink to="/profile" className="navlinks">
-            Schedule
+          <NavLink to="/dashboard" className="navlinks">
+            Dashboard
           </NavLink>
         </div>
         {isLoggedIn ? (

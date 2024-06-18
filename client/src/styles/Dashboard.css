@@ -1,3 +1,5 @@
+
+
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap');
 
 .dashboard-body {
@@ -12,15 +14,19 @@
   display: flex;
   height: 100%;
   width: 100%;
-  /* background-color: #efe1e1; */
-  background: url('../assets/dashboardback.png') no-repeat center center;
+  position: relative;
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
+/* Sidebar */
 .dashboard-sidebar {
-  width: 250px;
-  height: 100vh;
-  background-color: #2c2c54;
+  width: 15%;
+  height: 100%;
+  background-color:  #cfa8a8;
+  /* border: 2px solid red; */
+  position: fixed;
   color: white;
   display: flex;
   flex-direction: column;
@@ -37,81 +43,95 @@
   width: 200px;
 }
 
-.sidebar-menu {
-  width: 100%;
-  padding: 20px 0;
+.sidebarmeetBtn {
+  height: 30px;
+  width: 120px;
+  border: 1px solid red;
+  margin-left: 40px;
+  background-color: black;
+  border-radius: 8%;
 }
 
-.sidebar-menu a {
-  display: block;
-  color: white;
-  text-decoration: none;
-  padding: 10px 20px;
-  font-size: 18px;
-}
-
-.sidebar-menu a:hover {
-  background-color: #3a3a72;
-}
-
-
-
+/* Main content */
 .main-content {
-  flex-grow: 1;
+  height: 222vh; 
+  width: 83%;
   padding: 20px;
+  display: flex;
+  color: white;
+  position: sticky;
+  left: 15%;
+  font-size: 20px;
+  font-family: 'Fedroka';
+  flex-direction: column;
+  /* background-image: url(C:\Users\asus\OneDrive\Desktop\project_codru\client\src\assets\dashBack.png); */
+  background: #efe1e1;
+
 }
+
+.mainDashboard {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 1px;
+  width: 1px;
+  background-color: #efe1e1;
+
+  border-radius: 50%;
+  /* box-shadow: -42vw -4vh 0px 0px #fff,25vw -41vh 0px 0px #fff,-20vw 49vh 0px 1px #fff,5vw 40vh 1px 1px #fff,29vw 19vh 1px 0px #fff,-44vw -13vh 0px 0px #fff,46vw 41vh 0px 1px #fff,-3vw -45vh 0px 1px #fff,47vw 35vh 1px 0px #fff,12vw -8vh 1px 0px #fff,-34vw 48vh 1px 1px #fff,32vw 26vh 1px 1px #fff,32vw -41vh 1px 1px #fff,0vw 37vh 1px 1px #fff,34vw -26vh 1px 0px #fff,-14vw -49vh 1px 0px #fff,-12vw 45vh 0px 1px #fff,-44vw -33vh 0px 1px #fff,-13vw 41vh 0px 0px #fff,-36vw -11vh 0px 1px #fff,-23vw -24vh 1px 0px #fff,-38vw -27vh 0px 1px #fff,16vw -19vh 0px 0px #fff,28vw 33vh 1px 0px #fff,-49vw -4vh 0px 0px #fff,16vw 32vh 0px 1px #fff,36vw -18vh 1px 0px #fff,-25vw -30vh 1px 0px #fff,-23vw 24vh 0px 1px #fff,-2vw -35vh 1px 1px #fff,-25vw 9vh 0px 0px #fff,-15vw -34vh 0px 0px #fff,-8vw -19vh 1px 0px #fff,-20vw -20vh 1px 1px #fff,42vw 50vh 0px 1px #fff,-32vw 10vh 1px 0px #fff,-23vw -17vh 0px 0px #fff,44vw 15vh 1px 0px #fff,-40vw 33vh 1px 1px #fff,-43vw 8vh 0px 0px #fff,-48vw -15vh 1px 1px #fff,-24vw 17vh 0px 0px #fff,-31vw 50vh 1px 0px #fff,36vw -38vh 0px 1px #fff,-7vw 48vh 0px 0px #fff,15vw -32vh 0px 0px #fff,29vw -41vh 0px 0px #fff,2vw 37vh 1px 0px #fff,7vw -40vh 1px 1px #fff,15vw 18vh 0px 0px #fff,25vw -13vh 1px 1px #fff,-46vw -12vh 1px 1px #fff,-18vw 22vh 0px 0px #fff,23vw -9vh 1px 0px #fff,50vw 12vh 0px 1px #fff,45vw 2vh 0px 0px #fff,14vw -48vh 1px 0px #fff,23vw 43vh 0px 1px #fff,-40vw 16vh 1px 1px #fff,20vw -31vh 0px 1px #fff,-17vw 44vh 1px 1px #fff,18vw -45vh 0px 0px #fff,33vw -6vh 0px 0px #fff,0vw 7vh 0px 1px #fff,-10vw -18vh 0px 1px #fff,-19vw 5vh 1px 0px #fff,1vw 42vh 0px 0px #fff,22vw 48vh 0px 1px #fff,39vw -8vh 1px 1px #fff,-6vw -42vh 1px 0px #fff,-47vw 34vh 0px 0px #fff,-46vw 19vh 0px 1px #fff,-12vw -32vh 0px 0px #fff,-45vw -38vh 0px 1px #fff,-28vw 18vh 1px 0px #fff,-38vw -46vh 1px 1px #fff,49vw -6vh 1px 1px #fff,-28vw 18vh 1px 1px #fff,10vw -24vh 0px 1px #fff,-5vw -11vh 1px 1px #fff,33vw -8vh 1px 0px #fff,-16vw 17vh 0px 0px #fff,18vw 27vh 0px 1px #fff,-8vw -10vh 1px 1px #fff; */
+
+/* stars were too big with the layers above but left the code in case no one cares  -- as in, if noone's just that  one other loner who actually cares    */
+
+/* box-shadow: 24vw 9vh 1px 0px #fff,12vw -24vh 0px 1px #fff,-45vw -22vh 0px 0px #fff,-37vw -40vh 0px 1px #fff,29vw 19vh 0px 1px #fff,4vw -8vh 0px 1px #fff,-5vw 21vh 1px 1px #fff,-27vw 26vh 1px 1px #fff,-47vw -3vh 1px 1px #fff,-28vw -30vh 0px 1px #fff,-43vw -27vh 0px 1px #fff,4vw 22vh 1px 1px #fff,36vw 23vh 0px 0px #fff,-21vw 24vh 1px 1px #fff,-16vw 2vh 1px 0px #fff,-16vw -6vh 0px 0px #fff,5vw 26vh 0px 0px #fff,-34vw 41vh 0px 0px #fff,1vw 42vh 1px 1px #fff,11vw -13vh 1px 1px #fff,48vw -8vh 1px 0px #fff,22vw -15vh 0px 0px #fff,45vw 49vh 0px 0px #fff,43vw -27vh 1px 1px #fff,20vw -2vh 0px 0px #fff,8vw 22vh 0px 1px #fff,39vw 48vh 1px 1px #fff,-21vw -11vh 0px 1px #fff,-40vw 45vh 0px 1px #fff,11vw -30vh 1px 0px #fff,26vw 30vh 1px 0px #fff,45vw -29vh 0px 1px #fff,-2vw 18vh 0px 0px #fff,-29vw -45vh 1px 0px #fff,-7vw -27vh 1px 1px #fff,42vw 24vh 0px 0px #fff,45vw -48vh 1px 0px #fff,-36vw -18vh 0px 0px #fff,-44vw 13vh 0px 1px #fff,36vw 16vh 0px 1px #fff,40vw 24vh 0px 0px #fff,18vw 11vh 0px 0px #fff,-15vw -23vh 1px 0px #fff,-24vw 48vh 0px 1px #fff,27vw -45vh 1px 0px #fff,-2vw -24vh 0px 1px #fff,-15vw -28vh 0px 0px #fff,-43vw 13vh 1px 0px #fff,7vw 27vh 1px 0px #fff,47vw 5vh 0px 0px #fff,-45vw 15vh 1px 1px #fff,-5vw -28vh 0px 1px #fff,38vw 25vh 1px 1px #fff,-39vw -1vh 1px 0px #fff,5vw 0vh 1px 0px #fff,49vw 13vh 0px 0px #fff,48vw 10vh 0px 1px #fff,19vw -28vh 0px 0px #fff,4vw 7vh 0px 0px #fff,21vw 21vh 1px 1px #fff,-15vw -15vh 0px 1px #fff,-6vw -42vh 1px 0px #fff,-15vw 48vh 1px 1px #fff,-23vw 25vh 1px 1px #fff,-48vw 25vh 0px 1px #fff,-31vw -19vh 0px 1px #fff,4vw 37vh 1px 1px #fff,-43vw 28vh 0px 0px #fff,3vw -25vh 0px 1px #fff,-39vw 14vh 0px 1px #fff,-40vw 31vh 0px 1px #fff,35vw -36vh 1px 1px #fff,16vw 49vh 0px 0px #fff,6vw 39vh 0px 0px #fff,3vw -35vh 0px 1px #fff,-44vw -2vh 1px 0px #fff,-6vw 21vh 1px 0px #fff,48vw 9vh 1px 1px #fff,-43vw 30vh 1px 1px #fff,29vw -12vh 1px 1px #fff,-48vw 13vh 1px 0px #fff,-42vw 32vh 1px 1px #fff,34vw 15vh 1px 1px #fff,29vw -37vh 1px 1px #fff,28vw 2vh 0px 0px #fff;
+animation: zoom 16s alternate infinite;  */
+}
+
 
 .dashboard-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
-  background-color: transparent;
+  color: black;
+
 }
 
 .newCourseBtn {
-  width: 150px;
+  width: 170px;
   height: 40px;
-  background-color: #800000;
-
+  background-color: #5d5353;
+  color: white;
+  cursor: pointer;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 16px;
+  border-radius: 5px;
 }
 
 .newCourseBtn:hover {
-  background-color: darkorchid;
+  background-color: #4e4ec8;
 }
 
 
-
-
-.tabs {
-  margin: 20px 0;
-  display: flex;
-  gap: 10px;
-}
-
-.tab {
-  padding: 10px 20px;
-  background-color: #e0e0eb;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.tab-active {
-  background-color: #6d6dff;
-  color: white;
-}
 
 .courses {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  display: flex;
+ 
+  height: 100%;
 }
 
 .course-card {
-  background-color: white;
+  background-color: transparent;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  height: 500px;
+  width: 400px;
+}
+
+.course-card h3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
 }
 
 .course-card img {
@@ -135,265 +155,267 @@
 
 .dashboard-courses-container {
   display: flex;
-  border: 3px solid #d6c9fd;
-  gap: 10px;
-  height: 50%;
-  width: 100%;
-  color: white;
-
-}
-
-.dashboard-courses-container h2 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Fredoka', sans-serif;
-  color: #d6c9fd;
-  font-size: 28px;
-  margin-left: 40px;
-  height: 15%;
-  width: 15%;
-  outline: 2px solid red;
-  margin-top: 10px;
-}
-
-/* .dashboard-courses {
-  display: flex;
-  margin: 90px 5%;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 20%;
-  height: 50%;
-  flex-direction: column;
-  gap: 20px;
-
-
-}
-
-
-.dashboard-courses-1 {
-  display: flex;
-  margin: 90px 5%;
-  justify-content: space-around;
-  align-items: center;
-  width: 20%;
-  flex-direction: column;
-  gap: 20px;
-  height: 50%;
-
-}
-
-.dashboard-courses1,
-.dashboard-courses2,
-.dashboard-courses3,
-.dashboard-courses4,
-.dashboard-courses5,
-.dashboard-courses6,
-.dashboard-courses7,
-.dashboard-courses8 {
-  font-size: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1vh;
-  width: 100%;
-  background-color: white;
-  border-radius: 5px;
-  box-shadow: 3px 3px;
+  height: 19%;
+  width: 95%;
+  /* border: 2px solid red; */
+  background-color:  transparent  ;
+  border-radius: 10px;
+  margin-bottom:50px;
 }
 
 .dashboard-course1 {
-  border: 1px solid violet;
-  box-shadow: 3px 3px violet;
-}
-
-.dashboard-courses2 {
-  border: 1px solid indigo;
-  box-shadow: 3px 3px indigo;
-}
-
-.dashboard-courses3 {
-  border: 1px solid blue;
-  box-shadow: 3px 3px blue;
-}
-
-.dashboard-courses4 {
-  border: 1px solid green;
-  box-shadow: 3px 3px green;
-}
-
-.dashboard-courses5 {
-  border: 1px solid yellow;
-  box-shadow: 3px 3px yellow;
-}
-
-.dashboard-courses6 {
-  border: 1px solid orange;
-  box-shadow: 3px 3px orange;
-}
-
-.dashboard-courses7 {
-  border: 1px solid red;
-  box-shadow: 3px 3px red;
-}
-
-.dashboard-courses8 {
-  border: 1px solid teal;
-  box-shadow: 3px 3px teal;
-} */
-
-
-
-/* .dashboard-course-box1 {
-  margin-top: 100px;
-  padding: 20px;
-  height: 105px;
-  width: 92px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.dashboard-course-box2 {
-  margin-top: 100px;
-  padding: 20px;
-  height: 105px;
-  width: 92px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-} */
-
-/* .dashboard-course-box1, .dashboard-course-box2 {
-  margin-top: 30px;
-  padding: 20px;
-  height: 105px;
-  gap: 200px;
-  width: 92px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-} */
-
-.dashboard-course-boxes1 {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  outline: 2px solid red;
-  width: 15%;
-  height: 70%;
-  margin-top: 73px;
-  margin-right: 40px;
+  justify-content: center;
+  /* border: 1px solid #d6c9fd; */
+  border-radius: 5px;
+  background-color: white;
+}
+.calendar-container iframe {
+  border: solid 1px #777; 
+  margin-top: 20px;
+  margin-left: 45vw;
+}
+
+
+.dashboard-courses-container2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;  
+  align-items: center;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  height: 25%;
+  width: 95%;
+  color: white;
+  font-family: 'Fredoka', sans-serif;
+  /* border: 2px solid red; */
+  background-image: url(C:\Users\asus\OneDrive\Desktop\project_codru\client\src\assets\dashboardEnrolledCourseBack.png);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 10px; /* Add some padding for better spacing */
+}
+
+.enrollCourse {
+  position: absolute;
+  margin-bottom: 350px;
+  color: yellow;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 40px;
+}
+
+
+.enrolledCoursesDash {
+  height: 60%;
+  min-width: 30%;
+  margin: 0 40px; /* Provide equal margin on left and right */
+  border: 2px solid white;
+  display: flex; /* To center the text inside the course box */
+  justify-content: center; /* Center the text horizontally */
+  align-items: center; /* Center the text vertically */
+  text-align: center;
+  color: black; /* Ensure the text is readable */
+  border-radius: 5px; /* Add some rounding for aesthetics */
+  background-image: url(C:\Users\asus\OneDrive\Desktop\project_codru\client\src\assets\courseEnroll1.png);
+}
+
+.enrolledCoursesDash img {
+  margin-bottom: 140px;
+  margin-right: 250px;
+}
+
+
+
+.add-course-form {
+  margin-top: 100px;
+
+}
+
+.add-course-form input {
+  padding: 10px;
+  margin-right: 10px;
+  border: 2px solid #4e1a28;
+  border-radius: 5px;
+}
+
+.add-course-form button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #4e1a28;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-course-form button:hover {
+  background-color: #3b141f;
+}
+
+.remove-course-button {
+  position: relative; /* Position the button absolutely */
+  margin-bottom: 250px; /* Position at the top */
+  left: 95%; /* Center horizontally */
+  padding: 2px 6px;
+  border: none;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.remove-course-button:hover {
+  background-color: darkred;
+}
+
+.dashboard-courses-container3 {
+ 
+  background-image: url(C:\Users\asus\OneDrive\Desktop\project_codru\client\src\assets\dashboardEnrolledCourseBack.png);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;  
+  align-items: center;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  height: 30%;
+  width: 95%;
+  color: white;
+  font-family: 'Fredoka', sans-serif;
+  /* border: 2px solid red; */
+   border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 10px; 
   
 }
 
-.dashboard-course-boxes2 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  outline: 2px solid red;
-  width: 15%;
-  height: 70%;
-  margin-top: 73px;
-  margin-right: 57px;
-}
-
-.dashboard-course1 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 5px;
-  padding: 20px;
-  height: 30%;
-  width: 50%;
-  border: 1px solid #d6c9fd;
-  border-radius: 5px;
-  background-color: transparent;
-  color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.dashboard-course2 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 15px;
-  padding: 20px;
-  height: 30%;
-  width: 50%;
-  border: 1px solid #d6c9fd;
-  border-radius: 5px;
-  background-color: transparent;
-  color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-} 
-
-.dashboard-course3 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 5px;
-  padding: 20px;
-  height: 30%;
-  width: 50%;
-  border: 1px solid #d6c9fd;
-  border-radius: 5px;
-  background-color: transparent;
-  color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.dashboard-course4 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 15px;
-  padding: 20px;
-  height: 30%;
-  width: 50%;
-  border: 1px solid #d6c9fd;
-  border-radius: 5px;
-  background-color: transparent;
-  color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-} 
-
-.dashboard-course-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-
-
-
-
-.calendar-container {
-  height: 10%;
-  width: 50%;
-  margin-top: 185px;
-  margin-right: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
-.dashUserName {
+.recommend {
+  position: absolute;
+  margin-bottom: 440px;
+  color: yellow;
   font-family: 'Fredoka', sans-serif;
-  color: #d6c9fd;
   font-size: 40px;
-
 }
 
-.h2Courses {
-  height: 40px;
-  width: 100px;
-  margin-left: 30px;
-  font-family: 'Fredoka', sans-serif;
-  color: #d6c9fd;
-
+.recommendedCourses {
+  flex-direction: row;
+  height: 90%;
+  min-width: 100%;
+  /* border: 2px solid red; */
+  overflow-y: scroll;
+  margin-top: 60px;
+  display: flex; /* To center the text inside the course box */
+  justify-content: center; /* Center the text horizontally */
+  align-items: center; /* Center the text vertically */
+  text-align: center;
+  
 }
+
+.recommendedCourse1{
+  height: 85%;
+  width: 240px;
+  margin-top: 20px;
+  margin-left: 40px;
+  border-radius: 5px;
+  background-color: white;
+}
+.recommendedCourse1 img {
+  width: 100%;
+}
+
+.recommendedCourse2{
+  height: 85%;
+  width: 240px;
+  margin-top: 20px;
+  margin-left: 40px;
+  border-radius: 5px;
+  background-color: white;
+}
+.recommendedCourse2 img {
+  width: 100%;
+}
+
+.recommendedCourse3{
+  height: 85%;
+  width: 240px;
+  margin-top: 20px;
+  margin-left: 40px;
+  border-radius: 5px;
+  background-color: white;
+}
+.recommendedCourse3 img {
+  width: 100%;
+}
+
+.recommendedCourse4{
+  height: 85%;
+  width: 240px;
+  margin-top: 20px;
+  margin-left: 40px;
+  border-radius: 5px;
+  background-color: white;
+}
+.recommendedCourse4 img {
+  width: 100%;
+}
+
+.recommendedCourse5{
+  height: 85%;
+  width: 3400px;
+  margin-top: 20px;
+  margin-left: 40px;
+  border-radius: 5px;
+  background-color: white;
+}
+.recommendedCourse5 img {
+  width: 100%;
+}
+
+.recommendedCourse6{
+  height: 85%;
+  width: 3400px;
+  margin-top: 20px;
+  margin-left: 40px;
+  border-radius: 5px;
+  background-color: white;
+}
+.recommendedCourse6 img {
+  width: 100%;
+}
+
+.recommendedCourse7{
+  height: 85%;
+  width: 3400px;
+  margin-top: 20px;
+  margin-left: 40px;
+  border-radius: 5px;
+  background-color: white;
+}
+.recommendedCourse7 img {
+  width: 100%;
+}
+
+.recommendedCourse8{
+  height: 85%;
+  width: 3400px;
+  margin-top: 20px;
+  margin-left: 40px;
+  border-radius: 5px;
+  background-color: white;
+}
+.recommendedCourse8 img {
+  width: 100%;
+}
+
+
+ 
+.recommendBtn {
+  width: 50%;
+  height: 10%;
+  margin-left: 10px;
+  margin-top: 90px;
+  background-color: red;
+  border-radius: 5px;
+}
+
+
+
+
+
+

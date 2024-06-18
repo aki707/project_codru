@@ -15,6 +15,8 @@ import Signup from "./components/Signup";
 import Notification from "./components/Notification";
 // import Custom from './components/Custom.jsx';
 // import Profile from "./components/Profile";
+import Custom from './components/Custom.jsx';
+import Dashboard from "./components/Dashboard";
 
 function App() {
   return (
@@ -29,11 +31,13 @@ function App() {
       <Route path="/contact" Component={Contact} />
       <Route path="/course-register" Component={Admission} />
       <Route path="/About" Component={About} />
-      <Route path="/courses" Component={Courses} />
+      <Route path="/custom" Component={Custom} />
       <Route path="/extra" Component={Extra} />
       <Route path="/class6" Component={Class6} />
       <Route path="/admission" Component={Admission} />
       <Route path="/notification" Component={Notification} />
+      <Route path="/dashboard" Component={Dashboard} />
+
 
       {/* <Route path='/buy' Component={Buy}/> */}
     </Routes>

@@ -24,11 +24,12 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  
 }
 
 .Start3div2div {
   /* border: 2px solid green; */
-  min-height: 80vh;
+  min-height: 1vh;
   display: flex;
   justify-content: space-between;
 }
@@ -39,10 +40,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
 }
 .Start3div2div > div > img {
   width: 75%;
   border-radius: 1vw;
+  max-width: 400px; /* Ensure images are of equal size */
+  height: auto; /* Maintain aspect ratio */
 }
 
 .Start3div2div > div > h2 {
@@ -59,3 +63,22 @@
   font-size: 1.5vw;
   margin-top: 0px;
 }
+
+
+.lShapedDashedLine {
+  position: relative;
+  margin-left: 290px;
+}
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.dashedLineAnimation {
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  animation: dash 4s linear forwards;
+}
+
+
