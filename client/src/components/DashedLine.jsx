@@ -28,7 +28,7 @@ const DashedLine = ({
         });
       },
       {
-        threshold: 0.1 // Trigger when at least 10% of the element is visible
+        threshold: 0.8 // Trigger when at least 10% of the element is visible
       }
     );
 

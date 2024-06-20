@@ -5,7 +5,7 @@ import { TextField, Button, Checkbox, FormControlLabel, Link, InputAdornment } f
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import { NavLink } from 'react-router-dom';
 
-const Buy = () => {
+const FinalBuy = () => {
 
   const [formValues, setFormValues] = useState({
     mobile: '',
@@ -48,7 +48,7 @@ const Buy = () => {
               ),
             }}
           />
-     <NavLink to='/finalBuy'> <Button
+    <Button
         type="submit"
         variant="contained"
         color="primary"
@@ -57,7 +57,7 @@ const Buy = () => {
         onClick={handleSubmit}
       >
         Proceed to Buy
-      </Button></NavLink>
+      </Button>
        
             </div>
             </div>
@@ -67,4 +67,4 @@ const Buy = () => {
   );
 };
 
-export default Buy;
+export default FinalBuy;
