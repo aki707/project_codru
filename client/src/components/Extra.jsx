@@ -46,7 +46,7 @@ const Extra = () => {
               <td key={idx}>
                 <div className="fee-cell">
                   <span>{fee}</span>
-                  <button className="buy-now-button">Buy Now</button>
+                  <button className="extra-buy-now-button">Buy Now</button>
                 </div>
               </td>
             ))}

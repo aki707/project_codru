@@ -4,7 +4,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Arial', sans-serif;
-  background-color: #f0f2f5;
+  background-color: white;
 }
 
 .landing-container {
@@ -40,7 +40,7 @@ body {
   color: #6f61ff;
   font-family: 'Fredoka', sans-serif;
   font-size: 70px;
-  animation: fadeInUp 2s forwards;
+
 }
 
 .text-content h2 span:first-child {
@@ -89,6 +89,5 @@ body {
   }
 }
 
-/* #efe1e1 */
-/* #071b33 */
+
 

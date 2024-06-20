@@ -1,6 +1,7 @@
-
-import c3 from "../assets/c3.png";
+// import c3 from "../assets/c3.png";
 import "../styles/Courses.css";
+// import "../styles/Navbar.css";
+// import Navbar from "./Navbar";
 import onlineLearning from "../assets/onlineLearning.png";
 import table from "../assets/table.png";
 import uncle from "../assets/uncle.png";
@@ -12,8 +13,8 @@ import { NavLink } from "react-router-dom";
 
 function Courses() {
   return (
-    <div className="maindiv">
-      <img src={c3} alt="" />
+    <div className="courses-maindiv">
+      {/* <img src={c3} alt="" /> */}
 
       <div className="text1">
         <span className="white-text">What will you </span>
@@ -34,32 +35,20 @@ function Courses() {
       </div>
 
       <div className="imagesCourses">
-       
-       <NavLink to="/Class6">
-       <img src={class6} alt="" className="zoomable" />
-       </NavLink>
+        <NavLink to="/Class6">
+          <img src={class6} alt="" className="zoomable" />
+        </NavLink>
 
-       <NavLink to="/Extra">
-       <img src={extra} alt="" className="zoomable" />
-       </NavLink>
-          
-       <NavLink to="/Class11">
-       <img src={class11} alt="" className="zoomable" />
-       </NavLink>
-       
-       
-          
-       
-        
-         
-      
+        <NavLink to="/Extra">
+          <img src={extra} alt="" className="zoomable" />
+        </NavLink>
+
+        <NavLink to="/Custom">
+          <img src={class11} alt="" className="zoomable" />
+        </NavLink>
       </div>
     </div>
   );
 }
 
 export default Courses;
-
-
-
-

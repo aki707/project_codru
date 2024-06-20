@@ -1,4 +1,11 @@
-
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px transparent ;
+  -webkit-text-fill-color: #000 ;
+  transition: background-color 5000s ease-in-out 0s;
+}
 .cont_main{
   display: flex;
   /* border:1px solid #4e1a28; */
@@ -31,6 +38,7 @@
   color: #efe1e1;
   border-radius: 4px;
 
+
   /* margin: 1px;  */
 }
 .cont_page {
@@ -39,6 +47,7 @@
   height:485px;
   font-size: 10px;
   background-color: #efe1e1;
+  margin-top: 6vh;
 }
 
 .cont_page h1 {
@@ -47,7 +56,6 @@
   justify-content: center;
   font-weight: 300;
   color: black;
-  margin-top: 4%;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
   text-align: center;
@@ -59,9 +67,9 @@
 
 .cont_form-container {
   position: relative;
-  top:30px;
+  top:20%;
   max-width: 500px;
-   margin: 0 auto; 
+   margin:5%; 
    padding: 5px;
   border-radius: 5px;
 }
@@ -76,7 +84,7 @@
   padding: 12px;
   border: 1px solid #590404;
   border-radius: 2px;
-  background-color:rgb(240, 240, 240);
+  background-color:transparent;
 }
 .cont_form-group textarea {
   resize: vertical;
@@ -97,11 +105,16 @@
   background-color: transparent;
 
 }
+.cont_all{
+  margin:8%;
+
+}
 .cont_all_detail h2{
   color:#efe1e1;
   font-size: 20px;
   margin-top:5%;
-  margin-left: 25%;
+  margin-left: 20%;
+
  
 }
 .cont_all_detail p{
@@ -118,6 +131,8 @@
 .cont_all_detail h5{
   margin-top: 5%;
   margin-left: 10px;
+  font-size: 100%;
+  font-style: normal;
 }
 
 

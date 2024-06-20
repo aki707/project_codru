@@ -1,7 +1,8 @@
 import { useState } from "react";
 import "../styles/Signin.css";
 import { NavLink } from "react-router-dom";
-import signin from "../assets/signin.png";
+// import signin from "../assets/signin.png";
+import signinAnimation from "../assets/signinAnimation.png";
 import c3 from "../assets/c3.png";
 import Muialert from "./Muialert";
 import { Lock, Person } from "@mui/icons-material";
@@ -9,10 +10,12 @@ import { TextField, Button, InputAdornment } from "@mui/material";
 import GoogleIcon from "../assets/google.svg";
 import FacebookIcon from "../assets/facebook-color.svg";
 import MicrosoftIcon from "../assets/microsoft.svg";
+import { useNavigate } from "react-router-dom";
 
 function Signin() {
   const [showAlert, setShowAlert] = useState(false); // State to control alert visibility
   const [alertMessage, setAlertMessage] = useState(""); // State to store alert message
+  const navigate = useNavigate();
 
   const [value, setValue] = useState({
     username: "",
@@ -30,7 +33,7 @@ function Signin() {
   const PostData = async (e) => {
     e.preventDefault();
     const { username, password } = value;
-
+    console.log(value);
     const res = await fetch("/api/signin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -40,17 +43,47 @@ function Signin() {
       }),
     });
     const jsonresponse = await res.json();
-    console.log("hkjdhfjhdjf", jsonresponse.error);
     if (res.ok) {
-      // Handle successful response
-      console.log("Welcome!");
-      console.log(res);
+      setAlertMessage(jsonresponse.message);
+      setShowAlert(true);
+
+      localStorage.setItem("Token", jsonresponse.token);
+      localStorage.setItem("Photo", jsonresponse.photo);
+      localStorage.setItem("Username", jsonresponse.username);
+      localStorage.setItem("Name", jsonresponse.name);
+      navigate("/");
     } else {
-      // Handle error response
       console.error("Failed to Sign In");
-      // Set alert message based on error response
       setAlertMessage(jsonresponse.error || "Failed to Sign In");
-      // Display alert
+      setShowAlert(true);
+    }
+  };
+
+  const sendMail = async (e) => {
+    e.preventDefault();
+    const { username } = value;
+
+    if (!username) {
+      setAlertMessage("Please enter your username to reset the password");
+      setShowAlert(true);
+      return;
+    }
+
+    const res = await fetch("/api/reset-password", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username,
+      }),
+    });
+    const jsonresponse = await res.json();
+    if (res.ok) {
+      console.log("Sent successfully");
+      setAlertMessage("Password reset link sent to your email");
+      setShowAlert(true);
+    } else {
+      console.error("Failed to send mail");
+      setAlertMessage(jsonresponse.error || "Failed to send mail");
       setShowAlert(true);
     }
   };
@@ -66,10 +99,10 @@ function Signin() {
             <img className="img1" src={c3} alt="SignIn" />
           </div>
 
-          <img className="image" src={signin} alt="SignIn" />
+          <img className="image" src={signinAnimation} alt="SignIn" />
         </div>
 
-        <div className="signindiv2">
+        <form className="signindiv2" onSubmit={PostData}>
           <h2 className="signin">Sign In</h2>
 
           <div className="username-input">
@@ -108,7 +141,6 @@ function Signin() {
               }}
             />
           </div>
-
           <Button
             fullWidth
             variant="contained"
@@ -118,12 +150,17 @@ function Signin() {
           >
             Sign in
           </Button>
+          <input type="submit" style={{ display: "none" }} />
+
           <div className="donothave">
             <p>
               Don't have an account? <NavLink to="/signup">Sign up</NavLink>
             </p>
             <p>
-              Forgotten Password <NavLink to="/Forgot">Forget Password</NavLink>
+              Forgotten Password?{" "}
+              <span className="forgot-password-link" onClick={sendMail}>
+                Forget Password
+              </span>
             </p>
           </div>
 
@@ -153,7 +190,7 @@ function Signin() {
               <img src={MicrosoftIcon} alt="Microsoft" className="icon" />
             </div>
           </div>
-        </div>
+        </form>
       </div>
 
       {showAlert && (
@@ -165,6 +202,6 @@ function Signin() {
       )}
     </div>
   );
-};
+}
 
 export default Signin;
