@@ -11,6 +11,7 @@ const DashedLine = ({
   dashArray = '5,5',
   upperVerticalOffsetX = 0,
   lowerVerticalOffsetX = 0
+
 }) => {
   const svgRef = useRef(null);
 

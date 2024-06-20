@@ -3,6 +3,7 @@ import math from "../assets/math.jpeg";
 import science from "../assets/science.jpg";
 import technology from "../assets/technology.jpg";
 import "../styles/Start3.css";
+import DashedLine from './DashedLine';
 window.addEventListener('scroll', function() {
   var elements = document.querySelectorAll('.Start3div2div');
   var scrollPosition = window.scrollY;
@@ -18,9 +19,7 @@ window.addEventListener('scroll', function() {
   });
 });
 
-import math from "../assets/math.jpeg";
-import engineering from "../assets/engineering.jpg";
-import DashedLine from './DashedLine';
+
 
 
 
@@ -87,15 +86,6 @@ function Start3() {
         <div className="Start3div2div" >
         <div className="lShapedDashedLine">
         <DashedLine
-          // startX={100}
-          // startY={200}
-          // verticalLength={-80}
-          // horizontalLength={720}
-          // color="black"
-          // strokeWidth={1}
-          // dashArray="2,2"
-          // upperVerticalOffsetX={0}
-          // lowerVerticalOffsetX={0}
           startX={820}
             startY={50}
             verticalLength={80}
@@ -157,6 +147,7 @@ function Start3() {
 
       </div>
       <div className="Start3div1"></div>
+    </div>
     </div>
   );
 }
