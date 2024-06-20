@@ -91,7 +91,9 @@ const Notification = () => {
       {error && <p>{error}</p>}
       <ul>
         {!loading ? (
-          <p>Loading...</p>
+          <div className="spinner-container">
+            <div className="ios-spinner"></div>
+          </div>
         ) : notifications.length > 0 ? (
           notifications.map((notification, index) => (
             <li
@@ -111,7 +113,7 @@ const Notification = () => {
             </li>
           ))
         ) : (
-          <p>No new notifications</p>
+          <p>No new notification</p>
         )}
       </ul>
     </div>
