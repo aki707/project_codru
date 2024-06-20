@@ -1,5 +1,5 @@
-import "../styles/Start2.css";
 import bookImage from "../assets/books.jpg";
+import "../styles/Start2.css";
 function Start2() {
   return (
     <div className="Start2">

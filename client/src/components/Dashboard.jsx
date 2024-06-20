@@ -238,28 +238,28 @@ function Dashboard() {
           <div className='recommendedCourses'>
             <div className="recommendedCourse1"> 
                  <img src={recommend1} alt="" ></img>
-                 <NavLink to="/Admission"> 
+                 <NavLink to="/Buy"> 
                  <button className='recommendBtn'>Enroll Now 🚀</button>
                  </NavLink>
                  
             </div>
             <div className="recommendedCourse2">
             <img src={recommend2} alt="" ></img>
-            <NavLink to="/Admission">
+            <NavLink to="/Buy">
             <button className='recommendBtn'>Enroll Now 🚀</button>
             </NavLink>
             
             </div>
             <div className="recommendedCourse3">
             <img src={recommend3} alt="" ></img>
-            <NavLink to="/Admission">
+            <NavLink to="/Buy">
             <button className='recommendBtn'>Enroll Now 🚀</button>
             </NavLink>
             </div>
             <div className="recommendedCourse4">
             <img src={recommend1} alt="" ></img>
             
-            <NavLink to="/Admission">
+            <NavLink to="/Buy">
             <button className='recommendBtn'>Enroll Now 🚀</button>
             </NavLink>           
             </div>

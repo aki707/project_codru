@@ -14,7 +14,7 @@ const homePageAnim = () => {
 
   return (
     <div>
-      <Lottie options={defaultOptions} height={600} width={600} />
+      <Lottie options={defaultOptions} height={550} width={550} />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import Lottie from 'react-lottie';
 import signInAnimData from '../assets/jsonFiles/signInAnim3.json';
 

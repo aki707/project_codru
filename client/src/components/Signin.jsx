@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "../styles/Signin.css";
 import { NavLink } from "react-router-dom";
-import signinAnimation from "../assets/signinAnimation.png";
-import c3 from "../assets/c3.png";
+// import signinAnimation from "../assets/signinAnimation.png";
+// import c3 from "../assets/c3.png";
 import Muialert from "./Muialert";
 import { Lock, Person } from "@mui/icons-material";
 import { TextField, Button, InputAdornment } from "@mui/material";
@@ -90,7 +90,6 @@ function Signin() {
       setShowAlert(true);
     }
   };
-
   const handleCloseAlert = () => {
     setShowAlert(false);
   };
@@ -148,6 +147,7 @@ function Signin() {
             color="primary"
             className="signinnormal"
             onClick={PostData}
+            sx={{width: '150px'}}
           >
             Sign in
           </Button>

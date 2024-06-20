@@ -1,15 +1,12 @@
 
 
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap');
-
 .dashboard-body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
 }
-
 .dashboard-container {
   display: flex;
   height: 100%;
@@ -19,8 +16,6 @@
   background-position: center;
   background-repeat: no-repeat;
 }
-
-/* Sidebar */
 .dashboard-sidebar {
   width: 15%;
   height: 100%;
