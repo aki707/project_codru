@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../styles/Contact.css';
 import Muialert from './Muialert';
-import Navbar from './Navbar';
+// import Navbar from './Navbar';
 
 
 const Contact = () => {
@@ -160,13 +160,9 @@ const Contact = () => {
                   <h4>Please Call:-</h4><p><i class="fas fa-phone"></i>&nbsp; 7300-199-100/8949-775-255</p>
                   <h4>Email:-</h4><p><i class="fas fa-envelope"></i>&nbsp;&nbsp;codrueducation@gmail.com</p>
                   <h4>Office:-</h4><p><i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;Shop No.: 1 & 2, First Floor,Near Ahimsa circle, R.K. Puram (Sector A), Kota (Raj.), 324005</p>
-
                   <h5>Please reach on Mon-Sun in between (8AM - 8PM)</h5>
                 </div>
-
               </div>
-
-
             </div>
           </div>
         </div>
