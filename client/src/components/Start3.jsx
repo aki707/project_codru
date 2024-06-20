@@ -18,6 +18,9 @@ window.addEventListener('scroll', function() {
   });
 });
 
+import math from "../assets/math.jpeg";
+import engineering from "../assets/engineering.jpg";
+import DashedLine from './DashedLine';
 
 
 
@@ -26,9 +29,12 @@ function Start3() {
     <div className="Start3">
    
       
-      <div className="Start3div1">Explore The Way You Want To Study...</div>
+      
+      <div className="Start3div1"></div>
       
       <div className="Start3div2">
+
+      
         <div className="Start3div2div">
           <div>
             <img src={science} alt="" />
@@ -45,7 +51,21 @@ function Start3() {
             
           </div>
         </div>
-        <div className="start3-hollow-circle"></div>
+
+        <div className="lShapedDashedLine">
+        <DashedLine
+          startX={100}
+          startY={50}
+          verticalLength={80}
+          horizontalLength={720}
+          color="black"
+          strokeWidth={1}
+          dashArray="2,2"
+          upperVerticalOffsetX={0}
+          lowerVerticalOffsetX={0}
+          
+        />
+        </div>
         
 
         <div className="Start3div2div" >
@@ -65,6 +85,32 @@ function Start3() {
         </div>
 
         <div className="Start3div2div" >
+        <div className="lShapedDashedLine">
+        <DashedLine
+          // startX={100}
+          // startY={200}
+          // verticalLength={-80}
+          // horizontalLength={720}
+          // color="black"
+          // strokeWidth={1}
+          // dashArray="2,2"
+          // upperVerticalOffsetX={0}
+          // lowerVerticalOffsetX={0}
+          startX={820}
+            startY={50}
+            verticalLength={80}
+            horizontalLength={-720}
+            color="black"
+            strokeWidth={1}
+            dashArray="5,5"
+            upperVerticalOffsetX={0}
+            lowerVerticalOffsetX={0}
+        />
+        </div>
+        
+    
+
+        <div className="Start3div2div">
           <div>
             <img src={technology} alt="" />
           </div>
@@ -79,6 +125,19 @@ function Start3() {
             </p>
           </div>
         </div>
+      
+      <div className="lShapedDashedLine">
+      <DashedLine
+          startX={100}
+          startY={50}
+          verticalLength={80}
+          horizontalLength={720}
+          color="black"
+          strokeWidth={1}
+          dashArray="2,2"
+          upperVerticalOffsetX={0}
+          lowerVerticalOffsetX={0}
+        /></div>
 
         <div className="Start3div2div" >
           <div>
@@ -95,7 +154,9 @@ function Start3() {
             <img src={engineering} alt="" />
           </div>
         </div>
+
       </div>
+      <div className="Start3div1"></div>
     </div>
   );
 }

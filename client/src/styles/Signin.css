@@ -13,7 +13,8 @@ input:-webkit-autofill:active {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: black;
+  /* background: black; */
+  background-image: url(C:\Users\asus\OneDrive\Desktop\project_codru\client\src\assets\courseEnroll1.png);
   
   
 }
@@ -23,11 +24,10 @@ input:-webkit-autofill:active {
    display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #efe1e1;
+  background-color: white;
   padding: 2rem;
   border-radius: 1%;
-  /* border: 30px solid #F6A7A7;
-  outline: 10px solid #F6A7A7; */
+ 
   
 }
 
@@ -53,10 +53,7 @@ input:-webkit-autofill:active {
   
   
 }
-.img1 {
-  width: 80%;
-  margin-right: 100%;
-}
+
 
 
 .signindiv2 {
@@ -71,6 +68,7 @@ input:-webkit-autofill:active {
 
 
 .button {
+  width: 50%;
   display: flex;
   flex-direction: column; 
   justify-content: space-evenly;

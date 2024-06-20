@@ -1,23 +1,35 @@
 const express = require("express");
-const app = express();
 const dotenv = require("dotenv");
-dotenv.config({ path: "./config.env" });
 const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
+const cors = require("cors");
+const path = require("path");
+const { Server } = require("socket.io");
+
+dotenv.config({ path: "./config.env" });
+
+const app = express();
+const port = process.env.PORT;
+
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-const port = process.env.PORT;
-const path = require("path");
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type"],
+    credentials: true,
+  })
+);
 
-dotenv.config({ path: "./config.env" });
-require("./db/conn.js");
-
-app.use(require("./router/userauth.js"));
-app.use(require("./router/blogauth.js"));
-
-// app.use(require("./middleware/authenticate.js"))
 app.use(express.static(path.join(__dirname, "public")));
+
+require("./db/conn.js");
+const User = require("./models/userSchema");
+app.use(require("./router/userauth.js"));
+
+let notifications = {};
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -63,19 +75,101 @@ app.get("/", (req, res) => {
   res.send("Hello there!");
 });
 
-app.listen(port, () => {
-  console.log(`Server is listening at ${port}`);
-});
-
-app.post("/signout", async (req, res) => {
+app.post("/notifications", async (req, res) => {
   try {
-    res.clearCookie("token");
-    res.status(200).json({ message: "Signed out successfully" });
-    console.log("token deleted", req.cookies.token);
+    const { usernames } = req.body;
+
+    const users = await User.find({ username: { $in: usernames } });
+    if (!users) {
+      return res.json({ error: "Users not found" });
+    }
+
+    const userNotifications = {};
+    for (const user of users) {
+      userNotifications[user.username] = notifications[user.username] || [];
+    }
+
+    res.status(200).json(userNotifications);
   } catch (error) {
-    console.error("Signout Error:", error);
+    console.error("Error finding users:", error);
     res.status(500).json({ error: "Server error" });
   }
 });
 
-// const s = require("crypto").randomBytes(64).toString("hex");
+app.post("/notifications/push", async (req, res) => {
+  const { usernames, message } = req.body;
+
+  try {
+    const users = await User.find({ username: { $in: usernames } });
+    if (!users) {
+      return res.json({ error: "Users not found" });
+    }
+    for (const user of users) {
+      if (!notifications[user.username]) {
+        notifications[user.username] = [];
+      }
+
+      const newNotification = {
+        message,
+        date: new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" }),
+      };
+
+      notifications[user.username].push(newNotification);
+
+      io.to(user.username).emit("notification", newNotification);
+    }
+
+    res.status(201).json({ message: "Notifications sent" });
+  } catch (error) {
+    console.error("Error finding users:", error);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+const cleanupOldNotifications = () => {
+  const oneDay = 24 * 60 * 60 * 1000;
+  const now = Date.now().toLocaleString("en-US", { timeZone: "Asia/Kolkata" });
+
+  for (const username in notifications) {
+    notifications[username] = notifications[username].filter((notification) => {
+      const notificationDate = new Date(notification.date).getTime();
+      return now - notificationDate < oneDay;
+    });
+
+    if (notifications[username].length === 0) {
+      delete notifications[username];
+    }
+  }
+};
+
+setInterval(cleanupOldNotifications, 60 * 60 * 1000);
+
+const server = app.listen(port, () => {
+  console.log(`Server is listening at ${port}`);
+});
+
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type"],
+    credentials: true,
+  },
+});
+
+io.on("connection", (socket) => {
+  console.log("a user connected");
+
+  socket.on("join", (username) => {
+    if (!username) {
+      console.log("Received invalid username:", username);
+      return;
+    }
+    socket.join(username);
+    console.log(`${username} joined`);
+  });
+
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
+  });
+});

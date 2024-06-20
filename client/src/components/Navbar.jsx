@@ -6,10 +6,12 @@ import notifyicon from "../assets/notification.png";
 import c3 from "../assets/c3.png";
 import "../styles/Navbar.css";
 import Navprofile from "./Navprofile";
+import Notification from "./Notification";
 
 function Navbar() {
   const [showLinks, setShowLinks] = useState(false);
   const [showprofile, setShowprofile] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
 
   const Showprofile = () => {
     setShowprofile(!showprofile);
@@ -17,6 +19,10 @@ function Navbar() {
 
   const toggleLinks = () => {
     setShowLinks(!showLinks);
+  };
+
+  const toggleNotifications = () => {
+    setShowNotifications(!showNotifications);
   };
 
   const isLoggedIn = !!localStorage.getItem("Token");
@@ -49,13 +55,18 @@ function Navbar() {
           <NavLink to="/Contact" className="navlinks">
             Contact Us
           </NavLink>
-          <NavLink to="/profile" className="navlinks">
-            Schedule
+          <NavLink to="/dashboard" className="navlinks">
+            Dashboard
           </NavLink>
         </div>
         {isLoggedIn ? (
           <div className="Profileimgmaindiv">
-            <NavLink className="navnotification" to="/notify">
+            <NavLink
+              className="navnotification"
+              onClick={() => {
+                toggleNotifications();
+              }}
+            >
               <img src={notifyicon} alt="" />
             </NavLink>
             <NavLink
@@ -76,6 +87,14 @@ function Navbar() {
       </div>
       {showprofile && localStorage.getItem("Token") ? (
         <Navprofile setShowprofile={setShowprofile} showprofile={showprofile} />
+      ) : (
+        ""
+      )}
+      {showNotifications && localStorage.getItem("Token") ? (
+        <Notification
+          setShowNotifications={setShowNotifications}
+          showNotifications={showNotifications}
+        />
       ) : (
         ""
       )}
