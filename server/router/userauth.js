@@ -426,12 +426,12 @@ router.get("/profile", async (req, res) => {
     }
 
     const token = authHeader.split(" ")[1];
-    console.log(token);
+    // console.log(token);
 
     const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
-    console.log(decodedToken);
+    // console.log(decodedToken);
     const username = decodedToken.username;
-    console.log(username);
+    // console.log(username);
 
     let user = await User.findOne({ username });
     if (!user) {
