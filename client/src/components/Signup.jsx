@@ -3,7 +3,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import "../styles/Signup.css";
 import s from "../assets/6430773-transformed.webp";
 import { Email, Lock, Phone, Person } from "@mui/icons-material";
-import SignUpAnim from './SignUpAnim';
+import SignUpAnim from "./SignUpAnim";
+import "../styles/Spinner.css";
 import {
   TextField,
   Radio,
@@ -21,7 +22,6 @@ import GoogleIcon from "../assets/google.svg";
 import FacebookIcon from "../assets/facebook-color.svg";
 import MicrosoftIcon from "../assets/microsoft.svg";
 import { MuiOtpInput } from "mui-one-time-password-input";
-
 
 function matchIsString(text) {
   return typeof text === "string";
@@ -51,6 +51,7 @@ function Signup() {
     otp: "",
     isEmailVerified: false,
   });
+  const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
 
@@ -95,6 +96,7 @@ function Signup() {
   };
 
   const handleEmailVerification = async () => {
+    setLoading(false);
     const res = await fetch("/api/generate-otp", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -106,8 +108,10 @@ function Signup() {
       setOpen(true);
       setTimer(60);
       setValue((prevValue) => ({ ...prevValue, otp: "" }));
+      setLoading(true);
     } else {
       console.error("Retry");
+      setLoading(true);
     }
   };
 
@@ -194,13 +198,13 @@ function Signup() {
   return (
     <div className="signupdiv">
       <div className="signupdiv1">
-       <SignUpAnim />
+        <SignUpAnim />
       </div>
       <div className="signupdiv2">
         <h2>Sign Up</h2>
         <div className="terms">
           <FormControl component="fieldset">
-            <RadioGroup
+            {/* <RadioGroup
               aria-label="role"
               name="role"
               value={value.role}
@@ -216,7 +220,7 @@ function Signup() {
                 control={<Radio />}
                 label="Teacher"
               />
-            </RadioGroup>
+            </RadioGroup> */}
           </FormControl>
         </div>
         <div>
@@ -283,7 +287,15 @@ function Signup() {
                       outline: "none",
                     }}
                   >
-                    {timer ? `Resend in ${timer}s` : "Verify"}
+                    {!loading ? (
+                      <div className="spinner-container">
+                        <div className="ios-spinner"></div>
+                      </div>
+                    ) : timer ? (
+                      `Resend in ${timer}s`
+                    ) : (
+                      "Verify"
+                    )}
                   </Button>
                 )}
                 {value.isEmailVerified && value.email && (
@@ -360,15 +372,14 @@ function Signup() {
           />
         </div>
         <div className="terms">
-          <Checkbox
-            name="declaration"
-            checked={value.declaration}
-            onChange={handleCheckboxChange}
-          />
-          <p>
-            {" "}
-            I've read and agree with Terms of Service and our Privacy Policy.
-          </p>
+          <label>
+            <Checkbox
+              name="declaration"
+              checked={value.declaration}
+              onChange={handleCheckboxChange}
+            />
+            <p> I've read the Terms of Service and Privacy Policy.</p>
+          </label>
         </div>
         <Button
           variant="contained"
@@ -378,10 +389,10 @@ function Signup() {
         >
           Sign up
         </Button>
-        <div>
+        <div className="alreadydiv">
           <p>
-            Already have an account?
-            <NavLink to="/signin"> Signin </NavLink>
+            Already have an account?<> </>
+            <NavLink to="/signin">Signin</NavLink>
           </p>
         </div>
         <div className="divider">
@@ -453,5 +464,3 @@ function Signup() {
 }
 
 export default Signup;
-
-
