@@ -12,6 +12,9 @@ import Home from "./components/Home";
 import Popup from "./components/Popup";
 import Signin from "./components/Signin";
 import Signup from "./components/Signup";
+import Commentpage from "./components/Commentpage.jsx";
+import BlogForm from "./components/BlogForm.jsx";
+import Blogpage from "./components/Blogpage.jsx";
 import Notification from "./components/Notification";
 // import Custom from './components/Custom.jsx';
 // import Profile from "./components/Profile";
@@ -35,6 +38,10 @@ function App() {
       <Route path="/custom" Component={Custom} />
       <Route path="/extra" Component={Extra} />
       <Route path="/class6" Component={Class6} />
+      <Route path="/commentpage" Component={Commentpage} />
+      <Route path="/blog" Component={BlogForm} />
+      <Route path="/blogdata" Component={Blogpage} />
+      {/* <Route path="/profile" Component={Profile} /> */}
       <Route path="/admission" Component={Admission} />
       <Route path="/notification" Component={Notification} />
       <Route path="/dashboard" Component={Dashboard} />
