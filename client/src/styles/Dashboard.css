@@ -414,6 +414,46 @@ animation: zoom 16s alternate infinite;  */
   border-radius: 5px;
 }
 
+/* src/Calendar.css */
+.calendar {
+  /* max-width: 400px; */
+  width: 400px;
+  max-height: 400px;
+  height: 500px;
+  margin: auto;
+  text-align: center;
+  background-color: white;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.calendar-day, .calendar-header {
+  padding: 10px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+}
+
+.calendar-header {
+  font-weight: bold;
+}
+
+.calendar-day {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+}
 
 
 

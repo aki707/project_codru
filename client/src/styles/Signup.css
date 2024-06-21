@@ -176,7 +176,7 @@ input:-webkit-autofill:active {
 }
 
 .signupdiv {
-  position: fixed; /* Make the entire div fixed to the viewport */
+  position: fixed; 
   top: 0;
   left: 0;
   width: 100vw;
@@ -184,8 +184,8 @@ input:-webkit-autofill:active {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.5); /* Darken the background */
-  z-index: 9999; /* Ensure it appears above other content */
+  background-color: rgba(0, 0, 0, 0.5); 
+  
 }
 
 .signupdiv1, .signupdiv2 {

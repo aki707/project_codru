@@ -10,6 +10,7 @@ import extra from "../assets/extra.png";
 import class6 from "../assets/class6.png";
 import class11 from "../assets/class11.png";
 import { NavLink } from "react-router-dom";
+import Footer from '../components/Footer'
 
 function Courses() {
   return (
@@ -53,9 +54,11 @@ function Courses() {
        
 
       <div className="div1"></div>
-      <div className="div2">Enjoy Learning Have Fun</div>
+      <div className="div2">Enjoy Learning Have Fun 😊</div>
+     
       </div>
-
+     
+      <Footer></Footer>
      
     </div>
   );

@@ -148,8 +148,61 @@ import "../styles/Dashboard.css";
 import recommend1 from '../assets/recommend1.png';
 import recommend2 from '../assets/recommend2.png';
 import recommend3 from '../assets/recommend3.png';
+import Calendar from "react-calendar";
+
 
 function Dashboard() {
+
+  const [currentDate, setCurrentDate] = useState(new Date());
+
+  const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+  const getDaysInMonth = (year, month) => {
+    return new Date(year, month + 1, 0).getDate();
+  };
+
+  const generateCalendar = () => {
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+    const firstDayOfMonth = new Date(year, month, 1).getDay();
+    const daysInMonth = getDaysInMonth(year, month);
+
+    const days = [];
+    for (let i = 0; i < firstDayOfMonth; i++) {
+      days.push('');
+    }
+    for (let i = 1; i <= daysInMonth; i++) {
+      days.push(i);
+    }
+    return days;
+  };
+
+  const handlePrevMonth = () => {
+    setCurrentDate(new Date(currentDate.setMonth(currentDate.getMonth() - 1)));
+  };
+
+  const handleNextMonth = () => {
+    setCurrentDate(new Date(currentDate.setMonth(currentDate.getMonth() + 1)));
+  };
+
+  const renderCalendar = () => {
+    const days = generateCalendar();
+    return (
+      <div className="calendar-grid">
+        {daysOfWeek.map((day) => (
+          <div key={day} className="calendar-header">
+            {day}
+          </div>
+        ))}
+        {days.map((day, index) => (
+          <div key={index} className="calendar-day">
+            {day}
+          </div>
+        ))}
+      </div>
+    );
+  };
+  
   const [courses, setCourses] = useState([
     { id: 1 },
     { id: 2 },
@@ -199,14 +252,19 @@ function Dashboard() {
           </NavLink>
         </div>
         <div className="dashboard-courses-container">
-          <div className="calendar-container">
-            <iframe
-              src="https://calendar.google.com/calendar/embed?height=270&wkst=1&ctz=UTC&bgcolor=%23efe1e1&showTitle=0&src=YWFyeWFudmlqYXkxMjM0NUBnbWFpbC5jb20&src=Y2xhc3Nyb29tMTAwMzczMDg5MTcxMjQwMDc2Mjk5QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=Y2xhc3Nyb29tMTAxODgzOTkzMTExNzY0ODMyMjQxQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&src=Y2xhc3Nyb29tMTA3Nzc5MzY1OTc1NTk1NDM3NzU4QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=ZW4uaW5kaWFuI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&src=Y2xhc3Nyb29tMTE4MjQ1MzIxNDAxMzY1ODg0ODU2QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&color=%23039BE5&color=%23202124&color=%230047a8&color=%2333B679&color=%23c26401&color=%230B8043&color=%23c26401"
-              style={{ border: "solid 1px #777", width: "460px", height: "270px" }}
-              frameBorder="0"
-              scrolling="no"
-              title="Google Calendar"
-            ></iframe>
+          <div className="calendar-container" >
+          <div className="calendar">
+      <div className="calendar-header">
+        <button onClick={handlePrevMonth}>Prev</button>
+        <h2>
+          {currentDate.toLocaleString('default', { month: 'long' })} {currentDate.getFullYear()}
+        </h2>
+        <button onClick={handleNextMonth}>Next</button>
+      </div>
+      {renderCalendar()}
+    </div>
+
+            
           </div>
         </div>
         
