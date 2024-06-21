@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import About from "./components/About";
 import Admission from "./components/Admission";
-// import Buy from './components/Buy.jsx';
+import Buy from './components/Buy.jsx';
 import Change_password from "./components/Change_password";
 import Class6 from "./components/Class6.jsx";
 import Contact from "./components/Contact";
@@ -15,8 +15,12 @@ import Signup from "./components/Signup";
 import Commentpage from "./components/Commentpage.jsx";
 import BlogForm from "./components/BlogForm.jsx";
 import Blogpage from "./components/Blogpage.jsx";
+import Notification from "./components/Notification";
 // import Custom from './components/Custom.jsx';
 // import Profile from "./components/Profile";
+import Custom from './components/Custom.jsx';
+import Dashboard from "./components/Dashboard";
+// import FinalBuy from "./components/FinalBuy.jsx";
 
 function App() {
   return (
@@ -31,13 +35,19 @@ function App() {
       <Route path="/contact" Component={Contact} />
       <Route path="/course-register" Component={Admission} />
       <Route path="/About" Component={About} />
-      <Route path="/courses" Component={Courses} />
+      <Route path="/custom" Component={Custom} />
       <Route path="/extra" Component={Extra} />
       <Route path="/class6" Component={Class6} />
       <Route path="/commentpage" Component={Commentpage} />
       <Route path="/blog" Component={BlogForm} />
       <Route path="/blogdata" Component={Blogpage} />
       {/* <Route path="/profile" Component={Profile} /> */}
+      <Route path="/admission" Component={Admission} />
+      <Route path="/notification" Component={Notification} />
+      <Route path="/dashboard" Component={Dashboard} />
+      <Route path="/buy" Component={Buy} />
+      {/* <Route path="/finalBuy" Component={FinalBuy} /> */}
+
 
       {/* <Route path='/buy' Component={Buy}/> */}
     </Routes>

@@ -24,13 +24,25 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  
+}
+
+
+.Start3div2div.scrolled > div {
+  opacity: 1; /* Show the elements */
+  transform: translateX(0); /* Move the elements into position */
+}
+.Start3div2div.scrolled > div >h2 {
+  opacity: 1; /* Show the elements */
+  transform: translateX(0); /* Move the elements into position */
 }
 
 .Start3div2div {
   /* border: 2px solid green; */
-  min-height: 80vh;
+  min-height: 1vh;
   display: flex;
   justify-content: space-between;
+
 }
 .Start3div2div > div {
   /* border: 2px solid red; */
@@ -39,10 +51,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
 }
 .Start3div2div > div > img {
   width: 75%;
   border-radius: 1vw;
+  aspect-ratio: 3/2;
+  
 }
 
 .Start3div2div > div > h2 {
@@ -50,6 +65,9 @@
   width: 75%;
   text-align: left;
   font-size: 3vw;
+  opacity: 0; /* Initially hide the elements */
+  transform: translateX(50px); /* Initial position off-screen */
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
 .Start3div2div > div > p {
@@ -59,3 +77,22 @@
   font-size: 1.5vw;
   margin-top: 0px;
 }
+
+
+.lShapedDashedLine {
+  position: relative;
+  margin-left: 290px;
+}
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.dashedLineAnimation {
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  animation: dash 4s linear forwards;
+}
+
+
