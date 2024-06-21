@@ -49,7 +49,7 @@ function Navbar() {
           <NavLink to="/Contact" className="navlinks">
             Contact Us
           </NavLink>
-          <NavLink to="/profile" className="navlinks">
+          <NavLink to="/blog" className="navlinks">
             Schedule
           </NavLink>
         </div>
