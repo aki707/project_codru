@@ -55,8 +55,9 @@ function Navbar() {
           <NavLink to="/Contact" className="navlinks">
             Contact Us
           </NavLink>
-          <NavLink to="/blog" className="navlinks"/>
+          <NavLink to="/blog" className="navlinks">
             Schedule
+          </NavLink>
           <NavLink to="/dashboard" className="navlinks">
             Dashboard
           </NavLink>

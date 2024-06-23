@@ -14,53 +14,61 @@ import Footer from '../components/Footer'
 
 function Courses() {
   return (
-    <div className="courses-maindiv">
+
+    <div style={{border:"2px solid red",display:"flex",flexDirection:"column",justifyContent:"flex-start"}}> 
       <Navbar/>
-      {/* <img src={c3} alt="" /> */}
-      <div className="mainCourses"></div>
-
-      <div className="text1">
-        <span className="white-text">What will you </span>
-        <span className="red-text">Learn</span>
-        <span className="text"> ?</span>
-      </div>
-
-      <div className="images">
-        <img src={onlineLearning} alt="" className="zoomable" />
-        <img src={table} alt="" className="zoomable" />
-        <img src={uncle} alt="" className="zoomable" />
-        <img src={examination1} alt="" className="zoomable" />
-      </div>
-
-      <div className="text2">
-        <span className="white-text1">Courses </span>
-        <span className="red-text1">Offered</span>
-      </div>
-
-      <div className="imagesCourses">
-        <NavLink to="/Class6">
-          <img src={class6} alt="" className="zoomable" />
-        </NavLink>
-
-        <NavLink to="/Extra">
-          <img src={extra} alt="" className="zoomable" />
-        </NavLink>
-
-        <NavLink to="/Custom">
-          <img src={class11} alt="" className="zoomable" />
-        </NavLink>
-      </div>
-      <div className="animationCourses">
-       
-
-      <div className="div1"></div>
-      <div className="div2">Enjoy Learning Have Fun 😊</div>
-     
-      </div>
-     
-      <Footer></Footer>
-     
+    <div className="courses-maindiv">
+      <h1 style={{display: "flex", justifyContent: "center", alignItems: "center", fontSize: "50px"}}>Let's Start</h1>
+    <div className="demoCourses">
+      <div className="doubtSectionCourses"></div>
+    <div className="freeDemoCourses"></div>
     </div>
+    {/* <img src={c3} alt="" /> */}
+    <div className="mainCourses"></div>
+
+    <div className="text1">
+      <span className="white-text">What will you </span>
+      <span className="red-text">Learn</span>
+      <span className="text"> ?</span>
+    </div>
+
+    <div className="images">
+      <img src={onlineLearning} alt="" className="zoomable" />
+      <img src={table} alt="" className="zoomable" />
+      <img src={uncle} alt="" className="zoomable" />
+      <img src={examination1} alt="" className="zoomable" />
+    </div>
+
+    <div className="text2">
+      <span className="white-text1">Courses </span>
+      <span className="red-text1">Offered</span>
+    </div>
+
+    <div className="imagesCourses">
+      <NavLink to="/Class6">
+        <img src={class6} alt="" className="zoomable" />
+      </NavLink>
+
+      <NavLink to="/Extra">
+        <img src={extra} alt="" className="zoomable" />
+      </NavLink>
+
+      <NavLink to="/Custom">
+        <img src={class11} alt="" className="zoomable" />
+      </NavLink>
+    </div>
+    <div className="animationCourses">
+     
+
+    <div className="div1"></div>
+    <div className="div2">Enjoy Learning Have Fun 😊</div>
+   
+    </div>
+   
+  </div>
+  </div>
+
+    
   );
 }
 

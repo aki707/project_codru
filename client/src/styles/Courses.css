@@ -1,21 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap');
-   .courses_main{
-    margin:0%;
-    padding: 0%;
-   
-   
-
-    
-  }
+ 
   
   .courses-maindiv {
     width: 100vw;
-    height: 100%;
-     /* margin-bottom: 100px;  */
-     background-color: #efe1e1;
-     /* border: 2px solid red; */
+    background-color: #efe1e1;
+    border: 2px solid green;
+    margin-top: 10vh;
     
   }
+
+  .demoCourses {
+     display: flex;
+     flex-direction: row;
+     justify-content: space-evenly;
+ 
+    width: 100vw;
+    height: 60vh;
+    border: 2px solid red;
+  }
+
+ .doubtSectionCourses, .freeDemoCourses{
+  border: 2px solid red;
+  height: 40vh;
+  width: 30vw;
+  border-radius: 20%;
+  margin-top: 65px;
+  margin-left: 80px;
+  background-color: linear-gradient(to right, rgb(0, 0, 52), );
+ }
+
+
+
   .mainCourses {
     position: relative;
     top: 50%;
