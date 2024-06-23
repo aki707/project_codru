@@ -1,9 +1,25 @@
-import "../styles/Start3.css";
+import engineering from "../assets/engineering.jpg";
+import math from "../assets/math.jpeg";
 import science from "../assets/science.jpg";
 import technology from "../assets/technology.jpg";
-import math from "../assets/math.jpeg";
-import engineering from "../assets/engineering.jpg";
+import "../styles/Start3.css";
 import DashedLine from './DashedLine';
+window.addEventListener('scroll', function() {
+  var elements = document.querySelectorAll('.Start3div2div');
+  var scrollPosition = window.scrollY;
+  var windowHeight = window.innerHeight;
+
+  elements.forEach(function(element) {
+    var position = element.getBoundingClientRect().top;
+    if (position < windowHeight * 0.75) { // Adjust the threshold as needed
+      element.classList.add('scrolled');
+    } else {
+      element.classList.remove('scrolled');
+    }
+  });
+});
+
+
 
 
 
@@ -51,7 +67,7 @@ function Start3() {
         </div>
         
 
-        <div className="Start3div2div">
+        <div className="Start3div2div" >
           <div>
             <h2>Mathematics</h2>
             <p>
@@ -67,17 +83,9 @@ function Start3() {
           </div>
         </div>
 
+        <div className="Start3div2div" >
         <div className="lShapedDashedLine">
         <DashedLine
-          // startX={100}
-          // startY={200}
-          // verticalLength={-80}
-          // horizontalLength={720}
-          // color="black"
-          // strokeWidth={1}
-          // dashArray="2,2"
-          // upperVerticalOffsetX={0}
-          // lowerVerticalOffsetX={0}
           startX={820}
             startY={50}
             verticalLength={80}
@@ -121,7 +129,7 @@ function Start3() {
           lowerVerticalOffsetX={0}
         /></div>
 
-        <div className="Start3div2div">
+        <div className="Start3div2div" >
           <div>
             <h2>Engineering</h2>
             <p>
@@ -139,6 +147,7 @@ function Start3() {
 
       </div>
       <div className="Start3div1"></div>
+    </div>
     </div>
   );
 }

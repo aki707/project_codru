@@ -1,0 +1,109 @@
+.Commentcomponent {
+  /* border: 2px solid blue; */
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  /* box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; */
+  background-color: #efe1e1;
+  border-radius: 5px;
+  position: relative;
+}
+
+.Userphoto {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.Userphoto > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.UserComments {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.Usercomment {
+  margin-bottom: 10px;
+}
+
+.Usercomment > h3 {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.Userreplylike {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 10px;
+  /* border: 2px solid blue; */
+  width: 20%;
+}
+
+.Userreplylike > span {
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.commentreplyfield {
+  /* border: 2px solid blue; */
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 15vh;
+  margin-top: 1vh;
+  background-color: transparent;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+.commentreplyfield > textarea {
+  height: 60%;
+  outline: none;
+  border: none;
+  background-color: transparent;
+
+  color: #000;
+  resize: none; /* Prevents manual resizing */
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box; /* Ensures padding is included in the element's total width and height */
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+.commentreplyfield > div {
+  height: 40%;
+  width: 50%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  /* border: 2px solid blue; */
+}
+.commentreplyfield > div > button {
+  width: 40%;
+  background-color: red;
+  border-radius: 1vw 1vw;
+  outline: none;
+  border: none;
+  padding: 1vh;
+  cursor: pointer;
+}
+.commentreplyfield > div > span {
+  cursor: pointer;
+}
+
+.NestedComment {
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+  margin-left: 20px;
+}

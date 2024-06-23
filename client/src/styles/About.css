@@ -43,8 +43,9 @@
  
 
 }
-
-.aboutUsText {
+.aboutdiv1 {
+  background-color: #4e1a28;
+  height: 17vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -108,20 +109,4 @@ margin-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: top;
-  height:50vh;
-  width: 90%;
-  margin-top: 150px;
-  background-color: white;
-  
-  /* border: 2px solid red; */
 }
-
-.ourGoal p{
-  margin-top: 10px;
-  margin-left: 20px;
-}
-
-
-
-

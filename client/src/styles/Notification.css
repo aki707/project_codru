@@ -74,3 +74,37 @@
 .notification-panel ul li .dismiss-button:hover {
   color: #000;
 }
+
+.ios-spinner {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+}
+
+.ios-spinner:after {
+  content: " ";
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin: 4px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  border-color: #000 transparent #000 transparent;
+  animation: ios-spinner 1.2s linear infinite;
+}
+
+@keyframes ios-spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; 
+}

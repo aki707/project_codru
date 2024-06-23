@@ -27,11 +27,22 @@
   
 }
 
+
+.Start3div2div.scrolled > div {
+  opacity: 1; /* Show the elements */
+  transform: translateX(0); /* Move the elements into position */
+}
+.Start3div2div.scrolled > div >h2 {
+  opacity: 1; /* Show the elements */
+  transform: translateX(0); /* Move the elements into position */
+}
+
 .Start3div2div {
   /* border: 2px solid green; */
   min-height: 1vh;
   display: flex;
   justify-content: space-between;
+
 }
 .Start3div2div > div {
   /* border: 2px solid red; */
@@ -45,8 +56,8 @@
 .Start3div2div > div > img {
   width: 75%;
   border-radius: 1vw;
-  max-width: 400px; /* Ensure images are of equal size */
-  height: auto; /* Maintain aspect ratio */
+  aspect-ratio: 3/2;
+  
 }
 
 .Start3div2div > div > h2 {
@@ -54,6 +65,9 @@
   width: 75%;
   text-align: left;
   font-size: 3vw;
+  opacity: 0; /* Initially hide the elements */
+  transform: translateX(50px); /* Initial position off-screen */
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
 .Start3div2div > div > p {
