@@ -82,7 +82,6 @@ function Navbar() {
             </NavLink>
           </div>
         ) : (
-          
           <NavLink className="signuplink" to="/signin">
             <button>Sign In</button>
           </NavLink>
