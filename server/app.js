@@ -194,6 +194,37 @@ app.delete("/user/:username", async (req, res) => {
   }
 });
 
+app.put("/assignTask/:username", (req, res) => {
+  try {
+    const user = User.findOne({ username: req.params.username });
+    if (!user) {
+      return res.status(404).json({ error: "User doesn't exist." });
+    }
+    const student = Student.findOneAndUpdate(
+      { username: req.params.username },
+      {
+        $push: {
+          tasks: {
+            week: req.body.week,
+            question: req.body.question,
+            answer: req.body.answer,
+            link: req.body.link,
+          },
+        },
+      },
+      { new: true }
+    );
+    if (!student) {
+      return res.status(404).json({ error: "Student not found." });
+    }
+
+    res.status(200).json({ message: "Task assigned successfully." });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Internal server error." });
+  }
+});
+
 const cleanupOldNotifications = () => {
   const oneDay = 24 * 60 * 60 * 1000;
   const now = Date.now().toLocaleString("en-US", { timeZone: "Asia/Kolkata" });

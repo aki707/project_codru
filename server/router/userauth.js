@@ -51,10 +51,8 @@ router.post("/register", async (req, res) => {
     !name ||
     !email ||
     !password ||
-    !cpassword ||
-    !phone ||
+    !cpassword || 
     !username ||
-    !dob ||
     !role
   ) {
     return res.status(400).json({ error: "Empty field(s)." });
@@ -68,10 +66,9 @@ router.post("/register", async (req, res) => {
   // }
 
   try {
-    const emailExist = await User.findOne({ email: email });
     const usernameExist = await User.findOne({ username: username });
 
-    if (emailExist || usernameExist) {
+    if (usernameExist) {
       return res.status(401).json({ error: "User already exists." });
     } else if (password != cpassword) {
       return res.status(402).json({ error: "Passwords didn't match." });

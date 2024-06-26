@@ -21,6 +21,7 @@ import Admin from "./components/Admin.jsx";
 // import Profile from "./components/Profile";
 import Custom from "./components/Custom.jsx";
 import Dashboard from "./components/Dashboard";
+import TaskForm from "./components/TaskForm.jsx";
 // import FinalBuy from "./components/FinalBuy.jsx";
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
       <Route path="/dashboard" Component={Dashboard} />
       <Route path="/buy" Component={Buy} />
       <Route path="/admin" element={<Admin />} />
+      <Route path="/add-task/:username" Component={TaskForm} />
       {/* <Route path="/finalBuy" Component={FinalBuy} /> */}
 
       {/* <Route path='/buy' Component={Buy}/> */}
