@@ -12,6 +12,7 @@ import Home from "./components/Home";
 import Popup from "./components/Popup";
 import Signin from "./components/Signin";
 import Signup from "./components/Signup";
+import Form from "./components/Form";
 import Commentpage from "./components/Commentpage.jsx";
 import BlogForm from "./components/BlogForm.jsx";
 import Blogpage from "./components/Blogpage.jsx";
@@ -30,8 +31,10 @@ function App() {
       <Route path="/change-password" Component={Change_password} />
       <Route path="/signup" Component={Signup} />
       <Route path="/signin" Component={Signin} />
+      <Route path="/form" Component={Form} />
       <Route path="/popup" Component={Popup} />
       <Route path="/courses" Component={Courses} />
+      
       <Route path="/contact" Component={Contact} />
       <Route path="/course-register" Component={Admission} />
       <Route path="/About" Component={About} />
