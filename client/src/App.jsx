@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import About from "./components/About";
 import Admission from "./components/Admission";
-import Buy from './components/Buy.jsx';
+import Buy from "./components/Buy.jsx";
 import Change_password from "./components/Change_password";
 import Class6 from "./components/Class6.jsx";
 import Contact from "./components/Contact";
@@ -16,9 +16,10 @@ import Commentpage from "./components/Commentpage.jsx";
 import BlogForm from "./components/BlogForm.jsx";
 import Blogpage from "./components/Blogpage.jsx";
 import Notification from "./components/Notification";
+import Admin from "./components/Admin.jsx";
 // import Custom from './components/Custom.jsx';
 // import Profile from "./components/Profile";
-import Custom from './components/Custom.jsx';
+import Custom from "./components/Custom.jsx";
 import Dashboard from "./components/Dashboard";
 // import FinalBuy from "./components/FinalBuy.jsx";
 
@@ -46,8 +47,8 @@ function App() {
       <Route path="/notification" Component={Notification} />
       <Route path="/dashboard" Component={Dashboard} />
       <Route path="/buy" Component={Buy} />
+      <Route path="/admin" element={<Admin />} />
       {/* <Route path="/finalBuy" Component={FinalBuy} /> */}
-
 
       {/* <Route path='/buy' Component={Buy}/> */}
     </Routes>

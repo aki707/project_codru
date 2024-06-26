@@ -12,8 +12,8 @@ const app = express();
 const port = process.env.PORT;
 
 app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -27,7 +27,12 @@ app.use(express.static(path.join(__dirname, "public")));
 
 require("./db/conn.js");
 const User = require("./models/userSchema");
+const Student = require("./models/studentSchema");
+const Teacher = require("./models/teacherSchema");
 app.use(require("./router/userauth.js"));
+app.use(require("./router/blogauth.js"));
+app.use(require("./router/courseauth.js"));
+// app.use(require("./router/googleauth.js"));
 
 let notifications = {};
 
@@ -123,6 +128,69 @@ app.post("/notifications/push", async (req, res) => {
   } catch (error) {
     console.error("Error finding users:", error);
     res.status(500).json({ error: "Server error" });
+  }
+});
+
+app.get("/count", async (req, res) => {
+  try {
+    const userCount = await User.countDocuments();
+    const studentCount = await Student.countDocuments();
+    const teacherCount = await Teacher.countDocuments();
+
+    res.json({
+      userCount: userCount,
+      studentCount: studentCount,
+      teacherCount: teacherCount,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Error occurred" });
+  }
+});
+
+app.get("/users", async (req, res) => {
+  try {
+    const users = await User.find(
+      {},
+      { _id: 0, name: 1, username: 1, email: 1, phone: 1, role: 1, photo: 1 }
+    ).lean(); //projection on these fields
+    res.json(users);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Error occurred" });
+  }
+});
+
+app.delete("/user/:username", async (req, res) => {
+  try {
+    const { username } = req.params;
+    const { role } = req.body;
+
+    const user = await User.findOne({ username });
+
+    if (!user) {
+      return res.status(404).json({ error: "User doesn't exist." });
+    }
+
+    let deleted;
+    if (role === "Student") {
+      deleted = await Student.deleteOne({ username });
+    } else if (role === "Teacher") {
+      deleted = await Teacher.deleteOne({ username });
+    } else {
+      return res.status(403).json({ error: "Invalid role." });
+    }
+
+    if (deleted.deletedCount === 0) {
+      return res.status(500).json({ error: "Failed to delete user." });
+    }
+
+    await User.deleteOne({ username });
+
+    return res.status(200).json({ message: "User deleted successfully." });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Internal server error." });
   }
 });
 

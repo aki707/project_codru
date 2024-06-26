@@ -47,6 +47,7 @@ const studentSchema = new mongoose.Schema({
     type: [String],
     default: '',
   },
+  
 });
 
 const Student = User.discriminator('Student', studentSchema);

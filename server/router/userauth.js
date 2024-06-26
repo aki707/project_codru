@@ -7,7 +7,6 @@ const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
 const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
-const socketIo = require("socket.io");
 
 router.use(express.json());
 router.use(bodyParser.json());
@@ -30,6 +29,8 @@ const transporter = nodemailer.createTransport({
     pass: process.env.PASSWORD,
   },
 });
+
+
 
 router.post("/register", async (req, res) => {
   const {
