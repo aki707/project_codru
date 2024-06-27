@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import DraggableBox from './DraggableBox';
-import AnimatedBackground from './AnimatedBackground';
+import PlanetryAnimatedBackground from './PlanetryAnimatedBackground';
 import Xarrow, { Xwrapper } from 'react-xarrows';
 import '../styles/PlanetryPath.css';
 import TaskModal from './TaskModal';
@@ -119,8 +119,8 @@ const PlanetryPath = () => {
   }, []);
 
   return (
-    <div className="scroll-container" ref={scrollContainerRef}>
-      <div className="scroll-content">
+    <div className="Pscroll-container" ref={scrollContainerRef}>
+      <div className="Pscroll-content">
         <Xwrapper>
           {elementIds.map(id => (
             <div key={id}>
@@ -146,7 +146,7 @@ const PlanetryPath = () => {
           position={modalPosition}
         />
         
-        <AnimatedBackground />
+        <PlanetryAnimatedBackground />
       </div>
     </div>
   );
