@@ -1,10 +1,10 @@
-.scroll-container {
+.Pscroll-container {
   height: 100vh;
   overflow-y: hidden; /* Hide the default vertical scrollbar */
   position: relative;
 }
 
-.scroll-content {
+.Pscroll-content {
   height: 100%;
   width: 6000px; /* Adjust width based on content */
   position: relative;
