@@ -1,416 +1,175 @@
-
-
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap');
-.dashboard-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-.dashboard-container {
-  display: flex;
-  height: 100%;
-  width: 100%;
-  position: relative;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-.dashboard-sidebar {
-  width: 15%;
-  height: 100%;
-  background-color:  #cfa8a8;
-  /* border: 2px solid red; */
-  position: fixed;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 20px;
-}
-
-.sidebar-logo {
-  margin-bottom: 20px;
-  margin-right: 20px;
-}
-
-.sidebar-logo img {
-  width: 200px;
-}
-
-.sidebarmeetBtn {
-  height: 30px;
-  width: 120px;
-  border: 1px solid red;
-  margin-left: 40px;
-  background-color: black;
-  border-radius: 8%;
-}
-
-/* Main content */
-.main-content {
-  height: 222vh; 
-  width: 83%;
-  padding: 20px;
-  display: flex;
-  color: white;
-  position: sticky;
-  left: 15%;
-  font-size: 20px;
-  font-family: 'Fedroka';
-  flex-direction: column;
-  /* background-image: url(C:\Users\asus\OneDrive\Desktop\project_codru\client\src\assets\dashBack.png); */
-  background: #efe1e1;
-
-}
-
 .mainDashboard {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  height: 1px;
-  width: 1px;
-  background-color: #efe1e1;
-
-  border-radius: 50%;
-  /* box-shadow: -42vw -4vh 0px 0px #fff,25vw -41vh 0px 0px #fff,-20vw 49vh 0px 1px #fff,5vw 40vh 1px 1px #fff,29vw 19vh 1px 0px #fff,-44vw -13vh 0px 0px #fff,46vw 41vh 0px 1px #fff,-3vw -45vh 0px 1px #fff,47vw 35vh 1px 0px #fff,12vw -8vh 1px 0px #fff,-34vw 48vh 1px 1px #fff,32vw 26vh 1px 1px #fff,32vw -41vh 1px 1px #fff,0vw 37vh 1px 1px #fff,34vw -26vh 1px 0px #fff,-14vw -49vh 1px 0px #fff,-12vw 45vh 0px 1px #fff,-44vw -33vh 0px 1px #fff,-13vw 41vh 0px 0px #fff,-36vw -11vh 0px 1px #fff,-23vw -24vh 1px 0px #fff,-38vw -27vh 0px 1px #fff,16vw -19vh 0px 0px #fff,28vw 33vh 1px 0px #fff,-49vw -4vh 0px 0px #fff,16vw 32vh 0px 1px #fff,36vw -18vh 1px 0px #fff,-25vw -30vh 1px 0px #fff,-23vw 24vh 0px 1px #fff,-2vw -35vh 1px 1px #fff,-25vw 9vh 0px 0px #fff,-15vw -34vh 0px 0px #fff,-8vw -19vh 1px 0px #fff,-20vw -20vh 1px 1px #fff,42vw 50vh 0px 1px #fff,-32vw 10vh 1px 0px #fff,-23vw -17vh 0px 0px #fff,44vw 15vh 1px 0px #fff,-40vw 33vh 1px 1px #fff,-43vw 8vh 0px 0px #fff,-48vw -15vh 1px 1px #fff,-24vw 17vh 0px 0px #fff,-31vw 50vh 1px 0px #fff,36vw -38vh 0px 1px #fff,-7vw 48vh 0px 0px #fff,15vw -32vh 0px 0px #fff,29vw -41vh 0px 0px #fff,2vw 37vh 1px 0px #fff,7vw -40vh 1px 1px #fff,15vw 18vh 0px 0px #fff,25vw -13vh 1px 1px #fff,-46vw -12vh 1px 1px #fff,-18vw 22vh 0px 0px #fff,23vw -9vh 1px 0px #fff,50vw 12vh 0px 1px #fff,45vw 2vh 0px 0px #fff,14vw -48vh 1px 0px #fff,23vw 43vh 0px 1px #fff,-40vw 16vh 1px 1px #fff,20vw -31vh 0px 1px #fff,-17vw 44vh 1px 1px #fff,18vw -45vh 0px 0px #fff,33vw -6vh 0px 0px #fff,0vw 7vh 0px 1px #fff,-10vw -18vh 0px 1px #fff,-19vw 5vh 1px 0px #fff,1vw 42vh 0px 0px #fff,22vw 48vh 0px 1px #fff,39vw -8vh 1px 1px #fff,-6vw -42vh 1px 0px #fff,-47vw 34vh 0px 0px #fff,-46vw 19vh 0px 1px #fff,-12vw -32vh 0px 0px #fff,-45vw -38vh 0px 1px #fff,-28vw 18vh 1px 0px #fff,-38vw -46vh 1px 1px #fff,49vw -6vh 1px 1px #fff,-28vw 18vh 1px 1px #fff,10vw -24vh 0px 1px #fff,-5vw -11vh 1px 1px #fff,33vw -8vh 1px 0px #fff,-16vw 17vh 0px 0px #fff,18vw 27vh 0px 1px #fff,-8vw -10vh 1px 1px #fff; */
-
-/* stars were too big with the layers above but left the code in case no one cares  -- as in, if noone's just that  one other loner who actually cares    */
-
-/* box-shadow: 24vw 9vh 1px 0px #fff,12vw -24vh 0px 1px #fff,-45vw -22vh 0px 0px #fff,-37vw -40vh 0px 1px #fff,29vw 19vh 0px 1px #fff,4vw -8vh 0px 1px #fff,-5vw 21vh 1px 1px #fff,-27vw 26vh 1px 1px #fff,-47vw -3vh 1px 1px #fff,-28vw -30vh 0px 1px #fff,-43vw -27vh 0px 1px #fff,4vw 22vh 1px 1px #fff,36vw 23vh 0px 0px #fff,-21vw 24vh 1px 1px #fff,-16vw 2vh 1px 0px #fff,-16vw -6vh 0px 0px #fff,5vw 26vh 0px 0px #fff,-34vw 41vh 0px 0px #fff,1vw 42vh 1px 1px #fff,11vw -13vh 1px 1px #fff,48vw -8vh 1px 0px #fff,22vw -15vh 0px 0px #fff,45vw 49vh 0px 0px #fff,43vw -27vh 1px 1px #fff,20vw -2vh 0px 0px #fff,8vw 22vh 0px 1px #fff,39vw 48vh 1px 1px #fff,-21vw -11vh 0px 1px #fff,-40vw 45vh 0px 1px #fff,11vw -30vh 1px 0px #fff,26vw 30vh 1px 0px #fff,45vw -29vh 0px 1px #fff,-2vw 18vh 0px 0px #fff,-29vw -45vh 1px 0px #fff,-7vw -27vh 1px 1px #fff,42vw 24vh 0px 0px #fff,45vw -48vh 1px 0px #fff,-36vw -18vh 0px 0px #fff,-44vw 13vh 0px 1px #fff,36vw 16vh 0px 1px #fff,40vw 24vh 0px 0px #fff,18vw 11vh 0px 0px #fff,-15vw -23vh 1px 0px #fff,-24vw 48vh 0px 1px #fff,27vw -45vh 1px 0px #fff,-2vw -24vh 0px 1px #fff,-15vw -28vh 0px 0px #fff,-43vw 13vh 1px 0px #fff,7vw 27vh 1px 0px #fff,47vw 5vh 0px 0px #fff,-45vw 15vh 1px 1px #fff,-5vw -28vh 0px 1px #fff,38vw 25vh 1px 1px #fff,-39vw -1vh 1px 0px #fff,5vw 0vh 1px 0px #fff,49vw 13vh 0px 0px #fff,48vw 10vh 0px 1px #fff,19vw -28vh 0px 0px #fff,4vw 7vh 0px 0px #fff,21vw 21vh 1px 1px #fff,-15vw -15vh 0px 1px #fff,-6vw -42vh 1px 0px #fff,-15vw 48vh 1px 1px #fff,-23vw 25vh 1px 1px #fff,-48vw 25vh 0px 1px #fff,-31vw -19vh 0px 1px #fff,4vw 37vh 1px 1px #fff,-43vw 28vh 0px 0px #fff,3vw -25vh 0px 1px #fff,-39vw 14vh 0px 1px #fff,-40vw 31vh 0px 1px #fff,35vw -36vh 1px 1px #fff,16vw 49vh 0px 0px #fff,6vw 39vh 0px 0px #fff,3vw -35vh 0px 1px #fff,-44vw -2vh 1px 0px #fff,-6vw 21vh 1px 0px #fff,48vw 9vh 1px 1px #fff,-43vw 30vh 1px 1px #fff,29vw -12vh 1px 1px #fff,-48vw 13vh 1px 0px #fff,-42vw 32vh 1px 1px #fff,34vw 15vh 1px 1px #fff,29vw -37vh 1px 1px #fff,28vw 2vh 0px 0px #fff;
-animation: zoom 16s alternate infinite;  */
-}
-
-
-.dashboard-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: black;
-
-}
-
-.newCourseBtn {
-  width: 170px;
-  height: 40px;
-  background-color: #5d5353;
-  color: white;
-  cursor: pointer;
-  font-family: 'Fredoka', sans-serif;
-  font-size: 16px;
-  border-radius: 5px;
-}
-
-.newCourseBtn:hover {
-  background-color: #4e4ec8;
-}
-
-
-
-.courses {
-  display: flex;
- 
-  height: 100%;
-}
-
-.course-card {
-  background-color: transparent;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  height: 500px;
-  width: 400px;
-}
-
-.course-card h3 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 15px;
-}
-
-.course-card img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-}
-
-.course-card-content {
-  padding: 20px;
-}
-
-.course-card-content h3 {
-  margin: 0 0 10px 0;
-}
-
-.course-card-content p {
-  margin: 0;
-  color: gray;
-}
-
-.dashboard-courses-container {
-  display: flex;
-  height: 19%;
-  width: 95%;
-  /* border: 2px solid red; */
-  background-color:  transparent  ;
-  border-radius: 10px;
-  margin-bottom:50px;
-}
-
-.dashboard-course1 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* border: 1px solid #d6c9fd; */
-  border-radius: 5px;
-  background-color: white;
-}
-.calendar-container iframe {
-  border: solid 1px #777; 
-  margin-top: 20px;
-  margin-left: 45vw;
-}
-
-
-.dashboard-courses-container2 {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;  
-  align-items: center;
-  overflow-x: auto; /* Enable horizontal scrolling */
-  height: 25%;
-  width: 95%;
-  color: white;
-  font-family: 'Fredoka', sans-serif;
-  /* border: 2px solid red; */
-  background-image: url(C:\Users\asus\OneDrive\Desktop\project_codru\client\src\assets\dashboardEnrolledCourseBack.png);
-  border-radius: 10px;
-  margin-bottom: 20px;
-  padding: 10px; /* Add some padding for better spacing */
-}
-
-.enrollCourse {
-  position: absolute;
-  margin-bottom: 350px;
-  color: yellow;
-  font-family: 'Fredoka', sans-serif;
-  font-size: 40px;
-}
-
-
-.enrolledCoursesDash {
-  height: 60%;
-  min-width: 30%;
-  margin: 0 40px; /* Provide equal margin on left and right */
-  border: 2px solid white;
-  display: flex; /* To center the text inside the course box */
-  justify-content: center; /* Center the text horizontally */
-  align-items: center; /* Center the text vertically */
-  text-align: center;
-  color: black; /* Ensure the text is readable */
-  border-radius: 5px; /* Add some rounding for aesthetics */
-  background-image: url(C:\Users\asus\OneDrive\Desktop\project_codru\client\src\assets\courseEnroll1.png);
-}
-
-.enrolledCoursesDash img {
-  margin-bottom: 140px;
-  margin-right: 250px;
-}
-
-
-
-.add-course-form {
-  margin-top: 100px;
-
-}
-
-.add-course-form input {
-  padding: 10px;
-  margin-right: 10px;
-  border: 2px solid #4e1a28;
-  border-radius: 5px;
-}
-
-.add-course-form button {
-  padding: 10px 20px;
-  border: none;
-  background-color: #4e1a28;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.add-course-form button:hover {
-  background-color: #3b141f;
-}
-
-.remove-course-button {
-  position: relative; /* Position the button absolutely */
-  margin-bottom: 250px; /* Position at the top */
-  left: 95%; /* Center horizontally */
-  padding: 2px 6px;
-  border: none;
-  background-color: red;
-  color: white;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.remove-course-button:hover {
-  background-color: darkred;
-}
-
-.dashboard-courses-container3 {
- 
-  background-image: url(C:\Users\asus\OneDrive\Desktop\project_codru\client\src\assets\dashboardEnrolledCourseBack.png);
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;  
-  align-items: center;
-  overflow-x: auto; /* Enable horizontal scrolling */
-  height: 30%;
-  width: 95%;
-  color: white;
-  font-family: 'Fredoka', sans-serif;
-  /* border: 2px solid red; */
-   border-radius: 10px;
-  margin-bottom: 20px;
-  padding: 10px; 
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+  }
   
-}
-
-.recommend {
-  position: absolute;
-  margin-bottom: 440px;
-  color: yellow;
-  font-family: 'Fredoka', sans-serif;
-  font-size: 40px;
-}
-
-.recommendedCourses {
-  flex-direction: row;
-  height: 90%;
-  min-width: 100%;
-  /* border: 2px solid red; */
-  overflow-y: scroll;
-  margin-top: 60px;
-  display: flex; /* To center the text inside the course box */
-  justify-content: center; /* Center the text horizontally */
-  align-items: center; /* Center the text vertically */
-  text-align: center;
+  /* Left Section Styles */
+  .leftSectionDashboard {
+    width: 15%;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  }
   
+  .leftSectionDashboard img {
+    width: 100%;
+    margin-bottom: 20px;
+    /* border: 1px solid grey; */
+  }
+  
+  .photoDashboard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    height: 30vh;
+  }
+  
+  .pDashboard{
+    width: 100%; 
+    height: 100%; 
+    border-radius: 50%; 
+    border: 2px solid black; 
+    margin-left: 10px; 
+    margin-top:7px; 
+    
 }
+  
 
-.recommendedCourse1{
-  height: 85%;
-  width: 240px;
-  margin-top: 20px;
-  margin-left: 40px;
-  border-radius: 5px;
-  background-color: white;
-}
-.recommendedCourse1 img {
-  width: 100%;
-}
+  
+  .drawerContent {
+    margin-top: 20px;
+  }
+  
+  .drawerContent .MuiListItem-root {
+    padding-left: 0;
+  }
+  
+  .drawerContent .MuiListItemIcon-root {
+    min-width: 40px;
+  }
+  
+  /* Right Section Styles */
+  .rightSectionDashboard {
+   
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+    height:100%;
+    width: 80%;
+   
+  }
+  
+  .calenderSectionDashboard {
+     height: 80%;
+     width: 70%;
+     border: 1px solid grey;
+     margin-left: 20px;
+     border-radius: 2%;
 
-.recommendedCourse2{
-  height: 85%;
-  width: 240px;
-  margin-top: 20px;
-  margin-left: 40px;
-  border-radius: 5px;
-  background-color: white;
-}
-.recommendedCourse2 img {
-  width: 100%;
-}
-
-.recommendedCourse3{
-  height: 85%;
-  width: 240px;
-  margin-top: 20px;
-  margin-left: 40px;
-  border-radius: 5px;
-  background-color: white;
-}
-.recommendedCourse3 img {
-  width: 100%;
-}
-
-.recommendedCourse4{
-  height: 85%;
-  width: 240px;
-  margin-top: 20px;
-  margin-left: 40px;
-  border-radius: 5px;
-  background-color: white;
-}
-.recommendedCourse4 img {
-  width: 100%;
-}
-
-.recommendedCourse5{
-  height: 85%;
-  width: 3400px;
-  margin-top: 20px;
-  margin-left: 40px;
-  border-radius: 5px;
-  background-color: white;
-}
-.recommendedCourse5 img {
-  width: 100%;
-}
-
-.recommendedCourse6{
-  height: 85%;
-  width: 3400px;
-  margin-top: 20px;
-  margin-left: 40px;
-  border-radius: 5px;
-  background-color: white;
-}
-.recommendedCourse6 img {
-  width: 100%;
-}
-
-.recommendedCourse7{
-  height: 85%;
-  width: 3400px;
-  margin-top: 20px;
-  margin-left: 40px;
-  border-radius: 5px;
-  background-color: white;
-}
-.recommendedCourse7 img {
-  width: 100%;
-}
-
-.recommendedCourse8{
-  height: 85%;
-  width: 3400px;
-  margin-top: 20px;
-  margin-left: 40px;
-  border-radius: 5px;
-  background-color: white;
-}
-.recommendedCourse8 img {
-  width: 100%;
-}
-
-
- 
-.recommendBtn {
-  width: 50%;
-  height: 10%;
-  margin-left: 10px;
-  margin-top: 90px;
-  background-color: red;
-  border-radius: 5px;
-}
-
-
-
-
-
-
+  }
+  
+  .eventSectionDashboard {
+   height: 80%;
+   width: 25%;
+   border: 1px solid grey;
+   border-radius: 5%;
+   overflow-y: scroll;
+  }
+  
+  .eventForm {
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .eventForm input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .eventForm button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .eventForm button:hover {
+    background-color: #45a049;
+  }
+  
+  .eventBoxesContainer {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px;
+  }
+  
+  /* Scrollbar Styling */
+  .eventBoxesContainer::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .eventBoxesContainer::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  .eventBoxesContainer::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+  
+  .eventBoxesContainer::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  
+  /* Calendar Styles */
+  .calenderSectionDashboard .rbc-calendar {
+    height: 100%;
+  }
+  
+  .calenderSectionDashboard .rbc-header {
+    padding: 10px 3px;
+    background-color: #f0f0f0;
+    font-weight: bold;
+  }
+  
+  .calenderSectionDashboard .rbc-event {
+    background-color: #3174ad;
+    border-radius: 3px;
+  }
+  
+  .calenderSectionDashboard .rbc-today {
+    background-color: #eaf6ff;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .mainDashboard {
+      flex-direction: column;
+    }
+  
+    .leftSectionDashboard {
+      width: 100%;
+      height: auto;
+    }
+  
+    .rightSectionDashboard {
+      flex-direction: column;
+    }
+  
+    .calenderSectionDashboard, .eventSectionDashboard {
+      width: 100%;
+    }
+  }
