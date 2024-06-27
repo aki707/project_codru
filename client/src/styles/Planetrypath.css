@@ -1,0 +1,17 @@
+.scroll-container {
+  height: 100vh;
+  overflow-y: hidden; /* Hide the default vertical scrollbar */
+  position: relative;
+}
+
+.scroll-content {
+  height: 100%;
+  width: 6000px; /* Adjust width based on content */
+  position: relative;
+  display: flex; /* Ensure children are arranged in a row */
+}
+
+.element {
+  width: 100px; /* Adjust the width as necessary */
+  height: 100px; /* Adjust the height as necessary */
+}
