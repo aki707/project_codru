@@ -193,14 +193,13 @@ app.delete("/user/:username", async (req, res) => {
     return res.status(500).json({ error: "Internal server error." });
   }
 });
-
-app.put("/assignTask/:username", (req, res) => {
+app.put("/assignTask/:username", async (req, res) => {
   try {
-    const user = User.findOne({ username: req.params.username });
+    const user = await User.findOne({ username: req.params.username });
     if (!user) {
       return res.status(404).json({ error: "User doesn't exist." });
     }
-    const student = Student.findOneAndUpdate(
+    const student = await Student.findOneAndUpdate(
       { username: req.params.username },
       {
         $push: {
@@ -222,6 +221,27 @@ app.put("/assignTask/:username", (req, res) => {
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal server error." });
+  }
+});
+
+app.post("/get-tasks", async (req, res) => {
+  try {
+    const { username } = req.body;
+
+    if (!username) {
+      return res.status(400).json({ error: "Username is required" });
+    }
+
+    const student = await Student.findOne({ username });
+
+    if (!student) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.status(200).json(student.tasks);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Server error" });
   }
 });
 

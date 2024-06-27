@@ -47,7 +47,7 @@ export default function Admin() {
 
   const handleDelete = async (id, username, role) => {
     const confirmDelete = window.confirm(
-      `Are you sure you want to delete the user "${username}"?`
+      `This will remove "${username}" from your organization. Press OK to proceed.`
     );
 
     if (!confirmDelete) {
@@ -126,6 +126,7 @@ export default function Admin() {
             <button
               onClick={() => handleAssignTask(params.row.username)}
               className="assign-task-button"
+              title="Assign task"
             >
               <AssignmentIcon fontSize="medium" />
             </button>
@@ -135,6 +136,7 @@ export default function Admin() {
               handleDelete(params.row.id, params.row.username, params.row.role)
             }
             className="delete-button"
+            title="Delete"
           >
             <DeleteIcon fontSize="medium" />
           </button>
