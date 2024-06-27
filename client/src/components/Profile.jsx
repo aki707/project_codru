@@ -6,14 +6,15 @@ import profile from "../assets/userprofile.jpeg";
 import dashboard from "../assets/dashboard.jpeg";
 import courses from "../assets/courses.jpeg";
 import activity from "../assets/activity.jpeg";
-import notification from "../assets/notification.png";
-import { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import Userprofile from "./Userprofile";
+// import notification from "../assets/notification.png";
+// import { useState } from "react";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 const Profile = () => {
-  const [active, setActive] = useState("Profile");
+  // const [active, setActive] = useState("Profile");
   const handleheading = (prop) => {
-    setActive(prop);
+    // setActive(prop);
   };
   return (
     <div className="profile">
@@ -37,7 +38,9 @@ const Profile = () => {
             <p>Activity</p>
           </div>
         </div>
-        <div className="profilecontdiv2"></div>
+        <div className="profilecontdiv2">
+          <Userprofile />
+        </div>
       </div>
     </div>
   );

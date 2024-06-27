@@ -11,7 +11,7 @@
 
   color-scheme: light dark;
   color: black;
-  background-color: white;
+  /* background-color:  #efe1e1; */
   justify-content: "center";
 
   font-synthesis: none;
@@ -26,6 +26,9 @@ body::-webkit-scrollbar {
 body {
   margin: 0px;
   padding: 0%;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 }
 * {
   margin: 0px;

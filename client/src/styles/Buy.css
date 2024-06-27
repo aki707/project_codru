@@ -1,4 +1,4 @@
-body.login-page {
+body.buy-page {
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
@@ -9,7 +9,7 @@ body.login-page {
   height: 200vh;
 }
 
-.login-page .overlay-bg {
+.buy-page .overlay-bg {
   position: fixed;
   top: 0;
   left: 0;
@@ -21,7 +21,7 @@ body.login-page {
   align-items: center;
 }
 
-.login-page .login-wrapper {
+.buy-page .login-wrapper {
   display: flex;
   width: 80%;
   max-width: 900px;
@@ -33,7 +33,7 @@ body.login-page {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.login-page .left-section {
+.buy-page .left-section {
   flex: 1;
   position: relative;
   display: flex;
@@ -42,113 +42,21 @@ body.login-page {
   color: #fff;
 }
 
-.login-page .background-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-}
 
-.login-page .right-section {
+
+.buy-page .right-section {
   flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
-  background-color: #fff;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 50px;
+  background-color: #efe1e1;
 }
 
-.login-page .form-container {
-  max-width: 400px;
-  width: 100%;
-  padding: 20px;
-  text-align: center;
-  z-index: 1;
+.buy-text-content {
+  width: 85%;
+  margin-top: 65px;
+  border: 2px solid red;
+  height: 80%;
 }
 
-.login-page .form-container h1 {
-  margin-bottom: 10px;
-  font-size: 24px;
-  color: #333;
-}
-
-.login-page .form-container p {
-  margin-bottom: 20px;
-  color: #666;
-}
-
-.login-page .input-group {
-  margin-bottom: 15px;
-  text-align: left;
-}
-
-.login-page .input-group label {
-  display: block;
-  margin-bottom: 5px;
-  color: #333;
-}
-
-.login-page .input-group input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.login-page .actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.login-page .remember-me {
-  display: flex;
-  align-items: center;
-}
-
-.login-page .remember-me input {
-  margin-right: 5px;
-}
-
-.login-page .remember-me label {
-  color: #333;
-}
-
-.login-page .actions a {
-  color: #0052cc;
-  text-decoration: none;
-}
-
-.login-page .login-button {
-  width: 100%;
-  padding: 10px;
-  background-color: #0052cc;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.login-page .google-login {
-  width: 100%;
-  padding: 10px;
-  background-color: #db4437;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.login-page .login-button:hover,
-.login-page .google-login:hover {
-  opacity: 0.9;
-}
-
-.login-page .imageBuy {
-  width: 50%;
-  height: 50%;
-}

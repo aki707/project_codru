@@ -47,6 +47,22 @@ const studentSchema = new mongoose.Schema({
     type: [String],
     default: '',
   },
+  tasks:[
+    {week:{
+      type: Number,
+    },
+    question:{
+      type: String
+    },
+    answer:{
+      type:String
+    },
+    link:{
+      type: String
+    }}
+  ]
+
+
 });
 
 const Student = User.discriminator('Student', studentSchema);
