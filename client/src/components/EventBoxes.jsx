@@ -26,9 +26,9 @@ function EventBoxes({ events }) {
   };
 
   return (
-    <div className="event-boxes">
-      <h2>Upcoming Events</h2>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', alignItems:"center", justifyContent:"flex-start"}}>
+    <div className="event-boxes" style={{display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", width:"100%"}}>
+      <h2>Upcoming</h2>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', alignItems:"center", justifyContent:"center"}}>
         {events.map((event, index) => (
           <div
             key={index}
