@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
+import Muialert from "./Muialert";
 import "../styles/Signup.css";
 import s from "../assets/6430773-transformed.webp";
 import { Email, Lock, Phone, Person } from "@mui/icons-material";
@@ -19,8 +20,11 @@ import {
 } from "@mui/material";
 import BadgeIcon from "@mui/icons-material/Badge";
 import GoogleIcon from "../assets/google.svg";
+import { useGoogleLogin } from "@react-oauth/google";
 import FacebookIcon from "../assets/facebook-color.svg";
+import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import MicrosoftIcon from "../assets/microsoft.svg";
+import MicrosoftLogin from "react-microsoft-login";
 import { MuiOtpInput } from "mui-one-time-password-input";
 
 function matchIsString(text) {
@@ -37,6 +41,43 @@ const validateChar = (value, index) => {
   return matchIsNumeric(value);
 };
 
+async function getAccessTokenFromCode(code) {
+  const response = await fetch("https://oauth2.googleapis.com/token", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      client_id: process.env.APP_ID_GOES_HERE,
+      client_secret: process.env.APP_SECRET_GOES_HERE,
+      redirect_uri: "https://www.example.com/authenticate/google",
+      grant_type: "authorization_code",
+      code,
+    }),
+  });
+
+  const data = await response.json(); // Parse the JSON response
+  console.log(data); // { access_token, expires_in, token_type, refresh_token }
+
+  return data.access_token;
+}
+
+async function getGoogleUserInfo(access_token) {
+  const response = await fetch(
+    "https://www.googleapis.com/oauth2/v2/userinfo",
+    {
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    }
+  );
+
+  const data = await response.json(); // Parse the JSON response
+  console.log(data); // { id, email, given_name, family_name }
+
+  return data;
+}
+
 function Signup() {
   const [value, setValue] = useState({
     name: "",
@@ -52,6 +93,9 @@ function Signup() {
     isEmailVerified: false,
   });
   const [loading, setLoading] = useState(true);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [microsoftUser, setMicrosoftUser] = useState(null);
 
   const navigate = useNavigate();
 
@@ -125,13 +169,19 @@ function Signup() {
     });
 
     if (res.ok) {
+      const jsonresponse = await res.json();
       console.log("Email verified successfully");
       setValue((prevValue) => ({
         ...prevValue,
         isEmailVerified: true,
       }));
       setOpen(false);
+      setAlertMessage(jsonresponse.message);
+      setShowAlert(true);
     } else {
+      const jsonresponse = await res.json();
+      setAlertMessage(jsonresponse.error);
+      setShowAlert(true);
       console.error("Failed to verify OTP");
     }
   };
@@ -194,6 +244,37 @@ function Signup() {
     }
     return () => clearInterval(interval);
   }, [timer]);
+
+  const handleCloseAlert = () => {
+    setShowAlert(false);
+  };
+
+  const googleLogin = useGoogleLogin({
+    onSuccess: (tokenResponse) => {
+      console.log(tokenResponse);
+    },
+    onError: () => {
+      console.log("Login Failed");
+    },
+  });
+
+  const facebookLogin = (response) => {
+    // Here, you would typically send the response data to your server for further processing
+  };
+
+  const microsoftLogin = (err, data) => {
+    if (!err) {
+      console.log(data);
+      setMicrosoftUser(data);
+    } else {
+      console.error(err);
+    }
+  };
+
+  const handleMicrosoftLogout = () => {
+    setMicrosoftUser(null);
+    console.log("Logged out from Microsoft");
+  };
 
   return (
     <div className="signupdiv">
@@ -371,7 +452,7 @@ function Signup() {
             onFocus={() => handleClick(true)}
           />
         </div>
-        <div className="terms">
+        <div className="terms1">
           <label>
             <Checkbox
               name="declaration"
@@ -401,26 +482,58 @@ function Signup() {
           <span className="line"></span>
         </div>
         <div className="external-signup">
-          <div
-            className="icon-wrapper"
-            onClick={() => console.log("Continue with Google")}
-          >
-            <img src={GoogleIcon} alt="Google" className="icon" />
+          <div className="icon-wrapper">
+            <img
+              src={GoogleIcon}
+              alt="Google"
+              className="icon"
+              onClick={() => googleLogin()}
+              style={{ cursor: "pointer" }}
+            />
           </div>
           <span className="separator">|</span>
-          <div
-            className="icon-wrapper"
-            onClick={() => console.log("Continue with Facebook")}
-          >
-            <img src={FacebookIcon} alt="Facebook" className="icon" />
-          </div>
+
+          <FacebookLogin
+            appId="1088597931155576"
+            autoLoad={false}
+            fields="name,email,picture"
+            scope="public_profile,user_friends,user_actions.books"
+            callback={facebookLogin}
+            cssClass="icon"
+            render={(renderProps) => (
+              <div className="icon-wrapper" onClick={renderProps.onClick}>
+                <img src={FacebookIcon} alt="Facebook" className="icon" />
+              </div>
+            )}
+          />
+
           <span className="separator">|</span>
-          <div
+
+          <MicrosoftLogin
+            clientId={"f8c7976f-3e93-482d-88a3-62a1133cbbc3"}
+            authCallback={microsoftLogin}
             className="icon-wrapper"
-            onClick={() => console.log("Continue with Microsoft")}
-          >
-            <img src={MicrosoftIcon} alt="Microsoft" className="icon-new" />
-          </div>
+            children={
+              <div className="icon-wrapper">
+                <img src={MicrosoftIcon} alt="Microsoft" className="icon" />
+              </div>
+            }
+          />
+          {!microsoftUser ? (
+            <MicrosoftLogin
+              clientId="YOUR_MICROSOFT_CLIENT_ID"
+              authCallback={microsoftLogin}
+              buttonTheme="light_short"
+            />
+          ) : (
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={handleMicrosoftLogout}
+            >
+              Logout from Microsoft
+            </Button>
+          )}
         </div>
       </div>
       <Dialog
@@ -459,6 +572,13 @@ function Signup() {
           />
         </DialogContent>
       </Dialog>
+      {showAlert && (
+        <Muialert
+          message={alertMessage}
+          severity="error"
+          onClose={handleCloseAlert}
+        />
+      )}
     </div>
   );
 }

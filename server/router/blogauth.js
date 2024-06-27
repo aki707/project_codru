@@ -1,9 +1,10 @@
 const express = require("express");
-const Blog = require("../models/blogSchema");
-const authenticate = require("../middleware/authenticate");
 const router = express.Router();
+const Blog = require("../models/blogSchema");
 const User = require("../models/userSchema");
+
 router.post("/blogs", async (req, res) => {
+  console.log("chal gaya");
   try {
     const { title, content, username, userphoto } = req.body;
 
@@ -50,7 +51,7 @@ router.post("/blogsdata", async (req, res) => {
   }
 });
 
-router.post("/blogs/:blogId/comments", authenticate, async (req, res) => {
+router.post("/blogs/:blogId/comments", async (req, res) => {
   try {
     const { blogId } = req.params;
     const { comment } = req.body;

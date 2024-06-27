@@ -102,6 +102,13 @@ input:-webkit-autofill:active {
   margin-top: 7px;
   margin-bottom: 7px;
 }
+.terms1>label{
+  display:flex;
+  justify-content:space-between
+}
+.terms1>label>p{
+  margin-top: 15px;
+}
 
 .terms > input[type="checkbox"] {
   width: 1%;
@@ -111,7 +118,7 @@ input:-webkit-autofill:active {
 .terms > p {
   /* width: 150vw; */
   
-  text-align: left;
+  text-align: right;
 }
 
 .divider {
@@ -150,6 +157,9 @@ input:-webkit-autofill:active {
   justify-content: center;
   align-items: center;
   margin: 0px 42px;
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 .icon-new {

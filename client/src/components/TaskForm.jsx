@@ -1,26 +1,50 @@
-// TaskForm.jsx
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import "../styles/TaskForm.css";
 
-import React, { useState } from 'react';
-import '../styles/TaskForm.css'; 
 const TaskForm = () => {
-  const [studentId, setStudentId] = useState('');
-  const [weekNo, setWeekNo] = useState('');
-  const [question, setQuestion] = useState('');
-  const [answer, setAnswer] = useState('');
-  const [link, setLink] = useState('');
+  const { username } = useParams();
+  const [studentId, setStudentId] = useState(username);
+  const [weekNo, setWeekNo] = useState("");
+  const [question, setQuestion] = useState("");
+  const [answer, setAnswer] = useState("");
+  const [link, setLink] = useState("");
 
-  const handleSubmit = (event) => {
+  useEffect(() => {
+    // Set the studentId to the username from useParams
+    setStudentId(username);
+  }, [username]);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    
-    console.log({ studentId, weekNo, question, answer, link });
+    try {
+      const response = await fetch(`/api/assignTask/${studentId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          week: weekNo,
+          question: question,
+          answer: answer,
+          link: link,
+        }),
+      });
 
-    
-    setStudentId('');
-    setWeekNo('');
-    setQuestion('');
-    setAnswer('');
-    setLink('');
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      console.log("Task assigned successfully!");
+
+      setWeekNo("");
+      setQuestion("");
+      setAnswer("");
+      setLink("");
+    } catch (error) {
+      console.error("Error assigning task:", error);
+    }
   };
 
   return (
@@ -36,8 +60,7 @@ const TaskForm = () => {
             id="studentId"
             className="form-input"
             value={studentId}
-            onChange={(e) => setStudentId(e.target.value)}
-            required
+            readOnly
           />
 
           <label htmlFor="weekNo" className="form-label">
