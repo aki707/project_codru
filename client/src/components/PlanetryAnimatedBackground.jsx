@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/AnimatedBackground.css';
+import '../styles/PlanetryAnimatedBackground.css';
 
 const PlanetryAnimatedBackground = () => {
   return (
