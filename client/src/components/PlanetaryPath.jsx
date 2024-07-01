@@ -4,17 +4,9 @@ import PlanetryAnimatedBackground from "./PlanetaryAnimatedBackground";
 import Xarrow, { Xwrapper } from "react-xarrows";
 import "../styles/PlanetaryPath.css";
 import TaskModal from "./TaskModal";
-// import '../styles/Elements.css';
-// import Checkpoint from './Checkpoint';
-// import Character from './Character';
-// import TaskForm from './TaskForm';
 
 const PlanetaryPath = () => {
   const numElements = 48;
-  const elementIds = Array.from(
-    { length: numElements },
-    (_, i) => `elem${i + 1}`
-  );
   const xIncrement = 220;
   const containerHeight = window.innerHeight - 200; // Adjusting for element height and some margin
 
@@ -24,42 +16,67 @@ const PlanetaryPath = () => {
     return Math.floor(Math.random() * (maxY - minY + 1)) + minY;
   };
 
-  const defaultPositions = elementIds.reduce((acc, id, index) => {
-    const x = 50 + index * xIncrement;
-    const y = generateRandomYPosition();
-    acc[id] = { x, y };
-    return acc;
-  }, {});
-
-  const [positions, setPositions] = useState(defaultPositions);
+  const [positions, setPositions] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [modalQuestion, setModalQuestion] = useState("");
   const [modalAnswer, setModalAnswer] = useState("");
   const [modalLink, setModalLink] = useState("");
   const [modalPosition, setModalPosition] = useState({ x: 0, y: 0 });
+  const [tasks, setTasks] = useState([]);
+  const [error, setError] = useState(null);
 
   const scrollContainerRef = useRef(null);
+  const username = localStorage.getItem("Username");
 
-  const questionsAndAnswers = [
-    {
-      id: "elem1",
-      question: "What is React?",
-      answer: "React is a JavaScript library for building user interfaces.",
-      link: "https://reactjs.org",
-    },
-    {
-      id: "elem2",
-      question: "What is a component?",
-      answer: "A component is a reusable piece of UI in a React application.",
-      link: "https://reactjs.org/docs/components-and-props.html",
-    },
-    {
-      id: "elem3",
-      question: "What is a component?",
-      answer: "A component is a reusable piece of UI in a React application.",
-      link: "https://reactjs.org/docs/components-and-props.html",
-    },
-  ];
+  const fetchTasks = async (username) => {
+    try {
+      const response = await fetch("/api/get-tasks", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Something went wrong");
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Error fetching tasks:", error);
+      throw error;
+    }
+  };
+
+  useEffect(() => {
+    const loadTasks = async () => {
+      try {
+        const fetchedTasks = await fetchTasks(username);
+        setTasks(fetchedTasks);
+
+        // Generate default positions for each task
+        const defaultPositions = fetchedTasks.reduce((acc, task, index) => {
+          const x = 50 + index * xIncrement;
+          const y = generateRandomYPosition();
+          acc[`task${task.week}`] = { x, y };
+          return acc;
+        }, {});
+
+        setPositions(defaultPositions);
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+
+    loadTasks();
+  }, [username]);
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   const handlePositionChange = (id, x, y) => {
     const newY = Math.min(Math.max(y, 50), containerHeight - 50); // Clamp Y to within bounds
@@ -100,9 +117,7 @@ const PlanetaryPath = () => {
       adjustedY = modalHeight / 2;
     }
 
-    const clickedElementData = questionsAndAnswers.find(
-      (item) => item.id === id
-    );
+    const clickedElementData = tasks.find((task) => `task${task.week}` === id);
 
     if (clickedElementData) {
       setModalQuestion(clickedElementData.question);
@@ -140,22 +155,22 @@ const PlanetaryPath = () => {
     <div className="Pscroll-container" ref={scrollContainerRef}>
       <div className="Pscroll-content">
         <Xwrapper>
-          {elementIds.map((id) => (
-            <div key={id}>
+          {tasks.map((task) => (
+            <div key={`task${task.week}`}>
               <DraggableBox
-                id={id}
-                onDrag={(x, y) => handlePositionChange(id, x, y)}
-                onClick={(e) => handleElementClick(id, e)}
-                className={`element ${id}`}
-                style={{ left: positions[id].x, top: positions[id].y }}
+                id={`task${task.week}`}
+                onDrag={(x, y) => handlePositionChange(`task${task.week}`, x, y)}
+                onClick={(e) => handleElementClick(`task${task.week}`, e)}
+                className={`element task${task.week}`}
+                style={{ left: positions[`task${task.week}`]?.x, top: positions[`task${task.week}`]?.y }}
               />
             </div>
           ))}
-          {elementIds.slice(1).map((id, index) => (
+          {tasks.slice(1).map((task, index) => (
             <Xarrow
-              key={id}
-              start={elementIds[index]}
-              end={id}
+              key={`task${task.week}`}
+              start={`task${tasks[index].week}`}
+              end={`task${task.week}`}
               curveness={1.5}
             />
           ))}
@@ -168,7 +183,6 @@ const PlanetaryPath = () => {
           link={modalLink}
           position={modalPosition}
         />
-
         <PlanetryAnimatedBackground />
       </div>
     </div>

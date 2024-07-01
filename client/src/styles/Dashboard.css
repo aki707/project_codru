@@ -58,21 +58,25 @@
  
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: end;
   justify-content: space-between;
   height:100%;
-  width: 80%;
+  width: 85%;
+  /* border: 2px solid red; */
+
  
 }
 
 .rightSectionHeadingDashboard{
-  margin: 2px;
+  margin-right: 700px ;
+  margin-top: 40px;
+  font-size: 30px;
 }
 
 .rightSectionDashboard1{
   display: flex;
   flex-direction: row;
-  align-items: start;
+  align-items: end;
   justify-content: space-evenly;
   height:80%;
   width: 100%;
@@ -169,22 +173,4 @@
   background-color: #eaf6ff;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .mainDashboard {
-    flex-direction: column;
-  }
 
-  .leftSectionDashboard {
-    width: 100%;
-    height: auto;
-  }
-
-  .rightSectionDashboard {
-    flex-direction: column;
-  }
-
-  .calenderSectionDashboard, .eventSectionDashboard {
-    width: 100%;
-  }
-}
