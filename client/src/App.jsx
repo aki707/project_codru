@@ -24,6 +24,7 @@ import Custom from "./components/Custom.jsx";
 import Dashboard from "./components/Dashboard";
 import TaskForm from "./components/TaskForm.jsx";
 import EventBoxes from "./components/EventBoxes.jsx";
+import PlanetaryPath from "./components/PlanetaryPath.jsx";
 // import FinalBuy from "./components/FinalBuy.jsx";
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
       <Route path="/admin" element={<Admin />} />
       <Route path="/add-task/:username" Component={TaskForm} />
       <Route path="/events" Component={EventBoxes} />
+      <Route path="/planetary-path" Component={PlanetaryPath} />
       {/* <Route path="/finalBuy" Component={FinalBuy} /> */}
 
       {/* <Route path='/buy' Component={Buy}/> */}
