@@ -41,7 +41,6 @@ const Dashboard = () => {
   const drawerContent = (
     <List>
       {[
-        { text: "Dashboard", icon: <DashboardIcon /> },
         { text: "Profile", icon: <PersonIcon /> },
         { text: "Report", icon: <RouteIcon /> },
         { text: "Settings", icon: <SettingsIcon /> },
@@ -72,6 +71,9 @@ const Dashboard = () => {
       </div>
 
       <div className="rightSectionDashboard">
+      <h1 className="rightSectionHeadingDashboard">Welcome Aaryan Vijayvargiya</h1>
+        <div className="rightSectionDashboard1">
+       
         <div className="calenderSectionDashboard">
           <Calendar
             localizer={localizer}
@@ -123,6 +125,8 @@ const Dashboard = () => {
 
           <EventBoxes events={events} />
         </div>
+        </div>
+        
       </div>
     </div>
   );
