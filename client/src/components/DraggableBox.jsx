@@ -54,7 +54,7 @@ const DraggableBox = ({ id, style, onDrag, onClick }) => {
     return { width: `${size}px`, height: `${size}px` };
   }
 
-  const defaultBoxStyle = {
+  const defaultPlanetStyle = {
     border: `5px solid ${backgroundColor}`, // Border color based on background color
     textAlign: 'center',
     color: '#FFFFFF', // White text color
@@ -79,7 +79,7 @@ const DraggableBox = ({ id, style, onDrag, onClick }) => {
       onStop={handleStop}
       nodeRef={boxRef}
     >
-      <div ref={boxRef} id={id} style={{ ...defaultBoxStyle, ...style }} onClick={onClick}>
+      <div ref={boxRef} id={id} style={{ ...defaultPlanetStyle, ...style }} onClick={onClick}>
         {id}
       </div>
     </Draggable>
