@@ -1,178 +1,152 @@
-import React, { useState, useEffect, useRef } from "react";
-import DraggableBox from "./DraggableBox";
-import PlanetryAnimatedBackground from "./PlanetaryAnimatedBackground";
-import Xarrow, { Xwrapper } from "react-xarrows";
-import "../styles/PlanetaryPath.css";
-import TaskModal from "./TaskModal";
-// import '../styles/Elements.css';
-// import Checkpoint from './Checkpoint';
-// import Character from './Character';
-// import TaskForm from './TaskForm';
+import React, { useState, useEffect, useRef } from 'react';
+import DraggableBox from './DraggableBox';
+import PlanetryAnimatedBackground from './PlanetryAnimatedBackground';
+import Xarrow, { Xwrapper } from 'react-xarrows';
+import '../styles/PlanetryPath.css'; // Updated import for CSS
+import TaskModal from './TaskModal';
 
-const PlanetaryPath = () => {
-  const numElements = 48;
-  const elementIds = Array.from(
-    { length: numElements },
-    (_, i) => `elem${i + 1}`
-  );
-  const xIncrement = 220;
-  const containerHeight = window.innerHeight - 200; // Adjusting for element height and some margin
+const PlanetryPath = () => {
+  const numPlanteryElements = 48;
+  const planteryElementIds = Array.from({ length: numPlanteryElements }, (_, i) => `elem${i + 1}`);
+  const planteryXIncrement = 220;
+  const planteryContainerHeight = window.innerHeight - 200; // Adjusting for element height and some margin
 
-  const generateRandomYPosition = () => {
-    const minY = 50; // Minimum y position
-    const maxY = containerHeight - 450; // Adjusted to prevent overflow
-    return Math.floor(Math.random() * (maxY - minY + 1)) + minY;
+  const generatePlanteryRandomYPosition = () => {
+    const planteryMinY = 50; // Minimum y position
+    const planteryMaxY = planteryContainerHeight - 450; // Adjusted to prevent overflow
+    return Math.floor(Math.random() * (planteryMaxY - planteryMinY + 1)) + planteryMinY;
   };
 
-  const defaultPositions = elementIds.reduce((acc, id, index) => {
-    const x = 50 + index * xIncrement;
-    const y = generateRandomYPosition();
-    acc[id] = { x, y };
+  const planteryDefaultPositions = planteryElementIds.reduce((acc, id, index) => {
+    const planteryX = 50 + index * planteryXIncrement;
+    const planteryY = generatePlanteryRandomYPosition();
+    acc[id] = { x: planteryX, y: planteryY };
     return acc;
   }, {});
 
-  const [positions, setPositions] = useState(defaultPositions);
-  const [showModal, setShowModal] = useState(false);
-  const [modalQuestion, setModalQuestion] = useState("");
-  const [modalAnswer, setModalAnswer] = useState("");
-  const [modalLink, setModalLink] = useState("");
-  const [modalPosition, setModalPosition] = useState({ x: 0, y: 0 });
+  const [planteryPositions, setPlanteryPositions] = useState(planteryDefaultPositions);
+  const [showPlanteryModal, setShowPlanteryModal] = useState(false);
+  const [planteryModalQuestion, setPlanteryModalQuestion] = useState('');
+  const [planteryModalAnswer, setPlanteryModalAnswer] = useState('');
+  const [planteryModalLink, setPlanteryModalLink] = useState('');
+  const [planteryModalPosition, setPlanteryModalPosition] = useState({ x: 0, y: 0 });
 
-  const scrollContainerRef = useRef(null);
+  const planteryScrollContainerRef = useRef(null);
 
-  const questionsAndAnswers = [
-    {
-      id: "elem1",
-      question: "What is React?",
-      answer: "React is a JavaScript library for building user interfaces.",
-      link: "https://reactjs.org",
-    },
-    {
-      id: "elem2",
-      question: "What is a component?",
-      answer: "A component is a reusable piece of UI in a React application.",
-      link: "https://reactjs.org/docs/components-and-props.html",
-    },
-    {
-      id: "elem3",
-      question: "What is a component?",
-      answer: "A component is a reusable piece of UI in a React application.",
-      link: "https://reactjs.org/docs/components-and-props.html",
-    },
+  const planteryQuestionsAndAnswers = [
+    { id: 'elem1', question: 'What is React?', answer: 'React is a JavaScript library for building user interfaces.', link: 'https://reactjs.org' },
+    { id: 'elem2', question: 'What is a component?', answer: 'A component is a reusable piece of UI in a React application.', link: 'https://reactjs.org/docs/components-and-props.html' },
+    { id: 'elem3', question: 'What is a component?', answer: 'A component is a reusable piece of UI in a React application.', link: 'https://reactjs.org/docs/components-and-props.html' },
   ];
 
-  const handlePositionChange = (id, x, y) => {
-    const newY = Math.min(Math.max(y, 50), containerHeight - 50); // Clamp Y to within bounds
-    const newPositions = { ...positions, [id]: { x, y: newY } };
-    setPositions(newPositions);
+  const handlePlanteryPositionChange = (id, x, y) => {
+    const planteryNewY = Math.min(Math.max(y, 50), planteryContainerHeight - 50); // Clamp Y to within bounds
+    const planteryNewPositions = { ...planteryPositions, [id]: { x, y: planteryNewY } };
+    setPlanteryPositions(planteryNewPositions);
   };
 
-  const handleElementClick = (id, event) => {
+  const handlePlanteryElementClick = (id, event) => {
     event.preventDefault();
     event.stopPropagation();
 
     const { x, y, width, height } = event.target.getBoundingClientRect();
-    const modalWidth = 300; //  modal's width
-    const modalHeight = 200; //  modal's height
+    const planteryModalWidth = 300; // modal's width
+    const planteryModalHeight = 200; // modal's height
 
     // Calculate modal position considering scroll and viewport dimensions
-    const modalX = x + window.scrollX + width / 2;
-    const modalY = y + window.scrollY + height / 2;
+    const planteryModalX = x + window.scrollX + width / 2;
+    const planteryModalY = y + window.scrollY + height / 2;
 
     // Determine if the element is near the edges of the viewport
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
 
-    let adjustedX = modalX;
-    let adjustedY = modalY;
+    let planteryAdjustedX = planteryModalX;
+    let planteryAdjustedY = planteryModalY;
 
     // Adjust X position
-    if (modalX + modalWidth / 2 > viewportWidth) {
-      adjustedX = viewportWidth - modalWidth / 2;
-    } else if (modalX - modalWidth / 2 < 0) {
-      adjustedX = modalWidth / 2;
+    if (planteryModalX + planteryModalWidth / 2 > viewportWidth) {
+      planteryAdjustedX = viewportWidth - planteryModalWidth / 2;
+    } else if (planteryModalX - planteryModalWidth / 2 < 0) {
+      planteryAdjustedX = planteryModalWidth / 2;
     }
 
     // Adjust Y position
-    if (modalY + modalHeight / 2 > viewportHeight) {
-      adjustedY = viewportHeight - modalHeight / 2;
-    } else if (modalY - modalHeight / 2 < 0) {
-      adjustedY = modalHeight / 2;
+    if (planteryModalY + planteryModalHeight / 2 > viewportHeight) {
+      planteryAdjustedY = viewportHeight - planteryModalHeight / 2;
+    } else if (planteryModalY - planteryModalHeight / 2 < 0) {
+      planteryAdjustedY = planteryModalHeight / 2;
     }
 
-    const clickedElementData = questionsAndAnswers.find(
-      (item) => item.id === id
-    );
+    const planteryClickedElementData = planteryQuestionsAndAnswers.find(item => item.id === id);
 
-    if (clickedElementData) {
-      setModalQuestion(clickedElementData.question);
-      setModalAnswer(clickedElementData.answer);
-      setModalLink(clickedElementData.link);
-      setModalPosition({ x: adjustedX, y: adjustedY });
-      setShowModal(true);
+    if (planteryClickedElementData) {
+      setPlanteryModalQuestion(planteryClickedElementData.question);
+      setPlanteryModalAnswer(planteryClickedElementData.answer);
+      setPlanteryModalLink(planteryClickedElementData.link);
+      setPlanteryModalPosition({ x: planteryAdjustedX, y: planteryAdjustedY });
+      setShowPlanteryModal(true);
     }
   };
 
-  const handleCloseModal = () => {
-    setShowModal(false);
-    setModalQuestion("");
-    setModalAnswer("");
-    setModalLink("");
+  const handlePlanteryCloseModal = () => {
+    setShowPlanteryModal(false);
+    setPlanteryModalQuestion('');
+    setPlanteryModalAnswer('');
+    setPlanteryModalLink('');
   };
 
-  const handleWheel = (event) => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollLeft += event.deltaY;
+  const handlePlanteryWheel = (event) => {
+    if (planteryScrollContainerRef.current) {
+      planteryScrollContainerRef.current.scrollLeft += event.deltaY;
     }
   };
 
   useEffect(() => {
-    const scrollContainer = scrollContainerRef.current;
-    if (scrollContainer) {
-      scrollContainer.addEventListener("wheel", handleWheel);
+    const planteryScrollContainer = planteryScrollContainerRef.current;
+    if (planteryScrollContainer) {
+      planteryScrollContainer.addEventListener('wheel', handlePlanteryWheel);
       return () => {
-        scrollContainer.removeEventListener("wheel", handleWheel);
+        planteryScrollContainer.removeEventListener('wheel', handlePlanteryWheel);
       };
     }
   }, []);
 
   return (
-    <div className="Pscroll-container" ref={scrollContainerRef}>
-      <div className="Pscroll-content">
+    <div className="planetry-scroll-container" ref={planteryScrollContainerRef}>
+      <div className="planetry-scroll-content">
         <Xwrapper>
-          {elementIds.map((id) => (
+          {planteryElementIds.map(id => (
             <div key={id}>
               <DraggableBox
                 id={id}
-                onDrag={(x, y) => handlePositionChange(id, x, y)}
-                onClick={(e) => handleElementClick(id, e)}
-                className={`element ${id}`}
-                style={{ left: positions[id].x, top: positions[id].y }}
+                onDrag={(x, y) => handlePlanteryPositionChange(id, x, y)}
+                onClick={(e) => handlePlanteryElementClick(id, e)}
+                className={`planetry-element ${id}`}
+                style={{ left: planteryPositions[id].x, top: planteryPositions[id].y }}
               />
             </div>
           ))}
-          {elementIds.slice(1).map((id, index) => (
-            <Xarrow
-              key={id}
-              start={elementIds[index]}
-              end={id}
-              curveness={1.5}
-            />
+          {planteryElementIds.slice(1).map((id, index) => (
+            <Xarrow key={id} start={planteryElementIds[index]} end={id} curveness={1.5} />
           ))}
         </Xwrapper>
         <TaskModal
-          show={showModal}
-          onClose={handleCloseModal}
-          question={modalQuestion}
-          answer={modalAnswer}
-          link={modalLink}
-          position={modalPosition}
+          show={showPlanteryModal}
+          onClose={handlePlanteryCloseModal}
+          question={planteryModalQuestion}
+          answer={planteryModalAnswer}
+          link={planteryModalLink}
+          position={planteryModalPosition}
         />
-
         <PlanetryAnimatedBackground />
       </div>
     </div>
   );
 };
 
-export default PlanetaryPath;
+export default PlanetryPath;
+
+
+export default PlanetryPath;
+
