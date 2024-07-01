@@ -1,9 +1,7 @@
 const mongoose = require("mongoose");
 const DB = process.env.DATABASE;
 mongoose
-  .connect(DB, {
-    serverSelectionTimeoutMS: 15000,
-  })
+  .connect(DB)
   .then(() => {
     console.log("Connection Successful");
   })
