@@ -3,18 +3,18 @@
   padding: 0px;
 }
 .Navbarmaindiv {
-  /* border: 2px solid blue; */
+  border: 2px solid blue;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 10vh;
   position: fixed;
-  width: 100%;
+  top: 0px;
+  width: 100vw;
   background-color: #efe1e1;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   z-index: 2;
-  /* position: relative; */
-  /* margin-bottom: 15vh; */
+ 
 }
 
 .navlogo {

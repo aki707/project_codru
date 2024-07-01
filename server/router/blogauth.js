@@ -5,6 +5,7 @@ const User = require("../models/userSchema");
 
 // CREATING THE BLOG BY USER
 router.post("/blogs", async (req, res) => {
+  console.log("chal gaya");
   try {
     const { title, content, username, userphoto } = req.body;
     if (!title || !content || !username || !userphoto) {

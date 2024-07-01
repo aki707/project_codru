@@ -7,7 +7,6 @@ const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
 const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
-const socketIo = require("socket.io");
 
 router.use(express.json());
 router.use(bodyParser.json());
@@ -31,6 +30,8 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+
+
 router.post("/register", async (req, res) => {
   const {
     photo,
@@ -50,10 +51,8 @@ router.post("/register", async (req, res) => {
     !name ||
     !email ||
     !password ||
-    !cpassword ||
-    !phone ||
+    !cpassword || 
     !username ||
-    !dob ||
     !role
   ) {
     return res.status(400).json({ error: "Empty field(s)." });
@@ -67,10 +66,9 @@ router.post("/register", async (req, res) => {
   // }
 
   try {
-    const emailExist = await User.findOne({ email: email });
     const usernameExist = await User.findOne({ username: username });
 
-    if (emailExist || usernameExist) {
+    if (usernameExist) {
       return res.status(401).json({ error: "User already exists." });
     } else if (password != cpassword) {
       return res.status(402).json({ error: "Passwords didn't match." });
@@ -121,6 +119,7 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/signin", async (req, res) => {
+
   try {
     const { username, password } = req.body;
     if (!username || !password) {
