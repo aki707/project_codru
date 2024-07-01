@@ -56,7 +56,7 @@ app.post("/contactus", (req, res) => {
     replyTo: email,
     to: process.env.EMAIL,
     subject: `Contact form submission from ${name}`,
-    text: `
+    text: ` 
       Name: ${name}
       Email: ${email}
       City: ${city}

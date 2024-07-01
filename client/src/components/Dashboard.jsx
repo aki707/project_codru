@@ -39,7 +39,8 @@ const Dashboard = () => {
           { text: 'Dashboard', icon: <DashboardIcon /> },
           { text: 'Profile', icon: <PersonIcon /> },
           { text: 'Settings', icon: <SettingsIcon /> },
-          { text: 'Logout', icon: <ExitToAppIcon /> }
+          { text: 'Logout', icon: <ExitToAppIcon /> },
+          
         ].map((item) => (
           <ListItem button key={item.text}>
             <ListItemIcon>{item.icon}</ListItemIcon>
@@ -69,6 +70,8 @@ const Dashboard = () => {
         </div>
 
         <div className='rightSectionDashboard'>
+          <h1 className='rightSectionHeadingDashboard'>Welcome Aaryan Vijayvargiya</h1>
+          <div className='rightSectionDashboard1'>
           <div className='calenderSectionDashboard'>
             <Calendar
               localizer={localizer}
@@ -105,7 +108,9 @@ const Dashboard = () => {
             
             <EventBoxes events={events} />
           </div>
-        </div>
+ 
+          </div>
+                 </div>
       </div>
     );
 };
