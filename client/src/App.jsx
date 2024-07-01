@@ -23,6 +23,7 @@ import Admin from "./components/Admin.jsx";
 import Custom from "./components/Custom.jsx";
 import Dashboard from "./components/Dashboard";
 import TaskForm from "./components/TaskForm.jsx";
+import EventBoxes from "./components/EventBoxes.jsx";
 // import FinalBuy from "./components/FinalBuy.jsx";
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
       <Route path="/form" Component={Form} />
       <Route path="/popup" Component={Popup} />
       <Route path="/courses" Component={Courses} />
-      
+
       <Route path="/contact" Component={Contact} />
       <Route path="/course-register" Component={Admission} />
       <Route path="/About" Component={About} />
@@ -53,6 +54,7 @@ function App() {
       <Route path="/buy" Component={Buy} />
       <Route path="/admin" element={<Admin />} />
       <Route path="/add-task/:username" Component={TaskForm} />
+      <Route path="/events" Component={EventBoxes} />
       {/* <Route path="/finalBuy" Component={FinalBuy} /> */}
 
       {/* <Route path='/buy' Component={Buy}/> */}
