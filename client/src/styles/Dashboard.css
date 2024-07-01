@@ -1,175 +1,190 @@
 .mainDashboard {
-    display: flex;
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-  }
-  
-  /* Left Section Styles */
-  .leftSectionDashboard {
-    width: 15%;
-    background-color: #f0f0f0;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-  }
-  
-  .leftSectionDashboard img {
-    width: 100%;
-    margin-bottom: 20px;
-    /* border: 1px solid grey; */
-  }
-  
-  .photoDashboard {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-    height: 30vh;
-  }
-  
-  .pDashboard{
-    width: 100%; 
-    height: 100%; 
-    border-radius: 50%; 
-    border: 2px solid black; 
-    margin-left: 10px; 
-    margin-top:7px; 
-    
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 }
-  
 
-  
-  .drawerContent {
-    margin-top: 20px;
-  }
-  
-  .drawerContent .MuiListItem-root {
-    padding-left: 0;
-  }
-  
-  .drawerContent .MuiListItemIcon-root {
-    min-width: 40px;
-  }
-  
-  /* Right Section Styles */
-  .rightSectionDashboard {
-   
-    display: flex;
-    flex-direction: row;
-    align-items: end;
-    justify-content: space-between;
-    height:100%;
-    width: 80%;
-   
-  }
-  
-  .calenderSectionDashboard {
-     height: 80%;
-     width: 70%;
-     border: 1px solid grey;
-     margin-left: 20px;
-     border-radius: 2%;
+/* Left Section Styles */
+.leftSectionDashboard {
+  width: 15%;
+  background-color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
 
-  }
+.leftSectionDashboard img {
+  width: 100%;
+  margin-bottom: 20px;
+  /* border: 1px solid grey; */
+}
+
+.photoDashboard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  height: 30vh;
+}
+
+.pDashboard{
+  width: 100%; 
+  height: 100%; 
+  border-radius: 50%; 
+  border: 2px solid black; 
+  margin-left: 10px; 
+  margin-top:7px; 
   
-  .eventSectionDashboard {
-   height: 80%;
-   width: 25%;
+}
+
+
+
+.drawerContent {
+  margin-top: 20px;
+}
+
+.drawerContent .MuiListItem-root {
+  padding-left: 0;
+}
+
+.drawerContent .MuiListItemIcon-root {
+  min-width: 40px;
+}
+
+/* Right Section Styles */
+.rightSectionDashboard {
+ 
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+  height:100%;
+  width: 80%;
+ 
+}
+
+.rightSectionHeadingDashboard{
+  margin: 2px;
+}
+
+.rightSectionDashboard1{
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: space-evenly;
+  height:80%;
+  width: 100%;
+  /* border: 2px solid red; */
+
+}
+
+.calenderSectionDashboard {
+   height: 100%;
+   width: 70%;
    border: 1px solid grey;
    border-radius: 5%;
-   overflow-y: scroll;
+ 
+
+}
+
+.eventSectionDashboard {
+ height: 100%;
+ width: 25%;
+ border: 1px solid grey;
+ border-radius: 5%;
+ overflow-y: scroll;
+}
+
+.eventForm {
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.eventForm input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.eventForm button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.eventForm button:hover {
+  background-color: #45a049;
+}
+
+.eventBoxesContainer {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+/* Scrollbar Styling */
+.eventBoxesContainer::-webkit-scrollbar {
+  width: 8px;
+}
+
+.eventBoxesContainer::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.eventBoxesContainer::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.eventBoxesContainer::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Calendar Styles */
+.calenderSectionDashboard .rbc-calendar {
+  height: 100%;
+}
+
+.calenderSectionDashboard .rbc-header {
+  padding: 10px 3px;
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+.calenderSectionDashboard .rbc-event {
+  background-color: #3174ad;
+  border-radius: 3px;
+}
+
+.calenderSectionDashboard .rbc-today {
+  background-color: #eaf6ff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .mainDashboard {
+    flex-direction: column;
   }
-  
-  .eventForm {
-    padding: 20px;
-    background-color: #f8f8f8;
-    border-bottom: 1px solid #e0e0e0;
-  }
-  
-  .eventForm input {
+
+  .leftSectionDashboard {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    height: auto;
   }
-  
-  .eventForm button {
+
+  .rightSectionDashboard {
+    flex-direction: column;
+  }
+
+  .calenderSectionDashboard, .eventSectionDashboard {
     width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
   }
-  
-  .eventForm button:hover {
-    background-color: #45a049;
-  }
-  
-  .eventBoxesContainer {
-    flex-grow: 1;
-    overflow-y: auto;
-    padding: 20px;
-  }
-  
-  /* Scrollbar Styling */
-  .eventBoxesContainer::-webkit-scrollbar {
-    width: 8px;
-  }
-  
-  .eventBoxesContainer::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-  
-  .eventBoxesContainer::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 4px;
-  }
-  
-  .eventBoxesContainer::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
-  
-  /* Calendar Styles */
-  .calenderSectionDashboard .rbc-calendar {
-    height: 100%;
-  }
-  
-  .calenderSectionDashboard .rbc-header {
-    padding: 10px 3px;
-    background-color: #f0f0f0;
-    font-weight: bold;
-  }
-  
-  .calenderSectionDashboard .rbc-event {
-    background-color: #3174ad;
-    border-radius: 3px;
-  }
-  
-  .calenderSectionDashboard .rbc-today {
-    background-color: #eaf6ff;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .mainDashboard {
-      flex-direction: column;
-    }
-  
-    .leftSectionDashboard {
-      width: 100%;
-      height: auto;
-    }
-  
-    .rightSectionDashboard {
-      flex-direction: column;
-    }
-  
-    .calenderSectionDashboard, .eventSectionDashboard {
-      width: 100%;
-    }
-  }
+}

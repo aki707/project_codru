@@ -1,17 +1,17 @@
-.Pscroll-container {
+/* .Pscroll-container {
   height: 100vh;
-  overflow-y: hidden; /* Hide the default vertical scrollbar */
+  overflow-y: hidden;
   position: relative;
 }
 
 .Pscroll-content {
   height: 100%;
-  width: 6000px; /* Adjust width based on content */
+  width: 6000px;
   position: relative;
-  display: flex; /* Ensure children are arranged in a row */
+  display: flex; 
 }
 
 .element {
-  width: 100px; /* Adjust the width as necessary */
-  height: 100px; /* Adjust the height as necessary */
-}
+  width: 100px;
+  height: 100px;
+} */
