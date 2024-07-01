@@ -28,6 +28,7 @@ app.use(express.static(path.join(__dirname, "public")));
 require("./db/conn.js");
 const User = require("./models/userSchema");
 app.use(require("./router/userauth.js"));
+app.use(require("./router/blogauth.js"));
 
 let notifications = {};
 
