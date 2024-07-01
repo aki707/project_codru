@@ -1,4 +1,3 @@
-
 import React, { useRef, useEffect, useState } from 'react';
 import Draggable from 'react-draggable';
 import { useXarrow } from 'react-xarrows';
@@ -8,8 +7,8 @@ const DraggableBox = ({ id, style, onDrag, onClick }) => {
   const updateXarrow = useXarrow();
   const [position, setPosition] = useState({ x: style.left || 0, y: style.top || 0 });
   const [bounds, setBounds] = useState({ top: 0, bottom: window.innerHeight - 100 });
-  const [backgroundColor, setBackgroundColor] = useState(getRandomColor());
-  const [size, setSize] = useState(getRandomSize());
+  const [backgroundColor, setBackgroundColor] = useState(getRandomDraggableColor());
+  const [size, setSize] = useState(getRandomDraggableSize());
 
   useEffect(() => {
     const handleResize = () => {
@@ -38,7 +37,7 @@ const DraggableBox = ({ id, style, onDrag, onClick }) => {
     }
   };
 
-  function getRandomColor() {
+  function getRandomDraggableColor() {
     const letters = '0123456789ABCDEF';
     let color = '#';
     for (let i = 0; i < 6; i++) {
@@ -47,14 +46,14 @@ const DraggableBox = ({ id, style, onDrag, onClick }) => {
     return color;
   }
 
-  function getRandomSize() {
+  function getRandomDraggableSize() {
     const minSize = 100; // Minimum size value
     const maxSize = 200; // Maximum size value
     const size = Math.floor(Math.random() * (maxSize - minSize + 1)) + minSize;
     return { width: `${size}px`, height: `${size}px` };
   }
 
-  const defaultPlanetStyle = {
+  const defaultDraggableStyle = {
     border: `5px solid ${backgroundColor}`, // Border color based on background color
     textAlign: 'center',
     color: '#FFFFFF', // White text color
@@ -79,7 +78,7 @@ const DraggableBox = ({ id, style, onDrag, onClick }) => {
       onStop={handleStop}
       nodeRef={boxRef}
     >
-      <div ref={boxRef} id={id} style={{ ...defaultPlanetStyle, ...style }} onClick={onClick}>
+      <div ref={boxRef} id={id} style={{ ...defaultDraggableStyle, ...style }} onClick={onClick}>
         {id}
       </div>
     </Draggable>
@@ -104,3 +103,4 @@ styleElement.textContent = styles;
 document.head.appendChild(styleElement);
 
 export default DraggableBox;
+
