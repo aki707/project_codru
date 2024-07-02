@@ -7,7 +7,7 @@ const TaskModal = ({ show, onClose, question, answer, link, position }) => {
   }
 
   // Calculate modal position considering scroll and viewport dimensions
-  const calculateModalPosition = () => {
+  const calculateTaskModalPosition = () => {
     const modalWidth = 400; // Adjust according to your modal's width
     const modalHeight = 300; // Adjust according to your modal's height
     const { x, y } = position;
@@ -34,15 +34,15 @@ const TaskModal = ({ show, onClose, question, answer, link, position }) => {
 
   const modalStyle = {
     position: 'fixed',
-    top: calculateModalPosition().top + 'px',
-    left: calculateModalPosition().left + 'px',
+    top: calculateTaskModalPosition().top + 'px',
+    left: calculateTaskModalPosition().left + 'px',
     transform: 'translate(-50%, -50%)',
     zIndex: 1000,
   };
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" style={modalStyle} onClick={(e) => e.stopPropagation()}>
+    <div className="task-modal-overlay" onClick={onClose}>
+      <div className="task-modal-content" style={modalStyle} onClick={(e) => e.stopPropagation()}>
         <button onClick={onClose}>Close</button>
         <h2>Task Details</h2>
         <h3>{question}</h3>
@@ -54,3 +54,4 @@ const TaskModal = ({ show, onClose, question, answer, link, position }) => {
 };
 
 export default TaskModal;
+

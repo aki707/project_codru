@@ -1,10 +1,24 @@
+<<<<<<< HEAD
 /* body {
     background-color: #000;
     
   }
+=======
+>>>>>>> 9242d142d98939db7cab478abf3eabc0e7c61e27
 
-  .main {
-    position: fixed ;
+
+   .planetry-animated-background {
+    background-color: #000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+  }
+  
+  .planetry-main {
+    position: fixed;
     top: 50%;
     left: 50%;
     height: 1px;
@@ -23,11 +37,10 @@
                 -17vw 45vh 3px 1px #fff,
                 22vw -36vh 3px 2px #fff,
                 -42vw 1vh 1px 0px #fff;
-                
-    animation: zoom 10s alternate infinite;
+    animation: planetry-zoom 10s alternate infinite;
   }
   
-  @keyframes zoom {
+  @keyframes planetry-zoom {
     0% {
       transform: scale(1);
     }
@@ -36,7 +49,10 @@
     }
   }
   
+<<<<<<< HEAD
 
 
 
  */
+=======
+>>>>>>> 9242d142d98939db7cab478abf3eabc0e7c61e27

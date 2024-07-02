@@ -36,7 +36,7 @@ function Courses() {
       <h1 style={{color: "white", marginLeft: "55px", marginTop: "20px", fontFamily:"cursive"}}>Start Your 5 Days Free Demo....</h1>
       <img src={demo} alt="" style={{width:"15vw", height:"25vh", marginLeft:"282px"}} ></img>
       <h3>Dive into a world of knowledge <br /> conveniently from your device,<br /> shaping your future at your pace.</h3>
-      <NavLink to='/form'><button className="demoEnroll">Enroll Now</button></NavLink>
+      <NavLink to='/form'><button className="demoEnroll">Start Now</button></NavLink>
     </div>
     </div>
     {/* <div className="mainCourses"></div> */}
