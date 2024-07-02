@@ -12,7 +12,7 @@
   top: 100%;
   overflow: hidden;
   border: 1px solid #ddd;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
 }
 
 .notification-panel h3 {
@@ -41,10 +41,9 @@
   position: relative;
 }
 
-
 .notification-panel ul li.fade-out {
   opacity: 0;
-  transition: transform 0.5s ease, opacity 0.5s ease; 
+  transition: transform 0.5s ease, opacity 0.5s ease;
   transform: translateX(-100%);
 }
 
@@ -106,5 +105,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%; 
+  height: 100%;
+}
+
+/* Notification.css */
+.notification-panel {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.notification-item {
+  transition: opacity 0.5s ease-out;
+}
+
+.notification-item.fade-out {
+  opacity: 0;
 }

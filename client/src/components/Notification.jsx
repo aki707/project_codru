@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import io from "socket.io-client";
 import "../styles/Notification.css";
 import "../styles/Spinner.css";
 
 const username = "GK";
 
-const Notification = () => {
+const Notification = ({ closeNotification }) => {
   const [notifications, setNotifications] = useState([]);
   const [dismissing, setDismissing] = useState([]);
   const [error, setError] = useState(null);
@@ -84,6 +84,20 @@ const Notification = () => {
       );
     }, 500);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const notificationPanel = document.querySelector(".notification-panel");
+      if (notificationPanel && !notificationPanel.contains(event.target)) {
+        closeNotification();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [closeNotification]);
 
   return (
     <div className="notification-panel">

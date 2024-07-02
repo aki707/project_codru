@@ -17,6 +17,9 @@ function Navbar() {
 
   const Showprofile = () => {
     setShowprofile(!showprofile);
+    if (showNotifications) {
+      setShowNotifications(false);
+    }
   };
 
   const toggleLinks = () => {
@@ -25,6 +28,16 @@ function Navbar() {
 
   const toggleNotifications = () => {
     setShowNotifications(!showNotifications);
+    if (showprofile) {
+      setShowprofile(false);
+    }
+  };
+
+  const closeNotification = () => {
+    setShowNotifications(false);
+  };
+  const closeNavprofile = () => {
+    setShowprofile(false);
   };
   const toggleDashboard = () => {
     setShowDashboard(!showDashboard);
@@ -102,15 +115,16 @@ function Navbar() {
         )}
       </div>
       {showprofile && localStorage.getItem("Token") ? (
-        <Navprofile setShowprofile={setShowprofile} showprofile={showprofile} />
+        <Navprofile
+          setShowprofile={setShowprofile}
+          showprofile={showprofile}
+          closeNavprofile={closeNavprofile}
+        />
       ) : (
         ""
       )}
       {showNotifications && localStorage.getItem("Token") ? (
-        <Notification
-          setShowNotifications={setShowNotifications}
-          showNotifications={showNotifications}
-        />
+        <Notification closeNotification={closeNotification} />
       ) : (
         ""
       )}

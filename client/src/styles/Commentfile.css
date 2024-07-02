@@ -107,3 +107,169 @@
   background-color: transparent;
   margin-left: 20px;
 }
+
+.commentpagemaindiv {
+  /* border: 2px solid red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  margin: 5vh 0vh;
+  margin-top: 1vh;
+}
+
+.commentpagemaindivdiv1 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-width: 100%;
+  margin-left: 1vw;
+  margin-top: 1vh;
+}
+.commentpagemaindivdiv1 > div:first-child {
+  width: 60%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.commentpagemaindivdiv1 > div:first-child > img {
+  width: 5%;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+.commentpagemaindivdiv1 > div:first-child > input {
+  width: 90%;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  padding: 1vh;
+  margin-left: 1vw;
+  /* margin-bottom: -4vh; */
+}
+.addcommentbtndiv {
+  /* border: 2px solid blue; */
+  width: 40%;
+  display: flex;
+  justify-content: center;
+}
+.addcommentbtndiv > button {
+  width: 30%;
+  background-color: transparent;
+  color: black;
+  font-size: 1vw;
+  padding: 1.5vh;
+  border-radius: 1vh;
+  border: none;
+  margin: 0vh 1vw;
+  cursor: pointer;
+
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  background-color: #d61e3f;
+  color: white;
+}
+
+.Commentcomponent {
+  margin: 10px 0;
+  display: flex;
+  align-items: flex-start;
+}
+
+.NestedComment {
+  margin-left: 20px;
+}
+
+.Userphoto img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.UserComments {
+  margin-left: 10px;
+  flex-grow: 1;
+  /* border: 2px solid blue; */
+}
+.Usercomment {
+  /* border: 2px solid green; */
+}
+.Usercomment > form {
+  /* border: 2px solid blue; */
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.Usercomment > form > input {
+  width: 50%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+.Usercomment > form > div {
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.Usercomment > form > div > button {
+  border: 2px solid blue;
+  width: 40%;
+  padding: 1vh;
+  background-color: red;
+  font-size: 1vw;
+  border-radius: 1vh 1vh;
+}
+
+.Usercomment h3 {
+  margin: 0;
+  font-size: 14px;
+}
+
+.Usercomment span {
+  font-size: 1.1vw;
+  /* word-break: break-all; */
+  word-wrap: break-word;
+}
+
+.Userreplylike {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.Userreplylike span {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.commentreplyfield {
+  margin-top: 10px;
+}
+
+.commentreplyfield textarea {
+  width: 100%;
+  height: 50px;
+}
+
+.commentreplyfield div {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+.addcommentbtndiv {
+  margin-top: 10px;
+}
+
+.input-field {
+  border: none;
+  border-bottom: 2px solid #000;
+  outline: none;
+  padding: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}

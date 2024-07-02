@@ -170,8 +170,6 @@ const Dashboard = () => {
             <EventBoxes events={events} />
           </div>
         </div>
-        </div>
-        
       </div>
     </div>
   );
