@@ -159,10 +159,15 @@ const PlanetaryPath = () => {
             <div key={`task${task.week}`}>
               <DraggableBox
                 id={`task${task.week}`}
-                onDrag={(x, y) => handlePositionChange(`task${task.week}`, x, y)}
+                onDrag={(x, y) =>
+                  handlePositionChange(`task${task.week}`, x, y)
+                }
                 onClick={(e) => handleElementClick(`task${task.week}`, e)}
                 className={`element task${task.week}`}
-                style={{ left: positions[`task${task.week}`]?.x, top: positions[`task${task.week}`]?.y }}
+                style={{
+                  left: positions[`task${task.week}`]?.x,
+                  top: positions[`task${task.week}`]?.y,
+                }}
               />
             </div>
           ))}

@@ -1,17 +1,18 @@
-/* .Pscroll-container {
+
+.planetry-scroll-container {
   height: 100vh;
   overflow-y: hidden;
   position: relative;
 }
 
-.Pscroll-content {
+.planetry-scroll-content {
   height: 100%;
-  width: 6000px;
+  width: 3000px;
   position: relative;
-  display: flex; 
+  display: flex;
 }
 
-.element {
+.planetry-element {
   width: 100px;
   height: 100px;
-} */
+}
