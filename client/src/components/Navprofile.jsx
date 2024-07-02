@@ -8,8 +8,9 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
 import Muialert from "./Muialert";
+import { useEffect } from "react";
 
-function Navprofile({ setShowprofile, showprofile }) {
+function Navprofile({ setShowprofile, showprofile, closeNavprofile }) {
   const [showAlert, setShowAlert] = useState(false); // State to control alert visibility
   const [alertMessage, setAlertMessage] = useState(""); // State to store alert message
   const navigate = useNavigate();
@@ -76,6 +77,20 @@ function Navprofile({ setShowprofile, showprofile }) {
   const handleCloseAlert = () => {
     setShowAlert(false);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const notificationPanel = document.querySelector(".Navprofilemaindiv");
+      if (notificationPanel && !notificationPanel.contains(event.target)) {
+        closeNavprofile();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [closeNavprofile]);
 
   return (
     <div className="Navprofilemaindiv">
