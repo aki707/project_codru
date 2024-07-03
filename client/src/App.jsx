@@ -25,7 +25,7 @@ import Admin from "./components/Admin.jsx";
 // import Profile from "./components/Profile";
 import TaskForm from "./components/TaskForm.jsx";
 import EventBoxes from "./components/EventBoxes.jsx";
-import PlanetaryPath from "./components/PlanetaryPath.jsx";
+import PlanetaryPath from "./components/PlanetryPath.jsx";
 import FinalBuy from "./components/FinalBuy.jsx";
 
 function App() {

@@ -10,10 +10,7 @@ import GoogleIcon from "../assets/google.svg";
 import FacebookIcon from "../assets/facebook-color.svg";
 import MicrosoftIcon from "../assets/microsoft.svg";
 import { useNavigate } from "react-router-dom";
-import SignInAnim from './SignInAnim';
-
-
-
+import SignInAnim from "./SignInAnim";
 
 function Signin() {
   const [showAlert, setShowAlert] = useState(false); // State to control alert visibility
@@ -54,6 +51,7 @@ function Signin() {
       localStorage.setItem("Photo", jsonresponse.photo);
       localStorage.setItem("Username", jsonresponse.username);
       localStorage.setItem("Name", jsonresponse.name);
+      localStorage.setItem("Role", jsonresponse.role);
       navigate("/");
     } else {
       console.error("Failed to Sign In");
@@ -98,7 +96,6 @@ function Signin() {
     <div className="signindiv">
       <div className="signindiv1">
         <div className="img">
-          
           <SignInAnim />
         </div>
 
@@ -147,7 +144,7 @@ function Signin() {
             color="primary"
             className="signinnormal"
             onClick={PostData}
-            sx={{width: '150px'}}
+            sx={{ width: "150px" }}
           >
             Sign in
           </Button>

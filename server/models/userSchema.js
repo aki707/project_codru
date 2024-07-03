@@ -37,12 +37,12 @@ const userSchema = new mongoose.Schema(
       default: "",
     },
 
-    role: {
-      type: String,
-      default: "",
+    declaration: {
+      type: Boolean,
+      default: false,
     },
 
-    declaration: {
+    isAdmin: {
       type: Boolean,
       default: false,
     },

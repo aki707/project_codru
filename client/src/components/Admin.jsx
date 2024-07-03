@@ -9,10 +9,35 @@ import { useNavigate } from "react-router-dom";
 import "../styles/Admin.css";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AssignmentIcon from "@mui/icons-material/Assignment";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+import { Dialog, DialogContent, Alert, Snackbar } from "@mui/material";
+import { MuiOtpInput } from "mui-one-time-password-input";
+
+function matchIsString(text) {
+  return typeof text === "string";
+}
+
+function matchIsNumeric(text) {
+  const isNumber = typeof text === "number";
+  const isString = matchIsString(text);
+  return (isNumber || (isString && text !== "")) && !isNaN(Number(text));
+}
+
+const validateChar = (value, index) => {
+  return matchIsNumeric(value);
+};
 
 export default function Admin() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState({ otp: "" });
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertSeverity, setAlertSeverity] = useState("info");
+  const [showAlert, setShowAlert] = useState(false);
+  const [currentUsername, setCurrentUsername] = useState("");
+  const [waitingAlert, setWaitingAlert] = useState(false); // State for waiting alert
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,6 +57,7 @@ export default function Admin() {
           phone: user.phone,
           role: user.role,
           photo: user.photo,
+          isAdmin: user.isAdmin,
         }));
 
         setUsers(mappedData);
@@ -67,13 +93,98 @@ export default function Admin() {
       }
       const updatedUsers = users.filter((user) => user.id !== id);
       setUsers(updatedUsers);
+      setAlertMessage("User deleted successfully");
+      setAlertSeverity("success");
+      setShowAlert(true);
     } catch (error) {
       console.error("Error deleting user:", error);
+      setAlertMessage("Failed to delete user");
+      setAlertSeverity("error");
+      setShowAlert(true);
     }
   };
 
   const handleAssignTask = (username) => {
     navigate(`/add-task/${username}`);
+  };
+
+  const handleBro = async (username, isAdmin) => {
+    try {
+      setWaitingAlert(true); // Show waiting alert
+      const response = await fetch(`/api/generate-otp-bro`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: username,
+          isAdmin: isAdmin,
+        }),
+      });
+      setWaitingAlert(false); // Hide waiting alert
+      if (response.ok) {
+        console.log("Success");
+        setCurrentUsername(username);
+        setOpen(true);
+        setValue((prevValue) => ({ ...prevValue, otp: "" }));
+      } else {
+        console.error("Retry");
+        setAlertMessage("Failed to generate OTP");
+        setAlertSeverity("error");
+        setShowAlert(true);
+      }
+    } catch (error) {
+      setWaitingAlert(false); // Hide waiting alert in case of error
+      console.error("Error: ", error);
+      setAlertMessage("Error occurred while generating OTP");
+      setAlertSeverity("error");
+      setShowAlert(true);
+    }
+  };
+
+  const handleOtpVerification = async (username, finalValue) => {
+    console.log(finalValue);
+
+    const res = await fetch("/api/verify-bigbro", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username: username, otp: finalValue }),
+    });
+
+    if (res.ok) {
+      const jsonresponse = await res.json();
+      console.log("OTP verified successfully");
+      setValue((prevValue) => ({
+        ...prevValue,
+        isEmailVerified: true,
+      }));
+      setOpen(false);
+      setAlertMessage(jsonresponse.message);
+      setAlertSeverity("success");
+      setShowAlert(true);
+      window.location.reload(false);
+    } else {
+      const jsonresponse = await res.json();
+      setAlertMessage(jsonresponse.error);
+      setAlertSeverity("error");
+      setShowAlert(true);
+      console.error("Failed to verify OTP");
+    }
+  };
+
+  const handleCloseAlert = () => {
+    setShowAlert(false);
+  };
+
+  const handleOtpChange = (otp) => {
+    setValue((prevValue) => ({
+      ...prevValue,
+      otp: otp,
+    }));
+  };
+
+  const handleComplete = (finalValue) => {
+    handleOtpVerification(currentUsername, finalValue);
   };
 
   const columns = [
@@ -102,20 +213,11 @@ export default function Admin() {
       headerName: "Role",
       flex: 1,
     },
-    // {
-    //   field: "photo",
-    //   headerName: "Photo",
-    //   flex: 1,
-    //   renderCell: (params) => (
-    //     <div className="admin-user-photo-container">
-    //       <img
-    //         src={params.value}
-    //         className="admin-user-photo"
-    //         alt="User Photo"
-    //       />
-    //     </div>
-    //   ),
-    // },
+    {
+      field: "isAdmin",
+      headerName: "Is Admin?",
+      flex: 1,
+    },
     {
       field: "actions",
       headerName: "Actions",
@@ -131,12 +233,29 @@ export default function Admin() {
               <AssignmentIcon fontSize="medium" />
             </button>
           )}
+          {params.row.isAdmin === true ? (
+            <button
+              onClick={() => handleBro(params.row.username, params.row.isAdmin)}
+              className="remove-admin-button"
+              title="Revoke Admin Privileges"
+            >
+              <RemoveCircleIcon fontSize="medium" />
+            </button>
+          ) : (
+            <button
+              onClick={() => handleBro(params.row.username, params.row.isAdmin)}
+              className="make-admin-button"
+              title="Grant Admin Privileges"
+            >
+              <AddCircleIcon fontSize="medium" />
+            </button>
+          )}
           <button
             onClick={() =>
               handleDelete(params.row.id, params.row.username, params.row.role)
             }
             className="delete-button"
-            title="Delete"
+            title="Delete User"
           >
             <DeleteIcon fontSize="medium" />
           </button>
@@ -169,6 +288,69 @@ export default function Admin() {
         }}
         ignoreDiacritics
       />
+
+      <Dialog
+        open={open}
+        onClose={(event, reason) => {
+          if (reason !== "backdropClick") {
+            setOpen(false);
+          }
+        }}
+        BackdropProps={{
+          style: {
+            backgroundColor: "rgba(0, 0, 0, 0.7)",
+          },
+        }}
+        PaperProps={{
+          style: {
+            padding: "20px",
+            borderRadius: "10px",
+          },
+        }}
+      >
+        <DialogContent>
+          <MuiOtpInput
+            length={4}
+            autoFocus
+            onComplete={handleComplete}
+            value={value.otp}
+            onChange={handleOtpChange}
+            display="flex"
+            gap={3}
+            validateChar={validateChar}
+            TextFieldsProps={{
+              style: { width: "50px", height: "50px" },
+              placeholder: "-",
+            }}
+          />
+        </DialogContent>
+      </Dialog>
+      <Snackbar
+        open={showAlert}
+        autoHideDuration={6000}
+        onClose={handleCloseAlert}
+      >
+        <Alert
+          onClose={handleCloseAlert}
+          severity={alertSeverity}
+          sx={{ width: "100%" }}
+        >
+          {alertMessage}
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={waitingAlert}
+        autoHideDuration={6000}
+        onClose={() => setWaitingAlert(false)}
+      >
+        <Alert
+          onClose={() => setWaitingAlert(false)}
+          severity="info"
+          sx={{ width: "100%" }}
+        >
+          Please wait...
+        </Alert>
+      </Snackbar>
     </div>
   );
 }

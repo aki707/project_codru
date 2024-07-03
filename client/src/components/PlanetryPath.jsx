@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import DraggableBox from "./DraggableBox";
-import PlanetryAnimatedBackground from "./PlanetaryAnimatedBackground";
+import PlanetryAnimatedBackground from "./PlanetryAnimatedBackground";
 import Xarrow, { Xwrapper } from "react-xarrows";
-import "../styles/PlanetaryPath.css";
+import "../styles/PlanetryPath.css";
 import TaskModal from "./TaskModal";
 
-const PlanetaryPath = () => {
-  const numElements = 48;
+const PlanetryPath = () => {
   const xIncrement = 220;
   const containerHeight = window.innerHeight - 200; // Adjusting for element height and some margin
 
@@ -152,8 +151,8 @@ const PlanetaryPath = () => {
   }, []);
 
   return (
-    <div className="Pscroll-container" ref={scrollContainerRef}>
-      <div className="Pscroll-content">
+    <div className="planetry-scroll-container" ref={scrollContainerRef}>
+      <div className="planetry-scroll-content">
         <Xwrapper>
           {tasks.map((task) => (
             <div key={`task${task.week}`}>
@@ -194,4 +193,4 @@ const PlanetaryPath = () => {
   );
 };
 
-export default PlanetaryPath;
+export default PlanetryPath;

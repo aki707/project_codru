@@ -152,7 +152,16 @@ app.get("/users", async (req, res) => {
   try {
     const users = await User.find(
       {},
-      { _id: 0, name: 1, username: 1, email: 1, phone: 1, role: 1, photo: 1 }
+      {
+        _id: 0,
+        name: 1,
+        username: 1,
+        email: 1,
+        phone: 1,
+        role: 1,
+        photo: 1,
+        isAdmin: 1,
+      }
     ).lean(); //projection on these fields
     res.json(users);
   } catch (error) {
@@ -193,6 +202,68 @@ app.delete("/user/:username", async (req, res) => {
     return res.status(500).json({ error: "Internal server error." });
   }
 });
+
+app.post("/generate-otp-bro", async (req, res) => {
+  try {
+    const { username, isAdmin } = req.body;
+    otpCode = Math.floor(1000 + Math.random() * 9000).toString();
+    otpTimestamp = Date.now();
+    console.log(otpCode);
+    const user = await User.findOne({ username });
+
+    if (!user) {
+      return res.status(404).send({ message: "User not found" });
+    }
+
+    const s = !isAdmin
+      ? `granting admin privileges to ${user.name}`
+      : `revoking ${user.name}'s admin privileges`;
+
+    const mailOptions = {
+      from: process.env.EMAIL,
+      to: process.env.EMAIL,
+      subject: "ALERT! Admin Toggle Request",
+      text: `Hi there! You recently visited our website and asked for ${s}. Your OTP for verification is ${otpCode}.`,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error("Error sending email:", error);
+        return res.status(500).send({ message: "Failed to send OTP" });
+      } else {
+        res.status(200).send({ message: "OTP sent successfully" });
+      }
+    });
+  } catch (error) {
+    console.error("Error in OTP generation:", error);
+    res.status(500).send({ message: "Server error" });
+  }
+});
+
+app.post("/verify-bigbro", async (req, res) => {
+  try {
+    const { otp, username } = req.body;
+    const currentTime = Date.now();
+    const timeDifference = currentTime - otpTimestamp;
+
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.status(404).send({ message: "User not found" });
+    }
+
+    if (parseInt(otp) === parseInt(otpCode) && timeDifference <= 60000) {
+      user.isAdmin = !user.isAdmin;
+      await user.save();
+      res.status(200).send({ message: "SUCCESS", isAdmin: user.isAdmin });
+    } else {
+      res.status(401).send({ message: "Invalid OTP" });
+    }
+  } catch (error) {
+    console.error("Error in verification:", error);
+    res.status(500).send({ message: "Server error" });
+  }
+});
+
 app.put("/assignTask/:username", async (req, res) => {
   try {
     const user = await User.findOne({ username: req.params.username });
