@@ -27,7 +27,6 @@ router.post("/blogs", async (req, res) => {
 });
 
 //FETCHING ALL BLOGS OF USERS
-// Fetching all blogs of users
 router.post("/blogsdata", async (req, res) => {
   try {
     console.log("pahuch gaya");
@@ -38,7 +37,7 @@ router.post("/blogsdata", async (req, res) => {
 
     const userExist = await User.findOne({ username: username });
     if (userExist) {
-      const blogs = await Blog.find().select(
+      const blogs = await Blog.find({ username: { $ne: username } }).select(
         "title content username userphoto createdAt likes dislikes comments"
       );
       return res.status(200).json({ message: "Success", blogs: blogs });
@@ -63,6 +62,61 @@ router.get("/blogs/:blogId", async (req, res) => {
     }
   } catch (err) {
     res.status(500).json({ error: err.message });
+  }
+});
+
+//save blog in userschema
+router.post("/blog/saveblog", async (req, res) => {
+  try {
+    const { blogId, username } = req.body;
+
+    const userExist = await User.findOne({ username: username });
+    if (!userExist) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    const blog = await Blog.findById(blogId);
+    if (!blog) {
+      return res.status(404).json({ message: "Blog not found" });
+    }
+
+    if (!userExist.savedBlogs.includes(blogId)) {
+      userExist.savedBlogs.push(blogId);
+      await userExist.save();
+      return res
+        .status(200)
+        .json({ message: "Blog saved successfully", user: userExist });
+    } else {
+      return res.status(400).json({ message: "Blog is already saved" });
+    }
+  } catch (error) {
+    console.error("There was a problem with the save operation:", error);
+    return res.status(500).json({ message: "Server error", error });
+  }
+});
+
+// Unsave blog endpoint
+router.post("/blog/unsaveblog", async (req, res) => {
+  try {
+    const { blogId, username } = req.body;
+    const userExist = await User.findOne({ username: username });
+    if (!userExist) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    if (userExist.savedBlogs.includes(blogId)) {
+      userExist.savedBlogs = userExist.savedBlogs.filter(
+        (id) => id.toString() !== blogId
+      );
+      await userExist.save();
+      return res
+        .status(200)
+        .json({ message: "Blog unsaved successfully", user: userExist });
+    } else {
+      return res.status(400).json({ message: "Blog is not saved" });
+    }
+  } catch (error) {
+    console.error("There was a problem with the unsave operation:", error);
+    return res.status(500).json({ message: "Server error", error });
   }
 });
 

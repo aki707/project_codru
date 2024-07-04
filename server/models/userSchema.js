@@ -36,6 +36,11 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    savedBlogs: [
+      {
+        type: String,
+      },
+    ],
 
     role: {
       type: String,

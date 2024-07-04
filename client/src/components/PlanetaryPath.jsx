@@ -1,47 +1,82 @@
-import React, { useState, useEffect, useRef } from 'react';
-import DraggableBox from './DraggableBox';
-import PlanetryAnimatedBackground from './PlanetryAnimatedBackground';
-import Xarrow, { Xwrapper } from 'react-xarrows';
-import '../styles/PlanetryPath.css'; // Updated import for CSS
-import TaskModal from './TaskModal';
+import { useState, useEffect, useRef } from "react";
+import DraggableBox from "./DraggableBox";
+// import PlanetryAnimatedBackground from "./PlanetryAnimatedBackground";
+import Xarrow, { Xwrapper } from "react-xarrows";
+//import "../styles/PlanetryPath.css"; // Updated import for CSS
+import TaskModal from "./TaskModal";
 
 const PlanetryPath = () => {
   const numPlanteryElements = 48;
-  const planteryElementIds = Array.from({ length: numPlanteryElements }, (_, i) => `elem${i + 1}`);
+  const planteryElementIds = Array.from(
+    { length: numPlanteryElements },
+    (_, i) => `elem${i + 1}`
+  );
   const planteryXIncrement = 220;
   const planteryContainerHeight = window.innerHeight - 200; // Adjusting for element height and some margin
 
   const generatePlanteryRandomYPosition = () => {
     const planteryMinY = 50; // Minimum y position
     const planteryMaxY = planteryContainerHeight - 450; // Adjusted to prevent overflow
-    return Math.floor(Math.random() * (planteryMaxY - planteryMinY + 1)) + planteryMinY;
+    return (
+      Math.floor(Math.random() * (planteryMaxY - planteryMinY + 1)) +
+      planteryMinY
+    );
   };
 
-  const planteryDefaultPositions = planteryElementIds.reduce((acc, id, index) => {
-    const planteryX = 50 + index * planteryXIncrement;
-    const planteryY = generatePlanteryRandomYPosition();
-    acc[id] = { x: planteryX, y: planteryY };
-    return acc;
-  }, {});
+  const planteryDefaultPositions = planteryElementIds.reduce(
+    (acc, id, index) => {
+      const planteryX = 50 + index * planteryXIncrement;
+      const planteryY = generatePlanteryRandomYPosition();
+      acc[id] = { x: planteryX, y: planteryY };
+      return acc;
+    },
+    {}
+  );
 
-  const [planteryPositions, setPlanteryPositions] = useState(planteryDefaultPositions);
+  const [planteryPositions, setPlanteryPositions] = useState(
+    planteryDefaultPositions
+  );
   const [showPlanteryModal, setShowPlanteryModal] = useState(false);
-  const [planteryModalQuestion, setPlanteryModalQuestion] = useState('');
-  const [planteryModalAnswer, setPlanteryModalAnswer] = useState('');
-  const [planteryModalLink, setPlanteryModalLink] = useState('');
-  const [planteryModalPosition, setPlanteryModalPosition] = useState({ x: 0, y: 0 });
+  const [planteryModalQuestion, setPlanteryModalQuestion] = useState("");
+  const [planteryModalAnswer, setPlanteryModalAnswer] = useState("");
+  const [planteryModalLink, setPlanteryModalLink] = useState("");
+  const [planteryModalPosition, setPlanteryModalPosition] = useState({
+    x: 0,
+    y: 0,
+  });
 
   const planteryScrollContainerRef = useRef(null);
 
   const planteryQuestionsAndAnswers = [
-    { id: 'elem1', question: 'What is React?', answer: 'React is a JavaScript library for building user interfaces.', link: 'https://reactjs.org' },
-    { id: 'elem2', question: 'What is a component?', answer: 'A component is a reusable piece of UI in a React application.', link: 'https://reactjs.org/docs/components-and-props.html' },
-    { id: 'elem3', question: 'What is a component?', answer: 'A component is a reusable piece of UI in a React application.', link: 'https://reactjs.org/docs/components-and-props.html' },
+    {
+      id: "elem1",
+      question: "What is React?",
+      answer: "React is a JavaScript library for building user interfaces.",
+      link: "https://reactjs.org",
+    },
+    {
+      id: "elem2",
+      question: "What is a component?",
+      answer: "A component is a reusable piece of UI in a React application.",
+      link: "https://reactjs.org/docs/components-and-props.html",
+    },
+    {
+      id: "elem3",
+      question: "What is a component?",
+      answer: "A component is a reusable piece of UI in a React application.",
+      link: "https://reactjs.org/docs/components-and-props.html",
+    },
   ];
 
   const handlePlanteryPositionChange = (id, x, y) => {
-    const planteryNewY = Math.min(Math.max(y, 50), planteryContainerHeight - 50); // Clamp Y to within bounds
-    const planteryNewPositions = { ...planteryPositions, [id]: { x, y: planteryNewY } };
+    const planteryNewY = Math.min(
+      Math.max(y, 50),
+      planteryContainerHeight - 50
+    ); // Clamp Y to within bounds
+    const planteryNewPositions = {
+      ...planteryPositions,
+      [id]: { x, y: planteryNewY },
+    };
     setPlanteryPositions(planteryNewPositions);
   };
 
@@ -78,7 +113,9 @@ const PlanetryPath = () => {
       planteryAdjustedY = planteryModalHeight / 2;
     }
 
-    const planteryClickedElementData = planteryQuestionsAndAnswers.find(item => item.id === id);
+    const planteryClickedElementData = planteryQuestionsAndAnswers.find(
+      (item) => item.id === id
+    );
 
     if (planteryClickedElementData) {
       setPlanteryModalQuestion(planteryClickedElementData.question);
@@ -91,9 +128,9 @@ const PlanetryPath = () => {
 
   const handlePlanteryCloseModal = () => {
     setShowPlanteryModal(false);
-    setPlanteryModalQuestion('');
-    setPlanteryModalAnswer('');
-    setPlanteryModalLink('');
+    setPlanteryModalQuestion("");
+    setPlanteryModalAnswer("");
+    setPlanteryModalLink("");
   };
 
   const handlePlanteryWheel = (event) => {
@@ -105,9 +142,12 @@ const PlanetryPath = () => {
   useEffect(() => {
     const planteryScrollContainer = planteryScrollContainerRef.current;
     if (planteryScrollContainer) {
-      planteryScrollContainer.addEventListener('wheel', handlePlanteryWheel);
+      planteryScrollContainer.addEventListener("wheel", handlePlanteryWheel);
       return () => {
-        planteryScrollContainer.removeEventListener('wheel', handlePlanteryWheel);
+        planteryScrollContainer.removeEventListener(
+          "wheel",
+          handlePlanteryWheel
+        );
       };
     }
   }, []);
@@ -116,19 +156,27 @@ const PlanetryPath = () => {
     <div className="planetry-scroll-container" ref={planteryScrollContainerRef}>
       <div className="planetry-scroll-content">
         <Xwrapper>
-          {planteryElementIds.map(id => (
+          {planteryElementIds.map((id) => (
             <div key={id}>
               <DraggableBox
                 id={id}
                 onDrag={(x, y) => handlePlanteryPositionChange(id, x, y)}
                 onClick={(e) => handlePlanteryElementClick(id, e)}
                 className={`planetry-element ${id}`}
-                style={{ left: planteryPositions[id].x, top: planteryPositions[id].y }}
+                style={{
+                  left: planteryPositions[id].x,
+                  top: planteryPositions[id].y,
+                }}
               />
             </div>
           ))}
           {planteryElementIds.slice(1).map((id, index) => (
-            <Xarrow key={id} start={planteryElementIds[index]} end={id} curveness={1.5} />
+            <Xarrow
+              key={id}
+              start={planteryElementIds[index]}
+              end={id}
+              curveness={1.5}
+            />
           ))}
         </Xwrapper>
         <TaskModal
@@ -146,7 +194,3 @@ const PlanetryPath = () => {
 };
 
 export default PlanetryPath;
-
-
-export default PlanetryPath;
-
