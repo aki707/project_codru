@@ -228,7 +228,7 @@ export default function Admin() {
             <button
               onClick={() => handleAssignTask(params.row.username)}
               className="assign-task-button"
-              title="Assign task"
+              title="Assign Task"
             >
               <AssignmentIcon fontSize="medium" />
             </button>
@@ -266,7 +266,7 @@ export default function Admin() {
 
   function CustomToolbar() {
     return (
-      <GridToolbarContainer>
+      <GridToolbarContainer style={{ marginLeft: "1vw" }}>
         <GridToolbar />
         <GridToolbarQuickFilter style={{ width: "30%" }} />
       </GridToolbarContainer>
@@ -274,11 +274,9 @@ export default function Admin() {
   }
 
   return (
-    <div style={{ height: 600, width: "100%" }}>
+    <div style={{ position: "relative", height: "100%", width: "100%" }}>
       <DataGrid
-        sx={{
-          boxShadow: 2,
-        }}
+        sx={{ padding: "30px" }}
         rows={users}
         columns={columns}
         pageSize={5}

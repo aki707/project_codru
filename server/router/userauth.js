@@ -123,7 +123,12 @@ router.post("/signin", async (req, res) => {
       }
 
       const token = jwt.sign(
-        { _id: user._id, username: user.username, role: user.role },
+        {
+          _id: user._id,
+          username: user.username,
+          role: user.role,
+          
+        },
         process.env.TOKEN_SECRET,
         { expiresIn: "14d" }
       );
@@ -140,6 +145,8 @@ router.post("/signin", async (req, res) => {
         token,
         photo: user.photo,
         name: user.name,
+        isAdmin: user.isAdmin,
+        
       });
     } else {
       res.status(400).json({ error: "Wrong Credentials" });
@@ -149,7 +156,6 @@ router.post("/signin", async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 });
-
 
 // Admission route
 router.post("/admission", async (req, res) => {
@@ -280,7 +286,9 @@ router.post("/reset-password", async (req, res) => {
         console.error("Failed to send email:", error);
         return res.status(500).json({ error: "Failed to send email" });
       }
-      res.status(200).json({ message: "Password reset link sent to your email" });
+      res
+        .status(200)
+        .json({ message: "Password reset link sent to your email" });
     });
   } catch (error) {
     console.error("Server error during password reset request:", error);
@@ -415,7 +423,5 @@ router.post("/signout", (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 });
-
-
 
 module.exports = router;

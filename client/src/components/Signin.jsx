@@ -52,6 +52,8 @@ function Signin() {
       localStorage.setItem("Username", jsonresponse.username);
       localStorage.setItem("Name", jsonresponse.name);
       localStorage.setItem("Role", jsonresponse.role);
+      localStorage.setItem("isAdmin", jsonresponse.isAdmin);
+
       navigate("/");
     } else {
       console.error("Failed to Sign In");

@@ -12,7 +12,7 @@ const PlanetryPath = () => {
   const generateRandomYPosition = () => {
     const minY = 50; // Minimum y position
     const maxY = containerHeight - 450; // Adjusted to prevent overflow
-    return Math.floor(Math.random() * (maxY - minY + 1)) + minY;
+    return Math.floor(2 * Math.random() * (maxY - minY + 1)) + minY;
   };
 
   const [positions, setPositions] = useState({});
@@ -155,21 +155,19 @@ const PlanetryPath = () => {
       <div className="planetry-scroll-content">
         <Xwrapper>
           {tasks.map((task) => (
-            <div key={`task${task.week}`}>
-              <DraggableBox
-                id={`task${task.week}`}
-                onDrag={(x, y) =>
-                  handlePositionChange(`task${task.week}`, x, y)
-                }
-                onClick={(e) => handleElementClick(`task${task.week}`, e)}
-                className={`element task${task.week}`}
-                style={{
-                  left: positions[`task${task.week}`]?.x,
-                  top: positions[`task${task.week}`]?.y,
-                }}
-              />
-            </div>
+            <DraggableBox
+              key={`task${task.week}`}
+              id={`task${task.week}`}
+              onDrag={(x, y) => handlePositionChange(`task${task.week}`, x, y)}
+              onClick={(e) => handleElementClick(`task${task.week}`, e)}
+              className={`planetry-element`}
+              style={{
+                left: positions[`task${task.week}`]?.x,
+                top: positions[`task${task.week}`]?.y,
+              }}
+            />
           ))}
+
           {tasks.slice(1).map((task, index) => (
             <Xarrow
               key={`task${task.week}`}

@@ -15,19 +15,19 @@ html, body {
 
 .myphotoedit {
   position: absolute;
-  bottom: 7%;
-  right: 23%;
+  bottom: 23%;
+  right: 18%;
   color: #b11d37;
-  width: 13%;
-  height: 13%;
+  width: 10%;
+  height: 10%;
   cursor: pointer;
-  rotate: -3deg;
+  rotate: 3.5deg;
   /* font-size: 20%; */
 }
 
 /* Left Section Styles */
 .leftSectionDashboard {
-  width: 13%;
+  width: 15%;
   background-color: #f0f0f0;
   display: flex;
   flex-direction: column;
@@ -52,9 +52,10 @@ html, body {
 .photoDashboard {
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  padding-left: 1vw;
+  justify-content: center;
+  
   margin-top: 30px;
   width:100%
 }
@@ -62,7 +63,7 @@ html, body {
 
 .drawerContent {
   width: 100%;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .drawerContent .MuiListItem-root {
@@ -80,7 +81,7 @@ html, body {
   align-items: end;
   justify-content: space-between;
   height:100%;
-  width: 87%;
+  width: 85%;
   /* border: 2px solid red; */
 
  
@@ -120,5 +121,18 @@ html, body {
 
 .photoDashboard>img{
   width: 75%;
+  aspect-ratio: 1/1;
   border-radius: 100%;
+  
+}
+
+.welcomeMessage {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.welcomeMessage> h2 {
+  font-size: 1.5rem;
+  color: #b11d37;
+  
 }

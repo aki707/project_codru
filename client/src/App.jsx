@@ -20,7 +20,6 @@ import Dashboard from "./components/Dashboard";
 import Blogdetail from "./components/Blogdetail.jsx";
 import Form from "./components/Form";
 import Commentpage from "./components/Commentpage.jsx";
-import Admin from "./components/Admin.jsx";
 // import Custom from './components/Custom.jsx';
 // import Profile from "./components/Profile";
 import TaskForm from "./components/TaskForm.jsx";
@@ -61,7 +60,6 @@ function App() {
       <Route path="/blog" Component={BlogForm} />
       <Route path="/blogdata" Component={Blogpage} />
       <Route path="/notification" Component={Notification} />
-      <Route path="/admin" element={<Admin />} />
       <Route path="/add-task/:username" Component={TaskForm} />
       <Route path="/events" Component={EventBoxes} />
       <Route path="/planetary-path" Component={PlanetaryPath} />
