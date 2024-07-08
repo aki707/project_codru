@@ -30,7 +30,7 @@ const [showConfetti, setShowConfetti] = useState(false);
       <div className="overlay"></div>
 
       <div className='homePageAnimation'>
-        <HomePageAnim/>
+        {/* <HomePageAnim/> */}
 
       </div>
     </div>

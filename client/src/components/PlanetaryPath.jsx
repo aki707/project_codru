@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import DraggableBox from './DraggableBox';
-import PlanetryAnimatedBackground from './PlanetryAnimatedBackground';
+import PlanetryAnimatedBackground from '../components/PlanetaryAnimatedBackground';
 import Xarrow, { Xwrapper } from 'react-xarrows';
-import '../styles/PlanetryPath.css'; // Updated import for CSS
+import '../styles/PlanetaryPath.css'; // Updated import for CSS
 import TaskModal from './TaskModal';
 
 const PlanetryPath = () => {
@@ -148,5 +148,4 @@ const PlanetryPath = () => {
 export default PlanetryPath;
 
 
-export default PlanetryPath;
 

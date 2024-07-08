@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/TaskModal.css';
+import '../styles/TaskModel.css';
 
 const TaskModal = ({ show, onClose, question, answer, link, position }) => {
   if (!show) {
