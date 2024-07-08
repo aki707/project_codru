@@ -8,8 +8,9 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
 import Muialert from "./Muialert";
+import { useEffect } from "react";
 
-function Navprofile({ setShowprofile, showprofile }) {
+function Navprofile({ setShowprofile, showprofile, closeNavprofile }) {
   const [showAlert, setShowAlert] = useState(false); // State to control alert visibility
   const [alertMessage, setAlertMessage] = useState(""); // State to store alert message
   const navigate = useNavigate();
@@ -25,12 +26,11 @@ function Navprofile({ setShowprofile, showprofile }) {
     const jsondata = await res.json();
     if (res.ok) {
       localStorage.clear("Token");
-      // Handle successful response
       setAlertMessage(jsondata.message);
       setShowAlert(true);
       navigate("/");
+      closeNavprofile(false);
     } else {
-      // Handle error response
       console.error("Failed to logout user");
       setAlertMessage(jsondata.error);
       setShowAlert(true);
@@ -77,9 +77,23 @@ function Navprofile({ setShowprofile, showprofile }) {
     setShowAlert(false);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const notificationPanel = document.querySelector(".Navprofilemaindiv");
+      if (notificationPanel && !notificationPanel.contains(event.target)) {
+        closeNavprofile();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [closeNavprofile]);
+
   return (
     <div className="Navprofilemaindiv">
-      <div className="Navprofilemaindivcross">
+      {/* <div className="Navprofilemaindivcross">
         <span
           onClick={() => {
             setShowprofile(!showprofile);
@@ -87,7 +101,7 @@ function Navprofile({ setShowprofile, showprofile }) {
         >
           X
         </span>
-      </div>
+      </div> */}
       <div className="Navprofilemaindivdiv1">
         <div className="Navprofilemaindivdiv1div1">
           <img src={localStorage.getItem("Photo")} alt="" />
@@ -95,6 +109,7 @@ function Navprofile({ setShowprofile, showprofile }) {
             className="profileediticon"
             icon={faPen}
             onClick={handlePenClick} // Call handlePenClick when the pen icon is clicked
+            title="Change Photo"
           />
           <input
             type="file"
@@ -110,7 +125,13 @@ function Navprofile({ setShowprofile, showprofile }) {
       </div>
       <hr style={{ width: "100%" }} />
       <div className="Navprofilemaindivdiv2">
-        <button>See My Report</button>
+        <button
+          onClick={() => {
+            navigate("/planetary-path");
+          }}
+        >
+          See My Report
+        </button>
         <div className="Navprofilemaindivdiv2div1">
           <button>
             <FontAwesomeIcon icon={faUser} /> <span>Manage</span>

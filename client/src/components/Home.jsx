@@ -24,6 +24,7 @@ function Home() {
         if (res.ok) {
           localStorage.setItem("Photo", data.user.photo);
           localStorage.setItem("Name", data.user.name);
+          
         } else {
           console.error("Failed to fetch user data", data.error);
         }

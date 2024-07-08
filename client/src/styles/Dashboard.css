@@ -10,6 +10,19 @@ html, body {
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+  /* border: 2px solid green; */
+}
+
+.myphotoedit {
+  position: absolute;
+  bottom: 23%;
+  right: 18%;
+  color: #b11d37;
+  width: 10%;
+  height: 10%;
+  cursor: pointer;
+  rotate: 3.5deg;
+  /* font-size: 20%; */
 }
 
 /* Left Section Styles */
@@ -18,39 +31,43 @@ html, body {
   background-color: #f0f0f0;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  /* padding: 20px; */
   box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-  overflow-y: auto;
+  /* border: 2px solid red; */
 }
 
 .leftSectionDashboard img {
   width: 100%;
-  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.codrudivision{
+  width:100%;
+  /* border: 2px solid pink; */
+  margin-top: 2vh;
+  margin-left: 0.5vw;
 }
 
 .photoDashboard {
+  position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
-  height: 30vh;
+  
+  margin-top: 30px;
+  width:100%
 }
 
-.pDashboard {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 2px solid black;
-  margin-left: 10px;
-  margin-top: 7px;
-}
 
 .drawerContent {
-  margin-top: 20px;
+  width: 100%;
+  margin-top: 10px;
 }
 
 .drawerContent .MuiListItem-root {
-  padding-left: 0;
+  padding-left: 1vw;
 }
 
 .drawerContent .MuiListItemIcon-root {
@@ -61,6 +78,7 @@ html, body {
 .rightSectionDashboard {
   display: flex;
   flex-direction: column;
+<<<<<<< HEAD
   align-items: center;
   justify-content: center;
   height: 100%;
@@ -76,6 +94,21 @@ html, body {
   /* font-size: 30px; */
   /* border: 2px solid red; */
 
+=======
+  align-items: end;
+  justify-content: space-between;
+  height:100%;
+  width: 85%;
+  /* border: 2px solid red; */
+
+ 
+}
+
+.rightSectionHeadingDashboard{
+  margin-right: 700px ;
+  margin-top: 40px;
+  font-size: 30px;
+>>>>>>> d17ec6aba10fa5a619212332663f6793f7e4dd34
 }
 
 .rightSectionDashboard1 {
@@ -109,6 +142,7 @@ html, body {
 
 /* Event Form and Calendar styles remain the same */
 
+<<<<<<< HEAD
 /* Responsive Design */
 /* @media screen and (max-width: 1024px) {
   .mainDashboard {
@@ -188,3 +222,22 @@ html, body {
     padding-bottom: 20px;
   }
 } */
+=======
+.photoDashboard>img{
+  width: 75%;
+  aspect-ratio: 1/1;
+  border-radius: 100%;
+  
+}
+
+.welcomeMessage {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.welcomeMessage> h2 {
+  font-size: 1.5rem;
+  color: #b11d37;
+  
+}
+>>>>>>> d17ec6aba10fa5a619212332663f6793f7e4dd34

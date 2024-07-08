@@ -1,0 +1,22 @@
+.blog-detail-page {
+  /* border: 2px solid blue; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.blog-detail-hide-div {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+.blog-detail-hide-div > button {
+  width: 10%;
+  /* border: red; */
+  font-size: 1vw;
+  padding: 1vh;
+  border-radius: 0.8vh 0.8vh;
+  background-color: green;
+  margin-left: 1vw;
+  margin-bottom: 1vh;
+}

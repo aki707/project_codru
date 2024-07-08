@@ -12,16 +12,14 @@
   right: 6%;
   top: 100%;
 }
-.Navprofilemaindivcross {
+/* .Navprofilemaindivcross {
   width: 90%;
   height: 4%;
   display: flex;
   justify-content: flex-end;
-  /* align-items: flex-end; */
-  /* border: 2px solid green; */
   margin-top: 1%;
   cursor: pointer;
-}
+} */
 .Navprofilemaindivdiv1 {
   height: 40%;
   /* border: 2px solid green; */
@@ -51,14 +49,12 @@
 }
 .profileediticon {
   position: absolute;
-  bottom: 15%;
-  right: 20%;
-  border-radius: 50%;
-  /* border: 2px solid green; */
-  background-color: white;
-  color: black;
-  width: 10%;
-  height: 10%;
+  bottom: 11%;
+  right: 11%;
+  color: #b11d37;
+  width: 13%;
+  height: 13%;
+  cursor: pointer;
   /* font-size: 20%; */
 }
 .Navprofilemaindivdiv2 {
