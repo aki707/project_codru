@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import "../styles/Start1.css";
 import { NavLink } from 'react-router-dom';
 import Confetti from 'react-confetti';
-import HomePageAnim from './HomePageAnim';
+// import HomePageAnim from './HomePageAnim';
+import homePageImage from "../assets/homePageImage.png"
 
 const Start1 = () => {
 
@@ -31,6 +32,7 @@ const [showConfetti, setShowConfetti] = useState(false);
 
       <div className='homePageAnimation'>
         {/* <HomePageAnim/> */}
+        <img src={homePageImage} alt="" />
 
       </div>
     </div>

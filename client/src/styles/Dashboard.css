@@ -78,23 +78,6 @@ html, body {
 .rightSectionDashboard {
   display: flex;
   flex-direction: column;
-<<<<<<< HEAD
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 85%;
-  overflow-y: auto;
-  border: 2px solid red;
-}
-
-.rightSectionHeadingDashboard {
-  margin-right: 700px;
-  margin-top: 30px;
-  height: 10%;
-  /* font-size: 30px; */
-  /* border: 2px solid red; */
-
-=======
   align-items: end;
   justify-content: space-between;
   height:100%;
@@ -108,7 +91,6 @@ html, body {
   margin-right: 700px ;
   margin-top: 40px;
   font-size: 30px;
->>>>>>> d17ec6aba10fa5a619212332663f6793f7e4dd34
 }
 
 .rightSectionDashboard1 {
@@ -142,87 +124,6 @@ html, body {
 
 /* Event Form and Calendar styles remain the same */
 
-<<<<<<< HEAD
-/* Responsive Design */
-/* @media screen and (max-width: 1024px) {
-  .mainDashboard {
-    flex-direction: column;
-    height: auto;
-    overflow-y: auto;
-  }
-
-  .leftSectionDashboard {
-    width: 100%;
-    height: auto;
-    padding: 10px;
-  }
-
-  .rightSectionDashboard {
-    width: 100%;
-    height: auto;
-    align-items: center;
-    border: 2px solid red;
-  }
-
-  .rightSectionHeadingDashboard {
-    margin-right: 0;
-    font-size: 24px;
-    text-align: center;
-  }
-
-  .rightSectionDashboard1 {
-    flex-direction: column;
-    align-items: center;
-   
-  }
-
-  .calenderSectionDashboard,
-  .eventSectionDashboard {
-    width: 90%;
-    height: 60vh;
-    margin-bottom: 20px;
-    border: 2px solid red;
-  }
-} */
-
-/* @media screen and (max-width: 768px) {
-  .leftSectionDashboard {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 80%;
-    height: 100vh;
-    z-index: 1000;
-  }
-
-  .mobileMenuButton {
-    display: block;
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    font-size: 24px;
-    z-index: 1001;
-    background: white;
-    padding: 5px;
-    border-radius: 5px;
-  }
-
-  .rightSectionHeadingDashboard {
-    font-size: 20px;
-    margin-top: 60px;
-  }
-
-  .calenderSectionDashboard,
-  .eventSectionDashboard {
-    height: 50vh;
-  }
-
-  .rightSectionDashboard1 {
-    padding-bottom: 20px;
-  }
-} */
-=======
 .photoDashboard>img{
   width: 75%;
   aspect-ratio: 1/1;
@@ -240,4 +141,3 @@ html, body {
   color: #b11d37;
   
 }
->>>>>>> d17ec6aba10fa5a619212332663f6793f7e4dd34

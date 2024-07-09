@@ -197,7 +197,7 @@ const CalendarComponent = () => {
     const newTokenClient = google.accounts.oauth2.initTokenClient({
       client_id: CLIENT_ID,
       scope: SCOPES,
-      callback: '', c
+      callback: '', 
     });
     setTokenClient(newTokenClient);
     setGisInited(true);
