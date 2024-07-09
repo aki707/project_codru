@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
 import About from "./components/About";
 import Admission from "./components/Admission";
 import Buy from "./components/Buy.jsx";
@@ -28,6 +29,33 @@ import PlanetaryPath from "./components/PlanetryPath.jsx";
 import FinalBuy from "./components/FinalBuy.jsx";
 
 function App() {
+  useEffect(() => {
+    const fetchData = async () => {
+      const token = localStorage.getItem("Token"); // Retrieve the token from localStorage
+      // console.log(token);
+      if (token) {
+        const res = await fetch("/api/profile", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+          },
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          localStorage.setItem("Photo", data.user.photo);
+          localStorage.setItem("Name", data.user.name);
+          
+        } else {
+          console.error("Failed to fetch user data", data.error);
+        }
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />

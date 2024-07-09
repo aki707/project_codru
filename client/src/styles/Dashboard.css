@@ -126,7 +126,7 @@ html, body {
 
 .photoDashboard>img{
   width: 75%;
-  aspect-ratio: 1/1;
+  /* aspect-ratio: 1/1; */
   border-radius: 100%;
   
 }
