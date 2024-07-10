@@ -178,7 +178,9 @@ app.delete("/user/:username", async (req, res) => {
     const user = await User.findOne({ username });
 
     if (!user) {
+      console.log(role, username);
       return res.status(404).json({ error: "User doesn't exist." });
+      
     }
 
     let deleted;

@@ -20,6 +20,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import Admin from "../components/Admin";
 import PlanetryPath from "../components/PlanetryPath";
+import SettingsPanel from "../components/SettingsPanel";
 
 const localizer = momentLocalizer(moment);
 
@@ -297,7 +298,7 @@ const Dashboard = () => {
             </div>
           )}
           {currentView === "profile" && <div>Profile Content</div>}
-          {currentView === "settings" && <div>Settings Content</div>}
+          {currentView === "settings" && <div><SettingsPanel/></div>}
           {currentView === "my-courses" && <div>My Courses Content</div>}
           {currentView === "my-blogs" && <div>My Blogs Content</div>}
           {currentView === "report" && <PlanetryPath />}
