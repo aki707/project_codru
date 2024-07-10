@@ -100,22 +100,27 @@ html, body {
   justify-content: space-evenly;
   width: 100%;
   flex-grow: 1;
+  /* border: 2px solid red; */
+
 }
 
 .calenderSectionDashboard {
   height: 80vh;
-  width: 70%;
+  width: 80%;
+  margin-right: 200px;
   border: 1px solid grey;
   border-radius: 5%;
+  /* border: 2px solid red; */
+
 }
 
-.eventSectionDashboard {
+/* .eventSectionDashboard {
   height: 80vh;
   width: 25%;
   border: 1px solid grey;
   border-radius: 5%;
   overflow-y: auto;
-}
+} */
 
 /* Event Form and Calendar styles remain the same */
 
