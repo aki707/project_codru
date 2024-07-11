@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect,useContext } from "react";
+import "./App.css"
 import About from "./components/About";
 import Admission from "./components/Admission";
 import Buy from "./components/Buy.jsx";
@@ -27,8 +28,10 @@ import TaskForm from "./components/TaskForm.jsx";
 import EventBoxes from "./components/EventBoxes.jsx";
 import PlanetaryPath from "./components/PlanetryPath.jsx";
 import FinalBuy from "./components/FinalBuy.jsx";
+import { ThemeContext } from "./Theme.jsx"
 
 function App() {
+  const { theme } = useContext(ThemeContext);
   useEffect(() => {
     const fetchData = async () => {
       const token = localStorage.getItem("Token"); // Retrieve the token from localStorage
@@ -57,7 +60,8 @@ function App() {
   }, []);
 
   return (
-    <Routes>
+    <div className={`App ${theme}`}>
+      <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/forgot-password/:token" element={<Forget_password />} />
 
@@ -93,6 +97,8 @@ function App() {
       <Route path="/planetary-path" Component={PlanetaryPath} />
       <Route path="/finalBuy" Component={FinalBuy} />
     </Routes>
+    </div>
+   
   );
 }
 
