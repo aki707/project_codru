@@ -1,7 +1,7 @@
 .settings-panel {
   position: relative;
   height: 95vh;
-  aspect-ratio: 1/1;
+  /* aspect-ratio: 1/1; */
   margin: 10px;
   padding: 20px;
   background-color: hsl(0, 0%, 100%);
@@ -12,7 +12,7 @@
   margin-bottom: 20px;
 }
 
-.tabs {
+.setting-tabs {
   display: flex;
   justify-content: space-around;
   margin-bottom: 20px;
@@ -21,52 +21,52 @@
   cursor: pointer;
 }
 
-.tabs > li {
+.setting-tabs > li {
   flex: 1;
   text-align: center;
   padding: 10px;
   border-bottom: 2px solid transparent;
 }
 
-.tabs > li.active {
+.setting-tabs > li.active {
   border-bottom: 2px solid #007bff;
 }
 
-.tab-content {
+.setting-tab-content {
   /* padding: 20px; */
   /* border: 1px solid #ccc;
   border-radius: 5px; */
   background-color: #ffffff;
 }
 
-.form-group {
+.setting-form-group {
   margin-bottom: 15px;
 }
 
-.my-h4 {
+.setting-my-h4 {
   margin-bottom: 15px;
 }
 
-.function-section {
+.setting-function-section {
   margin-bottom: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 20px;
 }
 
-.caution-note {
+.setting-caution-note {
   color: rgb(0, 0, 0);
 }
 
-.delete-account-section {
+.setting-delete-account-section {
   margin-top: 20px;
 }
 
-.delete-account-text {
+.setting-delete-account-text {
   color: red;
   cursor: pointer;
 }
 
-.delete-account-text:hover {
+.setting-delete-account-text:hover {
   text-decoration: underline;
 }

@@ -17,14 +17,14 @@ const SCOPES = 'https://www.googleapis.com/auth/calendar.events';
 const google = window.google;
 
 const calendarStyles = {
-  width: '60%', 
+  width: '70%', 
   maxWidth: '1000px', 
   margin: '40px 100px 0px 0px', 
   border: '1px solid #ccc', 
   padding: ' 10px', 
   boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)', 
   fontSize: '0.8em', 
-  height: '90vh',
+  height: '80vh',
 };
 
 const Calendar = () => {
@@ -195,7 +195,7 @@ const Calendar = () => {
             events={events}
             select={handleDateSelect}
             eventClick={handleEventClick}
-            height="90vh" 
+            height="80vh" 
           />
           
         </div>
