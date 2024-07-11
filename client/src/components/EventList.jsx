@@ -3,10 +3,10 @@ import '../styles/EventList.css';
 
 const EventList = ({ events }) => {
   return (
-    <div className="event-list">
+    <div className="my-event-list">
       {events.length > 0 ? (
         events.map(event => (
-          <div key={event.id} className="event-item">
+          <div key={event.id} className="my-event-item">
             <h3>{event.title}</h3>
             <p>Start: {new Date(event.start).toLocaleString()}</p>
             <p>End: {new Date(event.end).toLocaleString()}</p>

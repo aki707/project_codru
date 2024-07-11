@@ -12,9 +12,9 @@ const GeneralSettings = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
-    <div className="function-section">
-      <h3 className='my-h3'>Change Theme</h3>
-      <div className="form-group">
+    <div className="setting--section">
+      <h3 className='setting-my-h3'>Change Theme</h3>
+      <div className="setting-form-group">
       <button onClick={() => toggleTheme()}>{theme}</button>
       </div>
     </div>
@@ -62,13 +62,13 @@ const AccountSettings = () => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete your account? This action cannot be undone."
     );
-
+  
     if (!confirmDelete) {
       return;
     }
-
+  
     setWaitingAlert(true);
-
+  
     try {
       const response = await fetch(`/api/user/${username}`, {
         method: "DELETE",
@@ -77,18 +77,18 @@ const AccountSettings = () => {
         },
         body: JSON.stringify({ role }),
       });
-
+  
       setWaitingAlert(false);
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
+  
+      if (response.ok) {
+        localStorage.clear();
+        navigate("/");
+        setAlertMessage("User deleted successfully");
+        setAlertSeverity("success");
+        setShowAlert(true);
+      } else {
+        throw new Error("Failed to delete user");
       }
-
-      setAlertMessage("User deleted successfully");
-      setAlertSeverity("success");
-      setShowAlert(true);
-      localStorage.clear();
-      navigate("/");
     } catch (error) {
       console.error("Error deleting user:", error);
       setAlertMessage("Failed to delete user");
@@ -96,6 +96,7 @@ const AccountSettings = () => {
       setShowAlert(true);
     }
   };
+  
 
   const handleCloseAlert = () => {
     setShowAlert(false);
@@ -104,10 +105,10 @@ const AccountSettings = () => {
 
   return (
     <div>
-    <h4 className='my-h4'>Change Password</h4>
-    <div className="function-section">
+    <h4 className='setting-my-h4'>Change Password</h4>
+    <div className="setting-function-section">
       <form onSubmit={handlePasswordChange}>
-        <div className="form-group">
+        <div className="setting-form-group">
           <TextField
             label="Current Password"
             type={showCurrentPassword ? "text" : "password"}
@@ -129,7 +130,7 @@ const AccountSettings = () => {
             }}
           />
         </div>
-        <div className="form-group">
+        <div className="setting-form-group">
           <TextField
             label="New Password"
             type={showNewPassword ? "text" : "password"}
@@ -183,18 +184,18 @@ const AccountSettings = () => {
         </Alert>
       </Snackbar>
     </div>
-     <div className="function-section">
-     <p className="caution-note">Caution: Deleting your account is permanent and cannot be undone.</p>
-     <p className="delete-account-text" onClick={handleDeleteAccount}>Delete Account</p>
+     <div className="setting-function-section">
+     <p className="setting-caution-note">Caution: Deleting your account is permanent and cannot be undone.</p>
+     <p className="setting-delete-account-text" onClick={handleDeleteAccount}>Delete Account</p>
    </div></div>
   );
 };
 
 const NotificationSettings = () => (
   <div>
-    <h4 className='my-h4'>Enable Notifications</h4>
-    <div className="function-section">
-    <div className="form-group">
+    <h4 className='setting-my-h4'>Enable Notifications</h4>
+    <div className="setting-function-section">
+    <div className="setting-form-group">
       <Checkbox
         label="Enable Notifications"
         
@@ -227,7 +228,7 @@ const SettingsPanel = () => {
   return (
     <div className="settings-panel">
       <h2>Settings</h2>
-      <ul className="tabs">
+      <ul className="setting-tabs">
         <li className={activeTab === 'general' ? 'active' : ''} onClick={() => setActiveTab('general')}>
           General
         </li>
@@ -238,7 +239,7 @@ const SettingsPanel = () => {
           Notifications
         </li>
       </ul>
-      <div className="tab-content">
+      <div className="setting-tab-content">
         {renderContent()}
       </div>
     </div>
