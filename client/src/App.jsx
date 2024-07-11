@@ -24,7 +24,7 @@ import Commentpage from "./components/Commentpage.jsx";
 // import Custom from './components/Custom.jsx';
 // import Profile from "./components/Profile";
 import TaskForm from "./components/TaskForm.jsx";
-import EventBoxes from "./components/EventBoxes.jsx";
+import EventList from "./components/EventList.jsx";
 import PlanetaryPath from "./components/PlanetryPath.jsx";
 import FinalBuy from "./components/FinalBuy.jsx";
 
@@ -89,7 +89,7 @@ function App() {
       <Route path="/blogdata" Component={Blogpage} />
       <Route path="/notification" Component={Notification} />
       <Route path="/add-task/:username" Component={TaskForm} />
-      <Route path="/events" Component={EventBoxes} />
+      <Route path="/events" Component={EventList} />
       <Route path="/planetary-path" Component={PlanetaryPath} />
       <Route path="/finalBuy" Component={FinalBuy} />
     </Routes>
