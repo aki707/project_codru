@@ -275,7 +275,7 @@ router.post("/change-password", async (req, res) => {
       return res.status(400).json({ error: "Wrong current password" });
     }
 
-    user.password = await bcrypt.hash(newPassword, 12);
+    user.password = newPassword;
     await user.save();
 
     res.status(200).json({ message: "Password changed successfully" });
@@ -343,7 +343,7 @@ router.post("/reset-password/:token", async (req, res) => {
       return res.status(400).json({ error: "User not found" });
     }
 
-    user.password = await bcrypt.hash(newPassword, 12);
+    user.password = newPassword;
     await user.save();
 
     res.status(200).json({ message: "Password has been reset successfully" });

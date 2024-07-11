@@ -2,10 +2,7 @@ import { useState, useRef } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import c3 from "../assets/c3.png";
 import "../styles/Dashboard.css";
-import { Calendar, momentLocalizer } from "react-big-calendar";
-import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import EventBoxes from "./EventBoxes";
 import { List, ListItem, ListItemText, ListItemIcon } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import SettingsIcon from "@mui/icons-material/Settings";
@@ -23,8 +20,8 @@ import PlanetryPath from "../components/PlanetryPath";
 import Savedblogs from "./Savedblogs";
 import Admission from "./Admission";
 import Profile from "./Profile";
-
-const localizer = momentLocalizer(moment);
+import SettingsPanel from "../components/SettingsPanel";
+import Calendar from "./Calendar";
 
 const Dashboard = () => {
   const [events, setEvents] = useState([]);
@@ -207,7 +204,7 @@ const Dashboard = () => {
       </List>
     );
   };
-
+  let arrlen = events.length;
   return (
     <div className="mainDashboard">
       <div className="leftSectionDashboard">
@@ -243,71 +240,21 @@ const Dashboard = () => {
       </div>
 
       <div className="rightSectionDashboard">
-        <div className="rightSectionDashboard1">
-          {currentView === "profile" && <Profile />}
-          {currentView === "settings" && <Savedblogs />}
-          {currentView === "my-courses" && <div>My Courses Content</div>}
-          {currentView === "my-blogs" && <div>My blogs</div>}
-          {currentView === "report" && <PlanetryPath />}
-          {currentView === "manage-users" && <Admin />}
-          {currentView === "dashboard" && (
-            <div className="calenderSectionDashboard">
-              <Calendar
-                localizer={localizer}
-                events={events}
-                startAccessor="start"
-                endAccessor="end"
-                style={{
-                  height: 562,
-                  width: 770,
-                  justifyContent: "center",
-                  marginLeft: "43px",
-                  marginTop: "10px",
-                }}
-              />
-              <div className="eventSectionDashboard">
-                <form
-                  onSubmit={handleSubmit}
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                  }}
-                >
-                  <input
-                    type="text"
-                    name="title"
-                    placeholder="Event Title"
-                    value={newEvent.title}
-                    onChange={handleInputChange}
-                    style={{
-                      borderRadius: "10%",
-                      justifyContent: "space-evenly",
-                    }}
-                  />
-                  <input
-                    type="datetime-local"
-                    name="start"
-                    value={moment(newEvent.start).format("YYYY-MM-DDTHH:mm")}
-                    onChange={handleInputChange}
-                  />
-                  <input
-                    type="datetime-local"
-                    name="end"
-                    value={moment(newEvent.end).format("YYYY-MM-DDTHH:mm")}
-                    onChange={handleInputChange}
-                  />
-                  <button type="submit" style={{ width: "100px" }}>
-                    Add Event
-                  </button>
-                </form>
-                <div>
-                  <EventBoxes events={events} />
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
+        {currentView === "profile" && <div>Profile Content</div>}
+        {currentView === "dashboard" && (
+          <div>
+            <Calendar />
+          </div>
+        )}
+        {currentView === "settings" && (
+          <div>
+            <SettingsPanel />
+          </div>
+        )}
+        {currentView === "my-courses" && <div>My Courses Content</div>}
+        {currentView === "my-blogs" && <div>My Blogs Content</div>}
+        {currentView === "report" && <PlanetryPath />}
+        {currentView === "manage-users" && <Admin />}
       </div>
     </div>
   );
