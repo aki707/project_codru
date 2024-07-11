@@ -26,12 +26,11 @@ function Navprofile({ setShowprofile, showprofile, closeNavprofile }) {
     const jsondata = await res.json();
     if (res.ok) {
       localStorage.clear("Token");
-      // Handle successful response
       setAlertMessage(jsondata.message);
       setShowAlert(true);
       navigate("/");
+      closeNavprofile(false);
     } else {
-      // Handle error response
       console.error("Failed to logout user");
       setAlertMessage(jsondata.error);
       setShowAlert(true);
@@ -94,7 +93,7 @@ function Navprofile({ setShowprofile, showprofile, closeNavprofile }) {
 
   return (
     <div className="Navprofilemaindiv">
-      <div className="Navprofilemaindivcross">
+      {/* <div className="Navprofilemaindivcross">
         <span
           onClick={() => {
             setShowprofile(!showprofile);
@@ -102,7 +101,7 @@ function Navprofile({ setShowprofile, showprofile, closeNavprofile }) {
         >
           X
         </span>
-      </div>
+      </div> */}
       <div className="Navprofilemaindivdiv1">
         <div className="Navprofilemaindivdiv1div1">
           <img src={localStorage.getItem("Photo")} alt="" />
@@ -110,6 +109,7 @@ function Navprofile({ setShowprofile, showprofile, closeNavprofile }) {
             className="profileediticon"
             icon={faPen}
             onClick={handlePenClick} // Call handlePenClick when the pen icon is clicked
+            title="Change Photo"
           />
           <input
             type="file"
@@ -125,7 +125,13 @@ function Navprofile({ setShowprofile, showprofile, closeNavprofile }) {
       </div>
       <hr style={{ width: "100%" }} />
       <div className="Navprofilemaindivdiv2">
-        <button>See My Report</button>
+        <button
+          onClick={() => {
+            navigate("/planetary-path");
+          }}
+        >
+          See My Report
+        </button>
         <div className="Navprofilemaindivdiv2div1">
           <button>
             <FontAwesomeIcon icon={faUser} /> <span>Manage</span>

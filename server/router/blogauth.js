@@ -3,9 +3,20 @@ const Blog = require("../models/blogSchema");
 const router = express.Router();
 const User = require("../models/userSchema");
 
+router.post("/deleteblogs", async (req, res) => {
+  try {
+    // Delete all documents in the Blog collection
+    await Blog.deleteMany({});
+
+    res.status(200).json({ message: "All blogs deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting blogs:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
 // CREATING THE BLOG BY USER
 router.post("/blogs", async (req, res) => {
-  console.log("chal gaya");
   try {
     const { title, content, username, userphoto } = req.body;
     if (!title || !content || !username || !userphoto) {
@@ -20,16 +31,23 @@ router.post("/blogs", async (req, res) => {
     });
 
     await newBlog.save();
+    const user = await User.findOne({ username: username });
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    user.blogs.push(newBlog);
+    await user.save();
+
     res.status(201).json({ message: "Success", newBlog: newBlog });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-//FETCHING ALL BLOGS OF USERS
+//FETCHING ALL BLOGS OF ALL USERS
 router.post("/blogsdata", async (req, res) => {
   try {
-    console.log("pahuch gaya");
     const { username } = req.body;
     if (!username) {
       return res.status(400).json({ error: "Username is required" });
@@ -65,17 +83,47 @@ router.get("/blogs/:blogId", async (req, res) => {
   }
 });
 
+// Route to get blogs of a particular user
+router.post("/userblogs", async (req, res) => {
+  try {
+    const { username } = req.body;
+
+    if (!username) {
+      return res.status(400).json({ error: "Username is required" });
+    }
+
+    const user = await User.findOne({ username }).populate("blogs");
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Extract the blog data from the populated blogs field
+    const blogs = user.blogs.map((blog) => ({
+      _id: blog._id,
+      title: blog.title,
+      content: blog.content,
+      // Add other fields you need
+    }));
+
+    res.status(200).json({ blogs });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 //save blog in userschema
 router.post("/blog/saveblog", async (req, res) => {
   try {
     const { blogId, username } = req.body;
 
-    const userExist = await User.findOne({ username: username });
+    const userExist = await User.findOne({ username });
     if (!userExist) {
       return res.status(404).json({ message: "User not found" });
     }
-    const blog = await Blog.findById(blogId);
-    if (!blog) {
+
+    const blogExist = await Blog.findById(blogId);
+    if (!blogExist) {
       return res.status(404).json({ message: "Blog not found" });
     }
 
@@ -90,7 +138,9 @@ router.post("/blog/saveblog", async (req, res) => {
     }
   } catch (error) {
     console.error("There was a problem with the save operation:", error);
-    return res.status(500).json({ message: "Server error", error });
+    return res
+      .status(500)
+      .json({ message: "Server error", error: error.message });
   }
 });
 
@@ -98,7 +148,7 @@ router.post("/blog/saveblog", async (req, res) => {
 router.post("/blog/unsaveblog", async (req, res) => {
   try {
     const { blogId, username } = req.body;
-    const userExist = await User.findOne({ username: username });
+    const userExist = await User.findOne({ username });
     if (!userExist) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -116,7 +166,32 @@ router.post("/blog/unsaveblog", async (req, res) => {
     }
   } catch (error) {
     console.error("There was a problem with the unsave operation:", error);
-    return res.status(500).json({ message: "Server error", error });
+    return res
+      .status(500)
+      .json({ message: "Server error", error: error.message });
+  }
+});
+
+// Route to fetch saved blogs for a user
+router.post("/savedblogs", async (req, res) => {
+  try {
+    const { username } = req.body;
+    if (!username) {
+      return res.status(400).json({ error: "Username is required" });
+    }
+
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Retrieve saved blogs based on user's savedBlogs array
+    const savedBlogs = await Blog.find({ _id: { $in: user.savedBlogs } });
+
+    res.status(200).json({ savedBlogs });
+  } catch (err) {
+    console.error("Error fetching saved blogs:", err);
+    res.status(500).json({ error: "Server error" });
   }
 });
 

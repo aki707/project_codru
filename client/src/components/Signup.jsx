@@ -309,10 +309,11 @@ function Signup() {
             className="text"
             fullWidth
             variant="outlined"
-            placeholder="Full Name"
             name="name"
+            placeholder="Full Name"
             value={value.name}
             onChange={handleChange}
+            required
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -330,6 +331,7 @@ function Signup() {
             name="username"
             value={value.username}
             onChange={handleChange}
+            required
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -347,6 +349,7 @@ function Signup() {
           type="email"
           value={value.email}
           onChange={handleChange}
+          required
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -395,6 +398,7 @@ function Signup() {
             type="password"
             value={value.password}
             onChange={handleChange}
+            required
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -413,6 +417,7 @@ function Signup() {
             type="password"
             value={value.cpassword}
             onChange={handleChange}
+            required
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">

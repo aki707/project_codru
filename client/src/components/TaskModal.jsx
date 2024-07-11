@@ -6,33 +6,29 @@ const TaskModal = ({ show, onClose, question, answer, link, position }) => {
     return null;
   }
 
-  // Calculate modal position considering scroll and viewport dimensions
   const calculateTaskModalPosition = () => {
-    const modalWidth = 400; // Adjust according to your modal's width
-    const modalHeight = 300; // Adjust according to your modal's height
+    const modalWidth = 400;
+    const modalHeight = 300;
     const { x, y } = position;
 
-    // Determine viewport dimensions
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
 
-    // Adjusted positions
     let adjustedX = x;
     let adjustedY = y;
 
-    // Check if modal exceeds viewport boundaries
     if (x + modalWidth > viewportWidth) {
-      adjustedX = viewportWidth - modalWidth - 20; // Adjusting for some padding
+      adjustedX = viewportWidth - modalWidth - 20;
     }
 
     if (y + modalHeight > viewportHeight) {
-      adjustedY = viewportHeight - modalHeight - 20; // Adjusting for some padding
+      adjustedY = viewportHeight - modalHeight - 20;
     }
 
     return { top: adjustedY, left: adjustedX };
   };
 
-  const modalStyle = {
+  const taskModalStyle = {
     position: 'fixed',
     top: calculateTaskModalPosition().top + 'px',
     left: calculateTaskModalPosition().left + 'px',
@@ -42,8 +38,9 @@ const TaskModal = ({ show, onClose, question, answer, link, position }) => {
 
   return (
     <div className="task-modal-overlay" onClick={onClose}>
-      <div className="task-modal-content" style={modalStyle} onClick={(e) => e.stopPropagation()}>
-        <button onClick={onClose}>Close</button>
+      <div className="task-modal-content" style={taskModalStyle} onClick={(e) => e.stopPropagation()}>
+        <div className="task-modal-background"></div>
+        <button className="task-modal-button" onClick={onClose}>Close</button>
         <h2>Task Details</h2>
         <h3>{question}</h3>
         <p>{answer}</p>
@@ -54,4 +51,3 @@ const TaskModal = ({ show, onClose, question, answer, link, position }) => {
 };
 
 export default TaskModal;
-

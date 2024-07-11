@@ -14,7 +14,6 @@
   background-color: #efe1e1;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   z-index: 2;
- 
 }
 
 .navlogo {
@@ -119,7 +118,6 @@
   border: 2px solid red;
 }
 
-
 /* Define the keyframes for the border color animation */
 /* @keyframes borderColorChange {
   0% {
@@ -139,7 +137,7 @@
   /* border: 2px solid green; */
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 510px) {
   .navoptions {
     display: flex;
     justify-content: center;
@@ -211,7 +209,7 @@
     width: 90%;
     border-radius: 5vh;
     background-color: transparent;
-    padding: 0.5vh;
+    /* padding: 0.5vh; */
     text-decoration: none;
   }
 
@@ -219,9 +217,9 @@
     cursor: pointer;
     border: 2px solid #d61e3f;
     color: #efe1e1;
-    font-size: 3.5vw;
+    font-size: 4vw;
     width: 99%;
-    padding: 2vh;
+    /* padding: 2vh; */
     background-color: #d61e3f;
     border-radius: 5vh;
     font-weight: BOLD;
@@ -233,5 +231,38 @@
   }
   .signuplink:hover {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 10px;
+  }
+
+  .Profileimgmaindiv {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    /* background-color: rgb(172, 133, 133); */
+    /* border: 2px solid green; */
+    align-items: center;
+    height: 10vh;
+  }
+  .navnotification,
+  .navprofile {
+    width: 50%;
+    align-self: 1/1;
+    position: relative;
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .navnotification > img,
+  .navprofile > img {
+    width: 40%;
+    border-radius: 50%;
+    /* border: 2px solid red; */
+    aspect-ratio: 1/1;
+    object-fit: fill;
+  }
+  .navnotification > img {
+    color: black;
+    background-color: lightcoral;
   }
 }

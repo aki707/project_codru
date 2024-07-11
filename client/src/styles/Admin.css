@@ -46,3 +46,26 @@
   .assign-task-button:hover {
     color: rgb(22, 99, 85);
   }
+
+  .make-admin-button{
+    background: none;
+    color: rgb(67, 148, 192);
+    border: none;
+    cursor: pointer;
+  }
+
+  .make-admin-button:hover {
+    color: rgb(32, 79, 116);
+  }
+
+  .remove-admin-button{
+    background: none;
+    color: rgb(210, 172, 49);
+    border: none;
+    cursor: pointer;
+  }
+
+  .remove-admin-button:hover {
+    color: rgb(151, 145, 34);
+  }
+

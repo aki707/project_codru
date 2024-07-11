@@ -20,15 +20,42 @@ import Dashboard from "./components/Dashboard";
 import Blogdetail from "./components/Blogdetail.jsx";
 import Form from "./components/Form";
 import Commentpage from "./components/Commentpage.jsx";
-import Admin from "./components/Admin.jsx";
 // import Custom from './components/Custom.jsx';
 // import Profile from "./components/Profile";
 import TaskForm from "./components/TaskForm.jsx";
 import EventBoxes from "./components/EventBoxes.jsx";
-import PlanetaryPath from "./components/PlanetaryPath.jsx";
+import PlanetaryPath from "./components/PlanetryPath.jsx";
 import FinalBuy from "./components/FinalBuy.jsx";
+import Myblogs from "./components/Myblogs.jsx";
+import { useEffect } from "react";
 
 function App() {
+  useEffect(() => {
+    const fetchData = async () => {
+      const token = localStorage.getItem("Token"); // Retrieve the token from localStorage
+      // console.log(token);
+      if (token) {
+        const res = await fetch("/api/profile", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+          },
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          localStorage.setItem("Photo", data.user.photo);
+          localStorage.setItem("Name", data.user.name);
+        } else {
+          console.error("Failed to fetch user data", data.error);
+        }
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -61,11 +88,12 @@ function App() {
       <Route path="/blog" Component={BlogForm} />
       <Route path="/blogdata" Component={Blogpage} />
       <Route path="/notification" Component={Notification} />
-      <Route path="/admin" element={<Admin />} />
       <Route path="/add-task/:username" Component={TaskForm} />
       <Route path="/events" Component={EventBoxes} />
       <Route path="/planetary-path" Component={PlanetaryPath} />
       <Route path="/finalBuy" Component={FinalBuy} />
+      <Route path="/my-blogs" Component={Myblogs} />
+      <Route path="/admission" Component={Admission} />
     </Routes>
   );
 }

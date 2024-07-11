@@ -1,6 +1,6 @@
 .planetry-animated-background {
   background-color: #000;
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   width: 100vw;
@@ -9,7 +9,7 @@
 }
 
 .planetry-main {
-  position: fixed;
+  position: relative;
   top: 50%;
   left: 50%;
   height: 1px;

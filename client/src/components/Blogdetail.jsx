@@ -93,15 +93,19 @@ function BlogDetail() {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ blogId, username: currentUser }),
+          body: JSON.stringify({ blogId, username: currentUser }), // Ensure currentUser is correctly defined
         }
       );
 
       if (!res.ok) {
-        throw new Error(`Failed to ${isSaved ? "unsave" : "save"} the blog`);
+        throw new Error(
+          `Failed to ${isSaved ? "unsave" : "save"} the blog. Server returned ${
+            res.status
+          }`
+        );
       }
 
-      // const result = await res.json();
+      // Update the state to reflect the change in saved status
       setIsSaved(!isSaved);
     } catch (error) {
       console.error(
@@ -172,7 +176,7 @@ function BlogDetail() {
           <div onClick={handleSave}>
             <FontAwesomeIcon
               icon={faBookmark}
-              style={{ color: isSaved ? "blue" : "grey" }}
+              style={{ color: isSaved ? "blue" : "black" }}
             />
           </div>
           <div style={{ position: "relative" }}>

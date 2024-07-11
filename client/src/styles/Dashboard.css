@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -10,6 +11,19 @@ html, body {
   height: 100vh;
   width: 100vw;
   overflow: hidden;
+  /* border: 2px solid green; */
+}
+
+.myphotoedit {
+  position: absolute;
+  bottom: 23%;
+  right: 18%;
+  color: #b11d37;
+  width: 10%;
+  height: 10%;
+  cursor: pointer;
+  rotate: 3.5deg;
+  /* font-size: 20%; */
 }
 
 /* Left Section Styles */
@@ -18,39 +32,42 @@ html, body {
   background-color: #f0f0f0;
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-  overflow-y: auto;
+  /* padding: 20px; */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  /* border: 2px solid red; */
 }
 
 .leftSectionDashboard img {
   width: 100%;
-  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.codrudivision {
+  width: 100%;
+  /* border: 2px solid pink; */
+  margin-top: 2vh;
+  margin-left: 0.5vw;
 }
 
 .photoDashboard {
+  position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
-  height: 30vh;
-}
 
-.pDashboard {
+  margin-top: 30px;
   width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 2px solid black;
-  margin-left: 10px;
-  margin-top: 7px;
 }
 
 .drawerContent {
-  margin-top: 20px;
+  width: 100%;
+  margin-top: 10px;
 }
 
 .drawerContent .MuiListItem-root {
-  padding-left: 0;
+  padding-left: 1vw;
 }
 
 .drawerContent .MuiListItemIcon-root {
@@ -61,11 +78,12 @@ html, body {
 .rightSectionDashboard {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  justify-content: flex-start;
+  align-items: end;
+  justify-content: space-between;
   height: 100%;
   width: 85%;
-  overflow-y: auto;
+  overflow-y: scroll;
+  /* border: 2px solid red; */
 }
 
 .rightSectionHeadingDashboard {
@@ -77,7 +95,7 @@ html, body {
 .rightSectionDashboard1 {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: end;
   justify-content: space-evenly;
   width: 100%;
   flex-grow: 1;
@@ -100,79 +118,18 @@ html, body {
 
 /* Event Form and Calendar styles remain the same */
 
-/* Responsive Design */
-@media screen and (max-width: 1024px) {
-  .mainDashboard {
-    flex-direction: column;
-    height: auto;
-    overflow-y: auto;
-  }
-
-  .leftSectionDashboard {
-    width: 100%;
-    height: auto;
-    padding: 10px;
-  }
-
-  .rightSectionDashboard {
-    width: 100%;
-    height: auto;
-    align-items: center;
-  }
-
-  .rightSectionHeadingDashboard {
-    margin-right: 0;
-    font-size: 24px;
-    text-align: center;
-  }
-
-  .rightSectionDashboard1 {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .calenderSectionDashboard,
-  .eventSectionDashboard {
-    width: 90%;
-    height: 60vh;
-    margin-bottom: 20px;
-  }
+.photoDashboard > img {
+  width: 75%;
+  aspect-ratio: 1/1;
+  border-radius: 100%;
 }
 
-@media screen and (max-width: 768px) {
-  .leftSectionDashboard {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 80%;
-    height: 100vh;
-    z-index: 1000;
-  }
+.welcomeMessage {
+  text-align: center;
+  margin-top: 10px;
+}
 
-  .mobileMenuButton {
-    display: block;
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    font-size: 24px;
-    z-index: 1001;
-    background: white;
-    padding: 5px;
-    border-radius: 5px;
-  }
-
-  .rightSectionHeadingDashboard {
-    font-size: 20px;
-    margin-top: 60px;
-  }
-
-  .calenderSectionDashboard,
-  .eventSectionDashboard {
-    height: 50vh;
-  }
-
-  .rightSectionDashboard1 {
-    padding-bottom: 20px;
-  }
+.welcomeMessage > h2 {
+  font-size: 1.5rem;
+  color: #b11d37;
 }

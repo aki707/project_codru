@@ -1,64 +1,123 @@
 import { useState } from "react";
 import "../styles/Admission.css";
+import { useEffect } from "react";
 
 const Admission = () => {
   const [formData, setFormData] = useState({
-    Name: "",
-    Date_of_birth: "",
-    Gender: "",
-    Address: "",
-    Address1: "",
-    Email_id: "",
-    Phone_No: "",
-    Alternate_Phone_No: "",
-    Subject_Choosen: ["", "", "", "", "", ""],
-    Class: "",
-    Semester: "",
-    SchoolName_CollegeName: "",
-    Fathers_Name: "",
-    Mothers_Name: "",
-    Fathers_Occupation: "",
-    Mothers_Occupation: "",
-    upload_profile: null,
-    upload_student_sign: null,
-    upload_parent_sign: null,
+    name: "",
+    email: "",
+    dob: "",
+    address: "",
+    userphoto: "",
+    usersign: "",
+    userparentsign: "",
+    gender: "",
+    phone: "",
+    altphone: "",
+    adddeclaration: false,
+    classorsem: "",
+    chosensubs: ["", "", "", "", "", ""],
+    schoolorcollege: "",
+    semorclg: "",
+    fatherName: "",
+    fatherOcc: "",
+    motherName: "",
+    motherOcc: "",
   });
 
-  const handleChange = (e) => {
-    const { name } = e.target;
+  const handlefileinput = (e) => {
+    const file = e.target.files[0];
+    const name = e.target.name;
 
-    if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
+    if (file) {
       const reader = new FileReader();
 
       reader.onload = () => {
-        // Update state with the preview URL
-        setFormData({
-          ...formData,
-          [name]: reader.result,
-        });
+        const newPhoto = reader.result;
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          [name]: newPhoto,
+        }));
       };
 
-      // Read the selected file as a data URL
       reader.readAsDataURL(file);
-    } else if (name.startsWith("Subject_Choosen")) {
-      const index = parseInt(name.replace("Subject_Choosen", ""), 10);
-      const subjects = [...formData.Subject_Choosen];
-      subjects[index] = e.target.value;
-      setFormData({
-        ...formData,
-        Subject_Choosen: subjects,
-      });
-    } else {
-      setFormData({
-        ...formData,
-        [name]: e.target.value,
-      });
     }
   };
-  const handleSubmit = (e) => {
+
+  const handleChange = (e) => {
+    const { name, type, value, checked } = e.target;
+
+    if (name.startsWith("Subject_Choosen")) {
+      const index = parseInt(name.replace("Subject_Choosen", ""), 10);
+      const subjects = [...formData.chosensubs];
+      subjects[index] = value;
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        chosensubs: subjects,
+      }));
+    } else if (type === "checkbox") {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: checked,
+      }));
+    } else {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: value,
+      }));
+    }
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const storedUsername = localStorage.getItem("Username");
+      if (!storedUsername) {
+        console.error("name not found in localStorage");
+        return;
+      }
+
+      try {
+        const res = await fetch(`/api/students/${storedUsername}`);
+        if (!res.ok) {
+          throw new Error(`HTTP error! Status: ${res.status}`);
+        }
+        const data = await res.json();
+        setFormData(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form data submitted:", formData);
+
+    try {
+      const res = await fetch(
+        `/api/admission/${localStorage.getItem("Username")}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      if (res.ok) {
+        const jsondata = await res.json();
+        console.log(jsondata);
+        window.alert("Data submitted successfully");
+      } else {
+        console.log("Error submitting data");
+        window.alert("Submission failed");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      window.alert("An error occurred while submitting the form");
+    }
   };
 
   return (
@@ -70,14 +129,11 @@ const Admission = () => {
       <h1 className="form-heading" align="center">
         Admission Form
       </h1>
-      <form onSubmit={handleSubmit} autoComplete="on">
-        <input type="hidden" name="_id" value={formData._id} />
-
+      <form onSubmit={handleSubmit}>
         <table
           className="form-table"
           align="center"
           cellPadding="20"
-          cellMargin="20"
           cellSpacing="20"
         >
           <tbody>
@@ -89,8 +145,8 @@ const Admission = () => {
                 <input
                   type="text"
                   placeholder="Enter Name"
-                  name="Name"
-                  value={formData.Name}
+                  name="username"
+                  value={formData.username}
                   onChange={handleChange}
                   required
                 />
@@ -103,8 +159,8 @@ const Admission = () => {
               <td colSpan="3">
                 <input
                   type="date"
-                  name="Date_of_birth"
-                  value={formData.Date_of_birth}
+                  name="dob"
+                  value={formData.dob}
                   onChange={handleChange}
                   required
                 />
@@ -117,9 +173,9 @@ const Admission = () => {
               <td>
                 <input
                   type="radio"
-                  name="Gender"
+                  name="gender"
                   value="Male"
-                  checked={formData.Gender === "Male"}
+                  checked={formData.gender === "Male"}
                   onChange={handleChange}
                 />{" "}
                 Male
@@ -127,9 +183,9 @@ const Admission = () => {
               <td>
                 <input
                   type="radio"
-                  name="Gender"
+                  name="gender"
                   value="Female"
-                  checked={formData.Gender === "Female"}
+                  checked={formData.gender === "Female"}
                   onChange={handleChange}
                 />{" "}
                 Female
@@ -137,9 +193,9 @@ const Admission = () => {
               <td>
                 <input
                   type="radio"
-                  name="Gender"
+                  name="gender"
                   value="Other"
-                  checked={formData.Gender === "Other"}
+                  checked={formData.gender === "Other"}
                   onChange={handleChange}
                 />{" "}
                 Other
@@ -153,14 +209,13 @@ const Admission = () => {
                 <input
                   type="text"
                   placeholder="Present Address"
-                  name="Address"
-                  value={formData.Address}
+                  name="address"
+                  value={formData.address}
                   onChange={handleChange}
                   required
                 />
               </td>
             </tr>
-
             <tr>
               <td>
                 <b>Email id:</b>
@@ -169,8 +224,8 @@ const Admission = () => {
                 <input
                   type="email"
                   placeholder="Email id"
-                  name="Email_id"
-                  value={formData.Email_id}
+                  name="email"
+                  value={formData.email}
                   onChange={handleChange}
                   required
                 />
@@ -184,8 +239,8 @@ const Admission = () => {
                 <input
                   type="tel"
                   placeholder="Phone No."
-                  name="Phone_No"
-                  value={formData.Phone_No}
+                  name="phone"
+                  value={formData.phone}
                   onChange={handleChange}
                   required
                 />
@@ -199,8 +254,8 @@ const Admission = () => {
                 <input
                   type="tel"
                   placeholder="Alternate Phone No."
-                  name="Alternate_Phone_No"
-                  value={formData.Alternate_Phone_No}
+                  name="altphone"
+                  value={formData.altphone}
                   onChange={handleChange}
                 />
               </td>
@@ -214,7 +269,7 @@ const Admission = () => {
                   type="text"
                   placeholder="Subject Choosen"
                   name="Subject_Choosen0"
-                  value={formData.Subject_Choosen[0]}
+                  value={formData.chosensubs[0]}
                   onChange={handleChange}
                 />
               </td>
@@ -223,7 +278,7 @@ const Admission = () => {
                   type="text"
                   placeholder="Subject Choosen"
                   name="Subject_Choosen1"
-                  value={formData.Subject_Choosen[1]}
+                  value={formData.chosensubs[1]}
                   onChange={handleChange}
                 />
               </td>
@@ -232,7 +287,7 @@ const Admission = () => {
                   type="text"
                   placeholder="Subject Choosen"
                   name="Subject_Choosen2"
-                  value={formData.Subject_Choosen[2]}
+                  value={formData.chosensubs[2]}
                   onChange={handleChange}
                 />
               </td>
@@ -244,7 +299,7 @@ const Admission = () => {
                   type="text"
                   placeholder="Subject Choosen"
                   name="Subject_Choosen3"
-                  value={formData.Subject_Choosen[3]}
+                  value={formData.chosensubs[3]}
                   onChange={handleChange}
                 />
               </td>
@@ -253,7 +308,7 @@ const Admission = () => {
                   type="text"
                   placeholder="Subject Choosen"
                   name="Subject_Choosen4"
-                  value={formData.Subject_Choosen[4]}
+                  value={formData.chosensubs[4]}
                   onChange={handleChange}
                 />
               </td>
@@ -262,7 +317,7 @@ const Admission = () => {
                   type="text"
                   placeholder="Subject Choosen"
                   name="Subject_Choosen5"
-                  value={formData.Subject_Choosen[5]}
+                  value={formData.chosensubs[5]}
                   onChange={handleChange}
                 />
               </td>
@@ -273,8 +328,8 @@ const Admission = () => {
               </td>
               <td colSpan="3">
                 <select
-                  name="Class"
-                  value={formData.Class}
+                  name="classorsem"
+                  value={formData.classorsem}
                   onChange={handleChange}
                 >
                   <option value="" disabled>
@@ -291,42 +346,42 @@ const Admission = () => {
                 </select>
               </td>
             </tr>
-            {formData.Class === "13" && (
+            {formData.classorsem === "13" && (
               <tr>
                 <td>
                   <b>Semester:</b>
                 </td>
                 <td colSpan="3">
                   <select
-                    name="Semester"
-                    value={formData.Semester}
+                    name="semorclg"
+                    value={formData.semorclg}
                     onChange={handleChange}
                   >
                     <option value="" disabled>
                       Select Semester
                     </option>
-                    <option value="1">1st Semester</option>
-                    <option value="2">2nd Semester</option>
-                    <option value="3">3rd Semester</option>
-                    <option value="4">4th Semester</option>
-                    <option value="5">5th Semester</option>
-                    <option value="6">6th Semester</option>
-                    <option value="7">7th Semester</option>
-                    <option value="8">8th Semester</option>
+                    <option value="1">Semester 1</option>
+                    <option value="2">Semester 2</option>
+                    <option value="3">Semester 3</option>
+                    <option value="4">Semester 4</option>
+                    <option value="5">Semester 5</option>
+                    <option value="6">Semester 6</option>
+                    <option value="7">Semester 7</option>
+                    <option value="8">Semester 8</option>
                   </select>
                 </td>
               </tr>
             )}
             <tr>
               <td>
-                <b>School Name/College Name:</b>
+                <b>School/College:</b>
               </td>
               <td colSpan="3">
                 <input
                   type="text"
-                  placeholder="School Name/College Name"
-                  name="SchoolName_CollegeName"
-                  value={formData.SchoolName_CollegeName}
+                  placeholder="School/College"
+                  name="schoolorcollege"
+                  value={formData.schoolorcollege}
                   onChange={handleChange}
                   required
                 />
@@ -339,24 +394,9 @@ const Admission = () => {
               <td colSpan="3">
                 <input
                   type="text"
-                  placeholder="Enter Father's Name"
-                  name="Fathers_Name"
-                  value={formData.Fathers_Name}
-                  onChange={handleChange}
-                  required
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <b>Mother's Name:</b>
-              </td>
-              <td colSpan="3">
-                <input
-                  type="text"
-                  placeholder="Enter Mother's Name"
-                  name="Mothers_Name"
-                  value={formData.Mothers_Name}
+                  placeholder="Father's Name"
+                  name="fatherName"
+                  value={formData.fatherName}
                   onChange={handleChange}
                   required
                 />
@@ -370,9 +410,25 @@ const Admission = () => {
                 <input
                   type="text"
                   placeholder="Father's Occupation"
-                  name="Fathers_Occupation"
-                  value={formData.Fathers_Occupation}
+                  name="fatherOcc"
+                  value={formData.fatherOcc}
                   onChange={handleChange}
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <b>Mother's Name:</b>
+              </td>
+              <td colSpan="3">
+                <input
+                  type="text"
+                  placeholder="Mother's Name"
+                  name="motherName"
+                  value={formData.motherName}
+                  onChange={handleChange}
+                  required
                 />
               </td>
             </tr>
@@ -384,110 +440,95 @@ const Admission = () => {
                 <input
                   type="text"
                   placeholder="Mother's Occupation"
-                  name="Mothers_Occupation"
-                  value={formData.Mothers_Occupation}
+                  name="motherOcc"
+                  value={formData.motherOcc}
                   onChange={handleChange}
+                  required
                 />
-              </td>
-            </tr>
-            <tr align="center">
-              <td colSpan="4">
-                <b>Declaration</b>
-              </td>
-            </tr>
-            <tr>
-              <td colSpan="4">
-                <p>
-                  <input type="checkbox" />I hereby declare that I will obey all
-                  the rules and regulations of the institution and be fully
-                  responsible for violating the rules.
-                </p>
               </td>
             </tr>
             <tr>
               <td>
-                <b>Student's photo:</b>
+                <b>User Photo URL:</b>
               </td>
               <td colSpan="3">
-                <label className="upload-button" htmlFor="upload_profile">
-                  Upload File
-                </label>
                 <input
-                  id="upload_profile"
-                  style={{ display: "none" }}
                   type="file"
-                  name="upload_profile"
-                  onChange={handleChange}
+                  placeholder="User Photo URL"
+                  accept="image/*"
+                  name="userphoto"
+                  onChange={handlefileinput}
+                  required
                 />
+                {formData.userphoto && (
+                  <img
+                    src={formData.userphoto}
+                    alt="User Photo Preview"
+                    style={{ maxWidth: "200px", marginTop: "10px" }}
+                  />
+                )}
               </td>
             </tr>
             <tr>
               <td>
-                <b>Student's Signature:</b>
+                <b>User Signature URL:</b>
               </td>
-              <td>
-                <label className="upload-button" htmlFor="upload_student_sign">
-                  Upload File
-                </label>
+              <td colSpan="3">
                 <input
-                  id="upload_student_sign"
-                  style={{ display: "none" }}
                   type="file"
-                  name="upload_student_sign"
-                  onChange={handleChange}
+                  placeholder="User Signature URL"
+                  name="usersign"
+                  accept="image/*"
+                  onChange={handlefileinput}
+                  required
                 />
-              </td>
-              <td>
-                <b>Parent's Signature:</b>
-              </td>
-              <td>
-                <label className="upload-button" htmlFor="upload_parent_sign">
-                  Upload File
-                </label>
-                <input
-                  id="upload_parent_sign"
-                  style={{ display: "none" }}
-                  type="file"
-                  name="upload_parent_sign"
-                  onChange={handleChange}
-                />
+                {formData.usersign && (
+                  <img
+                    src={formData.usersign}
+                    alt="User Signature Preview"
+                    style={{ maxWidth: "200px", marginTop: "10px" }}
+                  />
+                )}
               </td>
             </tr>
-
             <tr>
-              <td></td>
               <td>
-                <input type="submit" className="Submit" name="Submit" />
+                <b>Parent's Signature URL:</b>
               </td>
-              <td>
+              <td colSpan="3">
                 <input
-                  type="reset"
-                  className="Reset"
-                  name="Reset"
-                  onClick={() =>
-                    setFormData({
-                      Name: "",
-                      Date_of_birth: "",
-                      Gender: "",
-                      Address: "",
-                      Address1: "",
-                      Email_id: "",
-                      Phone_No: "",
-                      Alternate_Phone_No: "",
-                      Subject_Choosen: ["", "", "", "", "", ""],
-                      Class: "",
-                      Semester: "",
-                      SchoolName_CollegeName: "",
-                      Fathers_Name: "",
-                      Mothers_Name: "",
-                      Fathers_Occupation: "",
-                      Mothers_Occupation: "",
-                      upload_profile: null,
-                      upload_student_sign: null,
-                      upload_parent_sign: null,
-                    })
-                  }
+                  type="file"
+                  placeholder="Parent's Signature URL"
+                  name="userparentsign"
+                  accept="image/*"
+                  onChange={handlefileinput}
+                  required
                 />
+                {formData.userparentsign && (
+                  <img
+                    src={formData.userparentsign}
+                    alt="Parent Signature Preview"
+                    style={{ maxWidth: "200px", marginTop: "10px" }}
+                  />
+                )}
+              </td>
+            </tr>
+            <tr>
+              <td colSpan="4">
+                <input
+                  type="checkbox"
+                  name="adddeclaration"
+                  checked={formData.adddeclaration}
+                  onChange={handleChange}
+                  required
+                />{" "}
+                I do hereby declare that all the information provided above is
+                true to my knowledge.
+              </td>
+            </tr>
+            <tr>
+              <td colSpan="4" align="center">
+                <button type="submit">Submit</button>
               </td>
             </tr>
           </tbody>
