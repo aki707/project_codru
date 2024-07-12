@@ -78,6 +78,7 @@
   width: 30%;
   align-self: 1/1;
   position: relative;
+  /* border: 2px solid blue; */
 }
 
 .navnotification > img,
@@ -151,6 +152,11 @@
     width: 10%;
     z-index: 2;
   }
+  .navbarcrossicon {
+    /* border: 2px solid blue; */
+    position: relative;
+    bottom: 2.5vh;
+  }
   .navbuttons {
     display: none;
   }
@@ -175,7 +181,7 @@
     justify-content: space-between;
     align-items: center;
     position: absolute;
-    top: 4vh;
+    top: 0vh;
     right: 0px;
     width: 50vw;
     margin-right: 0px;
@@ -186,6 +192,8 @@
   }
   .navbuttons.cross {
     color: white;
+    /* position: absolute; */
+    margin-bottom: 2vh;
   }
   .btn {
     /* border: 2px solid red; */
@@ -246,7 +254,6 @@
   .navprofile {
     width: 50%;
     align-self: 1/1;
-    position: relative;
     /* border: 2px solid red; */
     display: flex;
     justify-content: center;

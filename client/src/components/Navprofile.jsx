@@ -56,6 +56,7 @@ function Navprofile({ setShowprofile, showprofile, closeNavprofile }) {
 
       const jsondata = await res.json();
       if (res.ok) {
+        localStorage.removeItem("Photo");
         localStorage.setItem("Photo", jsondata.user.photo); // Correctly set the new photo in localStorage
         setAlertMessage(jsondata.message || "Image updated successfully");
         setShowAlert(true);
@@ -93,7 +94,7 @@ function Navprofile({ setShowprofile, showprofile, closeNavprofile }) {
 
   return (
     <div className="Navprofilemaindiv">
-      {/* <div className="Navprofilemaindivcross">
+      <div className="Navprofilemaindivcross">
         <span
           onClick={() => {
             setShowprofile(!showprofile);
@@ -101,10 +102,14 @@ function Navprofile({ setShowprofile, showprofile, closeNavprofile }) {
         >
           X
         </span>
-      </div> */}
+      </div>
       <div className="Navprofilemaindivdiv1">
         <div className="Navprofilemaindivdiv1div1">
-          <img src={localStorage.getItem("Photo")} alt="" />
+          <img
+            onClick={handlePenClick}
+            src={localStorage.getItem("Photo")}
+            alt=""
+          />
           <FontAwesomeIcon
             className="profileediticon"
             icon={faPen}

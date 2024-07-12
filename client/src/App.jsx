@@ -48,6 +48,7 @@ function App() {
 
         const data = await res.json();
         if (res.ok) {
+          localStorage.removeItem("Photo");
           localStorage.setItem("Photo", data.user.photo);
           localStorage.setItem("Name", data.user.name);
         } else {
