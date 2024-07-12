@@ -56,6 +56,7 @@ function Navprofile({ setShowprofile, showprofile, closeNavprofile }) {
 
       const jsondata = await res.json();
       if (res.ok) {
+        localStorage.removeItem("Photo");
         localStorage.setItem("Photo", jsondata.user.photo); // Correctly set the new photo in localStorage
         setAlertMessage(jsondata.message || "Image updated successfully");
         setShowAlert(true);

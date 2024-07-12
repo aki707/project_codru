@@ -423,13 +423,13 @@ const Calendar = () => {
         </div>
       </div>
 
-      {/* {selectedEvent && (
+      {selectedEvent && (
         <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
           contentLabel="Event Details"
           className="event-modal"
-          // overlayClassName="event-overlay"
+          overlayClassName="event-overlay"
         >
           <h3>{selectedEvent.title}</h3>
           <div className="event-times">
@@ -443,7 +443,7 @@ const Calendar = () => {
           )}
           <button onClick={closeModal} className="close-button">Close</button>
         </Modal>
-      )} */}
+      )}
     </div>
   );
 };

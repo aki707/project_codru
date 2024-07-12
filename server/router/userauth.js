@@ -7,7 +7,6 @@ const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
 const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
-const multer = require("multer");
 router.use(express.json());
 router.use(bodyParser.json());
 router.use(express.urlencoded({ extended: true }));

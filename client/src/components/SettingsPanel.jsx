@@ -1,9 +1,9 @@
 import React, { useState,useContext } from 'react';
 import { useNavigate } from "react-router-dom";
 import "../styles/SettingsPanel.css";
-import { Alert, Snackbar } from "@mui/material";
-
-
+import { Alert, Snackbar, TextField, Button, IconButton, InputAdornment, Checkbox } from "@mui/material";
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { ThemeContext } from "../Theme.jsx"
 
 const username = localStorage.getItem("Username");
 const role = localStorage.getItem("Role");

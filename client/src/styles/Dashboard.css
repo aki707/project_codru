@@ -85,7 +85,6 @@ body {
   /* border: 2px solid rgb(119, 0, 255); */
 }
 
-<<<<<<< HEAD
 .rightSectionDashboard1 {
   display: flex; 
   justify-content: space-between;
@@ -113,8 +112,6 @@ body {
 }
 
 
-=======
->>>>>>> 83b56d7622679edd9201e9a9c16553e7d69176b5
 /* Event Form and Calendar styles remain the same */
 
 .photoDashboard > img {
