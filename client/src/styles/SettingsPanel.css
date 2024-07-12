@@ -1,4 +1,65 @@
 .settings-panel {
+<<<<<<< HEAD
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: center; */
+    position:relative;
+    height:95vh;
+    /* aspect-ratio: 1/1; */
+    margin:10px;
+    padding:20px;
+    background-color: hsl(0, 0%, 100%);
+  }
+  
+  .settings-panel h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    padding: 0;
+    list-style: none;
+    cursor: pointer;
+  }
+  
+  .tabs li {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    border-bottom: 2px solid transparent;
+  }
+  
+  .tabs li.active {
+    border-bottom: 2px solid #007bff;
+  }
+  
+  .tab-content {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #ffffff;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  
+=======
   position: relative;
   height: 95vh;
   /* aspect-ratio: 1/1; */
@@ -70,3 +131,4 @@
 .setting-delete-account-text:hover {
   text-decoration: underline;
 }
+>>>>>>> 83b56d7622679edd9201e9a9c16553e7d69176b5
