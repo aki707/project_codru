@@ -1,25 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import { useNavigate } from "react-router-dom";
 import "../styles/SettingsPanel.css";
+<<<<<<< HEAD
 import { Alert, Snackbar } from "@mui/material";
 
 
+=======
+import { Alert, Snackbar, TextField, Button, IconButton, InputAdornment, Checkbox } from "@mui/material";
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { ThemeContext } from "../Theme.jsx"
+>>>>>>> 83b56d7622679edd9201e9a9c16553e7d69176b5
 
 const username = localStorage.getItem("Username");
 const role = localStorage.getItem("Role");
 
-const GeneralSettings = () => (
-  <div>
-    <h3>General Settings</h3>
-    <div className="form-group">
-      <label htmlFor="theme">Theme</label>
-      <select id="theme">
-        <option value="light">Light</option>
-        <option value="dark">Dark</option>
-      </select>
+const GeneralSettings = () => {
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
+  return (
+    <div className="setting--section">
+      <h3 className='setting-my-h3'>Change Theme</h3>
+      <div className="setting-form-group">
+      <button onClick={() => toggleTheme()}>{theme}</button>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const AccountSettings = () => {
   const [currentPassword, setCurrentPassword] = useState('');
@@ -29,9 +35,14 @@ const AccountSettings = () => {
   const [alertSeverity, setAlertSeverity] = useState("info");
   const [showAlert, setShowAlert] = useState(false);
   const [waitingAlert, setWaitingAlert] = useState(false);
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
   const navigate = useNavigate();
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 83b56d7622679edd9201e9a9c16553e7d69176b5
   const handlePasswordChange = async (e) => {
     e.preventDefault();
     try {
@@ -61,13 +72,19 @@ const AccountSettings = () => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete your account? This action cannot be undone."
     );
-
+  
     if (!confirmDelete) {
       return;
     }
+<<<<<<< HEAD
 
     setWaitingAlert(true);
 
+=======
+  
+    setWaitingAlert(true);
+  
+>>>>>>> 83b56d7622679edd9201e9a9c16553e7d69176b5
     try {
       const response = await fetch(`/api/user/${username}`, {
         method: "DELETE",
@@ -76,18 +93,31 @@ const AccountSettings = () => {
         },
         body: JSON.stringify({ role }),
       });
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> 83b56d7622679edd9201e9a9c16553e7d69176b5
       setWaitingAlert(false);
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
+  
+      if (response.ok) {
+        localStorage.clear();
+        navigate("/");
+        setAlertMessage("User deleted successfully");
+        setAlertSeverity("success");
+        setShowAlert(true);
+      } else {
+        throw new Error("Failed to delete user");
       }
+<<<<<<< HEAD
 
       setAlertMessage("User deleted successfully");
       setAlertSeverity("success");
       setShowAlert(true);
       localStorage.clear();
       navigate("/");
+=======
+>>>>>>> 83b56d7622679edd9201e9a9c16553e7d69176b5
     } catch (error) {
       console.error("Error deleting user:", error);
       setAlertMessage("Failed to delete user");
@@ -95,6 +125,7 @@ const AccountSettings = () => {
       setShowAlert(true);
     }
   };
+  
 
   const handleCloseAlert = () => {
     setShowAlert(false);
@@ -103,31 +134,57 @@ const AccountSettings = () => {
 
   return (
     <div>
-      <h3>Account Settings</h3>
+    <h4 className='setting-my-h4'>Change Password</h4>
+    <div className="setting-function-section">
       <form onSubmit={handlePasswordChange}>
-        <div className="form-group">
-          <label htmlFor="current-password">Current Password</label>
-          <input
-            type="password"
-            id="current-password"
+        <div className="setting-form-group">
+          <TextField
+            label="Current Password"
+            type={showCurrentPassword ? "text" : "password"}
             value={currentPassword}
             onChange={(e) => setCurrentPassword(e.target.value)}
-            required
+            fullWidth
+            variant="outlined"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+                    edge="end"
+                  >
+                    {showCurrentPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
           />
         </div>
-        <div className="form-group">
-          <label htmlFor="new-password">New Password</label>
-          <input
-            type="password"
-            id="new-password"
+        <div className="setting-form-group">
+          <TextField
+            label="New Password"
+            type={showNewPassword ? "text" : "password"}
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
-            required
+            fullWidth
+            variant="outlined"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    onClick={() => setShowNewPassword(!showNewPassword)}
+                    edge="end"
+                  >
+                    {showNewPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
           />
         </div>
-        <button type="submit">Change Password</button>
+        <Button type="submit" className="change-password-btn" variant="contained" color="primary">Change Password</Button>
       </form>
-      <button className="delete-account-btn" onClick={handleDeleteAccount}>Delete Account</button>
+     
+      
       {message && <p>{message}</p>}
       <Snackbar
         open={showAlert}
@@ -156,17 +213,29 @@ const AccountSettings = () => {
         </Alert>
       </Snackbar>
     </div>
+     <div className="setting-function-section">
+     <p className="setting-caution-note">Caution: Deleting your account is permanent and cannot be undone.</p>
+     <p className="setting-delete-account-text" onClick={handleDeleteAccount}>Delete Account</p>
+   </div></div>
   );
 };
 
 const NotificationSettings = () => (
   <div>
-    <h3>Notification Settings</h3>
-    <div className="form-group">
-      <label htmlFor="notifications">Enable Notifications</label>
-      <input type="checkbox" id="notifications" />
+    <h4 className='setting-my-h4'>Enable Notifications</h4>
+    <div className="setting-function-section">
+    <div className="setting-form-group">
+      <Checkbox
+        label="Enable Notifications"
+        
+        variant="outlined"
+        fullWidth
+        />
+      
     </div>
   </div>
+  </div>
+  
 );
 
 const SettingsPanel = () => {
@@ -188,7 +257,7 @@ const SettingsPanel = () => {
   return (
     <div className="settings-panel">
       <h2>Settings</h2>
-      <ul className="tabs">
+      <ul className="setting-tabs">
         <li className={activeTab === 'general' ? 'active' : ''} onClick={() => setActiveTab('general')}>
           General
         </li>
@@ -199,7 +268,7 @@ const SettingsPanel = () => {
           Notifications
         </li>
       </ul>
-      <div className="tab-content">
+      <div className="setting-tab-content">
         {renderContent()}
       </div>
     </div>

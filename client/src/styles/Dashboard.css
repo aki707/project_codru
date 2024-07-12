@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -32,7 +33,7 @@ html, body {
   display: flex;
   flex-direction: column;
   /* padding: 20px; */
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   /* border: 2px solid red; */
 }
 
@@ -42,8 +43,8 @@ html, body {
   justify-content: flex-start;
 }
 
-.codrudivision{
-  width:100%;
+.codrudivision {
+  width: 100%;
   /* border: 2px solid pink; */
   margin-top: 2vh;
   margin-left: 0.5vw;
@@ -55,11 +56,10 @@ html, body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
-  margin-top: 30px;
-  width:100%
-}
 
+  margin-top: 30px;
+  width: 100%;
+}
 
 .drawerContent {
   width: 100%;
@@ -76,15 +76,16 @@ html, body {
 
 /* Right Section Styles */
 .rightSectionDashboard {
-  /* display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center; */
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* align-items: center; */
+  /* justify-content: center; */
   height: 100%;
   width: 85%;
   /* border: 2px solid rgb(119, 0, 255); */
 }
 
+<<<<<<< HEAD
 .rightSectionDashboard1 {
   display: flex; 
   justify-content: space-between;
@@ -112,13 +113,14 @@ html, body {
 }
 
 
+=======
+>>>>>>> 83b56d7622679edd9201e9a9c16553e7d69176b5
 /* Event Form and Calendar styles remain the same */
 
-.photoDashboard>img{
+.photoDashboard > img {
   width: 70%;
   aspect-ratio: 1/1;
   border-radius: 100%;
-  
 }
 
 .welcomeMessage {
@@ -126,8 +128,7 @@ html, body {
   margin-top: 10px;
 }
 
-.welcomeMessage> h2 {
+.welcomeMessage > h2 {
   font-size: 1.5rem;
   color: #b11d37;
-  
 }

@@ -37,6 +37,10 @@ const userSchema = new mongoose.Schema(
       default: "",
     },
 
+    savedBlogs: [{ type: mongoose.Schema.Types.ObjectId, ref: "Blog" }],
+
+    blogs: [{ type: mongoose.Schema.Types.ObjectId, ref: "Blog" }],
+
     declaration: {
       type: Boolean,
       default: false,

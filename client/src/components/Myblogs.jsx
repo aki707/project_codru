@@ -2,20 +2,20 @@ import { useEffect, useState } from "react";
 import "../styles/Blogpage.css";
 import { useNavigate } from "react-router-dom";
 
-function Blogpage() {
+function Myblogs() {
   const navigate = useNavigate();
   const [blogarray, setBlogarray] = useState([]);
   const [expandedTitles, setExpandedTitles] = useState({});
 
   useEffect(() => {
-    const fetchBlogData = async () => {
+    const fetchUserBlogs = async () => {
       try {
         const username = localStorage.getItem("Username");
         if (!username) {
           throw new Error("Username not found in localStorage");
         }
 
-        const res = await fetch("/api/blogsdata", {
+        const res = await fetch("/api/userblogs", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username }),
@@ -34,10 +34,11 @@ function Blogpage() {
         console.log(jsondata.blogs);
       } catch (error) {
         console.error("There was a problem with the fetch operation:", error);
+        // Handle error state if needed
       }
     };
 
-    fetchBlogData();
+    fetchUserBlogs();
   }, []);
 
   if (blogarray.length === 0) {
@@ -84,21 +85,25 @@ function Blogpage() {
               <img src={userPhoto} alt="User Photo" />
             )}
             <h2 className="blogtitle">
-              {isExpanded || title.length <= 70 ? (
-                title
-              ) : (
-                <>
-                  {title.slice(0, 70)}...{" "}
-                  <span
-                    className="blog-page-show-more"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toggleTitleExpansion(index);
-                    }}
-                  ></span>
-                </>
-              )}
+              {title &&
+                (isExpanded || title.length <= 70 ? (
+                  title
+                ) : (
+                  <>
+                    {title.slice(0, 70)}...{" "}
+                    <span
+                      className="blog-page-show-more"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleTitleExpansion(index);
+                      }}
+                    >
+                      Read More
+                    </span>
+                  </>
+                ))}
             </h2>
+
             <span className="blogpagesnippet">{snippet}</span>
             <div className="blogseemore">
               <button onClick={() => handleBlogClick(data._id)}>
@@ -112,4 +117,4 @@ function Blogpage() {
   );
 }
 
-export default Blogpage;
+export default Myblogs;

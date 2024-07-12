@@ -68,7 +68,7 @@ const EventList = ({ events }) => {
 
   
   return (
-    <div className="event-list">
+    <div className="my-event-list">
       {events.length > 0 ? (
         events.map(event => (
           <div key={event.id} className="event-item" style={{ backgroundColor: getRandomColor() }}>

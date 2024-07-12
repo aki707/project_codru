@@ -7,7 +7,7 @@ const dotenv = require("dotenv");
 dotenv.config({ path: "./config.env" });
 const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
-
+const multer = require("multer");
 router.use(express.json());
 router.use(bodyParser.json());
 router.use(express.urlencoded({ extended: true }));
@@ -127,7 +127,6 @@ router.post("/signin", async (req, res) => {
           _id: user._id,
           username: user.username,
           role: user.role,
-          
         },
         process.env.TOKEN_SECRET,
         { expiresIn: "14d" }
@@ -146,7 +145,6 @@ router.post("/signin", async (req, res) => {
         photo: user.photo,
         name: user.name,
         isAdmin: user.isAdmin,
-        
       });
     } else {
       res.status(400).json({ error: "Wrong Credentials" });
@@ -157,73 +155,103 @@ router.post("/signin", async (req, res) => {
   }
 });
 
-// Admission route
-router.post("/admission", async (req, res) => {
-  const {
-    username,
-    photo,
-    sign,
-    gender,
-    parentsign,
-    altphone,
-    chosensubs,
-    declaration,
-    classorsem,
-    schoolorcollege,
-    fatherOcc,
-    motherOcc,
-    fatherName,
-    motherName,
-    courses,
-  } = req.body;
-
-  if (
-    !username ||
-    !photo ||
-    !sign ||
-    !parentsign ||
-    !chosensubs ||
-    !declaration ||
-    !classorsem ||
-    !schoolorcollege ||
-    !fatherOcc ||
-    !motherOcc ||
-    !fatherName ||
-    !motherName ||
-    !courses ||
-    !gender ||
-    !altphone
-  ) {
-    return res.status(400).json({ error: "Empty field(s)." });
-  }
-
+// POST route for admission form submission
+router.post("/admission/:username", async (req, res) => {
+  const username = req.params.username;
   try {
-    const existingUser = await Student.findOne({ username });
+    const {
+      name,
+      email,
+      dob,
+      address,
+      userphoto,
+      usersign,
+      userparentsign,
+      gender,
+      phone,
+      altphone,
+      adddeclaration,
+      classorsem,
+      chosensubs,
+      schoolorcollege,
+      semorclg,
+      fatherName,
+      fatherOcc,
+      motherName,
+      motherOcc,
+    } = req.body;
 
-    if (existingUser) {
-      existingUser.photo = photo;
-      existingUser.sign = sign;
-      existingUser.gender = gender;
-      existingUser.parentsign = parentsign;
-      existingUser.altphone = altphone;
-      existingUser.chosensubs = chosensubs;
-      existingUser.declaration = declaration;
-      existingUser.classorsem = classorsem;
-      existingUser.schoolorcollege = schoolorcollege;
-      existingUser.fatherOcc = fatherOcc;
-      existingUser.motherOcc = motherOcc;
-      existingUser.fatherName = fatherName;
-      existingUser.motherName = motherName;
-      existingUser.courses = courses;
+    // Validate required fields
+    if (
+      !name ||
+      !email ||
+      !dob ||
+      !address ||
+      !gender ||
+      !phone ||
+      (classorsem === "13" && !semorclg) ||
+      !adddeclaration ||
+      !classorsem ||
+      !chosensubs.length ||
+      !schoolorcollege ||
+      !fatherName ||
+      !fatherOcc ||
+      !motherName ||
+      !motherOcc
+    ) {
+      return res.status(400).json({ error: "Empty field(s) or invalid data." });
+    }
 
-      await existingUser.save();
+    // Check if the student already exists
+    let existingStudent = await User.findOne({ username });
 
-      res.status(200).json({ message: "Admitted successfully" });
-    } else {
-      return res.status(404).json({ error: "User not found." });
+    if (existingStudent) {
+      // Update existing student record
+      existingStudent.email = email;
+      existingStudent.dob = dob;
+      existingStudent.address = address;
+      existingStudent.userphoto = userphoto;
+      existingStudent.usersign = usersign;
+      existingStudent.userparentsign = userparentsign;
+      existingStudent.gender = gender;
+      existingStudent.phone = phone;
+      existingStudent.altphone = altphone;
+      existingStudent.adddeclaration = adddeclaration;
+      existingStudent.classorsem = classorsem;
+      existingStudent.chosensubs = chosensubs;
+      existingStudent.schoolorcollege = schoolorcollege;
+      existingStudent.semorclg = semorclg;
+      existingStudent.fatherName = fatherName;
+      existingStudent.fatherOcc = fatherOcc;
+      existingStudent.motherName = motherName;
+      existingStudent.motherOcc = motherOcc;
+
+      await existingStudent.save();
+      return res
+        .status(200)
+        .json({ message: "Student record updated successfully" });
     }
   } catch (err) {
-    console.log(err);
+    console.error(err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+// GET student data by username
+router.get("/students/:username", async (req, res) => {
+  const username = req.params.username;
+
+  try {
+    // Find student by username in the database
+    const student = await User.findOne({ username });
+
+    if (!student) {
+      return res.status(404).json({ error: "Student not found" });
+    }
+
+    res.status(200).json(student);
+  } catch (error) {
+    console.error("Error fetching student:", error);
     res.status(500).json({ error: "Server error" });
   }
 });

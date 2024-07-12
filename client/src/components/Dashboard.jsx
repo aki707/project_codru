@@ -1,4 +1,4 @@
-import  { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import c3 from "../assets/c3.png";
 import "../styles/Dashboard.css";
@@ -17,11 +17,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import Admin from "../components/Admin";
 import PlanetryPath from "../components/PlanetryPath";
+import Savedblogs from "./Savedblogs";
+import Admission from "./Admission";
+import Profile from "./Profile";
 import SettingsPanel from "../components/SettingsPanel";
 import Calendar from "./Calendar";
 
-
-const Dashboard = ( ) => {
+const Dashboard = () => {
   const [events, setEvents] = useState([]);
   const [newEvent, setNewEvent] = useState({
     title: "",
@@ -145,8 +147,8 @@ const Dashboard = ( ) => {
         text: "My Blogs",
         icon: <RssFeedIcon />,
         view: "my-blogs",
+        path: "/my-blogs",
       },
-      
     ];
 
     if (role === "Teacher" || role === "Student") {
@@ -238,17 +240,23 @@ const Dashboard = ( ) => {
       </div>
 
       <div className="rightSectionDashboard">
-          
-          {currentView === "profile" && <div>Profile Content</div>}
-          {currentView === "dashboard" && <div><Calendar/></div>}
-          {currentView === "settings" && <div><SettingsPanel/></div>}
-          {currentView === "my-courses" && <div>My Courses Content</div>}
-          {currentView === "my-blogs" && <div>My Blogs Content</div>}
-          {currentView === "report" && <PlanetryPath />}
-          {currentView === "manage-users" && <Admin />}
-        </div>
+        {currentView === "profile" && <div>Profile Content</div>}
+        {currentView === "dashboard" && (
+          <div>
+            <Calendar />
+          </div>
+        )}
+        {currentView === "settings" && (
+          <div>
+            <SettingsPanel />
+          </div>
+        )}
+        {currentView === "my-courses" && <div>My Courses Content</div>}
+        {currentView === "my-blogs" && <div>My Blogs Content</div>}
+        {currentView === "report" && <PlanetryPath />}
+        {currentView === "manage-users" && <Admin />}
       </div>
-
+    </div>
   );
 };
 

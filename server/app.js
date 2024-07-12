@@ -11,9 +11,13 @@ dotenv.config({ path: "./config.env" });
 const app = express();
 const port = process.env.PORT;
 
-app.use(express.json());
+app.use(express.json({ parameterLimit: "100000", limit: "500mb" }));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
 app.use(
   cors({
     origin: "http://localhost:5173",

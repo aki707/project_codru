@@ -2,20 +2,20 @@ import { useEffect, useState } from "react";
 import "../styles/Blogpage.css";
 import { useNavigate } from "react-router-dom";
 
-function Blogpage() {
+function Savedblogs() {
   const navigate = useNavigate();
-  const [blogarray, setBlogarray] = useState([]);
+  const [savedBlogs, setSavedBlogs] = useState([]);
   const [expandedTitles, setExpandedTitles] = useState({});
 
   useEffect(() => {
-    const fetchBlogData = async () => {
+    const fetchSavedBlogs = async () => {
       try {
         const username = localStorage.getItem("Username");
         if (!username) {
           throw new Error("Username not found in localStorage");
         }
 
-        const res = await fetch("/api/blogsdata", {
+        const res = await fetch("/api/savedblogs", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username }),
@@ -26,26 +26,23 @@ function Blogpage() {
         }
 
         const jsondata = await res.json();
-        if (!Array.isArray(jsondata.blogs)) {
-          throw new Error("Invalid data format received from server");
-        }
-
-        setBlogarray(jsondata.blogs);
-        console.log(jsondata.blogs);
+        setSavedBlogs(jsondata.savedBlogs);
+        console.log(jsondata.savedBlogs);
       } catch (error) {
-        console.error("There was a problem with the fetch operation:", error);
+        console.error("Error fetching saved blogs:", error);
+        // Handle error state if needed
       }
     };
 
-    fetchBlogData();
+    fetchSavedBlogs();
   }, []);
 
-  if (blogarray.length === 0) {
+  if (savedBlogs.length === 0) {
     return <div>Loading...</div>;
   }
 
   const handleBlogClick = (blogId) => {
-    console.log(`Navigating to blog with ID: ${blogId}`);
+    console.log(`Navigating to saved blog with ID: ${blogId}`);
     navigate(`/blog/${blogId}`);
   };
 
@@ -70,7 +67,7 @@ function Blogpage() {
 
   return (
     <div className="blog-page">
-      {blogarray.map((data, index) => {
+      {savedBlogs.map((data, index) => {
         const contentPreview = extractFirstImageAndSnippet(data.content);
         const isExpanded = expandedTitles[index];
         const title = data.title;
@@ -84,20 +81,23 @@ function Blogpage() {
               <img src={userPhoto} alt="User Photo" />
             )}
             <h2 className="blogtitle">
-              {isExpanded || title.length <= 70 ? (
-                title
-              ) : (
-                <>
-                  {title.slice(0, 70)}...{" "}
-                  <span
-                    className="blog-page-show-more"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toggleTitleExpansion(index);
-                    }}
-                  ></span>
-                </>
-              )}
+              {title &&
+                (isExpanded || title.length <= 70 ? (
+                  title
+                ) : (
+                  <>
+                    {title.slice(0, 70)}...{" "}
+                    <span
+                      className="blog-page-show-more"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleTitleExpansion(index);
+                      }}
+                    >
+                      Read More
+                    </span>
+                  </>
+                ))}
             </h2>
             <span className="blogpagesnippet">{snippet}</span>
             <div className="blogseemore">
@@ -112,4 +112,4 @@ function Blogpage() {
   );
 }
 
-export default Blogpage;
+export default Savedblogs;
