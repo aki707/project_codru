@@ -1,21 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import "../styles/SettingsPanel.css";
-<<<<<<< HEAD
 import { Alert, Snackbar } from "@mui/material";
 
 
 
 const username = localStorage.getItem("Username");
-=======
-import { Dialog, DialogContent, Alert, Snackbar } from "@mui/material";
-
-const navigate = useNavigate();
-const username = localStorage.getItem("Username");
-const [alertMessage, setAlertMessage] = useState("");
-const [alertSeverity, setAlertSeverity] = useState("info");
-  const [showAlert, setShowAlert] = useState(false);
->>>>>>> 767f03db177b27d5b5e422fe0b59df7165768e35
 const role = localStorage.getItem("Role");
 
 const GeneralSettings = () => (
@@ -35,17 +25,12 @@ const AccountSettings = () => {
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [message, setMessage] = useState('');
-<<<<<<< HEAD
   const [alertMessage, setAlertMessage] = useState("");
   const [alertSeverity, setAlertSeverity] = useState("info");
   const [showAlert, setShowAlert] = useState(false);
   const [waitingAlert, setWaitingAlert] = useState(false);
   const navigate = useNavigate();
 
-=======
-
-  
->>>>>>> 767f03db177b27d5b5e422fe0b59df7165768e35
 
   const handlePasswordChange = async (e) => {
     e.preventDefault();
@@ -56,15 +41,9 @@ const AccountSettings = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-<<<<<<< HEAD
           username,
           currentPassword,
           newPassword
-=======
-          username:username,
-          currentPassword:currentPassword,
-          newPassword:newPassword
->>>>>>> 767f03db177b27d5b5e422fe0b59df7165768e35
         })
       });
 
@@ -78,11 +57,7 @@ const AccountSettings = () => {
     }
   };
 
-<<<<<<< HEAD
   const handleDeleteAccount = async () => {
-=======
-  const handleDeleteAccount = async (id, username, role) => {
->>>>>>> 767f03db177b27d5b5e422fe0b59df7165768e35
     const confirmDelete = window.confirm(
       "Are you sure you want to delete your account? This action cannot be undone."
     );
@@ -91,11 +66,8 @@ const AccountSettings = () => {
       return;
     }
 
-<<<<<<< HEAD
     setWaitingAlert(true);
 
-=======
->>>>>>> 767f03db177b27d5b5e422fe0b59df7165768e35
     try {
       const response = await fetch(`/api/user/${username}`, {
         method: "DELETE",
@@ -104,7 +76,6 @@ const AccountSettings = () => {
         },
         body: JSON.stringify({ role }),
       });
-<<<<<<< HEAD
 
       setWaitingAlert(false);
 
@@ -117,14 +88,6 @@ const AccountSettings = () => {
       setShowAlert(true);
       localStorage.clear();
       navigate("/");
-=======
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      setAlertMessage("User deleted successfully");
-      setAlertSeverity("success");
-      setShowAlert(true);
->>>>>>> 767f03db177b27d5b5e422fe0b59df7165768e35
     } catch (error) {
       console.error("Error deleting user:", error);
       setAlertMessage("Failed to delete user");
@@ -133,14 +96,11 @@ const AccountSettings = () => {
     }
   };
 
-<<<<<<< HEAD
   const handleCloseAlert = () => {
     setShowAlert(false);
     setWaitingAlert(false);
   };
 
-=======
->>>>>>> 767f03db177b27d5b5e422fe0b59df7165768e35
   return (
     <div>
       <h3>Account Settings</h3>

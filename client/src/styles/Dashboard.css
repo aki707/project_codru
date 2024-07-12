@@ -82,7 +82,7 @@ html, body {
   justify-content: center; */
   height: 100%;
   width: 85%;
-  border: 2px solid rgb(119, 0, 255);
+  /* border: 2px solid rgb(119, 0, 255); */
 }
 
 .rightSectionDashboard1 {
@@ -91,7 +91,7 @@ html, body {
   align-items: center; 
   height: 100%;
   width: 100%;
-  border: 2px solid red;
+  /* border: 2px solid red; */
 }
 
 .calenderSectionDashboard {
