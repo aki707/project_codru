@@ -131,4 +131,14 @@
   .close-button:hover {
     background-color: #c9302c;
   }
+  .remove-button {
+    background: none;
+    color: rgb(189, 38, 38);
+    border: none;
+    cursor: pointer;
+  }
+  
+  .remove-button:hover {
+    color: rgb(121, 31, 31);
+  }
   
