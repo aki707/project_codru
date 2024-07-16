@@ -147,7 +147,7 @@ function BlogDetail() {
             </div>
           </div>
         </div>
-        <hr style={{ margin: "1vh .5vw" }} />
+        <hr className="hrtagofblogdetail" />
         <div className="blogdetailactivity">{parser(blogData.content)}</div>
         <div className="blogdetaillikecomment">
           <div
@@ -190,7 +190,7 @@ function BlogDetail() {
           </div>
         </div>
       </div>
-      <hr style={{ margin: "2vh 0vw", width: "100%" }}></hr>
+      <hr className="hrtagofblogdetail" />
       <div className="blog-detail-hide-div">
         <button
           onClick={() => {

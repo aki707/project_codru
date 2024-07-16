@@ -246,7 +246,11 @@ const Dashboard = () => {
       </div>
 
       <div className="rightSectionDashboard">
-        {currentView === "profile" && <div>Profile Content</div>}
+        {currentView === "profile" && (
+          <div>
+            <Profile />
+          </div>
+        )}
         {currentView === "dashboard" && (
           <div>
             <Calendar />

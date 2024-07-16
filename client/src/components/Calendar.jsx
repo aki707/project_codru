@@ -229,14 +229,14 @@ const SCOPES = 'https://www.googleapis.com/auth/calendar.events';
 const google = window.google;
 
 const calendarStyles = {
-  width: '70%', 
-  maxWidth: '1000px', 
-  margin: '40px 100px 0px 0px', 
-  border: '1px solid #ccc', 
-  padding: ' 10px', 
-  boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)', 
-  fontSize: '0.8em', 
-  height: '80vh',
+  width: "70%",
+  maxWidth: "1000px",
+  margin: "40px 100px 0px 0px",
+  border: "1px solid #ccc",
+  padding: " 10px",
+  boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+  fontSize: "0.8em",
+  height: "80vh",
 };
 
 const Calendar = () => {
@@ -253,7 +253,7 @@ const Calendar = () => {
   }, []);
 
   function gapiLoaded() {
-    gapi.load('client', initializeGapiClient);
+    gapi.load("client", initializeGapiClient);
   }
 
   async function initializeGapiClient() {
@@ -277,7 +277,7 @@ const Calendar = () => {
   function handleAuthClick() {
     tokenClient.callback = async (resp) => {
       if (resp.error !== undefined) {
-        throw (resp);
+        throw resp;
       }
       await fetchEvents();
     };
@@ -292,14 +292,14 @@ const Calendar = () => {
   const fetchEvents = async () => {
     try {
       const response = await gapi.client.calendar.events.list({
-        'calendarId': 'primary',
-        'timeMin': (new Date()).toISOString(),
-        'showDeleted': false,
-        'singleEvents': true,
-        'maxResults': 10,
-        'orderBy': 'startTime',
+        calendarId: "primary",
+        timeMin: new Date().toISOString(),
+        showDeleted: false,
+        singleEvents: true,
+        maxResults: 10,
+        orderBy: "startTime",
       });
-      const events = response.result.items.map(event => ({
+      const events = response.result.items.map((event) => ({
         id: event.id,
         title: event.summary,
         start: event.start.dateTime || event.start.date,
@@ -308,18 +308,18 @@ const Calendar = () => {
       }));
       setEvents(events);
     } catch (error) {
-      console.error('Error fetching events:', error);
+      console.error("Error fetching events:", error);
     }
   };
 
   const addEvent = async (event) => {
     if (!gapi.client || !gapi.client.calendar) {
-      console.error('Google API client not loaded or authorized.');
+      console.error("Google API client not loaded or authorized.");
       return;
     }
 
     if (!event.title || !event.start || !event.end) {
-      console.error('Event object is missing required properties.');
+      console.error("Event object is missing required properties.");
       return;
     }
 
@@ -328,16 +328,16 @@ const Calendar = () => {
 
     try {
       const response = await gapi.client.calendar.events.insert({
-        'calendarId': 'primary',
-        'resource': {
-          'summary': event.title,
-          'start': {
-            'dateTime': startTime,
-            'timeZone': 'UTC',
+        calendarId: "primary",
+        resource: {
+          summary: event.title,
+          start: {
+            dateTime: startTime,
+            timeZone: "UTC",
           },
-          'end': {
-            'dateTime': endTime,
-            'timeZone': 'UTC',
+          end: {
+            dateTime: endTime,
+            timeZone: "UTC",
           },
           'conferenceData': {
             'createRequest': {
@@ -353,30 +353,30 @@ const Calendar = () => {
 
       setEvents([...events, { ...event, id: response.result.id, meetLink: response.result.hangoutLink }]);
     } catch (error) {
-      console.error('Error adding event:', error);
+      console.error("Error adding event:", error);
     }
   };
 
   const removeEvent = async (event) => {
     try {
       await gapi.client.calendar.events.delete({
-        'calendarId': 'primary',
-        'eventId': event.id,
+        calendarId: "primary",
+        eventId: event.id,
       });
-      setEvents(events.filter(e => e.id !== event.id));
+      setEvents(events.filter((e) => e.id !== event.id));
     } catch (error) {
-      console.error('Error removing event:', error);
+      console.error("Error removing event:", error);
     }
   };
 
   const handleDateSelect = (selectInfo) => {
-    const title = prompt('Please enter a title for your event');
+    const title = prompt("Please enter a title for your event");
     if (title) {
       const event = {
         title,
         start: selectInfo.startStr,
         end: selectInfo.endStr,
-        allDay: selectInfo.allDay
+        allDay: selectInfo.allDay,
       };
       addEvent(event);
     }
@@ -403,7 +403,7 @@ const Calendar = () => {
   }
 
   return (
-    <div className='calendarMainDiv'>
+    <div className="calendarMainDiv">
       <button onClick={handleAuthClick}>Authorize</button>
       <div className='calendarEventSection' style={{ display: "flex", alignItems: "flex-start", justifyContent: "center" }}>
         <div style={calendarStyles}>
@@ -415,7 +415,7 @@ const Calendar = () => {
             events={events}
             select={handleDateSelect}
             eventClick={handleEventClick}
-            height="80vh" 
+            height="80vh"
           />
         </div>
         <div>

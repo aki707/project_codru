@@ -94,7 +94,7 @@ function Navprofile({ setShowprofile, showprofile, closeNavprofile }) {
 
   return (
     <div className="Navprofilemaindiv">
-      {/* <div className="Navprofilemaindivcross">
+      <div className="Navprofilemaindivcross">
         <span
           onClick={() => {
             setShowprofile(!showprofile);
@@ -102,10 +102,14 @@ function Navprofile({ setShowprofile, showprofile, closeNavprofile }) {
         >
           X
         </span>
-      </div> */}
+      </div>
       <div className="Navprofilemaindivdiv1">
         <div className="Navprofilemaindivdiv1div1">
-          <img src={localStorage.getItem("Photo")} alt="" />
+          <img
+            onClick={handlePenClick}
+            src={localStorage.getItem("Photo")}
+            alt=""
+          />
           <FontAwesomeIcon
             className="profileediticon"
             icon={faPen}

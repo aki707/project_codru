@@ -12,14 +12,14 @@
   right: 6%;
   top: 100%;
 }
-/* .Navprofilemaindivcross {
+.Navprofilemaindivcross {
   width: 90%;
   height: 4%;
   display: flex;
   justify-content: flex-end;
   margin-top: 1%;
   cursor: pointer;
-} */
+}
 .Navprofilemaindivdiv1 {
   height: 40%;
   /* border: 2px solid green; */
@@ -102,4 +102,64 @@
 .Navprofilemaindivdiv2 > button:hover {
   background-color: #d61e3f;
   color: white;
+}
+@media screen and (max-width: 510px) {
+  .Navprofilemaindiv {
+    width: 92%;
+    height: 60vh;
+    position: fixed;
+    right: 4%;
+    left: 4%;
+    top: 10vh;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+  .Navprofilemaindivdiv1 {
+    height: 30%;
+    margin-bottom: 1vh;
+  }
+  .Navprofilemaindivdiv1div1 {
+    width: 30%;
+  }
+  .Navprofilemaindivdiv1div2 {
+    width: 60%;
+    font-size: 5vw;
+  }
+
+  .Navprofilemaindivdiv1div1 > img {
+    width: 80%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    /* border: 2px solid red; */
+  }
+
+  .Navprofilemaindivdiv2 {
+    width: 100%;
+    height: 50%;
+  }
+  .Navprofilemaindivdiv2 > button {
+    padding: 2vh;
+    border-radius: 2vw 2vw;
+    background-color: #d61e3f;
+    color: white;
+    font-size: 5vw;
+    width: 90%;
+  }
+  .Navprofilemaindivdiv2 > div {
+    /* border: 2px solid green; */
+    width: 90%;
+  }
+  .Navprofilemaindivdiv2 > div > button {
+    width: 48%;
+    padding: 4%;
+    border-radius: 1vw 1vw;
+    background-color: #d61e3f;
+    color: white;
+    font-size: 5vw;
+  }
+
+  .Navprofilemaindivdiv2 > div > button:hover,
+  .Navprofilemaindivdiv2 > button:hover {
+    background-color: #d61e3f;
+    color: white;
+  }
 }
