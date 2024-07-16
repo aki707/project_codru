@@ -13,6 +13,7 @@ import RssFeedIcon from "@mui/icons-material/RssFeed";
 import HomeIcon from "@mui/icons-material/Home";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import BookmarksIcon from '@mui/icons-material/Bookmarks';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import Admin from "../components/Admin";
@@ -149,6 +150,11 @@ const Dashboard = () => {
         view: "my-blogs",
         path: "/my-blogs",
       },
+      {
+        text: "Saved Blogs",
+        icon: <BookmarksIcon />,
+        view: "saved-blogs"
+      }
     ];
 
     if (role === "Teacher" || role === "Student") {
@@ -252,6 +258,7 @@ const Dashboard = () => {
           </div>
         )}
         {currentView === "my-courses" && <div>My Courses Content</div>}
+        {currentView==="saved-blogs"&&<Savedblogs/>}
         {currentView === "my-blogs" && <div>My Blogs Content</div>}
         {currentView === "report" && <PlanetryPath />}
         {currentView === "manage-users" && <Admin />}
