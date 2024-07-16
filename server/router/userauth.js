@@ -126,6 +126,7 @@ router.post("/signin", async (req, res) => {
           _id: user._id,
           username: user.username,
           role: user.role,
+          isAdmin: user.isAdmin
         },
         process.env.TOKEN_SECRET,
         { expiresIn: "14d" }
@@ -450,5 +451,14 @@ router.post("/signout", (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 });
+
+//gapi
+router.get("", (req, res) => {
+  try {
+    
+  } catch (error) {
+    
+  }
+})
 
 module.exports = router;

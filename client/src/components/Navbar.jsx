@@ -16,10 +16,12 @@ function Navbar() {
   const [showDashboard, setShowDashboard] = useState(false);
 
   const Showprofile = () => {
+    // e.prevent.Default();
     setShowprofile(!showprofile);
     if (showNotifications) {
       setShowNotifications(false);
     }
+    setShowLinks(!showLinks);
   };
 
   const toggleLinks = () => {
@@ -31,6 +33,7 @@ function Navbar() {
     if (showprofile) {
       setShowprofile(false);
     }
+    setShowLinks(!showLinks);
   };
 
   const closeNotification = () => {
@@ -40,7 +43,10 @@ function Navbar() {
     setShowprofile(false);
   };
   const toggleDashboard = () => {
+    localStorage.setItem("currentView", "dashboard");
+    localStorage.setItem("activeTab", "Dashboard");
     setShowDashboard(!showDashboard);
+    
   };
 
   const isLoggedIn = !!localStorage.getItem("Token");
@@ -54,7 +60,10 @@ function Navbar() {
         className={showLinks ? "navoptions" : "barcross"}
         onClick={toggleLinks}
       >
-        <FontAwesomeIcon icon={showLinks ? faTimes : faBars} />
+        <FontAwesomeIcon
+          className={showLinks ? "navbarcrossicon" : ""}
+          icon={showLinks ? faTimes : faBars}
+        />
       </div>
       <div className={`navbuttons ${showLinks ? "show" : ""}`}>
         <div className="btn">
@@ -124,7 +133,11 @@ function Navbar() {
         ""
       )}
       {showNotifications && localStorage.getItem("Token") ? (
-        <Notification closeNotification={closeNotification} />
+        <Notification
+          setShowNotifications={setShowNotifications}
+          showNotifications={showNotifications}
+          closeNotification={closeNotification}
+        />
       ) : (
         ""
       )}

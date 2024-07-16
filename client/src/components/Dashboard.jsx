@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import c3 from "../assets/c3.png";
 import "../styles/Dashboard.css";
@@ -13,6 +13,7 @@ import RssFeedIcon from "@mui/icons-material/RssFeed";
 import HomeIcon from "@mui/icons-material/Home";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import BookmarksIcon from "@mui/icons-material/Bookmarks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import Admin from "../components/Admin";
@@ -32,8 +33,12 @@ const Dashboard = () => {
   });
   const [alertMessage, setAlertMessage] = useState("");
   const [showAlert, setShowAlert] = useState(false);
-  const [currentView, setCurrentView] = useState("dashboard");
-  const [activeTab, setActiveTab] = useState("Dashboard");
+  const [currentView, setCurrentView] = useState(
+    localStorage.getItem("currentView") || "dashboard"
+  );
+  const [activeTab, setActiveTab] = useState(
+    localStorage.getItem("activeTab") || "Dashboard"
+  );
 
   const navigate = useNavigate();
 
@@ -149,6 +154,11 @@ const Dashboard = () => {
         view: "my-blogs",
         path: "/my-blogs",
       },
+      {
+        text: "Saved Blogs",
+        icon: <BookmarksIcon />,
+        view: "saved-blogs"
+      }
     ];
 
     if (role === "Teacher" || role === "Student") {
@@ -176,7 +186,7 @@ const Dashboard = () => {
     }
 
     return (
-      <List>
+      <List sx={{ maxHeight: 'calc(100vh - 300px)', overflowY: 'auto' }}>
         {items.map((item) => (
           <ListItem
             button
@@ -187,6 +197,8 @@ const Dashboard = () => {
               } else {
                 setCurrentView(item.view);
                 setActiveTab(item.text);
+                localStorage.setItem("currentView", item.view);
+                localStorage.setItem("activeTab", item.text);
               }
             }}
             selected={activeTab === item.text}
@@ -195,7 +207,7 @@ const Dashboard = () => {
             <ListItemText primary={item.text} />
           </ListItem>
         ))}
-        <ListItem button key="Logout" onClick={SignOut}>
+        <ListItem button key="Logout" sx={{ marginBottom: 5 }} onClick={SignOut}>
           <ListItemIcon>
             <ExitToAppIcon />
           </ListItemIcon>
@@ -204,7 +216,17 @@ const Dashboard = () => {
       </List>
     );
   };
+
+  useEffect(() => {
+    const savedView = localStorage.getItem("currentView");
+    const savedTab = localStorage.getItem("activeTab");
+
+    if (savedView) setCurrentView(savedView);
+    if (savedTab) setActiveTab(savedTab);
+  }, []);
+
   let arrlen = events.length;
+
   return (
     <div className="mainDashboard">
       <div className="leftSectionDashboard">
@@ -240,7 +262,11 @@ const Dashboard = () => {
       </div>
 
       <div className="rightSectionDashboard">
-        {currentView === "profile" && <div>Profile Content</div>}
+        {currentView === "profile" && (
+          <div>
+            <Profile />
+          </div>
+        )}
         {currentView === "dashboard" && (
           <div>
             <Calendar />
@@ -252,6 +278,7 @@ const Dashboard = () => {
           </div>
         )}
         {currentView === "my-courses" && <div>My Courses Content</div>}
+        {currentView === "saved-blogs" && <Savedblogs />}
         {currentView === "my-blogs" && <div>My Blogs Content</div>}
         {currentView === "report" && <PlanetryPath />}
         {currentView === "manage-users" && <Admin />}

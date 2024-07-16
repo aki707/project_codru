@@ -486,6 +486,7 @@ const Calendar = () => {
   const [tokenClient, setTokenClient] = useState(null);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(JSON.parse(localStorage.getItem('isAdmin')) || false);
 
   useEffect(() => {
     gapiLoaded();
@@ -554,19 +555,25 @@ const Calendar = () => {
   };
 
   const addEvent = async (event) => {
+    // Check if user is an admin
+    if (!isAdmin) {
+      console.error('Unauthorized: Only admins can add events.');
+      return;
+    }
+  
     if (!gapi.client || !gapi.client.calendar) {
       console.error('Google API client not loaded or authorized.');
       return;
     }
-
+  
     if (!event.title || !event.start || !event.end) {
       console.error('Event object is missing required properties.');
       return;
     }
-
+  
     const startTime = new Date(event.start).toISOString();
     const endTime = new Date(event.end).toISOString();
-
+  
     try {
       const response = await gapi.client.calendar.events.insert({
         'calendarId': 'primary',
@@ -591,14 +598,19 @@ const Calendar = () => {
         },
         'conferenceDataVersion': 1
       });
-
+  
       setEvents([...events, { ...event, id: response.result.id, meetLink: response.result.hangoutLink }]);
     } catch (error) {
       console.error('Error adding event:', error);
     }
   };
-
+  
   const removeEvent = async (event) => {
+    if (!isAdmin) {
+      console.error('Unauthorized: Only admins can remove events.');
+      return;
+    }
+  
     try {
       await gapi.client.calendar.events.delete({
         'calendarId': 'primary',
@@ -610,8 +622,10 @@ const Calendar = () => {
       console.error('Error removing event:', error);
     }
   };
+  
 
   const handleDateSelect = (selectInfo) => {
+    if (isAdmin) {
     const title = prompt('Please enter a title for your event');
     if (title) {
       const event = {
@@ -622,6 +636,10 @@ const Calendar = () => {
       };
       addEvent(event);
     }
+      
+    }
+    else{alert('No event is scheduled.');}
+    
   };
 
   const handleEventClick = (clickInfo) => {
@@ -646,7 +664,7 @@ const Calendar = () => {
 
   return (
     <div className='calendarMainDiv'>
-      <button onClick={handleAuthClick}>Authorize</button>
+      {isAdmin && (<button onClick={handleAuthClick}>Authorize</button>)}
       <div className='calendarEventSection' style={{ display: "flex", alignItems: "flex-start", justifyContent: "center" }}>
         <div style={calendarStyles}>
           <FullCalendar
@@ -665,7 +683,7 @@ const Calendar = () => {
         </div>
       </div>
 
-      {selectedEvent && (
+      {selectedEvent &&  (
         <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
@@ -673,13 +691,13 @@ const Calendar = () => {
           className="event-modal"
           overlayClassName="event-overlay"
         >
-         <button
+          {isAdmin && (<button
             onClick={() => removeEvent(selectedEvent)}
             className="remove-button"
             title="Delete Event"
           >
             <DeleteIcon fontSize="medium" />
-          </button> 
+          </button>)}
           <h3>{selectedEvent.title}</h3>
           <div className="event-times">
             <p>Start: {new Date(selectedEvent.start).toLocaleTimeString()}</p>

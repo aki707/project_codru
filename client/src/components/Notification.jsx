@@ -5,7 +5,11 @@ import "../styles/Spinner.css";
 
 const username = "GK";
 
-const Notification = ({ closeNotification }) => {
+const Notification = ({
+  closeNotification,
+  showNotifications,
+  setShowNotifications,
+}) => {
   const [notifications, setNotifications] = useState([]);
   const [dismissing, setDismissing] = useState([]);
   const [error, setError] = useState(null);
@@ -102,6 +106,14 @@ const Notification = ({ closeNotification }) => {
   return (
     <div className="notification-panel">
       <h3>Notifications</h3>
+      <span
+        className="notification-panelcross"
+        onClick={() => {
+          setShowNotifications(!showNotifications);
+        }}
+      >
+        X
+      </span>
       <hr />
       {error && <p>{error}</p>}
       <ul>
