@@ -1,16 +1,13 @@
-.Start3 {
-  /* border: 2px solid green; */
+
+ .Start3 {
   display: flex;
   flex-direction: column;
-  width: 100%;
   align-items: center;
-  margin: 0vh 0vh;
-  /* background: linear-gradient(to right,#f9d6de, #edddf9, #fae7d6, #dcf9f3, #f4e9ec); */
-  background-color:  #efe1e1;
+  background-color: #efe1e1;
+  padding: 2rem 0;
 }
 
 .Start3div1 {
-  /* border: 2px solid green; */
   width: 85%;
   min-height: 10vh;
   display: flex;
@@ -18,71 +15,81 @@
   font-size: 3vw;
   margin-bottom: 1vh;
 }
+
 .Start3div2 {
-  /* border: 2px solid green; */
-  width: 97%;
+  width: 95%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  
+  align-items: center;
 }
-
 
 .Start3div2div.scrolled > div {
-  opacity: 1; /* Show the elements */
-  transform: translateX(0); /* Move the elements into position */
+  opacity: 1;
+  transform: translateY(0);
 }
-.Start3div2div.scrolled > div >h2 {
-  opacity: 1; /* Show the elements */
-  transform: translateX(0); /* Move the elements into position */
+
+.Start3div2div.scrolled > div > h2 {
+  opacity: 1;
 }
 
 .Start3div2div {
-  /* border: 2px solid green; */
-  min-height: 1vh;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
-
+  align-items: center;
+  margin-bottom: 2rem;
 }
+
+.Start3div2div:nth-child(even) {
+  flex-direction: row-reverse; /* For even sections, reverse the order */
+}
+
 .Start3div2div > div {
-  /* border: 2px solid red; */
   width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
+  text-align: center;
 }
+
 .Start3div2div > div > img {
   width: 75%;
-  border-radius: 1vw;
-  aspect-ratio: 3/2;
-  
+  height: auto;
+  border-radius: 10px;
+  max-width: 100%;
 }
 
 .Start3div2div > div > h2 {
-  /* border: 2px solid yellow; */
-  width: 75%;
-  text-align: left;
-  font-size: 3vw;
-  opacity: 0; /* Initially hide the elements */
-  transform: translateX(50px); /* Initial position off-screen */
+  width: 100%;
+  font-size: 2vw; /* Use viewport width for responsiveness */
+  opacity: 0;
+  transform: translateY(20px);
   transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  color: #333; /* Better text color */
+  margin-bottom: 0.5rem; /* Add some margin for better spacing */
+  text-align: center; /* Ensure text alignment */
+  overflow-wrap: break-word; /* Allow words to break onto the next line */
 }
 
 .Start3div2div > div > p {
-  /* border: 2px solid yellow; */
-  width: 75%;
-  text-align: left;
-  font-size: 1.5vw;
-  margin-top: 0px;
+  width: 100%;
+  font-size: 1.5vw; /* Use viewport width for responsiveness */
+  margin-top: 0;
+  color: #555; /* Better text color */
+  line-height: 1.5; /* Improve readability */
+  text-align: justify; /* Justify text for balanced lines */
+  text-justify: inter-word; /* Apply inter-word justification */
+  overflow-wrap: break-word; /* Allow words to break onto the next line */
 }
-
 
 .lShapedDashedLine {
   position: relative;
-  margin-left: 290px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
 }
+
 @keyframes dash {
   to {
     stroke-dashoffset: 0;
@@ -93,10 +100,90 @@
   stroke-dasharray: 2000;
   stroke-dashoffset: 2000;
   animation: dash 4s linear forwards;
-<<<<<<< HEAD
-}
-=======
 }
 
+@media (max-width: 768px) {
+  .Start3 {
+    padding: 1rem 0.5rem; /* Adjust padding for smaller screens */
+  }
 
->>>>>>> 06c81495bf703615da777274818b37261cc43b51
+  .Start3div1 {
+    width: 100%;
+    font-size: 4vw;
+  }
+
+  .Start3div2 {
+    width: 100%;
+  }
+
+  .Start3div2div {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0 1rem; /* Add padding to avoid touching edges */
+  }
+
+  .Start3div2div:nth-child(even) {
+    flex-direction: column; /* Keep the same order for even sections on smaller screens */
+  }
+
+  .Start3div2div > div {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .Start3div2div > div > img {
+    width: 90%; /* Adjust width to avoid touching edges */
+    border-radius: 5px;
+    max-width: 100%;
+  }
+
+  .Start3div2div > div > h2 {
+    font-size: 4vw; /* Adjust font size for smaller screens */
+    margin-bottom: 0.5rem;
+  }
+
+  .Start3div2div > div > p {
+    width: 90%;
+    font-size: 3vw; /* Adjust font size for smaller screens */
+    color: #555; /* Better text color */
+    line-height: 1.5; /* Improve readability */
+    padding: 0 1rem; /* Add padding to avoid touching edges */
+  }
+
+  .lShapedDashedLine {
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0.5rem 0;
+    width: 90%; /* Ensure the line doesn't touch screen edges */
+  }
+}
+
+@media (min-width: 1200px) {
+  .Start3div1 {
+    font-size: 2.5vw;
+  }
+
+  .Start3div2div > div > h2 {
+    font-size: 1.8vw;
+  }
+
+  .Start3div2div > div > p {
+    font-size: 1.5vw;
+  }
+}
+
+@media (min-width: 1600px) {
+  .Start3div1 {
+    font-size: 2vw;
+  }
+
+  .Start3div2div > div > h2 {
+    font-size: 1.5vw;
+  }
+
+  .Start3div2div > div > p {
+    font-size: 1.5vw;
+  }
+}
+
