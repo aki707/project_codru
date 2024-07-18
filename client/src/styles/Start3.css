@@ -1,5 +1,4 @@
-
- .Start3 {
+.Start3 {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,7 +39,7 @@
 }
 
 .Start3div2div:nth-child(even) {
-  flex-direction: row-reverse; /* For even sections, reverse the order */
+  flex-direction: row-reverse;
 }
 
 .Start3div2div > div {
@@ -61,25 +60,25 @@
 
 .Start3div2div > div > h2 {
   width: 100%;
-  font-size: 2vw; /* Use viewport width for responsiveness */
+  font-size: 2vw;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-  color: #333; /* Better text color */
-  margin-bottom: 0.5rem; /* Add some margin for better spacing */
-  text-align: center; /* Ensure text alignment */
-  overflow-wrap: break-word; /* Allow words to break onto the next line */
+  color: #333;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  overflow-wrap: break-word;
 }
 
 .Start3div2div > div > p {
   width: 100%;
-  font-size: 1.5vw; /* Use viewport width for responsiveness */
+  font-size: 1.5vw;
   margin-top: 0;
-  color: #555; /* Better text color */
-  line-height: 1.5; /* Improve readability */
-  text-align: justify; /* Justify text for balanced lines */
-  text-justify: inter-word; /* Apply inter-word justification */
-  overflow-wrap: break-word; /* Allow words to break onto the next line */
+  color: #555;
+  line-height: 1.5;
+  text-align: justify;
+  text-justify: inter-word;
+  overflow-wrap: break-word;
 }
 
 .lShapedDashedLine {
@@ -104,7 +103,7 @@
 
 @media (max-width: 768px) {
   .Start3 {
-    padding: 1rem 0.5rem; /* Adjust padding for smaller screens */
+    padding: 1rem 0.5rem;
   }
 
   .Start3div1 {
@@ -120,11 +119,11 @@
     flex-direction: column;
     align-items: center;
     margin-bottom: 1rem;
-    padding: 0 1rem; /* Add padding to avoid touching edges */
+    padding: 0 1rem;
   }
 
   .Start3div2div:nth-child(even) {
-    flex-direction: column; /* Keep the same order for even sections on smaller screens */
+    flex-direction: column;
   }
 
   .Start3div2div > div {
@@ -133,29 +132,29 @@
   }
 
   .Start3div2div > div > img {
-    width: 90%; /* Adjust width to avoid touching edges */
+    width: 90%;
     border-radius: 5px;
     max-width: 100%;
   }
 
   .Start3div2div > div > h2 {
-    font-size: 4vw; /* Adjust font size for smaller screens */
+    font-size: 4vw;
     margin-bottom: 0.5rem;
   }
 
   .Start3div2div > div > p {
     width: 90%;
-    font-size: 3vw; /* Adjust font size for smaller screens */
-    color: #555; /* Better text color */
-    line-height: 1.5; /* Improve readability */
-    padding: 0 1rem; /* Add padding to avoid touching edges */
+    font-size: 3vw;
+    color: #555;
+    line-height: 1.5;
+    padding: 0 1rem;
   }
 
   .lShapedDashedLine {
     flex-direction: column;
     align-items: flex-start;
     margin: 0.5rem 0;
-    width: 90%; /* Ensure the line doesn't touch screen edges */
+    width: 90%;
   }
 }
 
