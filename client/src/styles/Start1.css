@@ -148,6 +148,7 @@ body {
 } */
 
 
+
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&display=swap');
 
 body {
@@ -164,7 +165,7 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #efe1e1;
   flex-wrap: wrap;
   padding: 20px;
@@ -172,14 +173,14 @@ body {
 }
 
 .text-content {
-  width: 23%;
+  width: 40%;
   text-align: left;
   padding: 20px;
   animation: fadeInUp 2s forwards;
 }
 
 .text-content h1 {
-  font-size: 3.1vw; 
+  font-size: 3vw;
   margin: 10px;
   color: #333;
   animation: fadeInUp 2s forwards;
@@ -188,7 +189,7 @@ body {
 .text-content h2 {
   color: #6f61ff;
   font-family: 'Fredoka', sans-serif;
-  font-size: 2.8vw; 
+  font-size: 2.5vw;
 }
 
 .text-content h2 span {
@@ -216,15 +217,15 @@ body {
 }
 
 .start-button-text {
-  white-space: nowrap; 
-  display: inline-block; 
-  overflow: hidden; 
-  text-overflow: ellipsis; 
+  white-space: nowrap;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: inherit;
 }
 
 .thumbs-up-icon {
-  font-size: 3vw; 
+  font-size: 3vw;
   color: #6f61ff;
   cursor: pointer;
   margin-top: 20px;
@@ -232,17 +233,17 @@ body {
 }
 
 .homePageAnimation {
-  width: 70%;
+  width: 50%;
   display: flex;
-  justify-content: flex-end; 
+  justify-content: flex-end;
   animation: fadeInRight 2s forwards;
 }
 
 .homePageAnimation img {
   width: 100%;
   height: auto;
-  max-width: 100%; 
-  max-height: 100%; /* It Ensure the image can grow larger */
+  max-width: 100%;
+  max-height: 100%;
 }
 
 @keyframes fadeInUp {
@@ -275,49 +276,45 @@ body {
   }
 
   .text-content {
-    width: 90%; 
+    width: 80%;
     text-align: center;
     padding: 10px;
   }
 
   .text-content h1 {
-    font-size: 4.1vw; /* Larger font size for small screens */
+    font-size: 6vw;
   }
 
   .text-content h2 {
-    font-size: 3.8vw; /* Larger font size for small screens */
+    font-size: 4vw;
   }
 
   .start-button {
-    width: 180px;
+    width: auto;
     margin-top: 10px;
-    padding: 2.5vw 2vw;
-    font-size: 1.1vw; 
+    padding: 3vw 6vw;
+    font-size: 4vw; 
     max-width: none;
   }
 
   .start-button-text {
-    white-space: nowrap; 
-  display: inline-block; 
-  overflow: hidden; 
-  text-overflow: ellipsis; 
-  font-size: 1.9vw;
+    font-size: inherit;
   }
 
   .thumbs-up-icon {
-    font-size: 3vw; /* Larger font size for small screens */
+    font-size: 5vw;
   }
 
   .homePageAnimation {
-    width: 90%; /* Align width with other components */
+    width: 80%;
     margin-top: 20px;
-    justify-content: center; /* Centers image on smaller screens */
-    animation: fadeInUp 2s forwards; /* Adjust animation for smaller screens */
+    justify-content: center;
+    animation: fadeInUp 2s forwards;
   }
 
   .homePageAnimation img {
-    max-width: 100%; 
-    max-height: 100%; 
+    max-width: 100%;
+    max-height: 100%;
   }
 }
 
@@ -331,7 +328,7 @@ body {
   }
 
   .text-content h2 {
-    font-size: 2.5vw; 
+    font-size: 2.5vw;
   }
 
   .start-button {
@@ -347,19 +344,19 @@ body {
   }
 
   .thumbs-up-icon {
-    font-size: 2.5vw; 
+    font-size: 2.5vw;
   }
 
   .homePageAnimation {
-    width: 66%; 
+    width: 66%;
     margin-top: 20px;
-    justify-content: flex-end; 
-    animation: fadeInRight 2s forwards; 
+    justify-content: flex-end;
+    animation: fadeInRight 2s forwards;
   }
 
   .homePageAnimation img {
-    max-width: 100%; 
-    max-height: 100%; 
+    max-width: 100%;
+    max-height: 100%;
   }
 }
 
@@ -369,11 +366,11 @@ body {
   }
 
   .text-content h1 {
-    font-size: 4vw; 
+    font-size: 4vw;
   }
 
   .text-content h2 {
-    font-size: 3vw; 
+    font-size: 3vw;
   }
 
   .start-button {
@@ -389,12 +386,14 @@ body {
   }
 
   .thumbs-up-icon {
-    font-size: 3vw; 
+    font-size: 3vw;
   }
 
   .homePageAnimation {
-    width: 70%; 
+    width: 70%;
   }
 }
+
+
 
 
