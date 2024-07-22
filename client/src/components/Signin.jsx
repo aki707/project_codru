@@ -159,7 +159,7 @@ function Signin() {
             <p>
               Forgotten Password?{" "}
               <span className="forgot-password-link" onClick={sendMail}>
-                Forget Password
+                Change Password
               </span>
             </p>
           </div>

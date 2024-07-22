@@ -1,9 +1,12 @@
+
+import React from 'react';
 import engineering from "../assets/engineering.jpg";
 import math from "../assets/math.jpeg";
 import science from "../assets/science.jpg";
 import technology from "../assets/technology.jpg";
 import "../styles/Start3.css";
 import DashedLine from './DashedLine';
+
 window.addEventListener('scroll', function() {
   var elements = document.querySelectorAll('.Start3div2div');
   var scrollPosition = window.scrollY;
@@ -19,24 +22,14 @@ window.addEventListener('scroll', function() {
   });
 });
 
-
-
-
-
 function Start3() {
   return (
     <div className="Start3">
-   
-      
-      
       <div className="Start3div1"></div>
-      
       <div className="Start3div2">
-
-      
         <div className="Start3div2div">
           <div>
-            <img src={science} alt="" />
+            <img src={science} alt="Science" />
           </div>
           <div>
             <h2>Science</h2>
@@ -47,27 +40,24 @@ function Start3() {
               life at a cellular level, science empowers us to explore,
               question, and comprehend the world around us.
             </p>
-            
           </div>
         </div>
 
         <div className="lShapedDashedLine">
-        <DashedLine
-          startX={100}
-          startY={50}
-          verticalLength={80}
-          horizontalLength={720}
-          color="black"
-          strokeWidth={1}
-          dashArray="2,2"
-          upperVerticalOffsetX={0}
-          lowerVerticalOffsetX={0}
-          
-        />
+          <DashedLine
+            startX={100}
+            startY={50}
+            verticalLength={80}
+            horizontalLength={720}
+            color="black"
+            strokeWidth={1}
+            dashArray="2,2"
+            upperVerticalOffsetX={0}
+            lowerVerticalOffsetX={0}
+          />
         </div>
-        
 
-        <div className="Start3div2div" >
+        <div className="Start3div2div">
           <div>
             <h2>Mathematics</h2>
             <p>
@@ -79,14 +69,13 @@ function Start3() {
             </p>
           </div>
           <div>
-            <img src={math} alt="" />
+            <img src={math} alt="Mathematics" />
           </div>
         </div>
 
-        <div className="Start3div2div" >
         <div className="lShapedDashedLine">
-        <DashedLine
-          startX={820}
+          <DashedLine
+            startX={820}
             startY={50}
             verticalLength={80}
             horizontalLength={-720}
@@ -95,14 +84,12 @@ function Start3() {
             dashArray="5,5"
             upperVerticalOffsetX={0}
             lowerVerticalOffsetX={0}
-        />
+          />
         </div>
-        
-    
 
         <div className="Start3div2div">
           <div>
-            <img src={technology} alt="" />
+            <img src={technology} alt="Technology" />
           </div>
           <div>
             <h2>Technology</h2>
@@ -115,21 +102,22 @@ function Start3() {
             </p>
           </div>
         </div>
-      
-      <div className="lShapedDashedLine">
-      <DashedLine
-          startX={100}
-          startY={50}
-          verticalLength={80}
-          horizontalLength={720}
-          color="black"
-          strokeWidth={1}
-          dashArray="2,2"
-          upperVerticalOffsetX={0}
-          lowerVerticalOffsetX={0}
-        /></div>
 
-        <div className="Start3div2div" >
+        <div className="lShapedDashedLine">
+          <DashedLine
+            startX={100}
+            startY={50}
+            verticalLength={80}
+            horizontalLength={720}
+            color="black"
+            strokeWidth={1}
+            dashArray="2,2"
+            upperVerticalOffsetX={0}
+            lowerVerticalOffsetX={0}
+          />
+        </div>
+
+        <div className="Start3div2div">
           <div>
             <h2>Engineering</h2>
             <p>
@@ -141,13 +129,11 @@ function Start3() {
             </p>
           </div>
           <div>
-            <img src={engineering} alt="" />
+            <img src={engineering} alt="Engineering" />
           </div>
         </div>
-
       </div>
       <div className="Start3div1"></div>
-    </div>
     </div>
   );
 }

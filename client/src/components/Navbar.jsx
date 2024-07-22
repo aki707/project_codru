@@ -43,7 +43,10 @@ function Navbar() {
     setShowprofile(false);
   };
   const toggleDashboard = () => {
+    localStorage.setItem("currentView", "dashboard");
+    localStorage.setItem("activeTab", "Dashboard");
     setShowDashboard(!showDashboard);
+    
   };
 
   const isLoggedIn = !!localStorage.getItem("Token");
