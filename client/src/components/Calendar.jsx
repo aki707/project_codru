@@ -540,6 +540,7 @@ const Calendar = () => {
         'maxResults': 10,
         'orderBy': 'startTime',
       });
+      console.log(response);
       const events = response.result.items.map(event => ({
         id: event.id,
         title: event.summary,
