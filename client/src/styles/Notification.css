@@ -4,14 +4,14 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  background-color: #f9f9f9;
+  background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: absolute;
   right: 10%;
   top: 100%;
   overflow: hidden;
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
   font-family: "Arial", sans-serif;
 }
 
@@ -37,7 +37,7 @@
 }
 
 .notification-panel ul li {
-  background: #fff;
+  /* background: #fff; */
   margin-bottom: 10px;
   padding: 12px 12px 10px 12px;
   border-radius: 5px;
@@ -152,7 +152,7 @@
     text-align: center;
     margin: 0;
     background-color: #67293a;
-    color: white;
+    /* color: white; */
     border-radius: 10px 10px 0 0;
   }
 
@@ -165,7 +165,7 @@
   }
 
   .notification-panel ul li {
-    background: #fff;
+    /* background: #fff; */
     margin-bottom: 10px;
     padding: 12px 12px 10px 12px;
     border-radius: 5px;
@@ -188,7 +188,7 @@
     display: block;
     margin-top: 5px;
     font-size: 12px;
-    color: #555;
+    /* color: #fff; */
   }
 
   .notification-panel ul li .dismiss-button {

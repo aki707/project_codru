@@ -9,11 +9,11 @@
 
 .about-container {
   padding: 50px;
-  background-color: white;
+  /* background-color: white; */
   height: 361vh;
   width: auto;
   border: 2px solid red;
-  background-color: white;
+  /* background-color: white; */
 }
 
 .about-header {
@@ -75,7 +75,7 @@ margin-top: 20px;
 .aboutUsLeft{
    height: 100%;
    width: 50%;
-   background-color: #efe1e1;
+   /* background-color: #efe1e1; */
    /* border: 2px solid red; */
 }
 

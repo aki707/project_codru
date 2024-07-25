@@ -29,10 +29,11 @@ import EventList from "./components/EventList.jsx";
 import PlanetaryPath from "./components/PlanetryPath.jsx";
 import FinalBuy from "./components/FinalBuy.jsx";
 import Myblogs from "./components/Myblogs.jsx";
-import { ThemeContext } from "./Theme.jsx";
+import ThemeToggle from "./components/ThemeToggle";
+import { ThemeContext } from "./context/ThemeContext";
 
 function App() {
-  const { theme } = useContext(ThemeContext);
+  const { darkTheme } = useContext(ThemeContext);
   useEffect(() => {
     const fetchData = async () => {
       const token = localStorage.getItem("Token"); // Retrieve the token from localStorage
@@ -48,7 +49,6 @@ function App() {
 
         const data = await res.json();
         if (res.ok) {
-          localStorage.removeItem("Photo");
           localStorage.setItem("Photo", data.user.photo);
           localStorage.setItem("Name", data.user.name);
         } else {
@@ -61,7 +61,8 @@ function App() {
   }, []);
 
   return (
-    <div className={`App ${theme}`}>
+    <div className={`App ${darkTheme ? "dark-theme" : "light-theme"}`}>
+      {/* <ThemeToggle /> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/forgot-password/:token" element={<Forget_password />} />
