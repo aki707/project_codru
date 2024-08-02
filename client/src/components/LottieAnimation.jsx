@@ -1,7 +1,8 @@
-// LottieAnimation.jsx
+
 import React from 'react';
 import Lottie from 'react-lottie';
 import animationData from '../assets/jsonFiles/booksAnim.json';
+
 
 const LottieAnimation = () => {
   const defaultOptions = {
@@ -13,7 +14,32 @@ const LottieAnimation = () => {
     }
   };
 
-  return <Lottie options={defaultOptions} height={400} width={400} />;
+  return (
+    <div className="lottie-container">
+      <Lottie options={defaultOptions} />
+    </div>
+  );
 };
 
 export default LottieAnimation;
+
+
+// // LottieAnimation.jsx
+// import React from 'react';
+// import Lottie from 'react-lottie';
+// import animationData from '../assets/jsonFiles/booksAnim.json';
+
+// const LottieAnimation = () => {
+//   const defaultOptions = {
+//     loop: true,
+//     autoplay: true,
+//     animationData: animationData,
+//     rendererSettings: {
+//       preserveAspectRatio: 'xMidYMid slice'
+//     }
+//   };
+
+//   return <Lottie options={defaultOptions} height={400} width={400} />;
+// };
+
+// export default LottieAnimation;

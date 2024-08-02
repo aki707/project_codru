@@ -29,7 +29,7 @@ body {
 /* Left Section Styles */
 .leftSectionDashboard {
   width: 15%;
-  background-color: #f0f0f0;
+  /* background-color: #f0f0f0; */
   display: flex;
   flex-direction: column;
   /* padding: 20px; */
@@ -128,4 +128,12 @@ body {
 .welcomeMessage > h2 {
   font-size: 1.5rem;
   color: #b11d37;
+}
+
+.theme-switch{
+  display:flex;
+  justify-content:center;
+  align-items: center;
+  color: #000;
+  /* background-color: #fff; */
 }
