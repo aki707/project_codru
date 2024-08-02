@@ -6,9 +6,15 @@ const cors = require("cors");
 const path = require("path");
 const { Server } = require("socket.io");
 
-dotenv.config({ path: "./config.env" });
 
+dotenv.config({ path: "./config.env" });
 const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+
+
 const port = process.env.PORT;
 
 app.use(express.json({ parameterLimit: "100000", limit: "500mb" }));
@@ -21,8 +27,8 @@ app.use(
 app.use(
   cors({
     origin: "http://localhost:5173",
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
 );
@@ -33,11 +39,12 @@ require("./db/conn.js");
 const User = require("./models/userSchema");
 const Student = require("./models/studentSchema");
 const Teacher = require("./models/teacherSchema");
-app.use(require("./router/calendarauth.js"));
+
 app.use(require("./router/userauth.js"));
 app.use(require("./router/blogauth.js"));
 app.use(require("./router/courseauth.js"));
-// app.use(require("./router/googleauth.js"));
+
+
 
 let notifications = {};
 
@@ -270,6 +277,8 @@ app.post("/verify-bigbro", async (req, res) => {
     res.status(500).send({ message: "Server error" });
   }
 });
+
+
 
 app.put("/assignTask/:username", async (req, res) => {
   try {
