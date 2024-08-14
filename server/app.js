@@ -30,7 +30,7 @@ app.use(
   })
 );
 
-// app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public")));
 
 require("./db/conn.js");
 const User = require("./models/userSchema");
