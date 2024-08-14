@@ -34,7 +34,7 @@ function Signin({ setUserData }) {
     e.preventDefault();
     const { username, password } = value;
     console.log(value);
-    const res = await fetch("https://codru-backend.onrender.com/signin", {
+    const res = await fetch("https://codru-server.onrender.com/signin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
