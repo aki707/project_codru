@@ -22,14 +22,6 @@ app.use(
     extended: true,
   })
 );
-app.use(
-  cors({
-    origin: "https://codru-client.vercel.app",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
-  })
-);
 
 // app.use(express.static(path.join(__dirname, "public")));
 
@@ -348,7 +340,7 @@ const server = app.listen(port, HOST, () => {
 
 const io = new Server(server, {
   cors: {
-    origin: "https://codru-client.vercel.app",
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type"],
     credentials: true,
