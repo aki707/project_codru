@@ -6,14 +6,13 @@ import {
   faPen,
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Muialert from "./Muialert";
-import { useEffect } from "react";
 
 function Navprofile({
-  setShowprofile,
-  showprofile,
-  closeNavprofile,
+  setShowProfile,
+  showProfile,
+  closeNavProfile,
   userData,
   setUserData,
 }) {
@@ -22,6 +21,7 @@ function Navprofile({
   const navigate = useNavigate();
 
   const fileInputRef = useRef(null); // Ref to the file input element
+  const navProfileRef = useRef(null); // Ref for Navprofile container
 
   const SignOut = async () => {
     const res = await fetch("/api/signout", {
@@ -35,7 +35,7 @@ function Navprofile({
       setAlertMessage(jsondata.message);
       setShowAlert(true);
       navigate("/");
-      closeNavprofile(false);
+      closeNavProfile();
     } else {
       console.error("Failed to logout user");
       setAlertMessage(jsondata.error);
@@ -43,7 +43,7 @@ function Navprofile({
     }
   };
 
-  const handlephotoinput = (e) => {
+  const handlePhotoInput = (e) => {
     const file = e.target.files[0];
 
     const reader = new FileReader();
@@ -86,26 +86,28 @@ function Navprofile({
     setShowAlert(false);
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      const notificationPanel = document.querySelector(".Navprofilemaindiv");
-      if (notificationPanel && !notificationPanel.contains(event.target)) {
-        closeNavprofile();
-      }
-    };
+  const handleClickOutside = (event) => {
+    if (
+      navProfileRef.current &&
+      !navProfileRef.current.contains(event.target)
+    ) {
+      closeNavProfile();
+    }
+  };
 
+  useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [closeNavprofile]);
+  }, []);
 
   return (
-    <div className="Navprofilemaindiv">
+    <div className="Navprofilemaindiv" ref={navProfileRef}>
       <div className="Navprofilemaindivcross">
         <span
           onClick={() => {
-            setShowprofile(!showprofile);
+            setShowProfile(false);
           }}
         >
           X
@@ -113,7 +115,7 @@ function Navprofile({
       </div>
       <div className="Navprofilemaindivdiv1">
         <div className="Navprofilemaindivdiv1div1">
-          <img onClick={handlePenClick} src={userData.Photo} alt="" />
+          <img onClick={handlePenClick} src={userData.Photo} alt="Profile" />
           <FontAwesomeIcon
             className="profileediticon"
             icon={faPen}
@@ -124,11 +126,11 @@ function Navprofile({
             type="file"
             ref={fileInputRef}
             style={{ display: "none" }}
-            onChange={handlephotoinput} // Call handlephotoinput when the file input changes
+            onChange={handlePhotoInput} // Call handlePhotoInput when the file input changes
           />
         </div>
         <div className="Navprofilemaindivdiv1div2">
-          <p>Hi, {userData.Name} </p>
+          <p>Hi, {userData.Name}</p>
           <p>{localStorage.getItem("Username")}</p>
         </div>
       </div>

@@ -18,14 +18,6 @@ function Navbar({ userData, setUserData }) {
   const [showPopup, setShowPopup] = useState(false);
   const [activeLink, setActiveLink] = useState("");
 
-  const showProfileToggle = () => {
-    setShowProfile(!showProfile);
-    if (showNotifications) {
-      setShowNotifications(false);
-    }
-    setShowLinks(!showLinks);
-  };
-
   const toggleLinks = () => {
     setShowLinks(!showLinks);
   };
@@ -35,7 +27,6 @@ function Navbar({ userData, setUserData }) {
     if (showProfile) {
       setShowProfile(false);
     }
-    setShowLinks(!showLinks);
   };
 
   const closeNotification = () => {
@@ -68,7 +59,7 @@ function Navbar({ userData, setUserData }) {
   return (
     <div className={`Navbarmaindiv ${showPopup ? "blur" : ""}`}>
       <NavLink to="/" className="navlogo">
-        <img src={c3} alt="" />
+        <img src={c3} alt="Logo" />
       </NavLink>
       <div
         className={showLinks ? "navoptions" : "barcross"}
@@ -116,9 +107,12 @@ function Navbar({ userData, setUserData }) {
         {isLoggedIn ? (
           <div className="Profileimgmaindiv">
             <NavLink className="navnotification" onClick={toggleNotifications}>
-              <img src={notifyicon} alt="" />
+              <img src={notifyicon} alt="Notifications" />
             </NavLink>
-            <NavLink className="navprofile" onClick={showProfileToggle}>
+            <NavLink
+              className="navprofile"
+              onClick={() => setShowProfile(!showProfile)}
+            >
               <img src={userData.Photo} alt="Profile" />
             </NavLink>
           </div>
@@ -128,7 +122,7 @@ function Navbar({ userData, setUserData }) {
           </NavLink>
         )}
       </div>
-      {showProfile && localStorage.getItem("Token") && (
+      {showProfile && isLoggedIn && (
         <Navprofile
           setShowProfile={setShowProfile}
           showProfile={showProfile}
@@ -137,14 +131,14 @@ function Navbar({ userData, setUserData }) {
           setUserData={setUserData}
         />
       )}
-      {showNotifications && localStorage.getItem("Token") && (
+      {showNotifications && isLoggedIn && (
         <Notification
           setShowNotifications={setShowNotifications}
           showNotifications={showNotifications}
           closeNotification={closeNotification}
         />
       )}
-      {showDashboard && localStorage.getItem("Token") && (
+      {showDashboard && isLoggedIn && (
         <Dashboard
           setShowDashboard={setShowDashboard}
           showDashboard={showDashboard}

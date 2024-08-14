@@ -159,7 +159,7 @@ function App() {
           }
         />
         <Route
-          path="/blog"
+          path="/createblog"
           element={<BlogForm userData={userData} setUserData={setUserData} />}
         />
         <Route
