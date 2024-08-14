@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import "../styles/PlanetryAnimatedBackground.css";
 
 const PlanetryAnimatedBackground = () => {

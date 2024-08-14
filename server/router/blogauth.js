@@ -482,4 +482,65 @@ router.put("/comments/edit", async (req, res) => {
   }
 });
 
+// changing photo in comments using profile
+
+router.put("/updateUserPhoto", async (req, res) => {
+  const { username, newPhoto } = req.body;
+
+  try {
+    // Update the user's photo in the blogs
+    await Blog.updateMany({ username }, { $set: { userphoto: newPhoto } });
+
+    // Fetch all blogs to update comments and nested replies
+    const blogs = await Blog.find();
+
+    for (let blog of blogs) {
+      let updated = false;
+
+      // Update comments
+      for (let comment of blog.comments) {
+        if (comment.name === username) {
+          comment.photo = newPhoto;
+          updated = true;
+        }
+
+        // Update nested replies
+        if (updateNestedReplies(comment.replies, username, newPhoto)) {
+          updated = true;
+        }
+      }
+
+      // Save the updated blog document
+      if (updated) {
+        await blog.save();
+      }
+    }
+
+    res.status(200).send("User photo updated in all blogs and comments");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal server error");
+  }
+});
+
+// Helper function to recursively update nested replies
+const updateNestedReplies = (replies, username, newPhoto) => {
+  let updated = false;
+
+  for (let reply of replies) {
+    if (reply.name === username) {
+      reply.photo = newPhoto;
+      updated = true;
+    }
+
+    if (reply.replies && reply.replies.length > 0) {
+      if (updateNestedReplies(reply.replies, username, newPhoto)) {
+        updated = true;
+      }
+    }
+  }
+
+  return updated;
+};
+
 module.exports = router;

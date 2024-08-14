@@ -14,7 +14,7 @@ import Commentpage from "./Commentpage";
 import "../styles/Blogdetail.css";
 import Sharebutton from "./Sharebutton";
 
-function BlogDetail() {
+function BlogDetail({ userData, setUserData }) {
   const { blogId } = useParams();
   const [showComment, setShowComment] = useState(true);
   const [focus, setFocus] = useState(true);
@@ -147,7 +147,7 @@ function BlogDetail() {
             </div>
           </div>
         </div>
-        <hr className="hrtagofblogdetail" />
+        <hr className="hrtagofblogdetail" style={{ margin: "1vh 0vh" }} />
         <div className="blogdetailactivity">{parser(blogData.content)}</div>
         <div className="blogdetaillikecomment">
           <div
@@ -176,7 +176,7 @@ function BlogDetail() {
           <div onClick={handleSave}>
             <FontAwesomeIcon
               icon={faBookmark}
-              style={{ color: isSaved ? "blue" : "black" }}
+              style={{ color: isSaved ? "blue" : "grey" }}
             />
           </div>
           <div style={{ position: "relative" }}>
@@ -202,7 +202,16 @@ function BlogDetail() {
         </button>
       </div>
 
-      {showComment ? <Commentpage onFocus={focus} blogId={blogId} /> : ""}
+      {showComment ? (
+        <Commentpage
+          onFocus={focus}
+          blogId={blogId}
+          userData={userData}
+          setUserData={setUserData}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 }

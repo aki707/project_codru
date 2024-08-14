@@ -19,12 +19,11 @@ import { faPen } from "@fortawesome/free-solid-svg-icons";
 import Admin from "../components/Admin";
 import PlanetryPath from "../components/PlanetryPath";
 import Savedblogs from "./Savedblogs";
-import Admission from "./Admission";
 import Profile from "./Profile";
 import SettingsPanel from "../components/SettingsPanel";
 import Calendar from "./Calendar";
 
-const Dashboard = () => {
+const Dashboard = ({ userData, setUserData }) => {
   const [events, setEvents] = useState([]);
   const [newEvent, setNewEvent] = useState({
     title: "",
@@ -82,7 +81,10 @@ const Dashboard = () => {
 
       const jsondata = await res.json();
       if (res.ok) {
-        localStorage.setItem("Photo", jsondata.user.photo);
+        setUserData((prevData) => ({
+          ...prevData,
+          Photo: jsondata.user.photo.toString(),
+        }));
         setAlertMessage(jsondata.message || "Image updated successfully");
         setShowAlert(true);
         window.location.reload();
@@ -122,8 +124,8 @@ const Dashboard = () => {
     }
   };
 
-  const isAdmin = JSON.parse(localStorage.getItem("isAdmin"));
-  const role = localStorage.getItem("Role");
+  const isAdmin = userData.isAdmin;
+  const Role = userData.Role;
 
   const getDrawerContent = (role, isAdmin) => {
     const items = [
@@ -157,8 +159,8 @@ const Dashboard = () => {
       {
         text: "Saved Blogs",
         icon: <BookmarksIcon />,
-        view: "saved-blogs"
-      }
+        view: "saved-blogs",
+      },
     ];
 
     if (role === "Teacher" || role === "Student") {
@@ -169,7 +171,7 @@ const Dashboard = () => {
       });
     }
 
-    if (role === "Student") {
+    if (Role === "Student") {
       items.push({
         text: "Report",
         icon: <RouteIcon />,
@@ -186,7 +188,7 @@ const Dashboard = () => {
     }
 
     return (
-      <List sx={{ maxHeight: 'calc(100vh - 300px)', overflowY: 'auto' }}>
+      <List sx={{ maxHeight: "calc(100vh - 300px)", overflowY: "auto" }}>
         {items.map((item) => (
           <ListItem
             button
@@ -207,7 +209,12 @@ const Dashboard = () => {
             <ListItemText primary={item.text} />
           </ListItem>
         ))}
-        <ListItem button key="Logout" sx={{ marginBottom: 5 }} onClick={SignOut}>
+        <ListItem
+          button
+          key="Logout"
+          sx={{ marginBottom: 5 }}
+          onClick={SignOut}
+        >
           <ListItemIcon>
             <ExitToAppIcon />
           </ListItemIcon>
@@ -235,11 +242,7 @@ const Dashboard = () => {
         </NavLink>
 
         <div className="photoDashboard">
-          <img
-            src={localStorage.getItem("Photo")}
-            alt="User"
-            className="dashboard-image"
-          />
+          <img src={userData.Photo} alt="User" className="dashboard-image" />
           <FontAwesomeIcon
             className="myphotoedit"
             icon={faPen}
@@ -258,7 +261,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="drawerContent">{getDrawerContent(role, isAdmin)}</div>
+        <div className="drawerContent">{getDrawerContent(Role, isAdmin)}</div>
       </div>
 
       <div className="rightSectionDashboard">
@@ -278,10 +281,14 @@ const Dashboard = () => {
           </div>
         )}
         {currentView === "my-courses" && <div>My Courses Content</div>}
-        {currentView === "saved-blogs" && <Savedblogs />}
+        {currentView === "saved-blogs" && (
+          <Savedblogs userData={userData} setuserData={setUserData} />
+        )}
         {currentView === "my-blogs" && <div>My Blogs Content</div>}
         {currentView === "report" && <PlanetryPath />}
-        {currentView === "manage-users" && <Admin />}
+        {currentView === "manage-users" && (
+          <Admin userData={userData} setUserData={setUserData} />
+        )}
       </div>
     </div>
   );

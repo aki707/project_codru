@@ -19,6 +19,7 @@ const Comment = ({
   dislikeComment,
   editComment,
   blogId,
+  userData,
 }) => {
   const [showReplyForm, setShowReplyForm] = useState(false);
   const [replyText, setReplyText] = useState("");
@@ -156,6 +157,7 @@ const CommentFile = ({
   dislikeComment,
   editComment,
   blogId,
+  userData,
 }) => {
   const [visibleComments, setVisibleComments] = useState([]);
 
@@ -182,6 +184,7 @@ const CommentFile = ({
           dislikeComment={dislikeComment}
           editComment={editComment}
           blogId={blogId}
+          userData={userData}
         />
       ))}
     </div>

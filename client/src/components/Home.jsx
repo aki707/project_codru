@@ -6,11 +6,10 @@ import Start1 from "./Start1";
 import Start3 from "./Start3";
 import Start4 from "./Start4";
 
-function Home() {
-
+function Home({ userData, setUserData }) {
   return (
     <div>
-      <Navbar />
+      <Navbar userData={userData} setUserData={setUserData} />
       <hr />
       <Start1 />
       <hr />

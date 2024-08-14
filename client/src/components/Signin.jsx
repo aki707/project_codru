@@ -12,7 +12,7 @@ import MicrosoftIcon from "../assets/microsoft.svg";
 import { useNavigate } from "react-router-dom";
 import SignInAnim from "./SignInAnim";
 
-function Signin() {
+function Signin({ setUserData }) {
   const [showAlert, setShowAlert] = useState(false); // State to control alert visibility
   const [alertMessage, setAlertMessage] = useState(""); // State to store alert message
   const navigate = useNavigate();
@@ -47,12 +47,20 @@ function Signin() {
       setAlertMessage(jsonresponse.message);
       setShowAlert(true);
 
+      const Photo = jsonresponse.photo.toString();
+      const Name = jsonresponse.name.toString();
+      const Role = jsonresponse.role.toString();
+      const isAdmin = jsonresponse.isAdmin;
+
+      setUserData({
+        Photo,
+        Name,
+        Role,
+        isAdmin,
+      });
+
       localStorage.setItem("Token", jsonresponse.token);
-      localStorage.setItem("Photo", jsonresponse.photo);
       localStorage.setItem("Username", jsonresponse.username);
-      localStorage.setItem("Name", jsonresponse.name);
-      localStorage.setItem("Role", jsonresponse.role);
-      localStorage.setItem("isAdmin", jsonresponse.isAdmin);
 
       navigate("/");
     } else {

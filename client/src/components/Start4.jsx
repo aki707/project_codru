@@ -1,14 +1,10 @@
 import "../styles/Start4.css";
 // import studyImage from "../assets/study.jpg";
-import LottieAnimation from './LottieAnimation';
-
+import LottieAnimation from "./LottieAnimation";
 
 function Start4() {
-
-  
   return (
     <div className="Start4">
-
       <div className="Start4div1">What is Codru Education?</div>
       <div className="Start4div2">
         <div className="Start4div2div1">
@@ -29,11 +25,9 @@ function Start4() {
           bring out what’s inside each of them and what they wish to be in life.
         </div>
         <div className="Start4div2div2">
-        <LottieAnimation />
+          <LottieAnimation />
         </div>
-
       </div>
-      
     </div>
   );
 }

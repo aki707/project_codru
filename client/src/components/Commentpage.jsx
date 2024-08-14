@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 // import { useParams } from "react-router-dom";
 import CommentFile from "./Commentfile";
 
-function Commentpage({ onFocus, blogId }) {
+function Commentpage({ onFocus, blogId, userData, setUserData }) {
   const [comments, setComments] = useState([]);
   const [addcomment, setAddcomment] = useState("");
   const currentUser = localStorage.getItem("Username");
@@ -31,6 +31,31 @@ function Commentpage({ onFocus, blogId }) {
     }
   }, [onFocus]);
 
+  useEffect(() => {
+    const updateUserPhoto = async () => {
+      try {
+        const res = await fetch("/api/updateUserPhoto", {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            username: localStorage.getItem("Username"),
+            newPhoto: userData.Photo,
+          }),
+        });
+
+        if (res.ok) {
+          console.log("updated");
+        } else {
+          console.log("Failed to update user photo in blogs and comments");
+        }
+      } catch (error) {
+        console.error("There was a problem with the fetch operation:", error);
+      }
+    };
+
+    updateUserPhoto();
+  }, [userData.Photo, userData, setUserData]);
+
   const Addcomment = async () => {
     try {
       const res = await fetch("/api/comments", {
@@ -39,7 +64,7 @@ function Commentpage({ onFocus, blogId }) {
         body: JSON.stringify({
           blogId: blogId,
           Username: currentUser,
-          Photo: localStorage.getItem("Photo"),
+          Photo: userData.Photo,
           text: addcomment,
         }),
       });
@@ -67,7 +92,7 @@ function Commentpage({ onFocus, blogId }) {
         body: JSON.stringify({
           blogId: blogId,
           Username: currentUser,
-          Photo: localStorage.getItem("Photo"),
+          Photo: userData.Photo,
           text: replyText,
           parentId: commentId,
         }),
@@ -161,7 +186,7 @@ function Commentpage({ onFocus, blogId }) {
     <div className="commentpagemaindiv">
       <div className="commentpagemaindivdiv1">
         <div>
-          <img src={localStorage.getItem("Photo")} alt="" />
+          <img src={userData.Photo} alt="" />
           <input
             type="text"
             value={addcomment}
@@ -186,6 +211,7 @@ function Commentpage({ onFocus, blogId }) {
         dislikeComment={dislikeComment}
         editComment={editComment}
         blogId={blogId}
+        userData={userData}
       />
     </div>
   );

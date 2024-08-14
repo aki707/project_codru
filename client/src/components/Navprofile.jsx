@@ -10,7 +10,13 @@ import { useState, useRef } from "react";
 import Muialert from "./Muialert";
 import { useEffect } from "react";
 
-function Navprofile({ setShowprofile, showprofile, closeNavprofile }) {
+function Navprofile({
+  setShowprofile,
+  showprofile,
+  closeNavprofile,
+  userData,
+  setUserData,
+}) {
   const [showAlert, setShowAlert] = useState(false); // State to control alert visibility
   const [alertMessage, setAlertMessage] = useState(""); // State to store alert message
   const navigate = useNavigate();
@@ -56,8 +62,10 @@ function Navprofile({ setShowprofile, showprofile, closeNavprofile }) {
 
       const jsondata = await res.json();
       if (res.ok) {
-        localStorage.removeItem("Photo");
-        localStorage.setItem("Photo", jsondata.user.photo); // Correctly set the new photo in localStorage
+        setUserData((prevData) => ({
+          ...prevData,
+          Photo: jsondata.user.photo.toString(),
+        }));
         setAlertMessage(jsondata.message || "Image updated successfully");
         setShowAlert(true);
         window.location.reload();
@@ -105,11 +113,7 @@ function Navprofile({ setShowprofile, showprofile, closeNavprofile }) {
       </div>
       <div className="Navprofilemaindivdiv1">
         <div className="Navprofilemaindivdiv1div1">
-          <img
-            onClick={handlePenClick}
-            src={localStorage.getItem("Photo")}
-            alt=""
-          />
+          <img onClick={handlePenClick} src={userData.Photo} alt="" />
           <FontAwesomeIcon
             className="profileediticon"
             icon={faPen}
@@ -124,7 +128,7 @@ function Navprofile({ setShowprofile, showprofile, closeNavprofile }) {
           />
         </div>
         <div className="Navprofilemaindivdiv1div2">
-          <p>Hi, {localStorage.getItem("Name")} </p>
+          <p>Hi, {userData.Name} </p>
           <p>{localStorage.getItem("Username")}</p>
         </div>
       </div>

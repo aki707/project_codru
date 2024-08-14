@@ -58,7 +58,7 @@ FontStyle.whitelist = [
 ];
 Quill.register(FontStyle, true);
 
-const BlogForm = () => {
+const BlogForm = ({ userData, setUserData }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const quillRef = useRef(null);
@@ -70,7 +70,7 @@ const BlogForm = () => {
       title,
       content,
       username: localStorage.getItem("Username"),
-      userphoto: localStorage.getItem("Photo"),
+      userphoto: userData.Photo,
     };
 
     try {
@@ -170,6 +170,7 @@ const BlogForm = () => {
 
   return (
     <div className="Blogformmaindiv">
+      <h1>Create Your Own Blog...</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -178,14 +179,17 @@ const BlogForm = () => {
           placeholder="Post Title"
           required
         />
-        <ReactQuill
-          ref={quillRef}
-          value={content}
-          onChange={setContent}
-          modules={modules}
-          className="Reactquill"
-          placeholder="Write Your Content here"
-        />
+        <div>
+          <ReactQuill
+            ref={quillRef}
+            value={content}
+            onChange={setContent}
+            modules={modules}
+            className="Reactquill"
+            placeholder="Write Your Content here"
+          />
+        </div>
+
         <button type="submit">Submit</button>
       </form>
     </div>

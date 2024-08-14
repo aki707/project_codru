@@ -33,7 +33,7 @@ require("./db/conn.js");
 const User = require("./models/userSchema");
 const Student = require("./models/studentSchema");
 const Teacher = require("./models/teacherSchema");
-app.use(require("./router/calendarauth.js"));
+// app.use(require("./router/calendarauth.js"));
 app.use(require("./router/userauth.js"));
 app.use(require("./router/blogauth.js"));
 app.use(require("./router/courseauth.js"));
@@ -185,7 +185,6 @@ app.delete("/user/:username", async (req, res) => {
     if (!user) {
       console.log(role, username);
       return res.status(404).json({ error: "User doesn't exist." });
-      
     }
 
     let deleted;
