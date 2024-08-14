@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 const port = process.env.PORT;
-// const HOST = "0.0.0.0";
+const HOST = "0.0.0.0";
 
 app.use(express.json({ parameterLimit: "100000", limit: "500mb" }));
 app.use(bodyParser.json());
@@ -335,7 +335,7 @@ const cleanupOldNotifications = () => {
 setInterval(cleanupOldNotifications, 60 * 60 * 1000);
 
 
-app.listen(port, () => {
+app.listen(port, HOST,() => {
   console.log(`Server is running on ${port}`);
 });
 
