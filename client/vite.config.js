@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://codru-backend.onrender.com",
+        target: "https://codru-backend.onrender.com/api",
         // target: "https://localhost:3000/api",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
