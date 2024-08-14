@@ -32,7 +32,7 @@ const Calendar = () => {
   const checkAuthorization = async () => {
     try {
       console.log('Checking authorization...');
-      const response = await fetch('https://codru-server.onrender.com/calendar/check-auth');
+      const response = await fetch('/api/calendar/check-auth');
       const data = await response.json();
       console.log('Authorization response:', data);
 
@@ -49,7 +49,7 @@ const Calendar = () => {
 
   const fetchEvents = async () => {
     try {
-      const response = await fetch('https://codru-server.onrender.com/calendar/events');
+      const response = await fetch('/api/calendar/events');
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.error || 'Failed to fetch events');
@@ -69,7 +69,7 @@ const Calendar = () => {
     }
 
     try {
-      const response = await fetch('https://codru-server.onrender.com/calendar/add-events', {
+      const response = await fetch('/api/calendar/add-events', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -91,7 +91,7 @@ const Calendar = () => {
     }
 
     try {
-      await fetch(`https://codru-server.onrender.com/calendar/del-events/${event.id}`, {
+      await fetch(`/api/calendar/del-events/${event.id}`, {
         method: 'DELETE',
       });
 

@@ -29,7 +29,7 @@ const PlanetryPath = () => {
 
   const fetchTasks = async (username) => {
     try {
-      const response = await fetch("https://codru-server.onrender.com/get-tasks", {
+      const response = await fetch("/api/get-tasks", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

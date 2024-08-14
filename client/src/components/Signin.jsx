@@ -34,7 +34,7 @@ function Signin({ setUserData }) {
     e.preventDefault();
     const { username, password } = value;
     console.log(value);
-    const res = await fetch("https://codru-server.onrender.com/signin", {
+    const res = await fetch("/api/signin", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -80,7 +80,7 @@ function Signin({ setUserData }) {
       return;
     }
 
-    const res = await fetch("https://codru-server.onrender.com/reset-password", {
+    const res = await fetch("/api/reset-password", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

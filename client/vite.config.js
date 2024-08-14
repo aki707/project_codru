@@ -6,11 +6,11 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://codru-server.onrender.com/api",
+        target: "https://codru-server.onrender.com",
         // target: "https://localhost:3000/api",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
-        secure: false,
+        secure: true,
       },
     },
   },

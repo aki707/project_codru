@@ -15,7 +15,7 @@ function Savedblogs({ userData, setUserData }) {
           throw new Error("Username not found in localStorage");
         }
 
-        const res = await fetch("https://codru-server.onrender.com/savedblogs", {
+        const res = await fetch("/api/savedblogs", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username }),

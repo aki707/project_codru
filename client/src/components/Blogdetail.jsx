@@ -27,7 +27,7 @@ function BlogDetail({ userData, setUserData }) {
   useEffect(() => {
     const fetchBlogData = async () => {
       try {
-        const res = await fetch(`https://codru-server.onrender.com/blogs/${blogId}`);
+        const res = await fetch(`/api/blogs/${blogId}`);
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
@@ -50,7 +50,7 @@ function BlogDetail({ userData, setUserData }) {
 
   const handleLike = async () => {
     try {
-      const res = await fetch("https://codru-server.onrender.com/blog/like", {
+      const res = await fetch("/api/blog/like", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ blogId, username: currentUser }),
@@ -69,7 +69,7 @@ function BlogDetail({ userData, setUserData }) {
 
   const handleDislike = async () => {
     try {
-      const res = await fetch("https://codru-server.onrender.com/blog/dislike", {
+      const res = await fetch("/api/blog/dislike", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ blogId, username: currentUser }),
