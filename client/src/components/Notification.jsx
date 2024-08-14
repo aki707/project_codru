@@ -22,7 +22,7 @@ const Notification = ({
     }
 
     fetchNotifications();
-    const socket = io("http://localhost:3000");
+    const socket = io("https://codru-server.onrender.com");
     socket.emit("join", username);
 
     socket.on("notification", (notification) => {
@@ -40,7 +40,7 @@ const Notification = ({
   const fetchNotifications = async () => {
     setLoading(false); // Start loading
     try {
-      const response = await fetch("http://localhost:3000/notifications", {
+      const response = await fetch("https://codru-server.onrender.com/notifications", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

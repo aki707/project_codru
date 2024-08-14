@@ -30,6 +30,7 @@ import Myblogs from "./components/Myblogs.jsx";
 import ThemeToggle from "./components/ThemeToggle";
 import { ThemeContext } from "./context/ThemeContext";
 
+
 function App() {
   const { theme } = useContext(ThemeContext);
   const [userData, setUserData] = useState({
@@ -44,7 +45,7 @@ function App() {
     const fetchData = async () => {
       const token = localStorage.getItem("Token");
       if (token) {
-        const res = await fetch("/api/profile", {
+        const res = await fetch("https://codru-server.onrender.com/profile", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

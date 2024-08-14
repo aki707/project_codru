@@ -70,7 +70,7 @@ const Dashboard = ({ userData, setUserData }) => {
     reader.onload = async () => {
       const newPhoto = reader.result;
 
-      const res = await fetch("/api/profile-edit", {
+      const res = await fetch("https://codru-server.onrender.com/profile-edit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -103,7 +103,7 @@ const Dashboard = ({ userData, setUserData }) => {
 
   const SignOut = async () => {
     try {
-      const res = await fetch("/api/signout", {
+      const res = await fetch("https://codru-server.onrender.com/signout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
       });

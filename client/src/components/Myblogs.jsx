@@ -15,7 +15,7 @@ function Myblogs() {
           throw new Error("Username not found in localStorage");
         }
 
-        const res = await fetch("/api/userblogs", {
+        const res = await fetch("https://codru-server.onrender.com/userblogs", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username }),
