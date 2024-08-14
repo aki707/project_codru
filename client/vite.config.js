@@ -6,8 +6,8 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        // target: "https://codru-server.vercel.app/",
-        target: "https://localhost:3000/api",
+        target: "https://codru-server.vercel.app/",
+        // target: "https://localhost:3000/api",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
         secure: false,
