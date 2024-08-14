@@ -37,7 +37,7 @@ export default function Admin() {
   const [alertSeverity, setAlertSeverity] = useState("info");
   const [showAlert, setShowAlert] = useState(false);
   const [currentUsername, setCurrentUsername] = useState("");
-  const [waitingAlert, setWaitingAlert] = useState(false); // State for waiting alert
+  const [waitingAlert, setWaitingAlert] = useState(false); // State for waiting alert0
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -296,7 +296,7 @@ export default function Admin() {
         }}
         BackdropProps={{
           style: {
-            backgroundColor: "rgba(0, 0, 0, 0.7)",
+            // backgroundColor: "rgba(0, 0, 0, 0.7)",
           },
         }}
         PaperProps={{

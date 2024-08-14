@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../styles/SettingsPanel.css";
 import { Alert, Snackbar, TextField, Button, IconButton, InputAdornment, Checkbox } from "@mui/material";
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { ThemeContext } from "../Theme.jsx"
+import { ThemeContext } from "../context/ThemeContext";
 
 const username = localStorage.getItem("Username");
 const role = localStorage.getItem("Role");
@@ -12,11 +12,17 @@ const GeneralSettings = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
-    <div className="setting--section">
-      <h3 className='setting-my-h3'>Change Theme</h3>
-      <div className="setting-form-group">
-      <button onClick={() => toggleTheme()}>{theme}</button>
-      </div>
+    <div className="theme-toggle d-flex align-items-center">
+      <label className="switch">
+        <input
+          type="checkbox"
+          checked={theme}
+          onChange={toggleTheme}
+          className="toggle-input"
+        />
+        <span className="slider round"></span>
+      </label>
+      <p className="px-2">{theme ? "Dark Theme" : "Light Theme"}</p>
     </div>
   );
 };

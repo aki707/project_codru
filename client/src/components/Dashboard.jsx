@@ -131,34 +131,58 @@ const Dashboard = ({ userData, setUserData }) => {
     const items = [
       {
         text: "Home",
-        icon: <HomeIcon />,
+        icon: (
+          <div className="theme-switch">
+            <HomeIcon />
+          </div>
+        ),
         path: "/",
       },
       {
         text: "Dashboard",
-        icon: <DashboardIcon />,
+        icon: (
+          <div className="theme-switch">
+            <DashboardIcon />
+          </div>
+        ),
         view: "dashboard",
       },
 
       {
         text: "Profile",
-        icon: <PersonIcon />,
+        icon: (
+          <div className="theme-switch">
+            <PersonIcon />
+          </div>
+        ),
         view: "profile",
       },
       {
         text: "Settings",
-        icon: <SettingsIcon />,
+        icon: (
+          <div className="theme-switch">
+            <SettingsIcon />
+          </div>
+        ),
         view: "settings",
       },
       {
         text: "My Blogs",
-        icon: <RssFeedIcon />,
+        icon: (
+          <div className="theme-switch">
+            <RssFeedIcon />
+          </div>
+        ),
         view: "my-blogs",
         path: "/my-blogs",
       },
       {
         text: "Saved Blogs",
-        icon: <BookmarksIcon />,
+        icon: (
+          <div className="theme-switch">
+            <BookmarksIcon />
+          </div>
+        ),
         view: "saved-blogs",
       },
     ];
@@ -166,7 +190,11 @@ const Dashboard = ({ userData, setUserData }) => {
     if (role === "Teacher" || role === "Student") {
       items.push({
         text: "My Courses",
-        icon: <BackpackIcon />,
+        icon: (
+          <div className="theme-switch">
+            <BackpackIcon />
+          </div>
+        ),
         view: "my-courses",
       });
     }
@@ -174,7 +202,11 @@ const Dashboard = ({ userData, setUserData }) => {
     if (Role === "Student") {
       items.push({
         text: "Report",
-        icon: <RouteIcon />,
+        icon: (
+          <div className="theme-switch">
+            <RouteIcon />
+          </div>
+        ),
         view: "report",
       });
     }
@@ -182,7 +214,11 @@ const Dashboard = ({ userData, setUserData }) => {
     if (isAdmin) {
       items.push({
         text: "Manage Users",
-        icon: <ManageAccountsIcon />,
+        icon: (
+          <div className="theme-switch">
+            <ManageAccountsIcon />
+          </div>
+        ),
         view: "manage-users",
       });
     }
@@ -216,7 +252,9 @@ const Dashboard = ({ userData, setUserData }) => {
           onClick={SignOut}
         >
           <ListItemIcon>
-            <ExitToAppIcon />
+            <div className="theme-switch">
+              <ExitToAppIcon />
+            </div>
           </ListItemIcon>
           <ListItemText primary="Logout" />
         </ListItem>
@@ -232,7 +270,7 @@ const Dashboard = ({ userData, setUserData }) => {
     if (savedTab) setActiveTab(savedTab);
   }, []);
 
-  let arrlen = events.length;
+  // let arrlen = events.length;
 
   return (
     <div className="mainDashboard">

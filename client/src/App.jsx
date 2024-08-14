@@ -23,21 +23,15 @@ import Blogdetail from "./components/Blogdetail.jsx";
 import Form from "./components/Form";
 import Commentpage from "./components/Commentpage.jsx";
 import TaskForm from "./components/TaskForm.jsx";
-import EventList from "./components/EventList.jsx";
+// import EventList from "./components/EventList.jsx";
 import PlanetaryPath from "./components/PlanetryPath.jsx";
 import FinalBuy from "./components/FinalBuy.jsx";
 import Myblogs from "./components/Myblogs.jsx";
-import { ThemeContext } from "./Theme.jsx";
+import ThemeToggle from "./components/ThemeToggle";
+import { ThemeContext } from "./context/ThemeContext";
 
 function App() {
-  const { theme } = useContext(ThemeContext);
-  const [userData, setUserData] = useState({
-    Name: "",
-    Photo: "",
-    Role: "",
-    isAdmin: false,
-  });
-
+  const { darkTheme } = useContext(ThemeContext);
   useEffect(() => {
     const fetchData = async () => {
       const token = localStorage.getItem("Token");
@@ -52,13 +46,8 @@ function App() {
 
         const data = await res.json();
         if (res.ok) {
-          setUserData((prevData) => ({
-            ...prevData,
-            Photo: data.user.photo.toString(),
-            Name: data.user.name.toString(),
-            isAdmin: true,
-            Role: data.user.role,
-          }));
+          localStorage.setItem("Photo", data.user.photo);
+          localStorage.setItem("Name", data.user.name);
         } else {
           console.error("Failed to fetch user data", data.error);
         }
@@ -69,130 +58,45 @@ function App() {
   }, []);
 
   return (
-    <div className={`App ${theme}`}>
+    <div className={`App ${darkTheme ? "dark-theme" : "light-theme"}`}>
+      {/* <ThemeToggle /> */}
       <Routes>
-        <Route
-          path="/"
-          element={<Home userData={userData} setUserData={setUserData} />}
-        />
-        <Route
-          path="/forgot-password/:token"
-          element={
-            <Forget_password userData={userData} setUserData={setUserData} />
-          }
-        />
-        <Route
-          path="/signup"
-          element={<Signup userData={userData} setUserData={setUserData} />}
-        />
-        <Route
-          path="/signin"
-          element={<Signin userData={userData} setUserData={setUserData} />}
-        />
-        <Route
-          path="/popup"
-          element={<Popup userData={userData} setUserData={setUserData} />}
-        />
-        <Route
-          path="/courses"
-          element={<Courses userData={userData} setUserData={setUserData} />}
-        />
-        <Route
-          path="/course-register"
-          element={<Admission userData={userData} setUserData={setUserData} />}
-        />
-        <Route
-          path="/extra"
-          element={<Extra userData={userData} setUserData={setUserData} />}
-        />
-        <Route
-          path="/class6"
-          element={<Class6 userData={userData} setUserData={setUserData} />}
-        />
-        <Route
-          path="/blogsdata"
-          element={<Blogpage userData={userData} setUserData={setUserData} />}
-        />
-        <Route
-          path="/dashboard"
-          element={<Dashboard userData={userData} setUserData={setUserData} />}
-        />
-        <Route
-          path="/buy"
-          element={<Buy userData={userData} setUserData={setUserData} />}
-        />
-        <Route
-          path="/blog/:blogId"
-          element={<Blogdetail userData={userData} setUserData={setUserData} />}
-        />
-        <Route
-          path="/change-password"
-          element={
-            <Change_password userData={userData} setUserData={setUserData} />
-          }
-        />
-        <Route
-          path="/form"
-          element={<Form userData={userData} setUserData={setUserData} />}
-        />
-        <Route
-          path="/contact"
-          element={<Contact userData={userData} setUserData={setUserData} />}
-        />
-        <Route
-          path="/about"
-          element={<About userData={userData} setUserData={setUserData} />}
-        />
-        <Route
-          path="/custom"
-          element={<Custom userData={userData} setUserData={setUserData} />}
-        />
-        <Route
-          path="/commentpage"
-          element={
-            <Commentpage userData={userData} setUserData={setUserData} />
-          }
-        />
-        <Route
-          path="/blog"
-          element={<BlogForm userData={userData} setUserData={setUserData} />}
-        />
-        <Route
-          path="/blogdata"
-          element={<Blogpage userData={userData} setUserData={setUserData} />}
-        />
-        <Route
-          path="/notification"
-          element={
-            <Notification userData={userData} setUserData={setUserData} />
-          }
-        />
-        <Route
-          path="/add-task/:username"
-          element={<TaskForm userData={userData} setUserData={setUserData} />}
-        />
-        <Route
-          path="/events"
-          element={<EventList userData={userData} setUserData={setUserData} />}
-        />
-        <Route
-          path="/planetary-path"
-          element={
-            <PlanetaryPath userData={userData} setUserData={setUserData} />
-          }
-        />
-        <Route
-          path="/finalBuy"
-          element={<FinalBuy userData={userData} setUserData={setUserData} />}
-        />
-        <Route
-          path="/my-blogs"
-          element={<Myblogs userData={userData} setUserData={setUserData} />}
-        />
-        <Route
-          path="/admission"
-          element={<Admission userData={userData} setUserData={setUserData} />}
-        />
+        <Route path="/" element={<Home />} />
+        <Route path="/forgot-password/:token" element={<Forget_password />} />
+
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/signin" element={<Signin />} />
+        <Route path="/popup" element={<Popup />} />
+        <Route path="/courses" element={<Courses />} />
+
+        <Route path="/course-register" element={<Admission />} />
+
+        <Route path="/extra" element={<Extra />} />
+        <Route path="/class6" element={<Class6 />} />
+
+        <Route path="/blogsdata" element={<Blogpage />} />
+
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/buy" element={<Buy />} />
+        <Route path="/blog/:blogId" element={<Blogdetail />} />
+
+        <Route path="/change-password" Component={Change_password} />
+
+        <Route path="/form" Component={Form} />
+
+        <Route path="/contact" Component={Contact} />
+        <Route path="/About" Component={About} />
+        <Route path="/custom" Component={Custom} />
+        <Route path="/commentpage" Component={Commentpage} />
+        <Route path="/blog" Component={BlogForm} />
+        <Route path="/blogdata" Component={Blogpage} />
+        <Route path="/notification" Component={Notification} />
+        <Route path="/add-task/:username" Component={TaskForm} />
+        {/* <Route path="/events" Component={EventList} /> */}
+        <Route path="/planetary-path" Component={PlanetaryPath} />
+        <Route path="/finalBuy" Component={FinalBuy} />
+        <Route path="/my-blogs" Component={Myblogs} />
+        <Route path="/admission" Component={Admission} />
       </Routes>
     </div>
   );

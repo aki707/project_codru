@@ -4,7 +4,7 @@ import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import { ThemeProvider } from "./Theme.jsx";
+import { ThemeProvider } from "./context/ThemeContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
  
@@ -12,13 +12,12 @@ ReactDOM.createRoot(document.getElementById("root")).render(
      
     <BrowserRouter>
       <GoogleOAuthProvider clientId="<your_client_id>">
-      <ThemeProvider>
+        <ThemeProvider>
           <App />
-          </ThemeProvider>
+        </ThemeProvider>
       </GoogleOAuthProvider>
-      </BrowserRouter>
+    </BrowserRouter>
       
   </React.StrictMode>
- 
   
 );

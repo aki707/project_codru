@@ -9,8 +9,8 @@
   font-weight: 400;
   width: 100%;
 
-  /* color-scheme: light dark; */
-  color: black;
+  color-scheme: light dark;
+  /* color: black; */
   /* background-color:  #efe1e1; */
   justify-content: "center";
 
@@ -35,6 +35,6 @@ body {
   padding: 0px;
 }
 input {
-  background-color: white; /* Ensure the background of input elements is always white */
-  color: black; /* Optional: ensure text color in inputs is black */
+  background-color: white;
+  color: black;
 }

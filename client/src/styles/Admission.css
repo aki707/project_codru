@@ -6,7 +6,7 @@
   margin-left: 10% ;
   margin-right: 10% ;
   padding: 20px; 
-  background-color: #fff; 
+  /* background-color: #fff;  */
   border-radius: 8px; 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
   border: 5px solid rgb(162, 123, 123) ;
@@ -16,7 +16,7 @@
   .form-heading {
     text-align: center;
     margin-bottom: 20px;
-    color: #333;
+    /* color: #333; */
     font-size: 1.5rem;
     font-weight: bold;
   }
@@ -35,7 +35,7 @@
   }
   
   .form-table th {
-    background-color: #eee;
+    /* background-color: #eee; */
     font-weight: bold;
   }
   
@@ -59,7 +59,7 @@
     border: 1px solid #ccc;
     border-radius: 3px;
     cursor: pointer;
-    background-color: #f0f0f0;
+    /* background-color: #f0f0f0; */
     color: #333;
     font-weight: bold;
   }
@@ -69,7 +69,7 @@
   .Reset {
     padding: 12px 25px;
     background-color: #4CAF50; 
-    color: white;
+    /* color: white; */
     border: none;
     border-radius: 3px;
     cursor: pointer;
@@ -79,7 +79,7 @@
   }
   
   .Reset {
-    background-color: #ccc; 
+    /* background-color: #ccc;  */
   }
   
   
@@ -92,7 +92,7 @@
 
   .header {
     background-color: #800000;
-    color: white;
+    /* color: white; */
     text-align: center;
     padding: 20px;
   }
