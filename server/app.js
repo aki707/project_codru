@@ -6,14 +6,11 @@ const cors = require("cors");
 const path = require("path");
 const { Server } = require("socket.io");
 
-
 dotenv.config({ path: "./config.env" });
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-
-
 
 const port = process.env.PORT;
 
@@ -26,14 +23,14 @@ app.use(
 );
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://codru-client.vercel.app",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
 );
 
-app.use(express.static(path.join(__dirname, "public")));
+// app.use(express.static(path.join(__dirname, "public")));
 
 require("./db/conn.js");
 const User = require("./models/userSchema");
@@ -42,8 +39,6 @@ const Teacher = require("./models/teacherSchema");
 app.use(require("./router/userauth.js"));
 app.use(require("./router/blogauth.js"));
 app.use(require("./router/courseauth.js"));
-
-
 
 let notifications = {};
 
@@ -275,8 +270,6 @@ app.post("/verify-bigbro", async (req, res) => {
     res.status(500).send({ message: "Server error" });
   }
 });
-
-
 
 app.put("/assignTask/:username", async (req, res) => {
   try {
