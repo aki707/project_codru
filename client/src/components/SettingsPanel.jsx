@@ -42,7 +42,7 @@ const AccountSettings = () => {
   const handlePasswordChange = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('/api/change-password', {
+      const response = await fetch('https://codru-backend.onrender.com/change-password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ const AccountSettings = () => {
     setWaitingAlert(true);
   
     try {
-      const response = await fetch(`/api/user/${username}`, {
+      const response = await fetch(`https://codru-backend.onrender.com/user/${username}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

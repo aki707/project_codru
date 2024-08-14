@@ -74,7 +74,7 @@ const BlogForm = ({ userData, setUserData }) => {
     };
 
     try {
-      const response = await fetch("/api/blogs", {
+      const response = await fetch("https://codru-backend.onrender.com/blogs", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

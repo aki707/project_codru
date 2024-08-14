@@ -24,7 +24,7 @@ function Navprofile({
   const navProfileRef = useRef(null); // Ref for Navprofile container
 
   const SignOut = async () => {
-    const res = await fetch("/api/signout", {
+    const res = await fetch("https://codru-backend.onrender.com/signout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
     });
@@ -51,7 +51,7 @@ function Navprofile({
     reader.onload = async () => {
       const newPhoto = reader.result;
 
-      const res = await fetch("/api/profile-edit", {
+      const res = await fetch("https://codru-backend.onrender.com/profile-edit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

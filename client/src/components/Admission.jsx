@@ -77,7 +77,7 @@ const Admission = () => {
       }
 
       try {
-        const res = await fetch(`/api/students/${storedUsername}`);
+        const res = await fetch(`https://codru-backend.onrender.com/students/${storedUsername}`);
         if (!res.ok) {
           throw new Error(`HTTP error! Status: ${res.status}`);
         }
@@ -96,7 +96,7 @@ const Admission = () => {
 
     try {
       const res = await fetch(
-        `/api/admission/${localStorage.getItem("Username")}`,
+        `https://codru-backend.onrender.com/admission/${localStorage.getItem("Username")}`,
         {
           method: "POST",
           headers: {

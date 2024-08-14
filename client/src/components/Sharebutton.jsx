@@ -18,7 +18,7 @@ const Sharebutton = ({ blogurl }) => {
       name: "WhatsApp",
       action: () => {
         window.open(
-          `https://api.whatsapp.com/send?text=${encodeURIComponent(blogurl)}`,
+          `https:/https://codru-backend.onrender.com.whatsapp.com/send?text=${encodeURIComponent(blogurl)}`,
           "_blank"
         );
       },

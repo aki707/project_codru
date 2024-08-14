@@ -31,7 +31,7 @@ const Contact = () => {
     e.preventDefault();
     const { name, email, phone, city, message } = value;
 
-    const res = await fetch("/api/contactus", {
+    const res = await fetch("https://codru-backend.onrender.com/contactus", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

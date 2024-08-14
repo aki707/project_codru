@@ -43,7 +43,7 @@ export default function Admin() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch("/api/users");
+        const response = await fetch("https://codru-backend.onrender.com/users");
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -81,7 +81,7 @@ export default function Admin() {
     }
 
     try {
-      const response = await fetch(`/api/user/${username}`, {
+      const response = await fetch(`https://codru-backend.onrender.com/user/${username}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -111,7 +111,7 @@ export default function Admin() {
   const handleBro = async (username, isAdmin) => {
     try {
       setWaitingAlert(true); // Show waiting alert
-      const response = await fetch(`/api/generate-otp-bro`, {
+      const response = await fetch(`https://codru-backend.onrender.com/generate-otp-bro`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -145,7 +145,7 @@ export default function Admin() {
   const handleOtpVerification = async (username, finalValue) => {
     console.log(finalValue);
 
-    const res = await fetch("/api/verify-bigbro", {
+    const res = await fetch("https://codru-backend.onrender.com/verify-bigbro", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username: username, otp: finalValue }),

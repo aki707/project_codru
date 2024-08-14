@@ -45,7 +45,7 @@ function App() {
     const fetchData = async () => {
       const token = localStorage.getItem("Token");
       if (token) {
-        const res = await fetch("/api/profile", {
+        const res = await fetch("https://codru-backend.onrender.com/profile", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

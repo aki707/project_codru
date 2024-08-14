@@ -27,7 +27,7 @@ function BlogDetail({ userData, setUserData }) {
   useEffect(() => {
     const fetchBlogData = async () => {
       try {
-        const res = await fetch(`/api/blogs/${blogId}`);
+        const res = await fetch(`https://codru-backend.onrender.com/blogs/${blogId}`);
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
@@ -35,7 +35,7 @@ function BlogDetail({ userData, setUserData }) {
         setBlogData(jsonData.blog);
 
         // Check if the blog is saved by the current user
-        const userRes = await fetch(`/api/users/${currentUser}`);
+        const userRes = await fetch(`https://codru-backend.onrender.com/users/${currentUser}`);
         const userData = await userRes.json();
         if (userData.savedBlogs.includes(blogId)) {
           setIsSaved(true);
@@ -50,7 +50,7 @@ function BlogDetail({ userData, setUserData }) {
 
   const handleLike = async () => {
     try {
-      const res = await fetch("/api/blog/like", {
+      const res = await fetch("https://codru-backend.onrender.com/blog/like", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ blogId, username: currentUser }),
@@ -69,7 +69,7 @@ function BlogDetail({ userData, setUserData }) {
 
   const handleDislike = async () => {
     try {
-      const res = await fetch("/api/blog/dislike", {
+      const res = await fetch("https://codru-backend.onrender.com/blog/dislike", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ blogId, username: currentUser }),
@@ -89,7 +89,7 @@ function BlogDetail({ userData, setUserData }) {
   const handleSave = async () => {
     try {
       const res = await fetch(
-        `/api/blog/${isSaved ? "unsaveblog" : "saveblog"}`,
+        `https://codru-backend.onrender.com/blog/${isSaved ? "unsaveblog" : "saveblog"}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
