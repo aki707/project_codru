@@ -8,21 +8,15 @@ import "../styles/Navbar.css";
 import Navprofile from "./Navprofile";
 import Notification from "./Notification";
 import Dashboard from "./Dashboard";
+import Blogpopup from "./Blogpopup";
 
-function Navbar() {
+function Navbar({ userData, setUserData }) {
   const [showLinks, setShowLinks] = useState(false);
-  const [showprofile, setShowprofile] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
   const [showDashboard, setShowDashboard] = useState(false);
-
-  const Showprofile = () => {
-    // e.prevent.Default();
-    setShowprofile(!showprofile);
-    if (showNotifications) {
-      setShowNotifications(false);
-    }
-    setShowLinks(!showLinks);
-  };
+  const [showPopup, setShowPopup] = useState(false);
+  const [activeLink, setActiveLink] = useState("");
 
   const toggleLinks = () => {
     setShowLinks(!showLinks);
@@ -30,31 +24,42 @@ function Navbar() {
 
   const toggleNotifications = () => {
     setShowNotifications(!showNotifications);
-    if (showprofile) {
-      setShowprofile(false);
+    if (showProfile) {
+      setShowProfile(false);
     }
-    setShowLinks(!showLinks);
   };
 
   const closeNotification = () => {
     setShowNotifications(false);
   };
-  const closeNavprofile = () => {
-    setShowprofile(false);
+
+  const closeNavProfile = () => {
+    setShowProfile(false);
   };
+
   const toggleDashboard = () => {
     localStorage.setItem("currentView", "dashboard");
     localStorage.setItem("activeTab", "Dashboard");
     setShowDashboard(!showDashboard);
-    
+  };
+
+  const openPopup = (e) => {
+    e.preventDefault();
+    setShowPopup(true);
+    setActiveLink("blogs");
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
+    setActiveLink("");
   };
 
   const isLoggedIn = !!localStorage.getItem("Token");
 
   return (
-    <div className="Navbarmaindiv">
+    <div className={`Navbarmaindiv ${showPopup ? "blur" : ""}`}>
       <NavLink to="/" className="navlogo">
-        <img src={c3} alt="" />
+        <img src={c3} alt="Logo" />
       </NavLink>
       <div
         className={showLinks ? "navoptions" : "barcross"}
@@ -82,17 +87,18 @@ function Navbar() {
           <NavLink to="/Contact" className="navlinks">
             Contact Us
           </NavLink>
-          <NavLink to="/blog" className="navlinks">
+          <NavLink
+            to="/blogs"
+            className={`navlinks ${activeLink === "blogs" ? "active" : ""}`}
+            onClick={openPopup}
+          >
             Blogs
           </NavLink>
-
           {isLoggedIn && (
             <NavLink
               to="/dashboard"
               className="navlinks"
-              onClick={() => {
-                toggleDashboard();
-              }}
+              onClick={toggleDashboard}
             >
               Dashboard
             </NavLink>
@@ -100,21 +106,14 @@ function Navbar() {
         </div>
         {isLoggedIn ? (
           <div className="Profileimgmaindiv">
-            <NavLink
-              className="navnotification"
-              onClick={() => {
-                toggleNotifications();
-              }}
-            >
-              <img src={notifyicon} alt="" />
+            <NavLink className="navnotification" onClick={toggleNotifications}>
+              <img src={notifyicon} alt="Notifications" />
             </NavLink>
             <NavLink
               className="navprofile"
-              onClick={() => {
-                Showprofile();
-              }}
+              onClick={() => setShowProfile(!showProfile)}
             >
-              <img src={localStorage.getItem("Photo")} alt="Profile" />
+              <img src={userData.Photo} alt="Profile" />
             </NavLink>
           </div>
         ) : (
@@ -123,32 +122,29 @@ function Navbar() {
           </NavLink>
         )}
       </div>
-      {showprofile && localStorage.getItem("Token") ? (
+      {showProfile && isLoggedIn && (
         <Navprofile
-          setShowprofile={setShowprofile}
-          showprofile={showprofile}
-          closeNavprofile={closeNavprofile}
+          setShowProfile={setShowProfile}
+          showProfile={showProfile}
+          closeNavProfile={closeNavProfile}
+          userData={userData}
+          setUserData={setUserData}
         />
-      ) : (
-        ""
       )}
-      {showNotifications && localStorage.getItem("Token") ? (
+      {showNotifications && isLoggedIn && (
         <Notification
           setShowNotifications={setShowNotifications}
           showNotifications={showNotifications}
           closeNotification={closeNotification}
         />
-      ) : (
-        ""
       )}
-      {showDashboard && localStorage.getItem("Token") ? (
+      {showDashboard && isLoggedIn && (
         <Dashboard
           setShowDashboard={setShowDashboard}
           showDashboard={showDashboard}
         />
-      ) : (
-        ""
       )}
+      {showPopup && <Blogpopup closePopup={closePopup} />}
     </div>
   );
 }

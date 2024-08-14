@@ -1,23 +1,23 @@
-
-import React from 'react';
+import React from "react";
 import engineering from "../assets/engineering.jpg";
 import math from "../assets/math.jpeg";
 import science from "../assets/science.jpg";
 import technology from "../assets/technology.jpg";
 import "../styles/Start3.css";
-import DashedLine from './DashedLine';
+import DashedLine from "./DashedLine";
 
-window.addEventListener('scroll', function() {
-  var elements = document.querySelectorAll('.Start3div2div');
+window.addEventListener("scroll", function () {
+  var elements = document.querySelectorAll(".Start3div2div");
   var scrollPosition = window.scrollY;
   var windowHeight = window.innerHeight;
 
-  elements.forEach(function(element) {
+  elements.forEach(function (element) {
     var position = element.getBoundingClientRect().top;
-    if (position < windowHeight * 0.75) { // Adjust the threshold as needed
-      element.classList.add('scrolled');
+    if (position < windowHeight * 0.75) {
+      // Adjust the threshold as needed
+      element.classList.add("scrolled");
     } else {
-      element.classList.remove('scrolled');
+      element.classList.remove("scrolled");
     }
   });
 });
@@ -25,13 +25,12 @@ window.addEventListener('scroll', function() {
 function Start3() {
   return (
     <div className="Start3">
-      <div className="Start3div1"></div>
       <div className="Start3div2">
-        <div className="Start3div2div">
+        <div className="Start3div2div1">
           <div>
             <img src={science} alt="Science" />
           </div>
-          <div>
+          <div className="Start3div2contentdiv">
             <h2>Science</h2>
             <p>
               Dive into the fascinating realm of science, where curiosity meets
@@ -48,7 +47,7 @@ function Start3() {
             startX={100}
             startY={50}
             verticalLength={80}
-            horizontalLength={720}
+            horizontalLength={900}
             color="black"
             strokeWidth={1}
             dashArray="2,2"
@@ -57,8 +56,8 @@ function Start3() {
           />
         </div>
 
-        <div className="Start3div2div">
-          <div>
+        <div className="Start3div2div2">
+          <div className="Start3div2contentdiv">
             <h2>Mathematics</h2>
             <p>
               Step into the world of mathematics, where numbers dance, shapes
@@ -75,10 +74,10 @@ function Start3() {
 
         <div className="lShapedDashedLine">
           <DashedLine
-            startX={820}
+            startX={1020}
             startY={50}
             verticalLength={80}
-            horizontalLength={-720}
+            horizontalLength={-900}
             color="black"
             strokeWidth={1}
             dashArray="5,5"
@@ -87,11 +86,11 @@ function Start3() {
           />
         </div>
 
-        <div className="Start3div2div">
+        <div className="Start3div2div3">
           <div>
             <img src={technology} alt="Technology" />
           </div>
-          <div>
+          <div className="Start3div2contentdiv">
             <h2>Technology</h2>
             <p>
               Step into the dynamic world of technology, where innovation knows
@@ -108,7 +107,7 @@ function Start3() {
             startX={100}
             startY={50}
             verticalLength={80}
-            horizontalLength={720}
+            horizontalLength={900}
             color="black"
             strokeWidth={1}
             dashArray="2,2"
@@ -117,8 +116,8 @@ function Start3() {
           />
         </div>
 
-        <div className="Start3div2div">
-          <div>
+        <div className="Start3div2div4">
+          <div className="Start3div2contentdiv">
             <h2>Engineering</h2>
             <p>
               Welcome to the realm of engineering, where creativity meets
@@ -133,7 +132,6 @@ function Start3() {
           </div>
         </div>
       </div>
-      <div className="Start3div1"></div>
     </div>
   );
 }

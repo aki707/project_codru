@@ -283,9 +283,9 @@ function Signup() {
       </div>
       <div className="signupdiv2">
         <h2>Sign Up</h2>
-        <div className="terms">
+        {/* <div className="terms">
           <FormControl component="fieldset">
-            {/* <RadioGroup
+            <RadioGroup
               aria-label="role"
               name="role"
               value={value.role}
@@ -301,9 +301,9 @@ function Signup() {
                 control={<Radio />}
                 label="Teacher"
               />
-            </RadioGroup> */}
+            </RadioGroup>
           </FormControl>
-        </div>
+        </div> */}
         <div>
           <TextField
             className="text"

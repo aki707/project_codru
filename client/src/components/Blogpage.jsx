@@ -66,8 +66,6 @@ function Blogpage() {
     }));
   };
 
-  const userPhoto = localStorage.getItem("Photo");
-
   return (
     <div className="blog-page">
       {blogarray.map((data, index) => {
@@ -81,7 +79,7 @@ function Blogpage() {
             {contentPreview.image ? (
               <img src={contentPreview.image} alt="Blog Image" />
             ) : (
-              <img src={userPhoto} alt="User Photo" />
+              <img src={data.userphoto} alt="User Photo" />
             )}
             <h2 className="blogtitle">
               {isExpanded || title.length <= 70 ? (

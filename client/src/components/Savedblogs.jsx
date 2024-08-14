@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "../styles/Blogpage.css";
 import { useNavigate } from "react-router-dom";
 
-function Savedblogs() {
+function Savedblogs({ userData, setUserData }) {
   const navigate = useNavigate();
   const [savedBlogs, setSavedBlogs] = useState([]);
   const [expandedTitles, setExpandedTitles] = useState({});
@@ -63,7 +63,7 @@ function Savedblogs() {
     }));
   };
 
-  const userPhoto = localStorage.getItem("Photo");
+  const userPhoto = userData.Photo;
 
   return (
     <div className="blog-page">

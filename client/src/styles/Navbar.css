@@ -138,7 +138,7 @@
   /* border: 2px solid green; */
 }
 
-@media screen and (max-width: 510px) {
+@media screen and (max-width: 512px) {
   .navoptions {
     display: flex;
     justify-content: center;
@@ -149,8 +149,9 @@
   .barcross {
     display: flex;
     justify-content: center;
-    width: 10%;
+    width: 19%;
     z-index: 2;
+    font-size: 6vw;
   }
   .navbarcrossicon {
     /* border: 2px solid blue; */
@@ -166,7 +167,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40vw;
+    width: 55vw;
   }
 
   .navlogo > img {

@@ -10,13 +10,23 @@
 
 .Blogformmaindiv > form {
   display: flex;
+  border: 2px solid red;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 70%;
+  height: fit-content;
   background-color: #efe1e1;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
     rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+.Blogformmaindiv > form > div {
+  /* border: 2px solid purple; */
+  width: 100%;
+  min-height: 40vh;
+}
+.Reactquill .ql-container .ql-editor {
+  height: 40vh; /* Ensure a minimum height for mobile */
 }
 
 .Blogformmaindiv > form > input {
@@ -25,6 +35,19 @@
   border-radius: 1vh;
   margin: 6vh 1vw;
   font-weight: bold;
+}
+
+button[type="submit"] {
+  width: 50%;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  /* margin-bottom: 2vh; */
+  padding: 2vh;
+  font-size: 1.2vw;
+  border-radius: 1vh;
+  background-color: brown;
+  border: none;
+  cursor: pointer;
 }
 
 .media-previews {
@@ -77,20 +100,112 @@
   font-weight: bold;
 }
 
-button[type="submit"] {
-  width: 40%;
-  margin: 2vh 0vh;
-  padding: 1vh;
-  font-size: 1.2vw;
-  border-radius: 1vh;
-  background-color: brown;
-  border: none;
-}
+@media screen and (max-width: 512px) {
+  .Blogformmaindiv {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #efe1e1;
+    /* border: 2px solid red; */
+  }
 
-.Reactquill {
-  width: 100%;
-  min-height: 20vh;
-  color: black;
+  .Blogformmaindiv > form {
+    width: 100%;
+    min-height: 62vh;
+    box-shadow: none;
+    margin-top: 2vh;
+    border: 2px solid red;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+
+  .Blogformmaindiv > form > div {
+    border: 2px solid purple;
+    width: 100%;
+    min-height: 40vh;
+    margin-top: 0px;
+  }
+
+  .Reactquill .ql-toolbar {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    height: 20vh;
+  }
+
+  .Blogformmaindiv > form > input {
+    width: 80%;
+    padding: 4%;
+    border-radius: 1vh;
+    margin: 6vh 1vw;
+    font-weight: bold;
+  }
+
+  button[type="submit"] {
+    width: 85%;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    /* margin-bottom: 2vh; */
+    padding: 2vh;
+    font-size: 5vw;
+    border-radius: 1vh;
+    background-color: brown;
+    border: none;
+    cursor: pointer;
+  }
+
+  .media-previews {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .image-preview {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 80%;
+    margin: 10px 0;
+  }
+
+  .image-preview img {
+    width: 50%;
+    aspect-ratio: 7 / 4;
+  }
+
+  .image-preview div {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .image-preview textarea,
+  .video-preview textarea {
+    width: 90%;
+    resize: none;
+    background-color: transparent;
+    height: 30vh;
+    color: black;
+  }
+
+  .image-preview div button {
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    width: 50%;
+    padding: 1vh;
+    background-color: thistle;
+    font-size: 1vw;
+    border-radius: 1vh;
+    border: none;
+    font-weight: bold;
+  }
 }
 
 .ql-snow .ql-picker.ql-size .ql-picker-label[data-value="10px"]::before,

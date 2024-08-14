@@ -4,12 +4,16 @@ const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
 const path = require("path");
-const { Server } = require("socket.io");
+// const { Server } = require("socket.io");
 
 dotenv.config({ path: "./config.env" });
-
 const app = express();
+
+app.use(cors());
+app.use(express.json());
+
 const port = process.env.PORT;
+// const HOST = "0.0.0.0";
 
 app.use(express.json({ parameterLimit: "100000", limit: "500mb" }));
 app.use(bodyParser.json());
@@ -18,26 +22,16 @@ app.use(
     extended: true,
   })
 );
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type"],
-    credentials: true,
-  })
-);
 
-app.use(express.static(path.join(__dirname, "public")));
+// app.use(express.static(path.join(__dirname, "public")));
 
 require("./db/conn.js");
 const User = require("./models/userSchema");
 const Student = require("./models/studentSchema");
 const Teacher = require("./models/teacherSchema");
-// app.use(require("./router/calendarauth.js"));
 app.use(require("./router/userauth.js"));
 app.use(require("./router/blogauth.js"));
 app.use(require("./router/courseauth.js"));
-// app.use(require("./router/googleauth.js"));
 
 let notifications = {};
 
@@ -126,7 +120,7 @@ app.post("/notifications/push", async (req, res) => {
 
       notifications[user.username].push(newNotification);
 
-      io.to(user.username).emit("notification", newNotification);
+      // io.to(user.username).emit("notification", newNotification);
     }
 
     res.status(201).json({ message: "Notifications sent" });
@@ -185,7 +179,6 @@ app.delete("/user/:username", async (req, res) => {
     if (!user) {
       console.log(role, username);
       return res.status(404).json({ error: "User doesn't exist." });
-      
     }
 
     let deleted;
@@ -341,32 +334,38 @@ const cleanupOldNotifications = () => {
 
 setInterval(cleanupOldNotifications, 60 * 60 * 1000);
 
-const server = app.listen(port, () => {
-  console.log(`Server is listening at ${port}`);
+
+app.listen(port, () => {
+  console.log(`Server is running on ${port}`);
 });
 
-const io = new Server(server, {
-  cors: {
-    origin: "http://localhost:5173",
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type"],
-    credentials: true,
-  },
-});
 
-io.on("connection", (socket) => {
-  console.log("a user connected");
+// const server = app.listen(port, () => {
+//   console.log(`Server is running on ${port}`);
+// });
 
-  socket.on("join", (username) => {
-    if (!username) {
-      console.log("Received invalid username:", username);
-      return;
-    }
-    socket.join(username);
-    console.log(`${username} joined`);
-  });
+// const io = new Server(server, {
+//   cors: {
+//     origin: "*",
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     allowedHeaders: ["Content-Type"],
+//     credentials: true,
+//   },
+// });
 
-  socket.on("disconnect", () => {
-    console.log("user disconnected");
-  });
-});
+// io.on("connection", (socket) => {
+//   console.log("a user connected");
+
+//   socket.on("join", (username) => {
+//     if (!username) {
+//       console.log("Received invalid username:", username);
+//       return;
+//     }
+//     socket.join(username);
+//     console.log(`${username} joined`);
+//   });
+
+//   socket.on("disconnect", () => {
+//     console.log("user disconnected");
+//   });
+// });

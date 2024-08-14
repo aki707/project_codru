@@ -14,11 +14,10 @@
   /* background-color:  #efe1e1; */
   justify-content: "center";
 
-  font-synthesis: none;
+  /* font-synthesis: none; */
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
 }
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {

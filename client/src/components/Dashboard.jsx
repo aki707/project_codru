@@ -19,12 +19,11 @@ import { faPen } from "@fortawesome/free-solid-svg-icons";
 import Admin from "../components/Admin";
 import PlanetryPath from "../components/PlanetryPath";
 import Savedblogs from "./Savedblogs";
-import Admission from "./Admission";
 import Profile from "./Profile";
 import SettingsPanel from "../components/SettingsPanel";
 import Calendar from "./Calendar";
 
-const Dashboard = () => {
+const Dashboard = ({ userData, setUserData }) => {
   const [events, setEvents] = useState([]);
   const [newEvent, setNewEvent] = useState({
     title: "",
@@ -82,7 +81,10 @@ const Dashboard = () => {
 
       const jsondata = await res.json();
       if (res.ok) {
-        localStorage.setItem("Photo", jsondata.user.photo);
+        setUserData((prevData) => ({
+          ...prevData,
+          Photo: jsondata.user.photo.toString(),
+        }));
         setAlertMessage(jsondata.message || "Image updated successfully");
         setShowAlert(true);
         window.location.reload();
@@ -122,57 +124,89 @@ const Dashboard = () => {
     }
   };
 
-  const isAdmin = JSON.parse(localStorage.getItem("isAdmin"));
-  const role = localStorage.getItem("Role");
+  const isAdmin = userData.isAdmin;
+  const Role = userData.Role;
 
   const getDrawerContent = (role, isAdmin) => {
     const items = [
       {
         text: "Home",
-        icon: <div className="theme-switch"><HomeIcon /></div>,
+        icon: (
+          <div className="theme-switch">
+            <HomeIcon />
+          </div>
+        ),
         path: "/",
       },
       {
         text: "Dashboard",
-        icon: <div className="theme-switch"><DashboardIcon /></div>,
+        icon: (
+          <div className="theme-switch">
+            <DashboardIcon />
+          </div>
+        ),
         view: "dashboard",
       },
 
       {
         text: "Profile",
-        icon: <div className="theme-switch"><PersonIcon /></div>,
+        icon: (
+          <div className="theme-switch">
+            <PersonIcon />
+          </div>
+        ),
         view: "profile",
       },
       {
         text: "Settings",
-        icon: <div className="theme-switch"><SettingsIcon /></div>,
+        icon: (
+          <div className="theme-switch">
+            <SettingsIcon />
+          </div>
+        ),
         view: "settings",
       },
       {
         text: "My Blogs",
-        icon: <div className="theme-switch"><RssFeedIcon /></div>,
+        icon: (
+          <div className="theme-switch">
+            <RssFeedIcon />
+          </div>
+        ),
         view: "my-blogs",
         path: "/my-blogs",
       },
       {
         text: "Saved Blogs",
-        icon: <div className="theme-switch"><BookmarksIcon /></div>,
-        view: "saved-blogs"
-      }
+        icon: (
+          <div className="theme-switch">
+            <BookmarksIcon />
+          </div>
+        ),
+        view: "saved-blogs",
+      },
     ];
 
     if (role === "Teacher" || role === "Student") {
       items.push({
         text: "My Courses",
-        icon: <div className="theme-switch"><BackpackIcon /></div>,
+        icon: (
+          <div className="theme-switch">
+            <BackpackIcon />
+          </div>
+        ),
         view: "my-courses",
       });
     }
 
-    if (role === "Student") {
+    if (Role === "Student") {
       items.push({
         text: "Report",
-        icon: <div className="theme-switch"><RouteIcon /></div>,
+        icon: (
+          <div className="theme-switch">
+            <RouteIcon />
+          </div>
+        ),
         view: "report",
       });
     }
@@ -180,13 +214,17 @@ const Dashboard = () => {
     if (isAdmin) {
       items.push({
         text: "Manage Users",
-        icon: <div className="theme-switch"><ManageAccountsIcon /></div>,
+        icon: (
+          <div className="theme-switch">
+            <ManageAccountsIcon />
+          </div>
+        ),
         view: "manage-users",
       });
     }
 
     return (
-      <List sx={{ maxHeight: 'calc(100vh - 300px)', overflowY: 'auto' }}>
+      <List sx={{ maxHeight: "calc(100vh - 300px)", overflowY: "auto" }}>
         {items.map((item) => (
           <ListItem
             button
@@ -207,9 +245,16 @@ const Dashboard = () => {
             <ListItemText primary={item.text} />
           </ListItem>
         ))}
-        <ListItem button key="Logout" sx={{ marginBottom: 5 }} onClick={SignOut}>
+        <ListItem
+          button
+          key="Logout"
+          sx={{ marginBottom: 5 }}
+          onClick={SignOut}
+        >
           <ListItemIcon>
-            <div className="theme-switch"><ExitToAppIcon /></div>
+            <div className="theme-switch">
+              <ExitToAppIcon />
+            </div>
           </ListItemIcon>
           <ListItemText primary="Logout" />
         </ListItem>
@@ -225,7 +270,7 @@ const Dashboard = () => {
     if (savedTab) setActiveTab(savedTab);
   }, []);
 
-  let arrlen = events.length;
+  // let arrlen = events.length;
 
   return (
     <div className="mainDashboard">
@@ -235,11 +280,7 @@ const Dashboard = () => {
         </NavLink>
 
         <div className="photoDashboard">
-          <img
-            src={localStorage.getItem("Photo")}
-            alt="User"
-            className="dashboard-image"
-          />
+          <img src={userData.Photo} alt="User" className="dashboard-image" />
           <FontAwesomeIcon
             className="myphotoedit"
             icon={faPen}
@@ -258,7 +299,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="drawerContent">{getDrawerContent(role, isAdmin)}</div>
+        <div className="drawerContent">{getDrawerContent(Role, isAdmin)}</div>
       </div>
 
       <div className="rightSectionDashboard">
@@ -278,10 +319,14 @@ const Dashboard = () => {
           </div>
         )}
         {currentView === "my-courses" && <div>My Courses Content</div>}
-        {currentView === "saved-blogs" && <Savedblogs />}
+        {currentView === "saved-blogs" && (
+          <Savedblogs userData={userData} setuserData={setUserData} />
+        )}
         {currentView === "my-blogs" && <div>My Blogs Content</div>}
         {currentView === "report" && <PlanetryPath />}
-        {currentView === "manage-users" && <Admin />}
+        {currentView === "manage-users" && (
+          <Admin userData={userData} setUserData={setUserData} />
+        )}
       </div>
     </div>
   );
