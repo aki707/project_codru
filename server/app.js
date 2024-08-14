@@ -3,8 +3,8 @@ const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
-const path = require("path");
-const { Server } = require("socket.io");
+// const path = require("path");
+// const { Server } = require("socket.io");
 
 dotenv.config({ path: "./config.env" });
 const app = express();
@@ -341,32 +341,36 @@ const cleanupOldNotifications = () => {
 
 setInterval(cleanupOldNotifications, 60 * 60 * 1000);
 
-const server = app.listen(port, () => {
+app.listen(port, () => {
   console.log(`Server is listening at ${port}`);
 });
 
-const io = new Server(server, {
-  cors: {
-    origin: "https://codru-client.vercel.app",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type"],
-    credentials: true,
-  },
-});
+// const server = app.listen(port, () => {
+//   console.log(`Server is listening at ${port}`);
+// });
 
-io.on("connection", (socket) => {
-  console.log("a user connected");
+// const io = new Server(server, {
+//   cors: {
+//     origin: "https://codru-client.vercel.app",
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     allowedHeaders: ["Content-Type"],
+//     credentials: true,
+//   },
+// });
 
-  socket.on("join", (username) => {
-    if (!username) {
-      console.log("Received invalid username:", username);
-      return;
-    }
-    socket.join(username);
-    console.log(`${username} joined`);
-  });
+// io.on("connection", (socket) => {
+//   console.log("a user connected");
 
-  socket.on("disconnect", () => {
-    console.log("user disconnected");
-  });
-});
+//   socket.on("join", (username) => {
+//     if (!username) {
+//       console.log("Received invalid username:", username);
+//       return;
+//     }
+//     socket.join(username);
+//     console.log(`${username} joined`);
+//   });
+
+//   socket.on("disconnect", () => {
+//     console.log("user disconnected");
+//   });
+// });
