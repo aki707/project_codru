@@ -33,7 +33,7 @@ require("./db/conn.js");
 const User = require("./models/userSchema");
 const Student = require("./models/studentSchema");
 const Teacher = require("./models/teacherSchema");
-app.use(require("./router/calendarauth.js"));
+// app.use(require("./router/calendarauth.js"));
 app.use(require("./router/userauth.js"));
 app.use(require("./router/blogauth.js"));
 app.use(require("./router/courseauth.js"));

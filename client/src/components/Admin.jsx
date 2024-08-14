@@ -37,7 +37,7 @@ export default function Admin() {
   const [alertSeverity, setAlertSeverity] = useState("info");
   const [showAlert, setShowAlert] = useState(false);
   const [currentUsername, setCurrentUsername] = useState("");
-  const [waitingAlert, setWaitingAlert] = useState(false); // State for waiting alert0
+  const [waitingAlert, setWaitingAlert] = useState(false); 
   const navigate = useNavigate();
 
   useEffect(() => {
