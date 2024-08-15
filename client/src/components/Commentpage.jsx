@@ -10,7 +10,7 @@ function Commentpage({ onFocus, blogId, userData, setUserData }) {
 
   const fetchComments = async () => {
     try {
-      const res = await fetch(`https://codru-backend.onrender.com/comments/${blogId}`);
+      const res = await fetch(`https://codru-backend.vercel.app/comments/${blogId}`);
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);
       }
@@ -34,7 +34,7 @@ function Commentpage({ onFocus, blogId, userData, setUserData }) {
   useEffect(() => {
     const updateUserPhoto = async () => {
       try {
-        const res = await fetch("https://codru-backend.onrender.com/updateUserPhoto", {
+        const res = await fetch("https://codru-backend.vercel.app/updateUserPhoto", {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -58,7 +58,7 @@ function Commentpage({ onFocus, blogId, userData, setUserData }) {
 
   const Addcomment = async () => {
     try {
-      const res = await fetch("https://codru-backend.onrender.com/comments", {
+      const res = await fetch("https://codru-backend.vercel.app/comments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -86,7 +86,7 @@ function Commentpage({ onFocus, blogId, userData, setUserData }) {
 
   const addReply = async (commentId, replyText) => {
     try {
-      const res = await fetch("https://codru-backend.onrender.com/comments", {
+      const res = await fetch("https://codru-backend.vercel.app/comments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -110,7 +110,7 @@ function Commentpage({ onFocus, blogId, userData, setUserData }) {
 
   const deleteComment = async (commentId, blogId) => {
     try {
-      const res = await fetch(`https://codru-backend.onrender.com/comments/${commentId}`, {
+      const res = await fetch(`https://codru-backend.vercel.app/comments/${commentId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -130,7 +130,7 @@ function Commentpage({ onFocus, blogId, userData, setUserData }) {
 
   const likeComment = async (commentId) => {
     try {
-      const res = await fetch("https://codru-backend.onrender.com/comments/like", {
+      const res = await fetch("https://codru-backend.vercel.app/comments/like", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ blogId, commentId, username: currentUser }),
@@ -148,7 +148,7 @@ function Commentpage({ onFocus, blogId, userData, setUserData }) {
 
   const dislikeComment = async (commentId) => {
     try {
-      const res = await fetch("https://codru-backend.onrender.com/comments/dislike", {
+      const res = await fetch("https://codru-backend.vercel.app/comments/dislike", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ blogId, commentId, username: currentUser }),
@@ -166,7 +166,7 @@ function Commentpage({ onFocus, blogId, userData, setUserData }) {
 
   const editComment = async (commentId, newText) => {
     try {
-      const res = await fetch("https://codru-backend.onrender.com/comments/edit", {
+      const res = await fetch("https://codru-backend.vercel.app/comments/edit", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ blogId, commentId, newText }),
