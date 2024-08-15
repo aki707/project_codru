@@ -10,7 +10,7 @@ const Blogpopup = ({ closePopup }) => {
   };
 
   const handleSeeBlogs = () => {
-    navigate("/seeblogs");
+    navigate("/blogsdata");
     closePopup();
   };
 
