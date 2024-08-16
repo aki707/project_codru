@@ -79,7 +79,7 @@ const Profile = () => {
       }
 
       try {
-        const res = await fetch(`https://codru-backend.vercel.app/students/${storedUsername}`);
+        const res = await fetch(`https://codru-server.vercel.app/students/${storedUsername}`);
         if (!res.ok) {
           throw new Error(`HTTP error! Status: ${res.status}`);
         }
@@ -140,7 +140,7 @@ const Profile = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch("https://codru-backend.vercel.app/admission", {
+      const res = await fetch("https://codru-server.vercel.app/admission", {
         // Adjust the URL as needed
         method: "POST",
         headers: {

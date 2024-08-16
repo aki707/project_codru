@@ -15,7 +15,7 @@ function Blogpage() {
           throw new Error("Username not found in localStorage");
         }
 
-        const res = await fetch("https://codru-backend.vercel.app/blogsdata", {
+        const res = await fetch("https://codru-server.vercel.app/blogsdata", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username }),

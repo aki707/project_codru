@@ -141,7 +141,7 @@ function Signup() {
 
   const handleEmailVerification = async () => {
     setLoading(false);
-    const res = await fetch("https://codru-backend.vercel.app/generate-otp", {
+    const res = await fetch("https://codru-server.vercel.app/generate-otp", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email: value.email }),
@@ -162,7 +162,7 @@ function Signup() {
   const handleOtpVerification = async (finalValue) => {
     console.log(finalValue);
 
-    const res = await fetch("https://codru-backend.vercel.app/verify-email", {
+    const res = await fetch("https://codru-server.vercel.app/verify-email", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email: value.email, otp: finalValue }),
@@ -205,7 +205,7 @@ function Signup() {
       return console.error("Please verify your email before proceeding.");
     }
 
-    const res = await fetch("https://codru-backend.vercel.app/register", {
+    const res = await fetch("https://codru-server.vercel.app/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

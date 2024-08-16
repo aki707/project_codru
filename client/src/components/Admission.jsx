@@ -77,7 +77,7 @@ const Admission = () => {
       }
 
       try {
-        const res = await fetch(`https://codru-backend.vercel.app/students/${storedUsername}`);
+        const res = await fetch(`https://codru-server.vercel.app/students/${storedUsername}`);
         if (!res.ok) {
           throw new Error(`HTTP error! Status: ${res.status}`);
         }
@@ -96,7 +96,7 @@ const Admission = () => {
 
     try {
       const res = await fetch(
-        `https://codru-backend.vercel.app/admission/${localStorage.getItem("Username")}`,
+        `https://codru-server.vercel.app/admission/${localStorage.getItem("Username")}`,
         {
           method: "POST",
           headers: {

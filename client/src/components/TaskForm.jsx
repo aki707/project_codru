@@ -18,7 +18,7 @@ const TaskForm = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch(`https://codru-backend.vercel.app/assignTask/${studentId}`, {
+      const response = await fetch(`https://codru-server.vercel.app/assignTask/${studentId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

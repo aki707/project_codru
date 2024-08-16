@@ -20,7 +20,7 @@ const Forget_password = () => {
     }
 
     try {
-      const res = await fetch(`https://codru-backend.vercel.app/reset-password/${token}`, {
+      const res = await fetch(`https://codru-server.vercel.app/reset-password/${token}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ newPassword: password }),

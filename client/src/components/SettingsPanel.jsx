@@ -42,7 +42,7 @@ const AccountSettings = () => {
   const handlePasswordChange = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://codru-backend.vercel.app/change-password', {
+      const response = await fetch('https://codru-server.vercel.app/change-password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ const AccountSettings = () => {
     setWaitingAlert(true);
   
     try {
-      const response = await fetch(`https://codru-backend.vercel.app/user/${username}`, {
+      const response = await fetch(`https://codru-server.vercel.app/user/${username}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

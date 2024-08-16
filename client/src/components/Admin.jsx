@@ -43,7 +43,7 @@ export default function Admin() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch("https://codru-backend.vercel.app/users");
+        const response = await fetch("https://codru-server.vercel.app/users");
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -81,7 +81,7 @@ export default function Admin() {
     }
 
     try {
-      const response = await fetch(`https://codru-backend.vercel.app/user/${username}`, {
+      const response = await fetch(`https://codru-server.vercel.app/user/${username}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -111,7 +111,7 @@ export default function Admin() {
   const handleBro = async (username, isAdmin) => {
     try {
       setWaitingAlert(true); // Show waiting alert
-      const response = await fetch(`https://codru-backend.vercel.app/generate-otp-bro`, {
+      const response = await fetch(`https://codru-server.vercel.app/generate-otp-bro`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -145,7 +145,7 @@ export default function Admin() {
   const handleOtpVerification = async (username, finalValue) => {
     console.log(finalValue);
 
-    const res = await fetch("https://codru-backend.vercel.app/verify-bigbro", {
+    const res = await fetch("https://codru-server.vercel.app/verify-bigbro", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username: username, otp: finalValue }),

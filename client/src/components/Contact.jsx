@@ -31,7 +31,7 @@ const Contact = () => {
     e.preventDefault();
     const { name, email, phone, city, message } = value;
 
-    const res = await fetch("https://codru-backend.vercel.app/contactus", {
+    const res = await fetch("https://codru-server.vercel.app/contactus", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
