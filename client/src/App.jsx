@@ -27,8 +27,9 @@ import TaskForm from "./components/TaskForm.jsx";
 import PlanetaryPath from "./components/PlanetryPath.jsx";
 import FinalBuy from "./components/FinalBuy.jsx";
 import Myblogs from "./components/Myblogs.jsx";
-import ThemeToggle from "./components/ThemeToggle";
+// import ThemeToggle from "./components/ThemeToggle";
 import { ThemeContext } from "./context/ThemeContext";
+import Publicprofile from "./components/Publicprofile.jsx";
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -44,7 +45,7 @@ function App() {
     const fetchData = async () => {
       const token = localStorage.getItem("Token");
       if (token) {
-        const res = await fetch("/api/profile", {
+        const res = await fetch("https://codru-server.vercel.app/profile", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -163,8 +164,14 @@ function App() {
           element={<BlogForm userData={userData} setUserData={setUserData} />}
         />
         <Route
-          path="/blogdata"
+          path="/blogsdata"
           element={<Blogpage userData={userData} setUserData={setUserData} />}
+        />
+        <Route
+          path="/public-profile/:username"
+          element={
+            <Publicprofile userData={userData} setUserData={setUserData} />
+          }
         />
         <Route
           path="/notification"

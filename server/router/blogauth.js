@@ -543,4 +543,82 @@ const updateNestedReplies = (replies, username, newPhoto) => {
   return updated;
 };
 
+router.post("/follow", async (req, res) => {
+  const { currentUserId, targetUserId } = req.body;
+
+  try {
+    const currentUser = await User.findOne({ username: currentUserId });
+    const targetUser = await User.findOne({ username: targetUserId });
+
+    if (!currentUser || !targetUser) {
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
+    }
+
+    // Follow
+    if (
+      !currentUser.following.some((f) => f.username === targetUser.username)
+    ) {
+      currentUser.following.push({
+        username: targetUser.username,
+        name: targetUser.name,
+        photo: targetUser.photo,
+      });
+
+      targetUser.followers.push({
+        username: currentUser.username,
+        name: currentUser.name,
+        photo: currentUser.photo,
+      });
+
+      await currentUser.save();
+      await targetUser.save();
+    }
+
+    res.status(200).json({
+      success: true,
+      isFollowing: true,
+    });
+  } catch (error) {
+    console.error("Error in follow route:", error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+router.post("/unfollow", async (req, res) => {
+  const { currentUserId, targetUserId } = req.body;
+
+  try {
+    const currentUser = await User.findOne({ username: currentUserId });
+    const targetUser = await User.findOne({ username: targetUserId });
+
+    if (!currentUser || !targetUser) {
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
+    }
+
+    // Unfollow
+    currentUser.following = currentUser.following.filter(
+      (f) => f.username !== targetUser.username
+    );
+    targetUser.followers = targetUser.followers.filter(
+      (f) => f.username !== currentUser.username
+    );
+
+    await currentUser.save();
+    await targetUser.save();
+
+    res.status(200).json({
+      user: currentUser,
+      success: true,
+      isFollowing: false,
+    });
+  } catch (error) {
+    console.error("Error in unfollow route:", error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
 module.exports = router;

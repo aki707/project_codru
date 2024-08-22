@@ -22,7 +22,7 @@ const Notification = ({
     }
 
     fetchNotifications();
-    const socket = io("http://localhost:3000");
+    const socket = io("https://codru-server.vercel.app");
     socket.emit("join", username);
 
     socket.on("notification", (notification) => {
@@ -40,13 +40,16 @@ const Notification = ({
   const fetchNotifications = async () => {
     setLoading(false); // Start loading
     try {
-      const response = await fetch("http://localhost:3000/notifications", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ usernames: [username] }),
-      });
+      const response = await fetch(
+        "https://codru-server.vercel.app/notifications",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ usernames: [username] }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Network response was not ok");

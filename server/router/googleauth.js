@@ -22,7 +22,6 @@
 //   console.log(`The code is: ${urlParams.code}`);
 // }
 
-
 // import React, { useEffect } from 'react';
 // import { useLocation } from 'react-router-dom';
 // import axios from 'axios';
@@ -38,7 +37,7 @@
 //       if (code) {
 //         try {
 //           // Send the authorization code to the backend to exchange it for tokens
-//           const response = await axios.get(`http://localhost:3000/oauth2callback?code=${code}`);
+//           const response = await axios.get(`https://codru-server.vercel.app/oauth2callback?code=${code}`);
 //           // Handle success (e.g., store tokens, redirect to calendar)
 //           console.log('Tokens:', response.data);
 //           window.location.href = '/';
@@ -57,4 +56,3 @@
 // };
 
 // export default GoogleAuth;
-

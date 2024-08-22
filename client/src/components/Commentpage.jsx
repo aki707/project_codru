@@ -10,7 +10,9 @@ function Commentpage({ onFocus, blogId, userData, setUserData }) {
 
   const fetchComments = async () => {
     try {
-      const res = await fetch(`/api/comments/${blogId}`);
+      const res = await fetch(
+        `https://codru-server.vercel.app/comments/${blogId}`
+      );
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);
       }
@@ -34,14 +36,17 @@ function Commentpage({ onFocus, blogId, userData, setUserData }) {
   useEffect(() => {
     const updateUserPhoto = async () => {
       try {
-        const res = await fetch("/api/updateUserPhoto", {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            username: localStorage.getItem("Username"),
-            newPhoto: userData.Photo,
-          }),
-        });
+        const res = await fetch(
+          "https://codru-server.vercel.app/updateUserPhoto",
+          {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              username: localStorage.getItem("Username"),
+              newPhoto: userData.Photo,
+            }),
+          }
+        );
 
         if (res.ok) {
           console.log("updated");
@@ -58,7 +63,7 @@ function Commentpage({ onFocus, blogId, userData, setUserData }) {
 
   const Addcomment = async () => {
     try {
-      const res = await fetch("/api/comments", {
+      const res = await fetch("https://codru-server.vercel.app/comments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -86,7 +91,7 @@ function Commentpage({ onFocus, blogId, userData, setUserData }) {
 
   const addReply = async (commentId, replyText) => {
     try {
-      const res = await fetch("/api/comments", {
+      const res = await fetch("https://codru-server.vercel.app/comments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -110,13 +115,16 @@ function Commentpage({ onFocus, blogId, userData, setUserData }) {
 
   const deleteComment = async (commentId, blogId) => {
     try {
-      const res = await fetch(`/api/comments/${commentId}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ blogId }), // Sending blogId in the body
-      });
+      const res = await fetch(
+        `https://codru-server.vercel.app/comments/${commentId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ blogId }), // Sending blogId in the body
+        }
+      );
 
       if (res.ok) {
         fetchComments();
@@ -130,7 +138,7 @@ function Commentpage({ onFocus, blogId, userData, setUserData }) {
 
   const likeComment = async (commentId) => {
     try {
-      const res = await fetch("/api/comments/like", {
+      const res = await fetch("https://codru-server.vercel.app/comments/like", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ blogId, commentId, username: currentUser }),
@@ -148,11 +156,14 @@ function Commentpage({ onFocus, blogId, userData, setUserData }) {
 
   const dislikeComment = async (commentId) => {
     try {
-      const res = await fetch("/api/comments/dislike", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ blogId, commentId, username: currentUser }),
-      });
+      const res = await fetch(
+        "https://codru-server.vercel.app/comments/dislike",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ blogId, commentId, username: currentUser }),
+        }
+      );
 
       if (res.ok) {
         fetchComments();
@@ -166,7 +177,7 @@ function Commentpage({ onFocus, blogId, userData, setUserData }) {
 
   const editComment = async (commentId, newText) => {
     try {
-      const res = await fetch("/api/comments/edit", {
+      const res = await fetch("https://codru-server.vercel.app/comments/edit", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ blogId, commentId, newText }),

@@ -4,26 +4,28 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  background-color: azure;
+  background-color: white;
+  border: 2px solid blue;
 }
 
 .blog-detail-post {
   width: 50%;
   padding: 3vh;
-  margin-top: 2vh;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
-    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  margin-top: 10vh;
+  background-color: transparent;
 }
 
 .blogdetailtitle {
-  font-size: 2.5vw;
+  font-size: 4vw;
   font-weight: bold;
+  line-height: normal;
 }
 
 .blogdetailuser {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  margin-top: 2vh;
   /* border: 2px solid blue; */
 }
 
@@ -80,8 +82,8 @@
 
 .blogdetailactivity img {
   width: 100%;
-  max-height: 30vh; /* Maintains the aspect ratio */
-  aspect-ratio: 7/3;
+  /* max-height: 60vh; Maintains the aspect ratio */
+  aspect-ratio: 5/3;
 }
 
 .blogdetaillikecomment {

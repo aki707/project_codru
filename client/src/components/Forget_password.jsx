@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import '../styles/Forget_password.css';
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+import "../styles/Forget_password.css";
 
 const Forget_password = () => {
   const { token } = useParams();
-  const [password, setPassword] = useState('');
-  const [cpassword, setCpassword] = useState('');
-  const [message, setMessage] = useState('');
-  const [error, setError] = useState('');
+  const [password, setPassword] = useState("");
+  const [cpassword, setCpassword] = useState("");
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
 
   const handlePasswordChange = (e) => setPassword(e.target.value);
   const handleCpasswordChange = (e) => setCpassword(e.target.value);
@@ -20,36 +20,41 @@ const Forget_password = () => {
     }
 
     try {
-      const res = await fetch(`/api/reset-password/${token}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ newPassword: password }),
-      });
+      const res = await fetch(
+        `https://codru-server.vercel.app/reset-password/${token}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ newPassword: password }),
+        }
+      );
 
       if (res.ok) {
         setMessage("Password has been reset successfully");
-        setError('');
+        setError("");
       } else {
         const data = await res.json();
         setError(data.error || "Failed to reset password");
-        setMessage('');
+        setMessage("");
       }
     } catch (err) {
       setError("Failed to reset password");
-      setMessage('');
+      setMessage("");
     }
   };
 
   return (
     <div>
-      <div className='fp_main'>
-        <img src='/image/fp2.png' alt='' />
-        <div className='fp_box'>
-          <img src='/image/fp_icon.png' alt='' />
+      <div className="fp_main">
+        <img src="/image/fp2.png" alt="" />
+        <div className="fp_box">
+          <img src="/image/fp_icon.png" alt="" />
           <h2>Forget Password</h2>
-          <form className='fp_form' onSubmit={PostData}>
-            <div className='fp_form-group'>
-              <label className='fp_label' htmlFor='Password'>New Password</label>
+          <form className="fp_form" onSubmit={PostData}>
+            <div className="fp_form-group">
+              <label className="fp_label" htmlFor="Password">
+                New Password
+              </label>
               <input
                 type="password"
                 id="password"
@@ -61,8 +66,10 @@ const Forget_password = () => {
               />
             </div>
 
-            <div className='fp_form-group'>
-              <label className='fp_label' htmlFor='Password'>Confirm New Password</label>
+            <div className="fp_form-group">
+              <label className="fp_label" htmlFor="Password">
+                Confirm New Password
+              </label>
               <input
                 type="password"
                 id="cpassword"
@@ -74,7 +81,11 @@ const Forget_password = () => {
             </div>
 
             <div className="fp_buttonWrapper">
-              <button type="submit" id="fp_submitButton" className="fp_submitButton pure-button pure-button-primary">
+              <button
+                type="submit"
+                id="fp_submitButton"
+                className="fp_submitButton pure-button pure-button-primary"
+              >
                 <span>Update Password</span>
                 <span id="fp_loader"></span>
               </button>

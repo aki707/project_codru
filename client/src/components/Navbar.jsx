@@ -87,11 +87,7 @@ function Navbar({ userData, setUserData }) {
           <NavLink to="/Contact" className="navlinks">
             Contact Us
           </NavLink>
-          <NavLink
-            to="/blogs"
-            className={`navlinks ${activeLink === "blogs" ? "active" : ""}`}
-            onClick={openPopup}
-          >
+          <NavLink to="/blogs" className={`navlinks`} onClick={openPopup}>
             Blogs
           </NavLink>
           {isLoggedIn && (

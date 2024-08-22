@@ -1,28 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import interactionPlugin from '@fullcalendar/interaction';
-import Modal from 'react-modal';
+import React, { useState, useEffect } from "react";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import Modal from "react-modal";
 import "../styles/Dashboard.css";
 import "../styles/Calendar.css";
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const calendarStyles = {
-  width: '70%',
-  maxWidth: '1000px',
-  margin: '40px 100px 0px 0px',
-  border: '1px solid #ccc',
-  padding: '10px',
-  boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
-  fontSize: '0.8em',
-  height: '80vh',
+  width: "70%",
+  maxWidth: "1000px",
+  margin: "40px 100px 0px 0px",
+  border: "1px solid #ccc",
+  padding: "10px",
+  boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+  fontSize: "0.8em",
+  height: "80vh",
 };
 
 const Calendar = () => {
   const [events, setEvents] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
-  const [isAdmin, setIsAdmin] = useState(JSON.parse(localStorage.getItem('isAdmin')) || false);
+  const [isAdmin, setIsAdmin] = useState(
+    JSON.parse(localStorage.getItem("isAdmin")) || false
+  );
   const [authorized, setAuthorized] = useState(false);
 
   useEffect(() => {
@@ -31,10 +33,12 @@ const Calendar = () => {
 
   const checkAuthorization = async () => {
     try {
-      console.log('Checking authorization...');
-      const response = await fetch('http://localhost:3000/api/calendar/check-auth');
+      console.log("Checking authorization...");
+      const response = await fetch(
+        "https://codru-server.vercel.apphttps://codru-server.vercel.app/calendar/check-auth"
+      );
       const data = await response.json();
-      console.log('Authorization response:', data);
+      console.log("Authorization response:", data);
 
       if (data.authorized) {
         setAuthorized(true);
@@ -43,68 +47,76 @@ const Calendar = () => {
         window.location.href = data.authUrl;
       }
     } catch (error) {
-      console.error('Error checking authorization:', error);
+      console.error("Error checking authorization:", error);
     }
   };
 
   const fetchEvents = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/calendar/events');
+      const response = await fetch(
+        "https://codru-server.vercel.apphttps://codru-server.vercel.app/calendar/events"
+      );
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to fetch events');
+        throw new Error(errorData.error || "Failed to fetch events");
       }
       const data = await response.json();
       setEvents(data);
     } catch (error) {
-      console.error('Error fetching events:', error);
+      console.error("Error fetching events:", error);
       // Handle the error appropriately in your UI
     }
   };
 
   const addEvent = async (event) => {
     if (!isAdmin) {
-      console.error('Unauthorized: Only admins can add events.');
+      console.error("Unauthorized: Only admins can add events.");
       return;
     }
 
     try {
-      const response = await fetch('http://localhost:3000/api/calendar/add-events', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(event),
-      });
+      const response = await fetch(
+        "https://codru-server.vercel.apphttps://codru-server.vercel.app/calendar/add-events",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(event),
+        }
+      );
 
       const data = await response.json();
       setEvents([...events, data]);
     } catch (error) {
-      console.error('Error adding event:', error);
+      console.error("Error adding event:", error);
     }
   };
 
   const removeEvent = async (event) => {
     if (!isAdmin) {
-      console.error('Unauthorized: Only admins can remove events.');
+      console.error("Unauthorized: Only admins can remove events.");
       return;
     }
 
     try {
-      await fetch(`http://localhost:3000/api/calendar/del-events/${event.id}`, {
-        method: 'DELETE',
-      });
+      await fetch(
+        `https://codru-server.vercel.apphttps://codru-server.vercel.app/calendar/del-events/${event.id}`,
+        {
+          method: "DELETE",
+        }
+      );
 
-      setEvents(events.filter(e => e.id !== event.id));
+      setEvents(events.filter((e) => e.id !== event.id));
       closeModal();
     } catch (error) {
-      console.error('Error removing event:', error);
+      console.error("Error removing event:", error);
     }
   };
 
   const handleDateSelect = (selectInfo) => {
     if (isAdmin) {
-      const title = prompt('Please enter a title for your event');
+      const title = prompt("Please enter a title for your event");
       if (title) {
         const event = {
           title,
@@ -115,7 +127,7 @@ const Calendar = () => {
         addEvent(event);
       }
     } else {
-      alert('No event is scheduled.');
+      alert("No event is scheduled.");
     }
   };
 
@@ -140,8 +152,15 @@ const Calendar = () => {
   }
 
   return (
-    <div className='calendarMainDiv'>
-      <div className='calendarEventSection' style={{ display: "flex", alignItems: "flex-start", justifyContent: "center" }}>
+    <div className="calendarMainDiv">
+      <div
+        className="calendarEventSection"
+        style={{
+          display: "flex",
+          alignItems: "flex-start",
+          justifyContent: "center",
+        }}
+      >
         <div style={calendarStyles}>
           <FullCalendar
             plugins={[dayGridPlugin, interactionPlugin]}
@@ -179,11 +198,18 @@ const Calendar = () => {
             <p>End: {new Date(selectedEvent.end).toLocaleTimeString()}</p>
           </div>
           {selectedEvent.meetLink && (
-            <a href={selectedEvent.meetLink} className="meet-button" target="_blank" rel="noopener noreferrer">
+            <a
+              href={selectedEvent.meetLink}
+              className="meet-button"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Join Google Meet
             </a>
           )}
-          <button onClick={closeModal} className="close-button">Close</button>
+          <button onClick={closeModal} className="close-button">
+            Close
+          </button>
         </Modal>
       )}
     </div>
@@ -191,7 +217,6 @@ const Calendar = () => {
 };
 
 export default Calendar;
-
 
 // import React, { useState, useEffect } from 'react';
 // import FullCalendar from '@fullcalendar/react';
@@ -220,7 +245,7 @@ export default Calendar;
 //   const checkAuthorization = async () => {
 //     try {
 //       console.log('Checking authorization...');
-//       const response = await fetch('http://localhost:3000/api/calendar/check-auth');
+//       const response = await fetch('https://codru-server.vercel.apphttps://codru-server.vercel.app/calendar/check-auth');
 //       if (!response.ok) {
 //         throw new Error(`HTTP error! status: ${response.status}`);
 //       }
@@ -240,10 +265,9 @@ export default Calendar;
 //     }
 //   };
 
-
 //   const fetchEvents = async () => {
 //     try {
-//       const response = await fetch('http://localhost:3000/api/calendar/events');
+//       const response = await fetch('https://codru-server.vercel.apphttps://codru-server.vercel.app/calendar/events');
 //       if (!response.ok) {
 //         const errorData = await response.json();
 //         throw new Error(errorData.error || 'Failed to fetch events');
@@ -263,7 +287,7 @@ export default Calendar;
 //     }
 
 //     try {
-//       const response = await fetch('http://localhost:3000/api/calendar/events', {
+//       const response = await fetch('https://codru-server.vercel.apphttps://codru-server.vercel.app/calendar/events', {
 //         method: 'POST',
 //         headers: {
 //           'Content-Type': 'application/json',
@@ -291,7 +315,7 @@ export default Calendar;
 //     }
 
 //     try {
-//       const response = await fetch(`http://localhost:3000/api/calendar/events/${event.id}`, {
+//       const response = await fetch(`https://codru-server.vercel.apphttps://codru-server.vercel.app/calendar/events/${event.id}`, {
 //         method: 'DELETE',
 //       });
 
@@ -362,7 +386,7 @@ export default Calendar;
 //         </Modal>
 //       )}
 //     </div>
-  
+
 //   );
 // };
 

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import "../styles/Blogpage.css";
 import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 
-function Blogpage() {
+function Blogpage({ userData, setUserData }) {
   const navigate = useNavigate();
   const [blogarray, setBlogarray] = useState([]);
   const [expandedTitles, setExpandedTitles] = useState({});
@@ -15,7 +16,7 @@ function Blogpage() {
           throw new Error("Username not found in localStorage");
         }
 
-        const res = await fetch("/api/blogsdata", {
+        const res = await fetch("https://codru-server.vercel.app/blogsdata", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ username }),
@@ -41,7 +42,7 @@ function Blogpage() {
   }, []);
 
   if (blogarray.length === 0) {
-    return <div>Loading...</div>;
+    return <div className="shimmereffectwhite"></div>;
   }
 
   const handleBlogClick = (blogId) => {
@@ -67,45 +68,48 @@ function Blogpage() {
   };
 
   return (
-    <div className="blog-page">
-      {blogarray.map((data, index) => {
-        const contentPreview = extractFirstImageAndSnippet(data.content);
-        const isExpanded = expandedTitles[index];
-        const title = data.title;
-        const snippet = contentPreview.snippet;
+    <div>
+      <Navbar userData={userData} setUserData={setUserData} />
+      <div className="blog-page">
+        {blogarray.map((data, index) => {
+          const contentPreview = extractFirstImageAndSnippet(data.content);
+          const isExpanded = expandedTitles[index];
+          const title = data.title;
+          const snippet = contentPreview.snippet;
 
-        return (
-          <div key={index} className="blog-post">
-            {contentPreview.image ? (
-              <img src={contentPreview.image} alt="Blog Image" />
-            ) : (
-              <img src={data.userphoto} alt="User Photo" />
-            )}
-            <h2 className="blogtitle">
-              {isExpanded || title.length <= 70 ? (
-                title
+          return (
+            <div key={index} className="blog-post">
+              {contentPreview.image ? (
+                <img src={contentPreview.image} alt="Blog Image" />
               ) : (
-                <>
-                  {title.slice(0, 70)}...{" "}
-                  <span
-                    className="blog-page-show-more"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      toggleTitleExpansion(index);
-                    }}
-                  ></span>
-                </>
+                <img src={data.userphoto} alt="User Photo" />
               )}
-            </h2>
-            <span className="blogpagesnippet">{snippet}</span>
-            <div className="blogseemore">
-              <button onClick={() => handleBlogClick(data._id)}>
-                Read More
-              </button>
+              <h2 className="blogtitle">
+                {isExpanded || title.length <= 70 ? (
+                  title
+                ) : (
+                  <>
+                    {title.slice(0, 70)}...{" "}
+                    <span
+                      className="blog-page-show-more"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleTitleExpansion(index);
+                      }}
+                    ></span>
+                  </>
+                )}
+              </h2>
+              <span className="blogpagesnippet">{snippet}</span>
+              <div className="blogseemore">
+                <button onClick={() => handleBlogClick(data._id)}>
+                  Read More
+                </button>
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
   );
 }

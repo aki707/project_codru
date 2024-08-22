@@ -13,30 +13,42 @@ import {
 import Commentpage from "./Commentpage";
 import "../styles/Blogdetail.css";
 import Sharebutton from "./Sharebutton";
+import Navbar from "../components/Navbar";
 
 function BlogDetail({ userData, setUserData }) {
   const { blogId } = useParams();
-  const [showComment, setShowComment] = useState(true);
+  const [showComment, setShowComment] = useState(false);
   const [focus, setFocus] = useState(true);
   const [blogData, setBlogData] = useState(null);
   const [showshareblog, setshowshareblog] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
+  const [isFollowing, setIsFollowing] = useState(false);
+  const [targetuser, settargetuser] = useState("");
 
   const currentUser = localStorage.getItem("Username");
 
   useEffect(() => {
     const fetchBlogData = async () => {
       try {
-        const res = await fetch(`/api/blogs/${blogId}`);
+        const res = await fetch(
+          `https://codru-server.vercel.app/blogs/${blogId}`
+        );
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
         const jsonData = await res.json();
         setBlogData(jsonData.blog);
+        settargetuser(jsonData.blog.username);
+
+        await checkFollower();
 
         // Check if the blog is saved by the current user
-        const userRes = await fetch(`/api/users/${currentUser}`);
+        const userRes = await fetch(
+          `https://codru-server.vercel.app/${currentUser}`
+        );
         const userData = await userRes.json();
+        setUserData(userData);
+
         if (userData.savedBlogs.includes(blogId)) {
           setIsSaved(true);
         }
@@ -45,12 +57,38 @@ function BlogDetail({ userData, setUserData }) {
       }
     };
 
+    const checkFollower = async () => {
+      try {
+        const response = await fetch(
+          `https://codru-server.vercel.app/checkfollowing`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              targetUsername: targetuser,
+              currentUsername: currentUser,
+            }),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to check following status");
+        }
+
+        const jsonData = await response.json();
+        console.log(jsonData.following, "Follower status"); // Debugging log
+        setIsFollowing(jsonData.following);
+      } catch (error) {
+        console.error("There was a problem with the fetch operation:", error);
+      }
+    };
+
     fetchBlogData();
-  }, [blogId, currentUser]);
+  }, [blogId, currentUser, setUserData, targetuser]);
 
   const handleLike = async () => {
     try {
-      const res = await fetch("/api/blog/like", {
+      const res = await fetch("https://codru-server.vercel.app/blog/like", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ blogId, username: currentUser }),
@@ -69,7 +107,7 @@ function BlogDetail({ userData, setUserData }) {
 
   const handleDislike = async () => {
     try {
-      const res = await fetch("/api/blog/dislike", {
+      const res = await fetch("https://codru-server.vercel.app/blog/dislike", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ blogId, username: currentUser }),
@@ -89,11 +127,13 @@ function BlogDetail({ userData, setUserData }) {
   const handleSave = async () => {
     try {
       const res = await fetch(
-        `/api/blog/${isSaved ? "unsaveblog" : "saveblog"}`,
+        `https://codru-server.vercel.app/blog/${
+          isSaved ? "unsaveblog" : "saveblog"
+        }`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ blogId, username: currentUser }), // Ensure currentUser is correctly defined
+          body: JSON.stringify({ blogId, username: currentUser }),
         }
       );
 
@@ -105,7 +145,6 @@ function BlogDetail({ userData, setUserData }) {
         );
       }
 
-      // Update the state to reflect the change in saved status
       setIsSaved(!isSaved);
     } catch (error) {
       console.error(
@@ -117,8 +156,48 @@ function BlogDetail({ userData, setUserData }) {
     }
   };
 
+  const handleFollow = async () => {
+    if (!blogData || !userData) return;
+
+    try {
+      const res = await fetch(
+        `https://codru-server.vercel.app/${
+          isFollowing ? "unfollow" : "follow"
+        }`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            currentUserId: currentUser, // Use userData._id instead of username
+            targetUserId: targetuser, // Ensure blogData has the userId
+          }),
+        }
+      );
+
+      if (!res.ok) {
+        throw new Error(
+          `Failed to ${isFollowing ? "unfollow" : "follow"} the user`
+        );
+      }
+
+      setIsFollowing(!isFollowing);
+    } catch (error) {
+      console.error(
+        `There was a problem with the ${
+          isFollowing ? "unfollow" : "follow"
+        } operation:`,
+        error
+      );
+      alert(
+        `There was a problem with the ${
+          isFollowing ? "unfollow" : "follow"
+        } operation: ${error.message}`
+      );
+    }
+  };
+
   if (!blogData) {
-    return <div>Loading...</div>;
+    return <div className="shimmereffectwhite"></div>;
   }
 
   const date = new Date(blogData.createdAt).toLocaleDateString();
@@ -128,17 +207,33 @@ function BlogDetail({ userData, setUserData }) {
 
   return (
     <div className="blog-detail-page">
+      <Navbar userData={userData} setUserData={setUserData} />
       <div className="blog-detail-post">
         <h2 className="blogdetailtitle">{blogData.title}</h2>
         <div className="blogdetailuser">
           <div>
-            <div className="blogdetailuserimgdiv">
+            <NavLink
+              to={`/public-profile/${blogData.username}`}
+              className="blogdetailuserimgdiv"
+            >
               <img src={blogData.userphoto} alt={`image-${blogId}`} />
-            </div>
+            </NavLink>
             <div className="blogdetailusercontentdiv">
               <div>
-                <p>{blogData.username}</p>
-                <NavLink style={{ textDecoration: "none" }}>Follow</NavLink>
+                <p>
+                  <NavLink
+                    to={`/public-profile/${blogData.username}`}
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
+                    {blogData.username}
+                  </NavLink>
+                </p>
+                <NavLink
+                  style={{ textDecoration: "none", cursor: "pointer" }}
+                  onClick={handleFollow}
+                >
+                  {isFollowing ? "Unfollow" : "Follow"}
+                </NavLink>
               </div>
               <p>
                 <b>Published on: </b>
@@ -152,14 +247,17 @@ function BlogDetail({ userData, setUserData }) {
         <div className="blogdetaillikecomment">
           <div
             onClick={handleLike}
-            style={{ color: userHasLiked ? "blue" : "grey" }}
+            style={{ color: userHasLiked ? "blue" : "grey", cursor: "pointer" }}
           >
             <FontAwesomeIcon icon={faThumbsUp} />
             <span>{blogData.likes}</span>
           </div>
           <div
             onClick={handleDislike}
-            style={{ color: userHasDisliked ? "blue" : "grey" }}
+            style={{
+              color: userHasDisliked ? "blue" : "grey",
+              cursor: "pointer",
+            }}
           >
             <FontAwesomeIcon icon={faThumbsDown} />
             <span>{blogData.dislikes}</span>
@@ -169,24 +267,25 @@ function BlogDetail({ userData, setUserData }) {
               setShowComment(!showComment);
               setFocus(!focus);
             }}
+            style={{ cursor: "pointer" }}
           >
             <FontAwesomeIcon icon={faComment} />
             <span>{blogData.comments.length}</span>
           </div>
-          <div onClick={handleSave}>
+          <div onClick={handleSave} style={{ cursor: "pointer" }}>
             <FontAwesomeIcon
               icon={faBookmark}
               style={{ color: isSaved ? "blue" : "grey" }}
             />
           </div>
-          <div style={{ position: "relative" }}>
+          <div style={{ position: "relative", cursor: "pointer" }}>
             <FontAwesomeIcon
               icon={faShareSquare}
               onClick={() => {
                 setshowshareblog(!showshareblog);
               }}
             />
-            {showshareblog ? <Sharebutton blogurl={blogurl} /> : ""}
+            {showshareblog && <Sharebutton blogurl={blogurl} />}
           </div>
         </div>
       </div>
@@ -202,15 +301,13 @@ function BlogDetail({ userData, setUserData }) {
         </button>
       </div>
 
-      {showComment ? (
+      {showComment && (
         <Commentpage
           onFocus={focus}
           blogId={blogId}
           userData={userData}
           setUserData={setUserData}
         />
-      ) : (
-        ""
       )}
     </div>
   );

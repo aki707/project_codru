@@ -126,7 +126,7 @@ router.post("/signin", async (req, res) => {
           _id: user._id,
           username: user.username,
           role: user.role,
-          isAdmin: user.isAdmin
+          isAdmin: user.isAdmin,
         },
         process.env.TOKEN_SECRET,
         { expiresIn: "14d" }
@@ -455,10 +455,56 @@ router.post("/signout", (req, res) => {
 //gapi
 router.get("", (req, res) => {
   try {
-    
+  } catch (error) {}
+});
+
+// Route to get a user's public profile
+router.get("/profile/:username", async (req, res) => {
+  const { username } = req.params;
+
+  try {
+    const user = await User.findOne({ username });
+
+    if (!user) {
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
+    }
+
+    res.status(200).json({
+      success: true,
+      user: user,
+    });
   } catch (error) {
-    
+    res.status(500).json({ success: false, message: error.message });
   }
-})
+});
+
+router.post("/checkfollowing", async (req, res) => {
+  const { currentUsername, targetUsername } = req.body;
+  try {
+    // Find the target user by username
+    const targetUser = await User.findOne({ username: targetUsername });
+
+    if (!targetUser) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Target user not found" });
+    }
+
+    // Check if the current user is following the target user
+    const isFollowing = targetUser.followers.some(
+      (follower) => follower.username === currentUsername
+    );
+    if (isFollowing) {
+      res.status(200).json({
+        success: true,
+        following: true,
+      });
+    }
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
 
 module.exports = router;

@@ -41,6 +41,21 @@ const userSchema = new mongoose.Schema(
 
     blogs: [{ type: mongoose.Schema.Types.ObjectId, ref: "Blog" }],
 
+    followers: [
+      {
+        username: { type: String, required: true },
+        name: { type: String, required: true },
+        photo: { type: String },
+      },
+    ],
+    following: [
+      {
+        username: { type: String, required: true },
+        name: { type: String, required: true },
+        photo: { type: String },
+      },
+    ],
+
     declaration: {
       type: Boolean,
       default: false,

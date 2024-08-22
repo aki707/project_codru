@@ -29,13 +29,16 @@ const PlanetryPath = () => {
 
   const fetchTasks = async (username) => {
     try {
-      const response = await fetch("/api/get-tasks", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username }),
-      });
+      const response = await fetch(
+        "https://codru-server.vercel.app/get-tasks",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username }),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
