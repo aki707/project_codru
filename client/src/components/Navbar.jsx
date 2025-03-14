@@ -84,11 +84,11 @@ function Navbar({ userData, setUserData }) {
               Courses
             </NavLink>
           )}
-          <NavLink to="/Contact" className="navlinks">
-            Contact Us
-          </NavLink>
           <NavLink to="/blogs" className={`navlinks`} onClick={openPopup}>
             Blogs
+          </NavLink>
+          <NavLink to="/Contact" className="navlinks">
+            Contact Us
           </NavLink>
           {isLoggedIn && (
             <NavLink

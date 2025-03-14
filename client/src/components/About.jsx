@@ -92,9 +92,12 @@ import '../styles/About.css';
 import AboutUsAnim from './AboutUsAnim';
 // import Navbar from '../styles/Navbar.css'
 import Footer from '../components/Footer'
+import Navbar from "./Navbar";
 
 const About = () => {
   return (
+    <div style={{display:"flex",flexDirection:"column",justifyContent:"flex-start"}}> 
+      <Navbar/>
     <div className="about-container">
       
       <div className="about-header" >
@@ -182,6 +185,7 @@ const About = () => {
       
        
         
+        </div>
         </div>
             <Footer></Footer>   
     </div>

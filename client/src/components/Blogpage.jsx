@@ -11,15 +11,9 @@ function Blogpage({ userData, setUserData }) {
   useEffect(() => {
     const fetchBlogData = async () => {
       try {
-        const username = localStorage.getItem("Username");
-        if (!username) {
-          throw new Error("Username not found in localStorage");
-        }
-
         const res = await fetch("https://codru-server.vercel.app/blogsdata", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ username }),
         });
 
         if (!res.ok) {

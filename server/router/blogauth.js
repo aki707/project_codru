@@ -48,20 +48,10 @@ router.post("/blogs", async (req, res) => {
 //FETCHING ALL BLOGS OF ALL USERS
 router.post("/blogsdata", async (req, res) => {
   try {
-    const { username } = req.body;
-    if (!username) {
-      return res.status(400).json({ error: "Username is required" });
-    }
-
-    const userExist = await User.findOne({ username: username });
-    if (userExist) {
-      const blogs = await Blog.find({ username: { $ne: username } }).select(
-        "title content username userphoto createdAt likes dislikes comments"
-      );
-      return res.status(200).json({ message: "Success", blogs: blogs });
-    } else {
-      return res.status(404).json({ message: "User not found" });
-    }
+    const blogs = await Blog.find().select(
+      "title content username userphoto createdAt likes dislikes comments"
+    );
+    return res.status(200).json({ message: "Success", blogs: blogs });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
