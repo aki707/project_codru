@@ -28,7 +28,31 @@
   margin-top: 2vh;
   /* border: 2px solid blue; */
 }
+.blog-detail-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Full viewport height */
+}
 
+.blog-detail-content {
+  flex-grow: 1; /* Allow the content to grow and push the footer to the bottom */
+  display: block;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  padding: 2rem; /* Add some padding for spacing */
+  text-align: left; /* Center text alignment */
+  margin-top: 10vh;
+}
+
+.blog-detail-post {
+  width: 60%; /* Adjust width as needed */
+  max-width: 800px; /* Limit the maximum width */
+  background-color: #f9f9f9; /* Add a background color for better visibility */
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  margin: auto;
+}
 .blogdetailuser > div {
   width: 40%;
   display: flex;
@@ -130,14 +154,15 @@
   padding: 1vh;
   border-radius: 0.8vh 0.8vh;
   background-color: green;
-  margin-left: 1vw;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1vh;
   margin-bottom: 1vh;
 }
 
 @media screen and (max-width: 512px) {
   .blog-detail-post {
     width: 88%;
-    border: 2px solid red;
     padding: 3vh;
     padding-top: 1vh;
     margin-top: 0vh;

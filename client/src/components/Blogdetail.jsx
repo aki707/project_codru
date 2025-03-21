@@ -14,6 +14,7 @@ import Commentpage from "./Commentpage";
 import "../styles/Blogdetail.css";
 import Sharebutton from "./Sharebutton";
 import Navbar from "../components/Navbar";
+import Footer from '../components/Footer'
 
 function BlogDetail({ userData, setUserData }) {
   const { blogId } = useParams();
@@ -206,109 +207,105 @@ function BlogDetail({ userData, setUserData }) {
   const blogurl = window.location.href;
 
   return (
-    <div className="blog-detail-page">
+    <div className="blog-detail-container">
       <Navbar userData={userData} setUserData={setUserData} />
-      <div className="blog-detail-post">
-        <h2 className="blogdetailtitle">{blogData.title}</h2>
-        <div className="blogdetailuser">
-          <div>
-            <NavLink
-              to={`/public-profile/${blogData.username}`}
-              className="blogdetailuserimgdiv"
-            >
-              <img src={blogData.userphoto} alt={`image-${blogId}`} />
-            </NavLink>
-            <div className="blogdetailusercontentdiv">
-              <div>
-                <p>
+      <div className="blog-detail-content">
+        <div className="blog-detail-post">
+          <h2 className="blogdetailtitle">{blogData.title}</h2>
+          <div className="blogdetailuser">
+            <div>
+              <NavLink
+                to={`/public-profile/${blogData.username}`}
+                className="blogdetailuserimgdiv"
+              >
+                <img src={blogData.userphoto} alt={`image-${blogId}`} />
+              </NavLink>
+              <div className="blogdetailusercontentdiv">
+                <div>
+                  <p>
+                    <NavLink
+                      to={`/public-profile/${blogData.username}`}
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      {blogData.username}
+                    </NavLink>
+                  </p>
                   <NavLink
-                    to={`/public-profile/${blogData.username}`}
-                    style={{ textDecoration: "none", color: "inherit" }}
+                    style={{ textDecoration: "none", cursor: "pointer" }}
+                    onClick={handleFollow}
                   >
-                    {blogData.username}
+                    {isFollowing ? "Unfollow" : "Follow"}
                   </NavLink>
+                </div>
+                <p>
+                  <b>Published on: </b>
+                  {date}
                 </p>
-                <NavLink
-                  style={{ textDecoration: "none", cursor: "pointer" }}
-                  onClick={handleFollow}
-                >
-                  {isFollowing ? "Unfollow" : "Follow"}
-                </NavLink>
               </div>
-              <p>
-                <b>Published on: </b>
-                {date}
-              </p>
+            </div>
+          </div>
+          <hr className="hrtagofblogdetail" style={{ margin: "1vh 0vh" }} />
+          <div className="blogdetailactivity">{parser(blogData.content)}</div>
+          <div className="blogdetaillikecomment">
+            <div
+              onClick={handleLike}
+              style={{ color: userHasLiked ? "blue" : "grey", cursor: "pointer" }}
+            >
+              <FontAwesomeIcon icon={faThumbsUp} />
+              <span>{blogData.likes}</span>
+            </div>
+            <div
+              onClick={handleDislike}
+              style={{
+                color: userHasDisliked ? "blue" : "grey",
+                cursor: "pointer",
+              }}
+            >
+              <FontAwesomeIcon icon={faThumbsDown} />
+              <span>{blogData.dislikes}</span>
+            </div>
+            <div
+              onClick={() => {
+                setShowComment(!showComment);
+                setFocus(!focus);
+              }}
+              style={{ cursor: "pointer" }}
+            >
+              <FontAwesomeIcon icon={faComment} />
+              <span>{blogData.comments.length}</span>
+            </div>
+            <div onClick={handleSave} style={{ cursor: "pointer" }}>
+              <FontAwesomeIcon
+                icon={faBookmark}
+                style={{ color: isSaved ? "blue" : "grey" }}
+              />
+            </div>
+            <div style={{ position: "relative", cursor: "pointer" }}>
+              <FontAwesomeIcon
+                icon={faShareSquare}
+                onClick={() => {
+                  setshowshareblog(!showshareblog);
+                }}
+              />
+              {showshareblog && <Sharebutton blogurl={blogurl} />}
             </div>
           </div>
         </div>
-        <hr className="hrtagofblogdetail" style={{ margin: "1vh 0vh" }} />
-        <div className="blogdetailactivity">{parser(blogData.content)}</div>
-        <div className="blogdetaillikecomment">
-          <div
-            onClick={handleLike}
-            style={{ color: userHasLiked ? "blue" : "grey", cursor: "pointer" }}
-          >
-            <FontAwesomeIcon icon={faThumbsUp} />
-            <span>{blogData.likes}</span>
-          </div>
-          <div
-            onClick={handleDislike}
-            style={{
-              color: userHasDisliked ? "blue" : "grey",
-              cursor: "pointer",
-            }}
-          >
-            <FontAwesomeIcon icon={faThumbsDown} />
-            <span>{blogData.dislikes}</span>
-          </div>
-          <div
-            onClick={() => {
-              setShowComment(!showComment);
-              setFocus(!focus);
-            }}
-            style={{ cursor: "pointer" }}
-          >
-            <FontAwesomeIcon icon={faComment} />
-            <span>{blogData.comments.length}</span>
-          </div>
-          <div onClick={handleSave} style={{ cursor: "pointer" }}>
-            <FontAwesomeIcon
-              icon={faBookmark}
-              style={{ color: isSaved ? "blue" : "grey" }}
-            />
-          </div>
-          <div style={{ position: "relative", cursor: "pointer" }}>
-            <FontAwesomeIcon
-              icon={faShareSquare}
-              onClick={() => {
-                setshowshareblog(!showshareblog);
-              }}
-            />
-            {showshareblog && <Sharebutton blogurl={blogurl} />}
-          </div>
+        {/* <hr className="hrtagofblogdetail" /> */}
+        <div className="blog-detail-hide-div">
+          
         </div>
-      </div>
-      <hr className="hrtagofblogdetail" />
-      <div className="blog-detail-hide-div">
-        <button
-          onClick={() => {
-            setShowComment(!showComment);
-            setFocus(!focus);
-          }}
-        >
-          {showComment ? "Hide Comments" : "Show Comments"}
-        </button>
-      </div>
 
-      {showComment && (
-        <Commentpage
-          onFocus={focus}
-          blogId={blogId}
-          userData={userData}
-          setUserData={setUserData}
-        />
-      )}
+        {showComment && (
+          <Commentpage
+            onFocus={focus}
+            blogId={blogId}
+            userData={userData}
+            setUserData={setUserData}
+          />
+        )}
+      </div>
+      <Footer />
     </div>
   );
 }

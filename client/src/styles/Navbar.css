@@ -102,6 +102,7 @@
   background-color: #d61e3f;
   border-radius: 5vh;
   font-weight: BOLD;
+  margin: 0px;
 }
 .signuplink > img {
   width: 30%;
@@ -112,11 +113,12 @@
 .signuplink > button:hover {
   background-color: #d61e3f;
   border: 2pt solid #d61e3f;
+  box-shadow: rgba(243, 17, 17, 0.35) 0px 5px 3px;
   /* background-color: yellow; */
 }
 .signuplink:hover {
-  box-shadow: rgba(243, 17, 17, 0.35) 0px 5px 3px;
-  border: 2px solid red;
+ 
+  /* border: 2px solid red; */
 }
 
 /* Define the keyframes for the border color animation */

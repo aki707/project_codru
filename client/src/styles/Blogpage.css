@@ -1,61 +1,74 @@
 .blog-page {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
   min-height: 100vh;
-  background-color: rgb(237, 238, 241);
+  margin-top: 10vh;
+  padding-top: 5vh;
+  background-color:#efe1e1;
 }
 
 .blog-post {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  min-height: 50vh;
+  justify-content: space-between; /* Ensure proper spacing between elements */
+  height: 60vh; /* Set a fixed height for the blog post */
   width: 27%;
   padding: 2vh;
-  margin-top: 10vh;
-  margin-left: 3%;
+  margin-bottom: 5vh;
+  margin-left: 1.5%;
+  margin-right: 1.5%;
+  border-radius: 10px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   background-color: transparent;
   color: black;
-  /* border: 2px solid blue; */
+  overflow: hidden; /* Prevent content overflow */
+  position: relative; /* Ensure positioning for child elements */
 }
 
 .blog-post > img {
   width: 100%;
+  height: 40%; /* Set a fixed height for the image */
+  object-fit: cover; /* Ensure the image fits properly */
+  margin-bottom: 5%; /* Add spacing below the image */
   aspect-ratio: 3/2;
 }
+
 .blog-post > h2 {
   width: 100%;
-  min-height: 10%;
-  font-size: 1.3vw;
-  margin-top: 1vh;
-  /* border: 2px solid red; */
+  font-size: 18px; /* Fixed font size */
+  margin: 10px 0; /* Add spacing above and below the title */
   display: flex;
   align-items: center;
-}
-
-.blog-page-show-more {
-  color: gray;
-  cursor: pointer;
-  /* background-color: green; */
+  text-align: center; /* Center the title text */
+  text-overflow: ellipsis; /* Add ellipsis for long titles */
+  white-space: normal; /* Allow wrapping of text */
+  line-height: 1.2; /* Adjust line height for better readability */
+  max-height: 3.6em; /* Limit the height to 2 lines of text */
 }
 
 .blogpagesnippet {
-  margin-top: 1vh;
-  font-size: 1vw;
+  margin: 10px 0;
+  font-size: 14px; /* Fixed font size */
+  line-height: 1.5; /* Add line height for better readability */
+  flex-grow: 1; /* Allow the snippet to take up remaining space */
+  overflow: hidden; /* Prevent content overflow */
 }
+
 .blogseemore {
-  /* border: 2px solid blue; */
-  margin-top: 1vh;
+  margin-top: auto; /* Push the button to the bottom */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
 .blogseemore > button {
-  padding: 1vh;
-  font-size: 1vw;
-  width: 40%;
-  border-radius: 0.2vw 0.2vw;
+  padding: 10px;
+  font-size: 16px; /* Fixed font size */
+  width: 90%;
+  border-radius: 5px;
   outline: none;
   border: none;
   background-color: #b11d37;
@@ -78,7 +91,8 @@
     max-height: fit-content;
     width: 80%;
     padding-top: 0vh;
-    box-shadow: none;
+    display: flex;
+    flex-direction: column;
   }
 
   .blog-post > img {
@@ -86,8 +100,8 @@
     margin-top: 1vh;
   }
   .blog-post > h2 {
-    font-size: 5vw;
-    margin: -2vh 0vh;
+    font-size: 16px; /* Adjusted fixed font size for smaller screens */
+    margin: 10px 0;
     /* border: 2px solid blue; */
   }
 
@@ -97,8 +111,8 @@
   }
 
   .blogpagesnippet {
-    margin: -2vh 0vh;
-    font-size: 3vw;
+    margin: 2vh 0vh;
+    font-size: 12px; /* Adjusted fixed font size for smaller screens */
     /* border: 2px solid red; */
   }
   .blogseemore {
@@ -109,9 +123,8 @@
     align-items: center;
   }
   .blogseemore > button {
-    font-size: 4.5vw;
-    width: 96%;
-    border-radius: 0.8vw 0.8vw;
+    font-size: 14px; /* Adjusted fixed font size for smaller screens */
+    width: 90%;
     background-color: #b11d37;
     cursor: pointer;
   }

@@ -6,6 +6,20 @@ const cors = require("cors");
 const path = require("path");
 // const { Server } = require("socket.io");
 
+import React from "react";
+import ReactDOM from "react-dom";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import App from "./app";
+
+const clientId = process.env.GOOGLE_CLIENT_ID;
+
+ReactDOM.render(
+  <GoogleOAuthProvider clientId={clientId}>
+    <App />
+  </GoogleOAuthProvider>,
+  document.getElementById("root")
+);
+
 dotenv.config({ path: "./config.env" });
 const app = express();
 

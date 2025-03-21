@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "../styles/Blogpage.css";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
+import Footer from '../components/Footer'
 
 function Blogpage({ userData, setUserData }) {
   const navigate = useNavigate();
@@ -50,7 +51,7 @@ function Blogpage({ userData, setUserData }) {
     const text = doc.body.textContent || "";
     return {
       image: img ? img.src : null,
-      snippet: text.slice(0, 200) + "...",
+      snippet: text.slice(0, 400) + "...",
     };
   };
 
@@ -104,6 +105,7 @@ function Blogpage({ userData, setUserData }) {
           );
         })}
       </div>
+      <Footer></Footer>
     </div>
   );
 }
