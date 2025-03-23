@@ -76,13 +76,12 @@ body {
 
 /* Right Section Styles */
 .rightSectionDashboard {
-  /* display: flex; */
-  /* flex-direction: row; */
-  /* align-items: center; */
-  /* justify-content: center; */
   height: 100%;
   width: 85%;
-  /* border: 2px solid rgb(119, 0, 255); */
+  overflow-y: auto; /* Enables vertical scrolling */
+  max-height: 100vh; /* Limits height to the viewport */
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #888 #f1f1f1; /* Custom scrollbar colors */
 }
 
 .rightSectionDashboard1 {

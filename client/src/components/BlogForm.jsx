@@ -170,7 +170,6 @@ const BlogForm = ({ userData, setUserData }) => {
 
   return (
     <div className="Blogformmaindiv">
-      <h1>Create Your Own Blog...</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -186,11 +185,12 @@ const BlogForm = ({ userData, setUserData }) => {
             onChange={setContent}
             modules={modules}
             className="Reactquill"
-            placeholder="Write Your Content here"
+            placeholder="Write it out here..."
           />
         </div>
-
-        <button type="submit">Submit</button>
+        <div className="BlogDoneButton">
+          <button type="submit">Done</button>
+        </div>
       </form>
     </div>
   );

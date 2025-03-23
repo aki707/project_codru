@@ -62,6 +62,11 @@ function Blogpage({ userData, setUserData }) {
     }));
   };
 
+  const handleCreateBlog = () => {
+    navigate("/createblog");
+    closePopup();
+  };
+
   return (
     <div>
       <Navbar userData={userData} setUserData={setUserData} />
@@ -71,13 +76,22 @@ function Blogpage({ userData, setUserData }) {
           const isExpanded = expandedTitles[index];
           const title = data.title;
           const snippet = contentPreview.snippet;
+          const date = new Date(data.createdAt).toLocaleDateString();
 
           return (
             <div key={index} className="blog-post">
               {contentPreview.image ? (
                 <img src={contentPreview.image} alt="Blog Image" />
               ) : (
-                <img src={data.userphoto} alt="User Photo" />
+                <div className="blog-no-image">
+                  <div className="author-photo">
+                    <img src={data.userphoto} alt="User Photo" />
+                  </div>
+                  <div className="author-name">
+                    <b>Published by:  </b>{data.username}<br></br>
+                    <b>Published at:  </b>{date}
+                  </div>
+                </div>
               )}
               <h2 className="blogtitle">
                 {isExpanded || title.length <= 70 ? (
@@ -106,6 +120,9 @@ function Blogpage({ userData, setUserData }) {
         })}
       </div>
       <Footer></Footer>
+      <button className="create-blog-btn"onClick={handleCreateBlog}>
+        <i className="fas fa-pen-nib "></i>
+      </button>
     </div>
   );
 }

@@ -94,12 +94,12 @@ import AboutUsAnim from './AboutUsAnim';
 import Footer from '../components/Footer'
 import Navbar from "./Navbar";
 
-const About = () => {
+const About = ({ userData, setUserData }) => {
   return (
     <div style={{display:"flex",flexDirection:"column",justifyContent:"flex-start"}}> 
-      <Navbar/>
+      <Navbar userData={userData} setUserData={setUserData} />
     <div className="about-container">
-      
+        
       <div className="about-header" >
         <h1 style={{marginTop: '50px'}}>About Us</h1>
         </div>

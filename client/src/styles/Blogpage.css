@@ -9,7 +9,34 @@
   padding-top: 5vh;
   background-color:#efe1e1;
 }
+.author-photo{
+  width: 20%;
+  margin:auto;
+  margin-left: 10%;
+}
+.author-name{
+  margin-top:0%;
+  padding-left: 10%;
+  width: 60%;
+}
 
+.blog-no-image {
+  padding-top:0%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  flex-wrap: wrap;
+  aspect-ratio: 3/2;
+  height: 40%;
+  object-fit: cover;
+  margin-bottom: 5%;
+}
+.author-photo > img {
+  aspect-ratio: 1/1;
+  width: 100%;
+  border-radius: 50%;
+  box-shadow: #b11d37 0px 0px 10px;
+}
 .blog-post {
   display: flex;
   flex-direction: column;
@@ -42,7 +69,7 @@
   margin: 10px 0; /* Add spacing above and below the title */
   display: flex;
   align-items: center;
-  text-align: center; /* Center the title text */
+  text-align: left; /* Center the title text */
   text-overflow: ellipsis; /* Add ellipsis for long titles */
   white-space: normal; /* Allow wrapping of text */
   line-height: 1.2; /* Adjust line height for better readability */
@@ -75,6 +102,63 @@
   color: white;
   cursor: pointer;
 }
+.create-blog-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background-color: #b11d37;
+  color: #efe1e1;
+  border: none;
+  border-radius: 50%; /* Initially circular */
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1000; /* Ensure it stays above other elements */
+  transition: all 0.3s ease; /* Smooth transition for shape and size */
+  overflow: hidden; /* Prevent text overflow */
+}
+
+.create-blog-btn:hover {
+  background-color: #b11d37;
+  width: 170px; /* Expand width on hover */
+  border-radius: 20px; /* Change to rounded rectangle */
+  transform: scale(1.1); /* Slightly enlarge the button */
+}
+
+.create-blog-btn > i {
+  pointer-events: none; /* Prevent click events on the icon itself */
+  transition: transform 0.3s ease; /* Smooth transition for icon movement */
+  margin:auto;
+}
+
+.create-blog-btn:hover i {
+  transform: translateX(-10px); /* Reduce the left movement */
+  margin-left:5px;
+}
+
+.create-blog-btn::after {
+  content: "Create Blog"; /* Add text after the icon */
+  color: #efe1e1;
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 0px;
+  opacity: 0; /* Initially hidden */
+
+  width: 0%;
+}
+
+.create-blog-btn:hover::after {
+  transition: opacity 1.2s ease; /* Smooth fade-in effect */
+  opacity: 1; /* Show the text on hover */
+  
+  width: 100%;
+  margin-left: 5px;
+}
 
 @media screen and (max-width: 512px) {
   .blog-page {
@@ -102,6 +186,7 @@
   .blog-post > h2 {
     font-size: 16px; /* Adjusted fixed font size for smaller screens */
     margin: 10px 0;
+    text-align: left;
     /* border: 2px solid blue; */
   }
 

@@ -2,7 +2,7 @@
 
 .landing-container {
   width: 100%;
-  margin-top: 10vh;
+  margin-top: 6vh;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -76,13 +76,20 @@
   background-color: #5946d2;
 }
 
+.start-button-text {
+  white-space: nowrap;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: inherit;
+}
+
 .thumbs-up-icon {
   font-size: 3vw;
   color: #6f61ff;
   cursor: pointer;
   margin-top: 20px;
-  animation: fadeInUp 3s forwards;
-  /* border: 2px solid red; */
+  animation: fadeInUp 3s forwards;
 }
 
 .homePageAnimation {

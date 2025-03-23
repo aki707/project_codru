@@ -10,9 +10,8 @@ input:-webkit-autofill:active {
   display: flex;
   /* border:1px solid #4e1a28; */
   width: 60%;
-  height: 90%;
-  margin-left: 20%;
-  margin-top: 1%;
+  height: 100%;
+  margin: auto;
   border-radius: 5px;
   box-shadow: 0px 10px 20px 10px rgba(0, 0, 0, 0.1);
 }
@@ -43,7 +42,9 @@ input:-webkit-autofill:active {
   height: 485px;
   font-size: 10px;
   background-color: #efe1e1;
-  margin-top: 6vh;
+  margin-top: 10vh;
+  padding-top: 5%;
+  padding-bottom: 5%;
 }
 
 .cont_page h1 {
@@ -68,6 +69,11 @@ input:-webkit-autofill:active {
   margin: 5%;
   padding: 5px;
   border-radius: 5px;
+  box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+.cont_form-group {
+  margin-bottom: 15px; /* Add spacing between form elements */
 }
 
 .cont_form-group label {
@@ -76,29 +82,48 @@ input:-webkit-autofill:active {
 }
 .cont_form-group input,
 .cont_form-group textarea {
-  width: 93%;
+  color: #590404;
+  width: 100%; /* Ensure inputs take up the full width of the container */
   padding: 12px;
-  border: 1px solid #590404;
-  border-radius: 2px;
+  border: none;
+  border-radius: 5px;
   background-color: transparent;
+  box-sizing: border-box; /* Include padding in the width */
+  box-shadow: #590404 0px 0px 3px;
+  font-size: 1vw;
+}
+.cont_form-group input:focus,
+.cont_form-group textarea:focus {
+  outline: none;
+  border: none;
 }
 .cont_form-group textarea {
   resize: vertical;
-  height: 75px;
+  height: 100px;
+  resize: none;
 }
-.cont_form-group button {
-  padding: 10px 15px;
-  background-color: #4e1a28;
-  color: rgb(254, 251, 251);
+.cont_form-group > button {
+  transition: all 0.3s ease; /* Smooth transition for all properties */
+  width: fit-content; /* Initial width */
+  height: auto;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  margin-left:0;
+  padding: 1.5vh;
+  font-size: 14px;
+  border-radius: 1vh;
+  background-color: brown;
   border: none;
-  border-radius: 4px;
   cursor: pointer;
+  color: white; /* Ensure text is visible */
+  position: relative; /* Required for the pseudo-element */
+  overflow: hidden; /* Prevent overflow of the icon */
+  text-align: left; /* Center the text */
 }
+
 .cont_form-group button:hover {
-  border: 1px solid #4e1a28;
-  /* font-style: bold; */
-  color: #4e1a28;
-  background-color: transparent;
+  background-color: #d61e3f;
+  box-shadow: #590404 0px 0px 3px;
 }
 .cont_all {
   margin: 8%;
@@ -124,4 +149,52 @@ input:-webkit-autofill:active {
   margin-left: 10px;
   font-size: 100%;
   font-style: normal;
+}
+
+.send-message-btn {
+  display: flex; /* Use flexbox to align text and icon */
+  align-items: center; /* Vertically center the text and icon */
+  justify-content: flex-start; /* Align text to the left */
+  transition: all 0.3s ease; /* Smooth transition for all properties */
+  width: fit-content; /* Adjust width to fit content */
+  height: auto;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  padding: 1.5vh;
+  font-size: 14px;
+  border-radius: 1vh;
+  background-color: brown;
+  border: none;
+  cursor: pointer;
+  color: white; /* Ensure text is visible */
+  position: relative;
+  overflow: hidden; /* Prevent overflow of the icon */
+}
+
+.send-message-text {
+  transition: all 0.3s ease;
+  margin-right: 0px; /* Add spacing between text and icon */
+  text-align: left; /* Align text to the left */
+  width: fit-content;
+}
+
+.send-message-icon {
+  scale:0;
+  font-size: 12px; /* Initial size of the icon */
+  opacity: 0; /* Initially hidden */
+  transition: all 0.3s ease; /* Smooth transition for size and opacity */
+  width: 0px;
+}
+.send-message-btn:hover .send-message-icon {
+  scale:1;
+  opacity: 1; /* Make the icon visible on hover */
+  width: 12px;
+}
+.send-message-btn:hover .send-message-text {
+  margin-right: 10px;
+}
+
+.send-message-btn:hover {
+  background-color: #d61e3f; /* Change background color on hover */
+  box-shadow: #590404 0px 0px 3px; /* Add shadow on hover */
 }

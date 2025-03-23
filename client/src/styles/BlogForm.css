@@ -7,43 +7,59 @@
   min-height: 100vh;
   background-color: #efe1e1;
 }
-
+.Blogformmaindiv > h1{
+  margin-top: 10px;
+  margin-bottom: 5vh;
+} 
 .Blogformmaindiv > form {
   display: flex;
-  border: 2px solid red;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 70%;
+  width: 80%;
   height: fit-content;
   background-color: #efe1e1;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
     rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-}
-.Blogformmaindiv > form > div {
-  /* border: 2px solid purple; */
-  width: 100%;
-  min-height: 40vh;
+  margin-top: 0;
+  margin-bottom: 0;
+  border-radius: 5px;
 }
 .Reactquill .ql-container .ql-editor {
   height: 40vh; /* Ensure a minimum height for mobile */
 }
 
 .Blogformmaindiv > form > input {
-  width: 40%;
+  width: 95%;
   padding: 1%;
   border-radius: 1vh;
   margin: 6vh 1vw;
   font-weight: bold;
+  justify-content: center;
+  align-items: center;
+  border: none; 
+  background-color: #efe1e1;
+  border-width: 0px;
+  border-style: none;
+  border-color: #efe1e1;
+  font-size: x-large;
 }
-
-button[type="submit"] {
-  width: 50%;
+.Blogformmaindiv > form > input:focus {
+  outline: none;
+  border: none;
+}
+.BlogDoneButton{
+  width: 20%;
+}
+.BlogDoneButton>button {
+  width: 100%;
   margin-top: 2vh;
   margin-bottom: 2vh;
   /* margin-bottom: 2vh; */
   padding: 2vh;
-  font-size: 1.2vw;
+  font-size: 1.5vw;
+  font-style: bold;
+  font-weight: 600;
   border-radius: 1vh;
   background-color: brown;
   border: none;
@@ -99,7 +115,9 @@ button[type="submit"] {
   border: none;
   font-weight: bold;
 }
-
+/* .ql-snow.ql-toolbar button, .ql-snow .ql-toolbar button {
+  float: none;
+} */
 @media screen and (max-width: 512px) {
   .Blogformmaindiv {
     display: flex;
@@ -116,14 +134,12 @@ button[type="submit"] {
     min-height: 62vh;
     box-shadow: none;
     margin-top: 2vh;
-    border: 2px solid red;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
   }
 
   .Blogformmaindiv > form > div {
-    border: 2px solid purple;
     width: 100%;
     min-height: 40vh;
     margin-top: 0px;
@@ -434,4 +450,15 @@ button[type="submit"] {
 
   display: block;
   margin: 2vh auto;
+}
+.ql-snow .ql-picker {
+  margin: 10px;
+}
+.ql-container.ql-snow {
+  border-left: none;
+  border-right: none;
+}
+.ql-toolbar.ql-snow {
+  border-left: none;
+  border-right: none;
 }

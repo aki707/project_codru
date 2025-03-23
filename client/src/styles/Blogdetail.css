@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  background-color: white;
+  background-color: #efe1e1;
   border: 2px solid blue;
 }
 
@@ -42,15 +42,16 @@
   padding: 2rem; /* Add some padding for spacing */
   text-align: left; /* Center text alignment */
   margin-top: 10vh;
+  background-color: #efe1e1;
 }
 
 .blog-detail-post {
   width: 60%; /* Adjust width as needed */
   max-width: 800px; /* Limit the maximum width */
-  background-color: #f9f9f9; /* Add a background color for better visibility */
+  background-color: #efe1e1; /* Add a background color for better visibility */
   padding: 2rem;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
   margin: auto;
 }
 .blogdetailuser > div {

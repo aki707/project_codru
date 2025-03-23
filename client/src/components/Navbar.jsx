@@ -84,7 +84,7 @@ function Navbar({ userData, setUserData }) {
               Courses
             </NavLink>
           )}
-          <NavLink to="/blogs" className={`navlinks`} onClick={openPopup}>
+          <NavLink to="/blogsdata" className="navlinks">
             Blogs
           </NavLink>
           <NavLink to="/Contact" className="navlinks">

@@ -1,9 +1,10 @@
 import { useState } from "react";
 import "../styles/Contact.css";
 import Muialert from "./Muialert";
-// import Navbar from './Navbar';
+import Footer from '../components/Footer'
+import Navbar from "./Navbar";
 
-const Contact = () => {
+const Contact = ({ userData, setUserData }) => {
   const [value, setValue] = useState({
     name: "",
     email: "",
@@ -60,14 +61,15 @@ const Contact = () => {
 
   return (
     <div>
+      <Navbar userData={userData} setUserData={setUserData} />
       <div className="contact-us-page">
         <div className="cont_page">
-          <h1>
+          {/* <h1>
             Contact &nbsp;<span>us</span>
-          </h1>
+          </h1> */}
           <div className="cont_main">
             <div className="cont_main_div1">
-              <span>Send us a Message</span>
+              
               <div className="cont_form">
                 <div className="cont_form-container">
                   <form onSubmit={PostData}>
@@ -126,6 +128,7 @@ const Contact = () => {
                     <div className="cont_form-group">
                       <label htmlFor="message">
                         <textarea
+                          maxLength={500}
                           placeholder="Message Query"
                           id="message"
                           name="message"
@@ -136,7 +139,12 @@ const Contact = () => {
                       </label>
                     </div>
                     <div className="cont_form-group">
-                      <button type="submit">Send Message</button>
+                      <button className="send-message-btn">
+                        <div className="send-message-text">Send Message</div>
+                        <div className="send-message-icon">
+                          <i className="fas fa-paper-plane"></i>
+                        </div>
+                      </button>
                     </div>
                   </form>
                   {alert.show && (
@@ -183,6 +191,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

@@ -110,13 +110,13 @@
 .commentpagemaindiv {
   background-color: #efe1e1;
   border-radius: 5px;
-
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   width: 100%;
   margin: auto;
-  margin-top: 1vh;
+  margin-top: 5vh;
 }
 
 .commentpagemaindivdiv1 {
