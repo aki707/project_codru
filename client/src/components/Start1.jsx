@@ -60,6 +60,12 @@ const Start1 = () => {
   return (
     <div className="landing-container">
       {showConfetti && <Confetti />}
+      
+
+      <div className="homePageAnimation">
+        {/* <HomePageAnim/> */}
+        <img src={homePageImage} alt="" />
+      </div>
       <div className="text-content">
         <h1>Welcome To</h1>
         <h2>
@@ -75,12 +81,8 @@ const Start1 = () => {
           ></i>
         </div>
       </div>
-
-      <div className="homePageAnimation">
-        {/* <HomePageAnim/> */}
-        <img src={homePageImage} alt="" />
-      </div>
     </div>
+    
   );
 };
 

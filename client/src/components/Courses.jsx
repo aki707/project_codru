@@ -14,11 +14,11 @@ import { NavLink } from "react-router-dom";
 import demo from "../assets/demo.png";
 import Footer from '../components/Footer'
 
-function Courses() {
+function Courses({ userData, setUserData }) {
   return (
 
     <div style={{display:"flex",flexDirection:"column",justifyContent:"flex-start"}}> 
-      <Navbar/>
+      <Navbar userData={userData} setUserData={setUserData} />
     <div className="courses-maindiv">
       <h1 style={{display: "flex", justifyContent: "center", alignItems: "center", fontSize: "50px", marginTop:"40px"}}>Let's Start</h1>
     <div className="demoCourses">

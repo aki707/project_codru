@@ -163,27 +163,119 @@ const Contact = ({ userData, setUserData }) => {
                 <div className="cont_all_detail">
                   <h2>How to reach us ?</h2>
                   <div className="cont_all_detail_office">
-                    <p>
-                      We are open for any suggestion or just to have a chat..
-                    </p>
+                    
+                    {/* Divider line before cont_all_phone */}
+                    <div className="section-divider"></div>
+                    <div className="cont_all_phone">
+                      <div className="phone-icon">
+                        <a href="tel:7300199100" target="_blank" rel="noopener noreferrer">
+                          <i className="fas fa-phone"></i>
+                        </a>
+                      </div>
+                      <div className="phone-text">
+                        <a href="tel:7300199100" target="_blank" rel="noopener noreferrer">
+                          7300-199-100
+                        </a>
+                      </div>
+                    </div>
+                    <div className="cont_all_email">
+                      <div className="email-icon">
+                        <a href="mailto:codrueducation@gmail.com" target="_blank" rel="noopener noreferrer">
+                          <i className="fas fa-envelope"></i>
+                        </a>
+                      </div>
+                      <div className="email-text">
+                        <a href="mailto:codrueducation@gmail.com" target="_blank" rel="noopener noreferrer">
+                          codrueducation@gmail.com
+                        </a>
+                      </div>
+                    </div>
+                    <div className="cont_all_address">
+                      <div className="address-icon">
+                        <a
+                          href="https://maps.app.goo.gl/nNrKAi29qsDHWboVA"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <i className="fas fa-map-marker-alt"></i>
+                        </a>
+                      </div>
+                      <div className="address-text">
+                        <a
+                          href="https://maps.app.goo.gl/nNrKAi29qsDHWboVA"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Shop No.: 1 & 2, First Floor, near Ahinsa Circle, R.K. Puram, Sector - A,
+                          Kota (Raj.), 324010
+                        </a>
+                      </div>
+                    </div>
+                    <div className="cont_all_hours">
+                      <div className="hours-icon">
+                        <a
+                          href="https://g.co/kgs/BiEbPDW"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <svg
+                            className="clk"
+                            id="Layer_2"
+                            data-name="Layer 2"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 313.64 313.64"
+                          >
+                            <g id="Layer_1-2" data-name="Layer 1">
+                              <path d="m156.82,0C70.21,0,0,70.21,0,156.82s70.21,156.82,156.82,156.82,156.82-70.21,156.82-156.82S243.43,0,156.82,0Zm11.19,156.56c0,6.29-4.08,11.44-9.06,11.44h-81.27c-4.71,0-8.83-4.46-9.16-10.39-.19-3.39.84-6.5,2.58-8.7,1.6-2.02,3.82-3.28,6.26-3.28h68.27V56.24c0-6.15,5.04-11.19,11.19-11.19,3.08,0,5.87,1.26,7.9,3.29s3.29,4.83,3.29,7.9v100.32Z" />
+                            </g>
+                          </svg>
+                        </a>
+                      </div>
+                      <div className="hours-text">
+                        <a
+                          href="https://g.co/kgs/BiEbPDW"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Monday - Friday <br />
+                          9:00 AM - 7:00 PM
+                        </a>
+                      </div>
+                    </div>
+                    {/* Divider line before cont_all_phone */}
+                    <div className="section-divider"></div>
+                    <div className="cont_all_text">
+                      <p>Feel free to give us your suggestion.<br></br>Also, you can drop your message.</p>
+                    </div>
 
-                    <h4>Please Call:-</h4>
-                    <p>
-                      <i class="fas fa-phone"></i>&nbsp;
-                      7300-199-100/8949-775-255
-                    </p>
-                    <h4>Email:-</h4>
-                    <p>
-                      <i class="fas fa-envelope"></i>
-                      &nbsp;&nbsp;codrueducation@gmail.com
-                    </p>
-                    <h4>Office:-</h4>
-                    <p>
-                      <i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;Shop No.:
-                      1 & 2, First Floor,Near Ahimsa circle, R.K. Puram (Sector
-                      A), Kota (Raj.), 324005
-                    </p>
-                    <h5>Please reach on Mon-Sun in between (8AM - 8PM)</h5>
+                    {/* Social Media Icons Section */}
+                    <div className="cont_all_socials">
+                      <div className="social-icon insta-icon">
+                        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                          <i className="fab fa-instagram"></i>
+                        </a>
+                      </div>
+                      <div className="social-icon facebook-icon">
+                        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+                          <i className="fab fa-facebook"></i>
+                        </a>
+                      </div>
+                      <div className="social-icon whatsapp-icon">
+                        <a href="https://wa.me/7300199100" target="_blank" rel="noopener noreferrer">
+                          <i className="fab fa-whatsapp"></i>
+                        </a>
+                      </div>
+                      <div className="social-icon telegram-icon">
+                        <a href="https://t.me/codrueducation" target="_blank" rel="noopener noreferrer">
+                          <i className="fab fa-telegram"></i>
+                        </a>
+                      </div>
+                      <div className="social-icon linkedin-icon">
+                        <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+                          <i className="fab fa-linkedin"></i>
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

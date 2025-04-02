@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import notifyicon from "../assets/notification.png";
+import dashboardicon from "../assets/layout.png";
 import c3 from "../assets/c3.png";
 import "../styles/Navbar.css";
 import Navprofile from "./Navprofile";
@@ -75,33 +76,37 @@ function Navbar({ userData, setUserData }) {
           <NavLink to="/About" className="navlinks">
             About Us
           </NavLink>
-          {isLoggedIn ? (
-            <NavLink to="/my-courses" className="navlinks">
-              My Courses
+          {/* {isLoggedIn ? (
+            <NavLink to="/courses" className="navlinks">
+              Courses
             </NavLink>
           ) : (
             <NavLink to="/courses" className="navlinks">
               Courses
             </NavLink>
-          )}
+          )} */}
+          <NavLink to="/courses" className="navlinks">
+              Courses
+            </NavLink>
           <NavLink to="/blogsdata" className="navlinks">
             Blogs
           </NavLink>
           <NavLink to="/Contact" className="navlinks">
             Contact Us
           </NavLink>
-          {isLoggedIn && (
-            <NavLink
-              to="/dashboard"
-              className="navlinks"
-              onClick={toggleDashboard}
-            >
-              Dashboard
-            </NavLink>
-          )}
+          {/* {isLoggedIn && (
+           
+          )} */}
         </div>
         {isLoggedIn ? (
           <div className="Profileimgmaindiv">
+             <NavLink
+              to="/dashboard"
+              className="navdashboard"
+              onClick={toggleDashboard}
+            >
+              <img src={dashboardicon} alt="Dashboard" />
+            </NavLink>
             <NavLink className="navnotification" onClick={toggleNotifications}>
               <img src={notifyicon} alt="Notifications" />
             </NavLink>

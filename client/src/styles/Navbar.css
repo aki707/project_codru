@@ -73,12 +73,25 @@
   align-items: center;
   height: 10vh;
 }
+.Profileimgmaindiv>a {
+  margin-left: 2px;
+  margin-right: 2px;
+}
 .navnotification,
-.navprofile {
+.navprofile,
+.navdashboard {
   width: 30%;
   align-self: 1/1;
   position: relative;
   /* border: 2px solid blue; */
+}
+
+.navdashboard > img {
+  width: 80%;
+  /* border-radius: 50%; */
+  /* border: 2px solid red; */
+  aspect-ratio: 1/1;
+  object-fit: fill;
 }
 
 .navnotification > img,
@@ -89,7 +102,11 @@
   aspect-ratio: 1/1;
   object-fit: fill;
 }
-.navnotification > img {
+.navprofile > img {
+  border:#000000 1.5px solid;
+}
+.navnotification > img,
+.navdashboard > img {
   width: 60%;
 }
 .signuplink > button {

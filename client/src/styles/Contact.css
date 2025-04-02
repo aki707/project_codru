@@ -130,7 +130,7 @@ input:-webkit-autofill:active {
 }
 .cont_all_detail h2 {
   color: #efe1e1;
-  font-size: 20px;
+  font-size: 24px;
   margin-top: 5%;
   margin-left: 20%;
 }
@@ -197,4 +197,117 @@ input:-webkit-autofill:active {
 .send-message-btn:hover {
   background-color: #d61e3f; /* Change background color on hover */
   box-shadow: #590404 0px 0px 3px; /* Add shadow on hover */
+}
+.fa-phone{
+  transform: scaleX(-1);
+}
+.clk {
+  fill:#efe1e1;
+  width: 20px;
+  transition: transform 0.3s ease, color 0.3s ease; /* Smooth hover effect */
+  
+}
+.clk:hover {
+  fill: #d61e3f; /* Change color on hover */
+  transform: scale(1.2); /* Slightly enlarge the icon on hover */
+}
+
+/* Make the parent containers flex */
+.cont_all_phone,
+.cont_all_email,
+.cont_all_address,
+.cont_all_hours {
+  display: flex;
+  align-items: center; /* Vertically center the content */
+  gap: 10px; /* Add spacing between the icon and text */
+  margin-bottom: 10px; /* Add spacing between rows */
+}
+
+/* Style the icons */
+.phone-icon,
+.email-icon,
+.address-icon,
+.hours-icon {
+  font-size: 20px; /* Adjust icon size */
+  color: #efe1e1; /* Icon color */
+  transition: transform 0.3s ease, color 0.3s ease; /* Smooth hover effect */
+}
+.phone-icon:hover,
+.email-icon:hover,
+.address-icon:hover {
+  color: #d61e3f; /* Change color on hover */
+  transform: scale(1.2); /* Slightly enlarge the icon on hover */
+}
+
+/* Style the text */
+.phone-text,
+.email-text,
+.address-text,
+.hours-text {
+  font-size: 16px; /* Adjust text size */
+  color: #efe1e1; /* Text color */
+  line-height: 1.5; /* Improve readability */
+  align-items: center;
+  padding : 2px ;
+}
+
+.cont_all_text {
+  /* margin-left: 10px;
+  margin-right: 10px; */
+  margin-bottom: 20px;
+  margin-top: 20px;
+  font-size: 18px;
+  color: #efe1e1;
+  line-height: 1.5; /* Improve readability */
+  align-items: center;
+}
+.cont_all_text > p {
+  font-size: 18px;
+  line-height: 1.2; /* Improve readability */
+}
+
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background-color: #efe1e1; /* Light gray color for the line */
+  margin: 20px 0; /* Add spacing above and below the line */
+}
+
+/* Flex container for social media icons */
+.cont_all_socials {
+  display: flex;
+  justify-content: center; /* Center the icons horizontally */
+  align-items: center; /* Center the icons vertically */
+  gap: 15%; /* Add spacing between the icons */
+  margin-top: 20px; /* Add spacing above the social icons */
+}
+
+/* General styles for social media icons */
+.cont_all_socials a {
+  text-decoration: none; /* Remove underline from links */
+  color: inherit; /* Inherit the color from the parent element */
+}
+
+/* General styles for all social icons */
+.social-icon {
+  font-size: 24px; /* Adjust icon size */
+  color: #efe1e1; /* Icon color */
+  transition: transform 0.3s ease, color 0.3s ease; /* Smooth hover effect */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+/* Hover effect for social icons */
+
+.social-icon:hover {
+  transform: scale(1.2); /* Slightly enlarge the icon on hover */
+  color: #d61e3f; /* Change color on hover */
+}
+.cont_all_phone a,
+.cont_all_email a,
+.cont_all_address a,
+.cont_all_hours a,
+.cont_all_socials a {
+  text-decoration: none; /* Remove underline from links */
+  color: inherit; /* Inherit the color from the parent element */
+
 }
