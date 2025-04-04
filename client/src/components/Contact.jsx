@@ -251,12 +251,12 @@ const Contact = ({ userData, setUserData }) => {
                     {/* Social Media Icons Section */}
                     <div className="cont_all_socials">
                       <div className="social-icon insta-icon">
-                        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.instagram.com/codrueducation/" target="_blank" rel="noopener noreferrer">
                           <i className="fab fa-instagram"></i>
                         </a>
                       </div>
                       <div className="social-icon facebook-icon">
-                        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.facebook.com/codrueducation/" target="_blank" rel="noopener noreferrer">
                           <i className="fab fa-facebook"></i>
                         </a>
                       </div>
@@ -271,7 +271,7 @@ const Contact = ({ userData, setUserData }) => {
                         </a>
                       </div>
                       <div className="social-icon linkedin-icon">
-                        <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.linkedin.com/company/codru-education" target="_blank" rel="noopener noreferrer">
                           <i className="fab fa-linkedin"></i>
                         </a>
                       </div>

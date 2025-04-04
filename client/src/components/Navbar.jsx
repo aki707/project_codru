@@ -74,7 +74,7 @@ function Navbar({ userData, setUserData }) {
       <div className={`navbuttons ${showLinks ? "show" : ""}`}>
         <div className="btn">
           <NavLink to="/About" className="navlinks">
-            About Us
+            About
           </NavLink>
           {/* {isLoggedIn ? (
             <NavLink to="/courses" className="navlinks">
@@ -92,7 +92,7 @@ function Navbar({ userData, setUserData }) {
             Blogs
           </NavLink>
           <NavLink to="/Contact" className="navlinks">
-            Contact Us
+            Contact
           </NavLink>
           {/* {isLoggedIn && (
            
