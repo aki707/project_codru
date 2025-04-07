@@ -134,6 +134,7 @@
   /* background-color: yellow; */
 }
 .signuplink:hover {
+  border:none;
  
   /* border: 2px solid red; */
 }
