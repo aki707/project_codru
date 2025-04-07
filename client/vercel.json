@@ -1,6 +1,0 @@
-// {
-//   "rewrites": [
-//     { "source": "/(.*)", "destination": "https://codru-server.vercel.app" }
-//   ]
-  
-// }
