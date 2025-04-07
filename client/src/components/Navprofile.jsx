@@ -1,4 +1,5 @@
 import "../styles/Navprofile.css";
+import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faRightFromBracket,
@@ -114,7 +115,10 @@ function Navprofile({
             setShowProfile(false);
           }}
         >
-          X
+          <FontAwesomeIcon
+          className={"crossicon"}
+          icon={faTimes}
+        />
         </span>
       </div>
       <div className="Navprofilemaindivdiv1">

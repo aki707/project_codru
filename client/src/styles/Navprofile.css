@@ -163,3 +163,9 @@
     color: white;
   }
 }
+
+.crossicon:hover {
+  color: #d61e3f;
+  transform: scale(1.2);
+  transition: all 0.2s ease-in-out;
+}
