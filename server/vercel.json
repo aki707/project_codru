@@ -7,12 +7,12 @@
       "config": { "includeFiles": ["dist/**"] }
     }
   ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "app.js"
-    }
-  ],
+  // "routes": [
+  //   {
+  //     "src": "/(.*)",
+  //     "dest": "app.js"
+  //   }
+  // ],
   "rewrites": [
     {
       "source": "/(.*)",
