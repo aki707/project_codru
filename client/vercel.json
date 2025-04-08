@@ -1,6 +1,9 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "https://codru-server.vercel.app" }
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ]
   
 }
