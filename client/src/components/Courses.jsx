@@ -130,7 +130,7 @@ function Courses({ userData, setUserData }) {
               <h3>For Classes 6th to 10th</h3>
             </div>
             <NavLink to="/form">
-              <button className="acadEnroll">Enroll Now</button>
+              <button className="acadEnroll">Know More</button>
             </NavLink>
           </div>
           <div className="academic-courses-subtitle">
@@ -138,7 +138,7 @@ function Courses({ userData, setUserData }) {
               <h3>For Classes 11th and 12th</h3>
             </div>
             <NavLink to="/form">
-              <button className="acadEnroll">Enroll Now</button>
+              <button className="acadEnroll">Know More</button>
             </NavLink>
           </div>
           <div className="academic-courses-subtitle">
@@ -146,7 +146,7 @@ function Courses({ userData, setUserData }) {
               <h3>For B.Tech.</h3>
             </div>
             <NavLink to="/form">
-              <button className="acadEnroll">Enroll Now</button>
+              <button className="acadEnroll">Know More</button>
             </NavLink>
           </div>
         </div>
@@ -165,8 +165,8 @@ function Courses({ userData, setUserData }) {
               <img src={botExplorer1} alt="Bot Explorer 1" />
               <img src={botExplorer2} alt="Bot Explorer 2" />
             </div>
-            <NavLink to="/form">
-              <button className="botEnroll">Enroll Now</button>
+            <NavLink to="/bot-explorer">
+              <button className="botEnroll">Know More</button>
             </NavLink>
           </div>
           <div className="robotics-courses-subtitle">
@@ -174,8 +174,8 @@ function Courses({ userData, setUserData }) {
               <img src={botEngineer1} alt="Bot Engineer 1" />
               <img src={botEngineer2} alt="Bot Engineer 2" />
             </div>
-            <NavLink to="/form">
-              <button className="botEnroll">Enroll Now</button>
+            <NavLink to="/bot-engineer">
+              <button className="botEnroll">Know More</button>
             </NavLink>
           </div>
           <div className="robotics-courses-subtitle">
@@ -183,8 +183,8 @@ function Courses({ userData, setUserData }) {
               <img src={botInventor1} alt="Bot Inventor 1" />
               <img src={botInventor2} alt="Bot Inventor 2" />
             </div>
-            <NavLink to="/form">
-              <button className="botEnroll">Enroll Now</button>
+            <NavLink to="/bot-inventor">
+              <button className="botEnroll">Know More</button>
             </NavLink>
           </div>
         </div>

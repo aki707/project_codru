@@ -30,6 +30,10 @@ import Myblogs from "./components/Myblogs.jsx";
 // import ThemeToggle from "./components/ThemeToggle";
 import { ThemeContext } from "./context/ThemeContext";
 import Publicprofile from "./components/Publicprofile.jsx";
+import BotEnroll from "./components/BotEnroll.jsx";
+import BotExplorer from "./components/BotExplorer.jsx";
+import BotEngineer from "./components/BotEngineer.jsx";
+import BotInventor from "./components/BotInventor.jsx";
 
 
 function App() {
@@ -78,6 +82,22 @@ function App() {
     <div className={`App ${darkTheme ? "dark-theme" : "light-theme"}`}>
       {/* <ThemeToggle /> */}
       <Routes>
+        <Route
+          path="/bot-explorer"
+          element={<BotExplorer userData={userData} setUserData={setUserData} />}
+        />
+        <Route
+          path="/bot-engineer"
+          element={<BotEngineer userData={userData} setUserData={setUserData} />}
+        />
+        <Route
+          path="/bot-inventor"
+          element={<BotInventor userData={userData} setUserData={setUserData} />}
+        />
+        <Route
+          path="/bot-enroll"
+          element={<BotEnroll userData={userData} setUserData={setUserData} />}
+        />
         <Route
           path="/"
           element={<Home userData={userData} setUserData={setUserData} />}

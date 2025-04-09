@@ -121,421 +121,131 @@ const Admission = () => {
       window.alert("An error occurred while submitting the form");
     }
   };
+    const [selectedImage, setSelectedImage] = useState(null);
+  
+    const handleImageUpload = (event) => {
+      const file = event.target.files[0];
+      if (file) {
+        const imageUrl = URL.createObjectURL(file);
+        setSelectedImage(imageUrl);
+      }
+    };
 
   return (
-    <div className="Admission-form-container">
+    <div className="admission-form">
       <div className="header">
-        <h1>Codru Education</h1>
-        <h2>Learn, how to learn.</h2>
+        <h1>📚 Codru Education</h1>
+        <p>Learn, how to learn.</p>
       </div>
-      <h1 className="form-heading" align="center">
-        Admission Form
-      </h1>
-      <form onSubmit={handleSubmit}>
-        <table
-          className="form-table"
-          align="center"
-          cellPadding="20"
-          cellSpacing="20"
-        >
-          <tbody>
-            <tr>
-              <td>
-                <b>Name:</b>
-              </td>
-              <td colSpan="3">
-                <input
-                  type="text"
-                  placeholder="Enter Name"
-                  name="username"
-                  value={formData.username}
-                  onChange={handleChange}
-                  required
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <b>Date of Birth:</b>
-              </td>
-              <td colSpan="3">
-                <input
-                  type="date"
-                  name="dob"
-                  value={formData.dob}
-                  onChange={handleChange}
-                  required
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <b>Gender:</b>
-              </td>
-              <td>
-                <input
-                  type="radio"
-                  name="gender"
-                  value="Male"
-                  checked={formData.gender === "Male"}
-                  onChange={handleChange}
-                />{" "}
-                Male
-              </td>
-              <td>
-                <input
-                  type="radio"
-                  name="gender"
-                  value="Female"
-                  checked={formData.gender === "Female"}
-                  onChange={handleChange}
-                />{" "}
-                Female
-              </td>
-              <td>
-                <input
-                  type="radio"
-                  name="gender"
-                  value="Other"
-                  checked={formData.gender === "Other"}
-                  onChange={handleChange}
-                />{" "}
-                Other
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <b>Address:</b>
-              </td>
-              <td colSpan="3">
-                <input
-                  type="text"
-                  placeholder="Present Address"
-                  name="address"
-                  value={formData.address}
-                  onChange={handleChange}
-                  required
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <b>Email id:</b>
-              </td>
-              <td colSpan="3">
-                <input
-                  type="email"
-                  placeholder="Email id"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <b>Phone No.:</b>
-              </td>
-              <td colSpan="3">
-                <input
-                  type="tel"
-                  placeholder="Phone No."
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <b>Alternate Phone No.:</b>
-              </td>
-              <td colSpan="3">
-                <input
-                  type="tel"
-                  placeholder="Alternate Phone No."
-                  name="altphone"
-                  value={formData.altphone}
-                  onChange={handleChange}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <b>Subject Choosen:</b>
-              </td>
-              <td>
-                <input
-                  type="text"
-                  placeholder="Subject Choosen"
-                  name="Subject_Choosen0"
-                  value={formData.chosensubs[0]}
-                  onChange={handleChange}
-                />
-              </td>
-              <td>
-                <input
-                  type="text"
-                  placeholder="Subject Choosen"
-                  name="Subject_Choosen1"
-                  value={formData.chosensubs[1]}
-                  onChange={handleChange}
-                />
-              </td>
-              <td>
-                <input
-                  type="text"
-                  placeholder="Subject Choosen"
-                  name="Subject_Choosen2"
-                  value={formData.chosensubs[2]}
-                  onChange={handleChange}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td>
-                <input
-                  type="text"
-                  placeholder="Subject Choosen"
-                  name="Subject_Choosen3"
-                  value={formData.chosensubs[3]}
-                  onChange={handleChange}
-                />
-              </td>
-              <td>
-                <input
-                  type="text"
-                  placeholder="Subject Choosen"
-                  name="Subject_Choosen4"
-                  value={formData.chosensubs[4]}
-                  onChange={handleChange}
-                />
-              </td>
-              <td>
-                <input
-                  type="text"
-                  placeholder="Subject Choosen"
-                  name="Subject_Choosen5"
-                  value={formData.chosensubs[5]}
-                  onChange={handleChange}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <b>Class:</b>
-              </td>
-              <td colSpan="3">
-                <select
-                  name="classorsem"
-                  value={formData.classorsem}
-                  onChange={handleChange}
-                >
-                  <option value="" disabled>
-                    Select class
-                  </option>
-                  <option value="6">6th</option>
-                  <option value="7">7th</option>
-                  <option value="8">8th</option>
-                  <option value="9">9th</option>
-                  <option value="10">10th</option>
-                  <option value="11">11th</option>
-                  <option value="12">12th</option>
-                  <option value="13">Undergraduate</option>
-                </select>
-              </td>
-            </tr>
-            {formData.classorsem === "13" && (
-              <tr>
-                <td>
-                  <b>Semester:</b>
-                </td>
-                <td colSpan="3">
-                  <select
-                    name="semorclg"
-                    value={formData.semorclg}
-                    onChange={handleChange}
-                  >
-                    <option value="" disabled>
-                      Select Semester
-                    </option>
-                    <option value="1">Semester 1</option>
-                    <option value="2">Semester 2</option>
-                    <option value="3">Semester 3</option>
-                    <option value="4">Semester 4</option>
-                    <option value="5">Semester 5</option>
-                    <option value="6">Semester 6</option>
-                    <option value="7">Semester 7</option>
-                    <option value="8">Semester 8</option>
-                  </select>
-                </td>
-              </tr>
-            )}
-            <tr>
-              <td>
-                <b>School/College:</b>
-              </td>
-              <td colSpan="3">
-                <input
-                  type="text"
-                  placeholder="School/College"
-                  name="schoolorcollege"
-                  value={formData.schoolorcollege}
-                  onChange={handleChange}
-                  required
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <b>Father's Name:</b>
-              </td>
-              <td colSpan="3">
-                <input
-                  type="text"
-                  placeholder="Father's Name"
-                  name="fatherName"
-                  value={formData.fatherName}
-                  onChange={handleChange}
-                  required
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <b>Father's Occupation:</b>
-              </td>
-              <td colSpan="3">
-                <input
-                  type="text"
-                  placeholder="Father's Occupation"
-                  name="fatherOcc"
-                  value={formData.fatherOcc}
-                  onChange={handleChange}
-                  required
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <b>Mother's Name:</b>
-              </td>
-              <td colSpan="3">
-                <input
-                  type="text"
-                  placeholder="Mother's Name"
-                  name="motherName"
-                  value={formData.motherName}
-                  onChange={handleChange}
-                  required
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <b>Mother's Occupation:</b>
-              </td>
-              <td colSpan="3">
-                <input
-                  type="text"
-                  placeholder="Mother's Occupation"
-                  name="motherOcc"
-                  value={formData.motherOcc}
-                  onChange={handleChange}
-                  required
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <b>User Photo URL:</b>
-              </td>
-              <td colSpan="3">
-                <input
-                  type="file"
-                  placeholder="User Photo URL"
-                  accept="image/*"
-                  name="userphoto"
-                  onChange={handlefileinput}
-                  required
-                />
-                {formData.userphoto && (
-                  <img
-                    src={formData.userphoto}
-                    alt="User Photo Preview"
-                    style={{ maxWidth: "200px", marginTop: "10px" }}
-                  />
-                )}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <b>User Signature URL:</b>
-              </td>
-              <td colSpan="3">
-                <input
-                  type="file"
-                  placeholder="User Signature URL"
-                  name="usersign"
-                  accept="image/*"
-                  onChange={handlefileinput}
-                  required
-                />
-                {formData.usersign && (
-                  <img
-                    src={formData.usersign}
-                    alt="User Signature Preview"
-                    style={{ maxWidth: "200px", marginTop: "10px" }}
-                  />
-                )}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <b>Parent's Signature URL:</b>
-              </td>
-              <td colSpan="3">
-                <input
-                  type="file"
-                  placeholder="Parent's Signature URL"
-                  name="userparentsign"
-                  accept="image/*"
-                  onChange={handlefileinput}
-                  required
-                />
-                {formData.userparentsign && (
-                  <img
-                    src={formData.userparentsign}
-                    alt="Parent Signature Preview"
-                    style={{ maxWidth: "200px", marginTop: "10px" }}
-                  />
-                )}
-              </td>
-            </tr>
-            <tr>
-              <td colSpan="4">
-                <input
-                  type="checkbox"
-                  name="adddeclaration"
-                  checked={formData.adddeclaration}
-                  onChange={handleChange}
-                  required
-                />{" "}
-                I do hereby declare that all the information provided above is
-                true to my knowledge.
-              </td>
-            </tr>
-            <tr>
-              <td colSpan="4" align="center">
-                <button type="submit">Submit</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </form>
+      <div className="form-container">
+        <h2>Admission Form</h2>
+
+        {/* Photo Upload Section */}
+        <div className="photo-box">
+          {selectedImage ? (
+            <img src={selectedImage} alt="Uploaded" className="uploaded-photo" />
+          ) : (
+            <p>Upload Photo</p>
+          )}
+        </div>
+        <input type="file" accept="image/*" onChange={handleImageUpload} />
+
+        <form>
+          <div className="form-group">
+            <label>Name:</label>
+            <input type="text" />
+          </div>
+          <div className="form-group">
+            <label>DOB:</label>
+            <div className="dob-container">
+              <input type="text" placeholder="DD" className="dob-input" />
+              /
+              <input type="text" placeholder="MM" className="dob-input" />
+              /
+              <input type="text" placeholder="YYYY" className="dob-input" />
+            </div>
+          </div>
+          <div className="form-group">
+            <label>Gender:</label>
+            <label>
+              <input type="radio" name="gender" /> Male
+            </label>
+            <label>
+              <input type="radio" name="gender" /> Female
+            </label>
+            <label>
+              <input type="radio" name="gender" /> Other
+            </label>
+          </div>
+          <div className="form-group">
+            <label>Address:</label>
+            <textarea rows="2"></textarea>
+          </div>
+          <div className="form-group">
+            <label>Email Id:</label>
+            <input type="email" />
+          </div>
+          <div className="form-group">
+            <label>Phone No.:</label>
+            <input type="text" />
+          </div>
+          <div className="form-group">
+            <label>Alt Phone No.:</label>
+            <input type="text" />
+          </div>
+          <div className="form-group">
+            <label>Chosen Subjects:</label>
+            <div className="subject-box">
+              {[1, 2, 3, 4, 5, 6].map((num) => (
+                <input key={num} type="text" placeholder={`${num}`} />
+              ))}
+            </div>
+          </div>
+          <div className="form-group">
+            <label>Class / Semester:</label>
+            <input type="text" />
+          </div>
+          <div className="form-group">
+            <label>School / College:</label>
+            <input type="text" />
+          </div>
+          <div className="form-group">
+            <label>Father’s Name:</label>
+            <input type="text" />
+          </div>
+          <div className="form-group">
+            <label>Mother’s Name:</label>
+            <input type="text" />
+          </div>
+          <div className="form-group">
+            <label>Father’s Occupation:</label>
+            <input type="text" />
+          </div>
+          <div className="form-group">
+            <label>Mother’s Occupation:</label>
+            <input type="text" />
+          </div>
+
+          {/* Declaration with Checkbox */}
+          <div className="declaration">
+            <h3>Declaration</h3>
+            <label className="declaration-label">
+              <input type="checkbox" required />
+              I hereby declare that I will obey all the rules and regulations of
+              the institution and be fully responsible for violating the rules.
+            </label>
+          </div>
+
+          <div className="signatures">
+            <p>Student’s Signature</p>
+            <p>Parent’s / Guardian’s Signature</p>
+          </div>
+        </form>
+      </div>
+      <div className="footer">
+        <p>Phone No.: 7300-199-100</p>
+        <p>Shop No. 1 & 2 R. K. Puram Kota</p>
+      </div>
     </div>
   );
 };
