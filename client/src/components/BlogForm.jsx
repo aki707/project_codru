@@ -1,4 +1,5 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "../styles/BlogForm.css";
@@ -41,27 +42,24 @@ Font.whitelist = [
 ];
 Quill.register(Font, true);
 
-// Add custom font formats to Quill
-const FontStyle = Quill.import("attributors/style/font");
-FontStyle.whitelist = [
-  "Arial",
-  "Verdana",
-  "Times New Roman",
-  "Courier New",
-  "cursive",
-  "Tahoma",
-  "Georgia",
-  "Comic Sans MS",
-  "Impact",
-  "Lucida Sans Unicode",
-  "Palatino Linotype", // Added Palatino Linotype
-];
-Quill.register(FontStyle, true);
-
 const BlogForm = ({ userData, setUserData }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [showPopup, setShowPopup] = useState(false); // State to control pop-up visibility
   const quillRef = useRef(null);
+  const navigate = useNavigate(); // Initialize useNavigate
+
+  useEffect(() => {
+    // Check if the user is logged in
+    const username = localStorage.getItem("Username");
+    if (!username) {
+      setShowPopup(true); // Show the pop-up
+      setTimeout(() => {
+        setShowPopup(false); // Hide the pop-up after 3 seconds
+        navigate("/signin"); // Redirect to the sign-in page
+      }, 3000);
+    }
+  }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -170,6 +168,14 @@ const BlogForm = ({ userData, setUserData }) => {
 
   return (
     <div className="Blogformmaindiv">
+      {showPopup && (
+        <>
+          <div className="overlay"></div> {/* Add overlay */}
+          <div className="popup">
+            Sign in to upload blogs.
+          </div>
+        </>
+      )}
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -177,6 +183,7 @@ const BlogForm = ({ userData, setUserData }) => {
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Post Title"
           required
+          disabled={showPopup} // Disable input when pop-up is visible
         />
         <div>
           <ReactQuill
@@ -186,10 +193,13 @@ const BlogForm = ({ userData, setUserData }) => {
             modules={modules}
             className="Reactquill"
             placeholder="Write it out here..."
+            readOnly={showPopup} // Make editor read-only when pop-up is visible
           />
         </div>
         <div className="BlogDoneButton">
-          <button type="submit">Done</button>
+          <button className="BlogDone" type="submit" disabled={showPopup}>
+            Done
+          </button>
         </div>
       </form>
     </div>

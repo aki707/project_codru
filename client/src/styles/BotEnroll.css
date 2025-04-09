@@ -37,7 +37,6 @@
 
 .bot-enroll-input:focus {
     outline: none;
-    
     box-shadow: #d61e3f 0 0 3px;
 }
 
@@ -66,17 +65,20 @@
     color: #666;
     text-align: center;
 }
-.bot-enroll-label{
+
+.bot-enroll-label {
     font-size: large;
     color: #333;
     margin-bottom: 8px;
     font-weight: bold;
     text-align: left;
 }
-.bot-enroll-label-container{
+
+.bot-enroll-label-container {
     width: 10%;
 }
-.bot-enroll-row-container{
+
+.bot-enroll-row-container {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -88,7 +90,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    width: 60%
+    width: 60%;
 }
 
 .bot-enroll-country-code {
@@ -100,10 +102,12 @@
     border: 0px solid #cccccc00;
     border-radius: 4px;
 }
+
 .bot-enroll-country-code:focus {
-    outline: none;   
+    outline: none;
     box-shadow: #d61e3f 0 0 3px;
 }
+
 /* Style the select element when the placeholder option is selected */
 .bot-enroll-input:invalid {
     color: #aaa; /* Light gray color for the placeholder text */
@@ -112,4 +116,53 @@
 /* Reset the color for valid options */
 .bot-enroll-input option {
     color: #333; /* Default color for other options */
+}
+
+/* Mobile View */
+@media (max-width: 768px) {
+    .bot-enroll-container {
+        width: 90%; /* Reduce width for smaller screens */
+        margin: 5vh auto; /* Adjust margin */
+        box-shadow: none;
+    }
+
+    .bot-enroll-header {
+        font-size: 20px; /* Reduce font size */
+        margin-top: 3vh;
+    }
+
+    .bot-enroll-form {
+        gap: 8px; /* Reduce gap between form fields */
+    }
+
+    .bot-enroll-input {
+        width: 100%; /* Full width for inputs */
+        font-size: 14px; /* Reduce font size */
+    }
+
+    .bot-enroll-button {
+        width: 80px; /* Reduce button width */
+        font-size: 14px; /* Reduce font size */
+    }
+
+    .bot-enroll-label {
+        font-size: medium; /* Adjust label font size */
+    }
+
+    .bot-enroll-phone-container {
+        /* flex-direction: column; Stack country code and phone input vertically */
+        width: 100%; /* Full width */
+        gap: 5px; /* Reduce gap */
+    }
+
+    .bot-enroll-country-code {
+        width: 40%; /* Full width for country code dropdown */
+        height: auto;
+        font-size: 14px; /* Reduce font size */
+    }
+
+    .bot-enroll-row-container {
+        flex-direction: column; /* Stack rows vertically */
+        align-items: flex-start; /* Align items to the left */
+    }
 }
