@@ -355,7 +355,7 @@
   padding: 6.25%; /* Padding for better spacing */
   padding-bottom: 1%;
 }
-.roboticsBanner > img {
+.roboticsBanner img {
   width: 100%;
   height: auto; /* Maintain aspect ratio */
   border-radius: 10px; /* Match the container's rounded corners */
@@ -364,8 +364,11 @@
 
 @media (max-width: 768px) {
   .courses-maindiv img {
-    /* width: 50%; */
-    height: auto;
+    width: 35%;
+    
+  }
+  .robotics-courses-subtitle1 > img {
+    width: 100%;
   }
   .roboticsBanner {
     width: 100%;
@@ -373,6 +376,7 @@
     padding: 5%; /* Remove padding for mobile */
     padding-bottom: 1%;
   }
+  
   .academicCourses,
   .roboticsCourses {
     flex-direction: column; /* Stack sections vertically */

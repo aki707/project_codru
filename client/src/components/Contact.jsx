@@ -180,13 +180,13 @@ const Contact = ({ userData, setUserData }) => {
                     </div>
                     <div className="cont_all_email">
                       <div className="email-icon">
-                        <a href="mailto:codrueducation@gmail.com" target="_blank" rel="noopener noreferrer">
+                        <a href="mailto:admin@codrueducation.in" target="_blank" rel="noopener noreferrer">
                           <i className="fas fa-envelope"></i>
                         </a>
                       </div>
                       <div className="email-text">
-                        <a href="mailto:codrueducation@gmail.com" target="_blank" rel="noopener noreferrer">
-                          codrueducation@gmail.com
+                        <a href="mailto:admin@codrueducation.in" target="_blank" rel="noopener noreferrer">
+                          admin@codrueducation.in
                         </a>
                       </div>
                     </div>

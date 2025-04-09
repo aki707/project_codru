@@ -10,6 +10,7 @@ const BotEnroll = ({ course }) => { // Accept course as a prop
         countryCode: '+91', // Default country code
         course: course || '', // Set the default value for course
         duration: '',
+        idea: '', // New field for the "Idea" section
     });
 
     const handleChange = (e) => {
@@ -150,6 +151,20 @@ const BotEnroll = ({ course }) => { // Accept course as a prop
                             <option value="45 Days (12 Lectures)">45 Days (12 Lectures)</option>
                             <option value="90 Days (24 Lectures)">90 Days (24 Lectures)</option>
                         </select>
+                    </div>
+                    {/* New Idea Section */}
+                    <div className='bot-enroll-row-container idea'>
+                        <div className='bot-enroll-label-container idea-label'>
+                            <label className='bot-enroll-label' htmlFor="idea">Idea:</label>
+                        </div>
+                        <textarea
+                            className='bot-enroll-textarea'
+                            id="idea"
+                            name="idea"
+                            placeholder="Share your idea of what you want to build. (Optional)"
+                            value={formData.idea}
+                            onChange={handleChange}
+                        />
                     </div>
                     <button className='bot-enroll-button' type="submit">Enroll</button>
                 </form>

@@ -95,6 +95,7 @@
 /* Mobile View */
 @media (max-width: 768px) {
     .robotics-course-details {
+        width: 100%; /* Full width on mobile */
         flex-direction: column; /* Stack sections vertically */
         gap: 20px; /* Reduce gap between sections */
     }
@@ -114,6 +115,8 @@
     .secondListItemPrice,
     .secondListItemLecture {
         font-size: medium; /* Adjust font size for smaller screens */
+        text-align: center;
+        margin: auto;
     }
 
     .note {
