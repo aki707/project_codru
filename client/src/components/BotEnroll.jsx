@@ -34,6 +34,19 @@ const BotEnroll = ({ course }) => { // Accept course as a prop
         }
         console.log('Form Submitted:', formData);
         // Add your form submission logic here
+        const res = fetch('https://codru-server.vercel.app/botenroll', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        });
+
+        if (res.ok) {
+            alert('Form submitted successfully!');
+        } else {
+            alert('Failed to submit the form. Please try again later.');
+        }
     };
 
     return (

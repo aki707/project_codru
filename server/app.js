@@ -43,6 +43,38 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+app.post('/botenroll', async (req, res) => {
+  const formData = req.body;
+  // if (!formData) {
+  //   return res.status(400).json({ error: 'Form data is required' });
+  // }
+
+  const mailOptions = {
+    from: process.env.EMAIL,
+    to: process.env.EMAIL,
+    subject: `Bot Enrollment Form Submission`,
+    text: ` 
+      Name: ${formData.name}
+      Age: ${formData.age}
+      Email: ${formData.email}
+      Phone: ${formData.phone}
+      City: ${formData.city}
+      Course: ${formData.course}
+      Message: ${formData.message}
+    `,
+  };
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log(error);
+      return res.status(500).send("Error sending message");
+    } else {
+      console.log("Email sent: " + info.response);
+      return res.send("Message sent successfully");
+    }
+  });
+});
+
 app.post("/contactus", (req, res) => {
   const { email, name, city, phone, message } = req.body;
 

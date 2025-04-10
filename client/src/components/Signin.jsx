@@ -12,6 +12,7 @@ import MicrosoftIcon from "../assets/microsoft.svg";
 import { useNavigate } from "react-router-dom";
 import SignInAnim from "./SignInAnim";
 import { GoogleLogin } from "@react-oauth/google";
+import Navbar from "./Navbar";
 
 const handleGoogleLoginSuccess = (credentialResponse) => {
   console.log("Google Login Success:", credentialResponse);
@@ -54,7 +55,7 @@ const handleGoogleLoginFailure = (error) => {
   setShowAlert(true);
 };
 
-function Signin({ setUserData }) {
+function Signin({  userData, setUserData }) {
   const [showAlert, setShowAlert] = useState(false); // State to control alert visibility
   const [alertMessage, setAlertMessage] = useState(""); // State to store alert message
   const navigate = useNavigate();
@@ -146,6 +147,7 @@ function Signin({ setUserData }) {
 
   return (
     <div className="signindiv">
+      {/* <Navbar userData={userData} setUserData={setUserData} /> */}
       <div className="signindiv1">
         <div className="img">
           <SignInAnim />
