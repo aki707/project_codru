@@ -53,14 +53,18 @@ app.post('/botenroll', async (req, res) => {
     from: process.env.EMAIL,
     to: process.env.EMAIL,
     subject: `Bot Enrollment Form Submission`,
-    text: ` 
+    text: `
+      New Enrollment in Robotics Course. Please check:
+       
       Name: ${formData.name}
       Age: ${formData.age}
       Email: ${formData.email}
+      CountryCode: ${formData.countryCode}
       Phone: ${formData.phone}
       City: ${formData.city}
       Course: ${formData.course}
-      Message: ${formData.message}
+      Duration: ${formData.duration}
+      Message: ${formData.idea}
     `,
   };
 
