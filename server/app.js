@@ -51,8 +51,9 @@ app.post('/botenroll', async (req, res) => {
 
   const mailOptions = {
     from: process.env.EMAIL,
+    replyTo: formData.email,
     to: process.env.EMAIL,
-    subject: `Bot Enrollment Form Submission`,
+    subject: `Bot Enrollment Form Submission from ${formData.name}`,
     text: `
       New Enrollment in Robotics Course. Please check:
 

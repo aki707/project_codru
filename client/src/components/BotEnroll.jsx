@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/BotEnroll.css'; 
+import Muialert from "./Muialert";
 
 const BotEnroll = ({ course }) => { // Accept course as a prop
     const [formData, setFormData] = useState({
@@ -11,6 +12,12 @@ const BotEnroll = ({ course }) => { // Accept course as a prop
         course: course || '', // Set the default value for course
         duration: '',
         idea: '', // New field for the "Idea" section
+    });
+
+    const [alert, setAlert] = useState({
+        show: false,
+        severity: "",
+        message: "",
     });
 
     const handleChange = (e) => {
@@ -26,7 +33,7 @@ const BotEnroll = ({ course }) => { // Accept course as a prop
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (formData.phone.length !== 10) {
             alert('Phone number must be exactly 10 digits.');
@@ -34,19 +41,29 @@ const BotEnroll = ({ course }) => { // Accept course as a prop
         }
         console.log('Form Submitted:', formData);
         // Add your form submission logic here
-        const res = fetch('https://codru-server.vercel.app/botenroll', {
+        const res = await fetch('https://codru-server.vercel.app/botenroll', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(formData),
         });
-
+        console.log(res.ok);
+        // Handle the response from the server
         if (res.ok) {
-            alert('Form submitted successfully!');
-        } else {
-            alert('Failed to submit the form. Please try again later.');
-        }
+            setAlert({
+              show: true,
+              severity: "success",
+              message: "Message sent successfully!",
+            });
+            // setValue({ formData.name: "", email: "", phone: "", city: "", message: "" });
+          } else {
+            setAlert({
+              show: true,
+              severity: "error",
+              message: "Failed to send message",
+            });
+          }
     };
 
     return (
@@ -181,6 +198,14 @@ const BotEnroll = ({ course }) => { // Accept course as a prop
                     </div>
                     <button className='bot-enroll-button' type="submit">Enroll</button>
                 </form>
+                {alert.show && (
+                    <Muialert
+                      severity={alert.severity}
+                      onClose={() => setAlert({ ...alert, show: false })}
+                    >
+                      {alert.message}
+                    </Muialert>
+                  )}
             </div>
         </div>
     );
