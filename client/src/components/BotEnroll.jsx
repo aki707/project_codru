@@ -39,8 +39,8 @@ const BotEnroll = ({ course }) => { // Accept course as a prop
             alert('Phone number must be exactly 10 digits.');
             return;
         }
-        console.log('Form Submitted:', formData);
-        // Add your form submission logic here
+        // console.log('Form Submitted:', formData);
+
         const res = await fetch('https://codru-server.vercel.app/botenroll', {
             method: 'POST',
             headers: {
@@ -48,7 +48,7 @@ const BotEnroll = ({ course }) => { // Accept course as a prop
             },
             body: JSON.stringify(formData),
         });
-        console.log(res.ok);
+
         // Handle the response from the server
         if (res.ok) {
             setAlert({
