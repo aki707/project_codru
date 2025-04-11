@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
 const path = require("path");
-const Contact = require("models/contactSchema");
+const Contact = require("./conatctSchema.js");
 // const { Server } = require("socket.io");
 
 dotenv.config({ path: "./config.env" });
@@ -96,7 +96,7 @@ app.post("/contactus", (req, res) => {
   newContact.save()
   .then(() => console.log("Contact form saved successfully"))
   .catch((err) => console.error("Error saving contact form:", err));
-  
+
   const mailOptions = {
     from: process.env.EMAIL,
     replyTo: email,
