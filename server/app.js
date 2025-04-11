@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
 const path = require("path");
-
+const Contact = require("models/contactSchema");
 // const { Server } = require("socket.io");
 
 dotenv.config({ path: "./config.env" });
@@ -30,7 +30,6 @@ require("./db/conn.js");
 const User = require("./models/userSchema");
 const Student = require("./models/studentSchema");
 const Teacher = require("./models/teacherSchema");
-const Contact = require("./conatctSchema");
 app.use(require("./router/userauth.js"));
 app.use(require("./router/blogauth.js"));
 app.use(require("./router/courseauth.js"));
@@ -81,56 +80,47 @@ app.post('/botenroll', async (req, res) => {
   });
 });
 
-app.post("/contactus", async (req, res) => {
+app.post("/contactus", (req, res) => {
   const { email, name, city, phone, message } = req.body;
 
-  // Validate required fields
   if (!email || !name || !message || !city || !phone) {
     return res.status(400).send("All fields are required");
   }
 
-  try {
-    // Create a new contact document
-    const newContact = new Contact({
-      name: name,
-      email: email,
-      city: city,
-      phone: phone,
-      message: message,
-    });
+  const mailOptions = {
+    from: process.env.EMAIL,
+    replyTo: email,
+    to: process.env.EMAIL,
+    subject: `Contact form submission from ${name}`,
+    text: ` 
+      Name: ${name}
+      Email: ${email}
+      City: ${city}
+      Phone: ${phone}
+      Message: ${message}
+    `,
+  };
 
-    // Save the contact form data to the database
-    await newContact.save();
-    console.log("Contact form saved successfully");
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log(error);
+      return res.status(500).send("Error sending message");
+    } else {
+      console.log("Email sent: " + info.response);
+      return res.send("Message sent successfully");
+    }
+  });
+  // const newContact = new Contact({
+  //   name: name,
+  //   email: email,
+  //   city: city,
+  //   phone: phone,
+  //   message: message
+  // });
+  // newContact.save()
+  // .then(() => console.log("Contact form saved successfully"))
+  // .catch((err) => console.error("Error saving contact form:", err));
 
-    // Send an email notification
-    const mailOptions = {
-      from: process.env.EMAIL,
-      replyTo: email,
-      to: process.env.EMAIL,
-      subject: `Contact form submission from ${name}`,
-      text: ` 
-        Name: ${name}
-        Email: ${email}
-        City: ${city}
-        Phone: ${phone}
-        Message: ${message}
-      `,
-    };
-
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.log(error);
-        return res.status(500).send("Error sending message");
-      } else {
-        console.log("Email sent: " + info.response);
-        return res.status(200).send("Message sent successfully");
-      }
-    });
-  } catch (err) {
-    console.error("Error saving contact form:", err);
-    return res.status(500).send("Error saving contact form");
-  }
 });
 
 app.get("/", (req, res) => {
