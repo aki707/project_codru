@@ -86,7 +86,17 @@ app.post("/contactus", (req, res) => {
   if (!email || !name || !message || !city || !phone) {
     return res.status(400).send("All fields are required");
   }
-
+  const newContact = new Contact({
+    name: name,
+    email: email,
+    city: city,
+    phone: phone,
+    message: message
+  });
+  newContact.save()
+  .then(() => console.log("Contact form saved successfully"))
+  .catch((err) => console.error("Error saving contact form:", err));
+  
   const mailOptions = {
     from: process.env.EMAIL,
     replyTo: email,
@@ -110,16 +120,7 @@ app.post("/contactus", (req, res) => {
       return res.send("Message sent successfully");
     }
   });
-  const newContact = new Contact({
-    name: name,
-    email: email,
-    city: city,
-    phone: phone,
-    message: message
-  });
-  newContact.save()
-  .then(() => console.log("Contact form saved successfully"))
-  .catch((err) => console.error("Error saving contact form:", err));
+  
 
 });
 
