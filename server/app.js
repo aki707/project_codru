@@ -80,47 +80,55 @@ app.post('/botenroll', async (req, res) => {
   });
 });
 
-app.post("/contactus", (req, res) => {
+app.post("/contactus", async (req, res) => {
   const { email, name, city, phone, message } = req.body;
 
+  // Validate required fields
   if (!email || !name || !message || !city || !phone) {
     return res.status(400).send("All fields are required");
   }
 
-  const mailOptions = {
-    from: process.env.EMAIL,
-    replyTo: email,
-    to: process.env.EMAIL,
-    subject: `Contact form submission from ${name}`,
-    text: ` 
-      Name: ${name}
-      Email: ${email}
-      City: ${city}
-      Phone: ${phone}
-      Message: ${message}
-    `,
-  };
+  try {
+    // Save the contact form data to the database
+    const newContact = new Contact({
+      name: name,
+      email: email,
+      city: city,
+      phone: phone,
+      message: message,
+    });
 
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.log(error);
-      return res.status(500).send("Error sending message");
-    } else {
-      console.log("Email sent: " + info.response);
-      return res.send("Message sent successfully");
-    }
-  });
-  const newContact = new Contact({
-    name: name,
-    email: email,
-    city: city,
-    phone: phone,
-    message: message
-  });
-  newContact.save()
-  .then(() => console.log("Contact form saved successfully"))
-  .catch((err) => console.error("Error saving contact form:", err));
+    await newContact.save(); // Save to the database
+    console.log("Contact form saved successfully");
 
+    // Send an email notification
+    const mailOptions = {
+      from: process.env.EMAIL,
+      replyTo: email,
+      to: process.env.EMAIL,
+      subject: `Contact form submission from ${name}`,
+      text: ` 
+        Name: ${name}
+        Email: ${email}
+        City: ${city}
+        Phone: ${phone}
+        Message: ${message}
+      `,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error("Error sending email:", error);
+        return res.status(500).send("Error sending message");
+      } else {
+        console.log("Email sent: " + info.response);
+        return res.status(200).send("Message sent successfully");
+      }
+    });
+  } catch (err) {
+    console.error("Error saving contact form:", err);
+    return res.status(500).send("Error saving contact form");
+  }
 });
 
 app.get("/", (req, res) => {
