@@ -110,16 +110,16 @@ app.post("/contactus", (req, res) => {
       return res.send("Message sent successfully");
     }
   });
-  // const newContact = new Contact({
-  //   name: name,
-  //   email: email,
-  //   city: city,
-  //   phone: phone,
-  //   message: message
-  // });
-  // newContact.save()
-  // .then(() => console.log("Contact form saved successfully"))
-  // .catch((err) => console.error("Error saving contact form:", err));
+  const newContact = new Contact({
+    name: name,
+    email: email,
+    city: city,
+    phone: phone,
+    message: message
+  });
+  newContact.save()
+  .then(() => console.log("Contact form saved successfully"))
+  .catch((err) => console.error("Error saving contact form:", err));
 
 });
 
