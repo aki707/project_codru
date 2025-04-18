@@ -30,6 +30,7 @@ const User = require("./models/userSchema");
 const Student = require("./models/studentSchema");
 const Teacher = require("./models/teacherSchema");
 const Contact = require("./models/contactSchema");
+const BotEnroll = require("./models/botEnrollSchema");
 app.use(require("./router/userauth.js"));
 app.use(require("./router/blogauth.js"));
 app.use(require("./router/courseauth.js"));
@@ -46,38 +47,61 @@ const transporter = nodemailer.createTransport({
 
 app.post('/botenroll', async (req, res) => {
   const formData = req.body;
-  // if (!formData) {
-  //   return res.status(400).json({ error: 'Form data is required' });
-  // }
 
-  const mailOptions = {
-    from: process.env.EMAIL,
-    replyTo: formData.email,
-    to: process.env.EMAIL,
-    subject: `Bot Enrollment Form Submission from ${formData.name}`,
-    text: `
-      New Enrollment in Robotics Course. Please check:
+  // Validate required fields
+  if (!formData.name || !formData.age || !formData.email || !formData.countryCode || !formData.phone || !formData.course || !formData.duration) {
+    return res.status(400).json({ error: 'All required fields must be provided' });
+  }
 
-      Name: ${formData.name}
-      Age: ${formData.age}
-      Email: ${formData.email}
-      CountryCode: ${formData.countryCode}
-      Phone: ${formData.phone}
-      Course: ${formData.course}
-      Duration: ${formData.duration}
-      Message: ${formData.idea}
-    `,
-  };
+  try {
+    // Save the form data to the database
+    const newEnrollment = new BotEnroll({
+      name: formData.name,
+      age: formData.age,
+      email: formData.email,
+      countryCode: formData.countryCode,
+      phone: formData.phone,
+      course: formData.course,
+      duration: formData.duration,
+      idea: formData.idea, // Optional field
+    });
 
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.log(error);
-      return res.status(500).send("Error sending message");
-    } else {
-      console.log("Email sent: " + info.response);
-      return res.send("Message sent successfully");
-    }
-  });
+    await newEnrollment.save(); // Save to the database
+    console.log("Bot enrollment saved successfully");
+
+    // Send an email notification
+    const mailOptions = {
+      from: process.env.EMAIL,
+      replyTo: formData.email,
+      to: process.env.EMAIL,
+      subject: `Bot Enrollment Form Submission from ${formData.name}`,
+      text: `
+        New Enrollment in Robotics Course. Please check:
+
+        Name: ${formData.name}
+        Age: ${formData.age}
+        Email: ${formData.email}
+        CountryCode: ${formData.countryCode}
+        Phone: ${formData.phone}
+        Course: ${formData.course}
+        Duration: ${formData.duration}
+        Message: ${formData.idea || "No additional message provided"}
+      `,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error("Error sending email:", error);
+        return res.status(500).json({ error: "Error sending email notification" });
+      } else {
+        console.log("Email sent: " + info.response);
+        return res.status(200).json({ message: "Enrollment saved and email sent successfully" });
+      }
+    });
+  } catch (error) {
+    console.error("Error saving bot enrollment:", error);
+    return res.status(500).json({ error: "Error saving bot enrollment" });
+  }
 });
 
 app.post("/contactus", async (req, res) => {

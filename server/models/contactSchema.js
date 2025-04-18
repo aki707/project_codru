@@ -13,6 +13,11 @@ const contactSchema = new mongoose.Schema({
     lowercase: true, // Converts email to lowercase
     match: [/.+@.+\..+/, "Please enter a valid email address"], // Email validation
   },
+  countryCode: {
+    type: String,
+    required: true,
+    match: [/^\+\d{1,4}$/, "Please enter a valid country code"], // Country code validation (e.g., +91, +1)
+  },
   phone: {
     type: String,
     required: true,

@@ -80,6 +80,9 @@ input:-webkit-autofill:active {
   display: block;
   margin-bottom: 10px;
 }
+
+.phone-container input,
+.contact-country-code,
 .cont_form-group input,
 .cont_form-group textarea {
   color: #590404;
@@ -92,11 +95,14 @@ input:-webkit-autofill:active {
   box-shadow: #590404 0px 0px 3px;
   font-size: 14px;
 }
+.phone-container input:focus,
+.contact-country-code:focus,
 .cont_form-group input:focus,
 .cont_form-group textarea:focus {
   outline: none;
   border: none;
 }
+
 .cont_form-group textarea {
   font-family: 'Poppins', sans-serif;
   resize: vertical;
@@ -311,6 +317,33 @@ input:-webkit-autofill:active {
   text-decoration: none; /* Remove underline from links */
   color: inherit; /* Inherit the color from the parent element */
 
+}
+
+.contact-country-code {
+  width: 25%; /* Adjust width of the dropdown */
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.contact-country-code:focus {
+  outline: none;
+  box-shadow: #d61e3f 0 0 3px;
+}
+
+.phone-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Add spacing between the dropdown and input */
+}
+
+#phn {
+  width: 75%; /* Adjust width of the phone input */
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 /* Mobile view adjustments */

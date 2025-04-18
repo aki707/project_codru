@@ -376,6 +376,10 @@
     padding: 5%; /* Remove padding for mobile */
     padding-bottom: 1%;
   }
+
+  .roboticsBanner img {
+    width: 155%;
+  }
   
   .academicCourses,
   .roboticsCourses {

@@ -8,6 +8,7 @@ const Contact = ({ userData, setUserData }) => {
   const [value, setValue] = useState({
     name: "",
     email: "",
+    countryCode: "+91", // Default country code
     phone: "",
     city: "",
     message: "",
@@ -29,7 +30,7 @@ const Contact = ({ userData, setUserData }) => {
 
   const PostData = async (e) => {
     e.preventDefault();
-    const { name, email, phone, city, message } = value;
+    const { name, email, countryCode, phone, city, message } = value;
 
     const res = await fetch("https://codru-server.vercel.app/contactus", {
       method: "POST",
@@ -37,6 +38,7 @@ const Contact = ({ userData, setUserData }) => {
       body: JSON.stringify({
         name,
         email,
+        countryCode,
         phone,
         city,
         message,
@@ -49,7 +51,7 @@ const Contact = ({ userData, setUserData }) => {
         severity: "success",
         message: "Message sent successfully!",
       });
-      setValue({ name: "", email: "", phone: "", city: "", message: "" });
+      setValue({ name: "", email: "", countryCode: "+91", phone: "", city: "", message: "" });
     } else {
       setAlert({
         show: true,
@@ -101,15 +103,30 @@ const Contact = ({ userData, setUserData }) => {
                     </div>
                     <div className="cont_form-group">
                       <label htmlFor="phn">
-                        <input
-                          placeholder="Phone Number"
-                          type="tel"
-                          id="phn"
-                          name="phone"
-                          value={value.phone}
-                          onChange={handleChange}
-                          required
-                        />
+                        <div className="phone-container">
+                          <select
+                            className="contact-country-code"
+                            name="countryCode"
+                            value={value.countryCode}
+                            onChange={handleChange}
+                            required
+                          >
+                            <option value="+91">+91 (India)</option>
+                            <option value="+1">+1 (USA)</option>
+                            <option value="+44">+44 (UK)</option>
+                            <option value="+61">+61 (Australia)</option>
+                            <option value="+81">+81 (Japan)</option>
+                          </select>
+                          <input
+                            placeholder="Phone Number"
+                            type="tel"
+                            id="phn"
+                            name="phone"
+                            value={value.phone}
+                            onChange={handleChange}
+                            required
+                          />
+                        </div>
                       </label>
                     </div>
                     <div className="cont_form-group">
