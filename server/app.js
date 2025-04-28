@@ -85,7 +85,7 @@ app.post('/botenroll', async (req, res) => {
         Phone: ${formData.phone}
         Course: ${formData.course}
         Duration: ${formData.duration}
-        Message: ${formData.idea || "No additional message provided"}
+        Idea: ${formData.idea || "No additional message provided"}
       `,
     };
 
