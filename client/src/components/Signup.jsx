@@ -52,8 +52,8 @@ async function getAccessTokenFromCode(code) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      client_id: process.env.APP_ID_GOES_HERE,
-      client_secret: process.env.APP_SECRET_GOES_HERE,
+      client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+      client_secret: import.meta.env.VITE_GOOGLE_CLIENT_SECRET,
       redirect_uri: "https://www.example.com/authenticate/google",
       grant_type: "authorization_code",
       code,
@@ -102,6 +102,7 @@ function Signup() {
   const [microsoftUser, setMicrosoftUser] = useState(null);
 
   const navigate = useNavigate();
+  
 
   const [click, handleClick] = useState(false);
   const [open, setOpen] = useState(false);
@@ -279,7 +280,8 @@ function Signup() {
     setMicrosoftUser(null);
     console.log("Logged out from Microsoft");
   };
-
+  // console.log("Google Client ID:", import.meta.env.VITE_GOOGLE_CLIENT_ID);
+  // console.log(import.meta.env);
   return (
     <div className="signupdiv">
       <div className="signupdiv1">
