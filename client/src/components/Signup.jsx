@@ -254,14 +254,10 @@ function Signup() {
     setShowAlert(false);
   };
 
-  const googleLogin = useGoogleLogin({
-    onSuccess: (tokenResponse) => {
-      console.log(tokenResponse);
-    },
-    onError: () => {
-      console.log("Login Failed");
-    },
-  });
+  const googleLogin = () => {
+    // Redirect to the backend route for Google OAuth
+    window.location.href = "https://codru-server.vercel.app/auth/google";
+  };
 
   // const facebookLogin = (response) => {
   //   // Here, you would typically send the response data to your server for further processing
@@ -280,8 +276,6 @@ function Signup() {
     setMicrosoftUser(null);
     console.log("Logged out from Microsoft");
   };
-  // console.log("Google Client ID:", import.meta.env.VITE_GOOGLE_CLIENT_ID);
-  // console.log(import.meta.env);
   return (
     <div className="signupdiv">
       <div className="signupdiv1">
