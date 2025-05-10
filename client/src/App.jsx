@@ -34,7 +34,7 @@ import BotEnroll from "./components/BotEnroll.jsx";
 import BotExplorer from "./components/BotExplorer.jsx";
 import BotEngineer from "./components/BotEngineer.jsx";
 import BotInventor from "./components/BotInventor.jsx";
-
+import About1 from "./components/About1.jsx";
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -168,7 +168,7 @@ function App() {
         />
         <Route
           path="/about"
-          element={<About userData={userData} setUserData={setUserData} />}
+          element={<About1 userData={userData} setUserData={setUserData} />}
         />
         <Route
           path="/custom"
