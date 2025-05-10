@@ -89,6 +89,7 @@ const About = ({ userData, setUserData }) => {
       </div>
       <Footer />
     </div>
+    
   );
 };
 
