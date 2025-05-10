@@ -19,13 +19,17 @@ import {
   DialogContent,
 } from "@mui/material";
 import BadgeIcon from "@mui/icons-material/Badge";
+import { DatePicker } from "@mui/x-date-pickers";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import GoogleIcon from "../assets/google.svg";
 import { useGoogleLogin } from "@react-oauth/google";
 import FacebookIcon from "../assets/facebook-color.svg";
-import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
+//import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import MicrosoftIcon from "../assets/microsoft.svg";
 import MicrosoftLogin from "react-microsoft-login";
 import { MuiOtpInput } from "mui-one-time-password-input";
+import CalendarTodayIcon from "@mui/icons-material/CalendarToday"; // Import the calendar icon
 
 function matchIsString(text) {
   return typeof text === "string";
@@ -258,9 +262,9 @@ function Signup() {
     },
   });
 
-  const facebookLogin = (response) => {
-    // Here, you would typically send the response data to your server for further processing
-  };
+  // const facebookLogin = (response) => {
+  //   // Here, you would typically send the response data to your server for further processing
+  // };
 
   const microsoftLogin = (err, data) => {
     if (!err) {
@@ -436,6 +440,7 @@ function Signup() {
             type="tel"
             value={value.phone}
             onChange={handleChange}
+            required
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -446,16 +451,31 @@ function Signup() {
           />
         </div>
         <div>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <DatePicker
+        renderInput={(params) => (
+          
           <TextField
             fullWidth
             variant="outlined"
+            placeholder="Date of Birth"
             name="dob"
-            helperText={click && "Fill in your date of birth."}
             type="date"
             value={value.dob}
             onChange={handleChange}
-            onFocus={() => handleClick(true)}
+            required
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <CalendarTodayIcon />
+                </InputAdornment>
+              ),
+            }}
+            
           />
+        )}
+        />
+        </LocalizationProvider>
         </div>
         <div className="terms1">
           <label>
@@ -498,7 +518,7 @@ function Signup() {
           </div>
           <span className="separator">|</span>
 
-          <FacebookLogin
+          {/* <FacebookLogin
             appId="1088597931155576"
             autoLoad={false}
             fields="name,email,picture"
@@ -510,7 +530,8 @@ function Signup() {
                 <img src={FacebookIcon} alt="Facebook" className="icon" />
               </div>
             )}
-          />
+          /> */}
+          
 
           <span className="separator">|</span>
 
