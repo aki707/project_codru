@@ -11,49 +11,7 @@ import FacebookIcon from "../assets/facebook-color.svg";
 import MicrosoftIcon from "../assets/microsoft.svg";
 import { useNavigate } from "react-router-dom";
 import SignInAnim from "./SignInAnim";
-import { GoogleLogin } from "@react-oauth/google";
 import Navbar from "./Navbar";
-
-const handleGoogleLoginSuccess = (credentialResponse) => {
-  console.log("Google Login Success:", credentialResponse);
-
-  // Send the token to your backend for verification
-  fetch("https://codru-server.vercel.app/google-login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ token: credentialResponse.credential }),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log("User data from backend:", data);
-
-      // Save user data in state
-      setUserData({
-        Photo: data.photo,
-        Name: data.name,
-        Role: data.role,
-        isAdmin: data.isAdmin,
-      });
-
-      // Save token and username in localStorage
-      localStorage.setItem("Token", data.token);
-      localStorage.setItem("Username", data.username);
-
-      // Navigate to the home page
-      navigate("/");
-    })
-    .catch((error) => {
-      console.error("Error during Google login:", error);
-      setAlertMessage("Google Sign-In failed. Please try again.");
-      setShowAlert(true);
-    });
-};
-
-const handleGoogleLoginFailure = (error) => {
-  console.error("Google Login Failed:", error);
-  setAlertMessage("Google Sign-In failed. Please try again.");
-  setShowAlert(true);
-};
 
 function Signin({  userData, setUserData }) {
   const [showAlert, setShowAlert] = useState(false); // State to control alert visibility
@@ -221,10 +179,15 @@ function Signin({  userData, setUserData }) {
           </div>
 
           <div className="external">
-            <GoogleLogin
-              onSuccess={handleGoogleLoginSuccess}
-              onError={handleGoogleLoginFailure}
-            />
+            <div className="icon-wrapper">
+              <img
+                src={GoogleIcon}
+                alt="Google"
+                className="icon"
+                onClick={() => googleLogin()}
+                style={{ cursor: "pointer" }}
+              />
+            </div>
             <span className="separator">|</span>
             <div
               className="icon-wrapper"

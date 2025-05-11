@@ -4,6 +4,7 @@ import Muialert from "./Muialert";
 import "../styles/Signup.css";
 import s from "../assets/6430773-transformed.webp";
 import { Email, Lock, Phone, Person } from "@mui/icons-material";
+import FunDatePicker from "./FunDatePicker";
 import SignUpAnim from "./SignUpAnim";
 import "../styles/Spinner.css";
 import {
@@ -23,7 +24,6 @@ import { DatePicker } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import GoogleIcon from "../assets/google.svg";
-import { useGoogleLogin } from "@react-oauth/google";
 import FacebookIcon from "../assets/facebook-color.svg";
 //import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
 import MicrosoftIcon from "../assets/microsoft.svg";
@@ -447,31 +447,7 @@ function Signup() {
           />
         </div>
         <div>
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <DatePicker
-        renderInput={(params) => (
-          
-          <TextField
-            fullWidth
-            variant="outlined"
-            placeholder="Date of Birth"
-            name="dob"
-            type="date"
-            value={value.dob}
-            onChange={handleChange}
-            required
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <CalendarTodayIcon />
-                </InputAdornment>
-              ),
-            }}
-            
-          />
-        )}
-        />
-        </LocalizationProvider>
+        <FunDatePicker />
         </div>
         <div className="terms1">
           <label>
